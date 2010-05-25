@@ -1,0 +1,14 @@
+[user]
+	email = kshimo69@gmail.com
+	name = Kimihiko Shimomura
+[github]
+	user = kshimo69
+	token = 53a6a67aea7a0c6aac0ad1459915b506
+[core]
+	excluedesfile = $HOME/.gitignore
+[color]
+	ui = auto
+[alias]
+	co = checkout
+	ci = commit
+	st = status

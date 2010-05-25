@@ -1,0 +1,10 @@
+.DS_Store
+*.o
+*.elc
+*.pyc
+.*~
+*~
+.#*
+*.sw[po]
+TAGS
+tags
