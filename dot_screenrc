@@ -1,0 +1,30 @@
+autodetach on
+defencoding UTF-8
+encoding UTF-8 UTF-8
+startup_message off
+escape ^z^z
+vbell off
+defscrollback 10000
+caption always "[%02c] $USER@$HOST %`%-w%{=b bw}%n %t%{-}%+w"
+#hardstatus alwayslastline "[%02c] $USER@$HOST %`%-w%{=b bw}%n %t%{-}%+w"
+term screen
+#termcapinfo xterm-256color hs@:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l
+termcapinfo xterm-256color 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+bind . next
+bind , prev
+bind -c REGION 3 split -v
+bind -c REGION 2 split
+bind -c REGION 1 only
+bind -c REGION 0 remove
+bind -c REGION o focus down
+bind -c REGION p focus up
+bind -c REGION \^ resize +2
+bind -c REGION } resize +2
+bind -c REGION { resize -2
+bind x command -c REGION
+bind ^x command -c REGION
+bind ^U encoding utf8
+bind ^E encoding euc
+
+bind -c app p screen -t python python
