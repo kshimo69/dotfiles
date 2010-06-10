@@ -1,0 +1,8 @@
+[ui]
+username = kshimo69
+
+[extensions]
+color =
+hgext.color =
+hgext.graphlog =
+hgext.pager =
