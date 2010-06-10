@@ -1,0 +1,398 @@
+" vim:set foldmethod=marker commentstring=//%s :
+" .vimrc
+
+" General
+let $PATH = '/opt/local/bin:/opt/local/sbin:' . $PATH
+set nocompatible
+set textwidth=0  " no auto return when column has so long
+set nobackup  " not create backup files
+"set noswapfile  " not craste swap files
+"set hidden  " it can change buffer when buffer don't save
+set autoread  " auto read when file was overwrited
+set backspace=indent,eol,start  " remove any character <BS> key
+set vb  " no beep
+set t_vb=
+set showcmd  " show command
+set wildmenu  " expand command
+set wildchar=<tab>  " start expand with <TAB>
+set wildmode=list:full  " display type: list
+set history=1000  " command history
+set foldmethod=indent  " fold with indent
+"set foldlevel=0  " all level folding
+set foldlevel=99  " all level not folding when open buffer
+"set foldcolumn=4  " show folding line
+set tabstop=4 shiftwidth=4 softtabstop=4  " tab set 4 spaces
+set expandtab  " TAB expand SPACE
+set smarttab
+set showmatch  " highlight bracket
+" http://vim-users.jp/2010/02/hack125/
+set virtualedit& " initialize
+set virtualedit+=block
+"set background=dark
+"set autoindent
+"set smartindent
+"set cindent
+set nrformats& " initialize
+set nrformats-=octal
+set ffs=unix,dos,mac  " return code
+if !(has("win32") || has("win95") || has("win64") || has("win16"))
+  set encoding=utf-8  " default encoding
+endif
+set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
+nmap ,ee :e ++enc=euc-jp<CR>
+nmap ,es :e ++enc=cp932<CR>
+nmap ,ej :e ++enc=iso-2022-jp<CR>
+nmap ,eu :e ++enc=utf-8<CR>
+" View
+set number  " display line number
+set listchars=eol:$,tab:>\ ,extends:<  " character when use 'set list'
+"set list  " display TAB and CR
+colorscheme desert
+if has('gui_macvim')
+    set guioptions& " initialize
+    set guioptions-=T
+    set imdisable
+    set antialias
+    colorscheme macvim
+    set guifont=M+2VM+IPAG\ circle\ Regular:h14
+    "set transparency=40
+    set fuoptions=maxvert,maxhorz
+    "au GUIEnter * set fullscreen
+endif
+syntax on
+filetype on
+filetype plugin on
+filetype indent on
+highlight Folded ctermbg=grey ctermfg=blue guibg=grey guifg=blue
+highlight FoldColumn ctermfg=green guifg=green
+set title
+set ruler
+" Search
+set ignorecase
+set smartcase
+set incsearch
+set wrapscan
+set hlsearch
+
+" Key map
+nnoremap j gj
+nnoremap k gk
+nnoremap <Space> jzz
+nnoremap <S-Space> kzz
+nnoremap Y y$
+nnoremap ¥ \
+inoremap ¥ \
+
+" buffer
+nmap <silent> <C-x><C-n> :bnext<CR>
+nmap <silent> <C-x><C-p> :bprevious<CR>
+nmap <silent> <C-x><C-l> :buffers<CR>
+" show serach result middle of buffer
+nmap n nzz
+nmap N Nzz
+nmap * *zz
+nmap # #zz
+nmap g* g*zz
+nmap g# g#zz
+nmap G Gzz
+" scroll top window with key Ctrl+Shift+J
+nnoremap <C-S-J> <C-W>k<C-E><C-W><C-W>
+
+" If IME on, tunr the color of cursor
+if has('multi_byte_ime') || has('xim')
+    highlight CursorIM guibg=LightRed guifg=NONE
+endif
+" GUI
+if has('gui_running')
+    " sidebar
+    set guioptions& " initialize
+    set guioptions+=b
+    " clip board
+    " http://vim-users.jp/2010/02/hack126/
+    set clipboard=unnamed,autoselect
+    set guioptions+=a
+    set guifont=M+2VM+IPAG\ circle\ 14
+    " window size
+    set lines=48
+    set columns=160
+    gui
+    "set transparency=20
+endif
+
+" Status line
+set laststatus=2
+set statusline=%n\:%y%F\ %(\[%{GitBranch()}\]\ %)\|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}ascii\:\%03.3b\|hex\:\%02.2B\|%m%r%=<%v\:%l/%L:%p%%>
+highlight StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=white
+"highlight StatusLine gui=BOLD guifg=Black guibg=LightYellow
+" Change status line's color when into insert mode
+augroup InsertHook
+    autocmd!
+    autocmd InsertEnter * highlight StatusLine guifg=White guibg=DarkCyan
+    autocmd InsertLeave * highlight StatusLine guifg=Black guibg=LightYellow
+augroup END
+" Change cursor color when IME on/off
+if has('multi_byte_ime') || has('xim')
+    highlight CursorIM guibg=LightRed guifg=NONE
+endif
+
+" When editing a file, always jump to the last cursor position
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+\   exe "normal! g'\"" |
+\ let b:posBufReadPost = getpos('.') |
+\ endif
+autocmd BufWinEnter *
+\ if exists('b:posBufReadPost') |
+\   if b:posBufReadPost == getpos('.') |
+\   execute 'normal! zvzz' |
+\   endif |
+\ unlet b:posBufReadPost |
+\ endif
+
+" http://www.slideshare.net/tsukkee/vim5-vimrc
+" load password file
+if filereadable(expand('~/.vimrc.passwd'))
+    source ~/.vimrc.passwd
+endif
+
+if has("cscope") && filereadable("/usr/bin/cscope")
+   set csprg=/usr/bin/cscope
+   set csto=0
+   set cst
+   set nocsverb
+   " add any database in current directory
+   if filereadable("cscope.out")
+      cs add cscope.out
+   " else add database pointed to by environment
+   elseif $CSCOPE_DB != ""
+      cs add $CSCOPE_DB
+   endif
+   set csverb
+endif
+
+" Complete
+autocmd FileType *
+\   if &l:omnifunc == ''
+\ |   setlocal omnifunc=syntaxcomplete#Complete
+\ | endif
+
+" Configuration for c/c++ folding
+autocmd FileType c      syntax clear cBlock |
+            \           syntax region myFold start='^{' end='^}' transparent fold |
+            \           syntax sync fromstart |
+            \           setlocal foldmethod=syntax
+autocmd FileType cpp    syntax clear cBlock |
+            \           syntax region myFold start='^{' end='^}' transparent fold |
+            \           syntax sync fromstart |
+            \           setlocal foldmethod=syntax
+
+" Configuration for python
+autocmd FileType python setl autoindent
+autocmd FileType python setl smartindent cinwords=if,elif,for,while,try,except,finally,def,class
+autocmd FileType python setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
+" Execute python script C-P
+function! s:ExecPy()
+    exe "!" . &ft . " %"
+:endfunction
+command! Exec call <SID>ExecPy()
+autocmd FileType python map <silent> <C-P> :call <SID>ExecPy()<CR>
+" Pydiction
+autocmd FileType python let g:pydiction_location = '~/.vim/dict/pydiction/complete-dict'
+autocmd FileType python inoremap . .<C-x><C-u><C-p>
+
+" XML close tag
+augroup MyXML
+    autocmd!
+    autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+augroup END
+
+" Reset Japanese input
+au BufNewFile,BufRead * set iminsert=0
+" Tab reset
+au BufNewFile,BufRead * set tabstop=4 shiftwidth=4 softtabstop=4
+" Show zenkaku space
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
+au BufNewFile,BufRead * match ZenkakuSpace /　/
+
+" yank
+let g:yankring_history_file = '.yankring_history_file'
+
+" autocomplpop
+:set complete=.,w,b,u,t,i,k
+autocmd Filetype *    let g:AutoComplPop_CompleteOption='.,w,b,u,t,i,k'
+highlight Pmenu ctermbg=4
+highlight PmenuSel ctermbg=1
+highlight PMenuSbar ctermbg=4
+
+" http://vim.wikia.com/wiki/Autocomplete_with_TAB_when_typing_words
+"Use TAB to complete when typing words, else inserts TABs as usual.
+"Uses dictionary and source files to find matching words to complete.
+"See help completion for source,
+"Note: usual completion is on <C-n> but more trouble to press all the time.
+"Never type the same word twice and maybe learn a new spellings!
+"Use the Linux dictionary when spelling is in doubt.
+"Window users can copy the file to their machine.
+function! Tab_Or_Complete()
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    return "\<C-N>"
+  else
+    return "\<Tab>"
+  endif
+endfunction
+":inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+"inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
+":set dictionary="/usr/dict/words"
+
+" http://d.hatena.ne.jp/secondlife/20060203/1138978661
+" Allargs.vim
+" ex)
+" :Allargs %s/foo/bar/ge|update
+" 使う時。foo を bar に置換しまくる。
+" :Allargs %s/foo/bar/ge|update
+" eオプションをつけないと foo が無いというメッセージがのんびり表示されて、いつま
+" でたっても置換が終わらないので気をつけよう(それに気づかずに密かにハマった)
+" コマンドは | で連続で実行できて、update は変更のあったバッファだけを保存。と。
+" カレントの *.cpp を置換する場合は予め、
+" :ar *.cpp
+" ってやっとくと全部読み込まれる。
+" 確認するには
+" :ar
+function! Allargs(command)
+  let i = 0
+  while i < argc()
+    if filereadable(argv(i))
+      execute "e " . argv(i)
+      execute a:command
+    endif
+    let i = i + 1
+  endwhile
+endfunction
+command! -nargs=+ -complete=command Allargs call Allargs(<q-args>)
+
+" skk.vim http://fifnel.com/tag/mac/
+let skk_jisyo = '~/.vim/skk-jisyo'
+let skk_large_jisyo = '~/.vim/dict/skk/SKK-JISYO.L'
+let skk_auto_save_jisyo = 1
+let skk_keep_state = 0
+let skk_egg_like_newline = 1
+let skk_show_annotation = 1
+let skk_use_face = 1
+
+let g:skk_sticky_key = ';'
+let g:skk_kakutei_key = '.'
+let g:skk_use_color_cursor = 1
+let g:skk_cursor_hiragana_color = '#ff0000' " かなモード
+let g:skk_cursor_katakana_color = '#00ff00' " カナモード
+let g:skk_cursor_jisx0208_color = '#ffcc00' " 全英モード
+let g:skk_cursor_latin_color = '#000000' " アスキーモード
+let g:skk_cursor_abbrev_color = '#0000ff' " SKK abbrevモード
+let g:skk_latin_mode_string = 'SKK' " アスキーモード ( SKK:aA )
+let g:skk_hiragana_mode_string = 'かな' " かなモード ( SKK:あ )
+let g:skk_katakana_mode_string = 'カナ' " カナモード ( SKK:ア )
+let g:skk_jisx0208_latin_mode_string = '全英' " 全英モード ( SKK:Ａ )
+let g:skk_abbrev_mode_string = 'aあ' " SKK abbrevモード (SKK:aあ )
+
+" hatena.vim
+let g:hatena_user = 'kshimo69'
+
+" outputz
+let g:outputz_secret_key = 'Bby9m2635Q.C'
+
+" rtm-vim
+let g:rtm_api_key = 'f5f8dd1b0f0fefbb8debe6d206868df2'
+let g:rtm_shared_secret = '0740d5f2e9c4f6b8'
+let g:rtm_token = '4a42095faab4513653cd55d45cc80b37fd93e920'
+
+" ChangeLog
+let g:changelog_username = "Kimihiko Shimomura  <kshimo69@gmail.com>"
+let g:changelog_dateformat = "%Y-%m-%d (%a)"
+nmap <C-m> :e ~/clmemo/ChangeLog.txt<CR>
+
+" clmemogrep
+" http://d.hatena.ne.jp/ampmmn/20090219/1235042852
+let g:clmemogrep_changelogfilepath = '~/clmemo/ChangeLog.txt'
+let g:clmemogrep_itemseparator = '--------'
+nmap <C-g> :CLMemoGrep 
+
+" cursoroverdictionary
+" http://d.hatena.ne.jp/ampmmn/20091002/1254474418
+" English to Japanese
+call cursoroverdictionary#add("gtj", "http://www.google.com/translate_t?langpair=auto|ja&text={word}", "utf-8", "sjis")
+call cursoroverdictionary#set_trim_pattern("gtj", '<span id=result_box.\{-}>', '</span>')
+call cursoroverdictionary#set_user_agent("gtj", "Mozilla/4.0 (ja)")
+" Japanese to English
+call cursoroverdictionary#add("gte", "http://www.google.com/translate_t?langpair=auto|en&text={word}", "utf-8", "sjis")
+call cursoroverdictionary#set_trim_pattern("gte", '<span id=result_box.\{-}>', '</span>')
+call cursoroverdictionary#set_user_agent("gte", "Mozilla/5.0 (ja)")
+" Alc
+call cursoroverdictionary#add("alc", "http://eow.alc.co.jp/{word}/UTF-8", "utf-8", "utf-8")
+call cursoroverdictionary#set_trim_pattern("alc", '<div id="resultList".\{-}>', '\t\t\t\t</div>')
+call cursoroverdictionary#set_user_agent("alc", 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ja; rv:1.9.0.6) Gecko/2009011913 Firefox/3.0.6')
+" keymap
+nnoremap <silent> ,t :<c-u>CODToggle<cr>
+vnoremap <silent> ,gtj :<c-u>CODSelectedEx gtj<cr>
+vnoremap <silent> ,gte :<c-u>CODSelectedEx gte<cr>
+vnoremap <silent> ,alc :<c-u>CODSelectedEx alc<cr>
+
+" neocomplcache
+" http://github.com/Shougo/neocomplcache/tarball/master
+" http://vim-users.jp/2009/07/hack-49/
+" update script
+" curl -L http://github.com/Shougo/neocomplcache/tarball/master | tar -xzC ~/.vim --strip-components=1 --exclude=presen
+" 自動的に有効に
+let g:NeoComplCache_EnableAtStartup = 1
+" 大文字を含む場合大文字のみ補完候補に
+let g:NeoComplCache_SmartCase = 1
+" CamelCase補完
+let g:NeoComplCache_EnableCamelCaseCompletion = 1
+" Underbar補完
+let g:NeoComplCache_EnableUnderbarCompletion = 1
+" 自動補完開始文字数
+let g:NeoComplCache_MinSyntaxLength = 3
+" 手動補完は0文字でもできる
+let g:NeoComplCache_ManualCompletionStartLength = 0
+" 補完に時間がかかる場合にスキップ
+let g:NeoComplCache_SkipCompletionTime = '0.5'
+" キーワード
+if !exists('g:NeoComplCache_KeywordPatterns')
+    let g:NeoComplCache_KeywordPatterns = {}
+endif
+let g:NeoComplCache_KeywordPatterns['default'] = '\v\h\w*'
+" 標準のファイル名補完を置換
+inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
+" CとC++は両方のバッファから補完
+let g:NeoComplCache_SameFileTypeLists{'c'} = 'cpp'
+let g:NeoComplCache_SameFileTypeLists{'cpp'} = 'c'
+" <C-y>: paste.
+inoremap <expr><C-y> pumvisible() ? neocomplcache#close_popup() : "\<C-r>0"
+" <C-e>: close popup.
+inoremap <expr><C-e> pumvisible() ? neocomplcache#cancel_popup() : "\<End>"
+" スニペット
+imap <C-l> <Plug>(neocomplcache_snippets_expand)
+smap <C-l> <Plug>(neocomplcache_snippets_expand)
+" <TAB> completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" C-jでオムニ補完
+inoremap <expr> <C-j> &filetype == 'vim' ? "\<C-x>\<C-v>\<C-p>" : "\<C-x>\<C-o>\<C-p>"
+" C-kを押すと行末まで削除
+inoremap <C-k> <C-o>D
+" C-hで補完を続行しない
+inoremap <expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+" C-nでneocomplcache補完
+inoremap <expr><C-n> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+" C-pでkeyword補完
+inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
+" 途中でEnterしたとき、ポップアップを消して改行し、
+" 改行を連続して入力してもインデント部を保持する
+inoremap <expr><CR> pumvisible() ? "\<C-y>\<CR>X\<BS>" : "\<CR>X\<BS>"
+" 補完元追加
+let g:NeoComplCache_DictionaryFileTypeLists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+    \ }
+
+" vimshell
+" http://github.com/Shougo/vimshell/tarball/master
+" update script
+" curl -L http://github.com/Shougo/vimshell/tarball/master | tar -xzC ~/.vim --strip-components=1 --exclude=presen
