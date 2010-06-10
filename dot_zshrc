@@ -1,0 +1,222 @@
+autoload -U colors
+colors
+setopt COMPLETE_IN_WORD
+bindkey -e
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey '' history-beginning-search-backward-end
+bindkey '' history-beginning-search-forward-end
+bindkey '^r' history-incremental-search-backward
+bindkey '^e' end-of-line
+bindkey '^u' backward-kill-line
+
+# http://subtech.g.hatena.ne.jp/secondlife/20071003/1191394868
+# % mkdir -p ~/.zsh/functions/completion
+# % touch ~/.zsh/functions/completion/dummy
+# % (mkdir ~/bin; cd ~/bin; wget http://www.rubyist.net/~rubikitch/archive/zshcomplete.txt; mv zshcomplete.txt zshcomplete.rb; chmod 755 zshcomplete.rb;
+fpath=($HOME/.zsh/functions/completion $fpath)
+autoload -U $HOME/.zsh/functions/completion/*(:t)
+autoload -U compinit
+compinit
+generate-complete-function/ruby/optparse () {
+    ruby -r $HOME/bin/zshcomplete $1 > $HOME/.zsh/completion/_`basename $1`
+    reload-complete-functions
+}
+reload-complete-functions() {
+    local f
+    f=($HOME/.zsh/completion/*(.))
+    unfunction $f:t 2> /dev/null
+    autoload -U $f:t
+}
+
+export GREP_COLOR="01;35"
+export GREP_OPTIONS=--color=auto
+export LSCOLORS=gxfxcxdxbxegedabagacad
+PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:$PATH:$HOME/bin
+typeset -U PATH
+export PATH
+export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
+export PERL5LIB=$HOME/local/lib/perl5:$HOME/local/lib/perl5/site_perl:$HOME/local/lib/perl:$HOME/local/share/perl
+export PERL_AUTOINSTALL="--defaultdeps"
+export RUBYLIB=$HOME/local/lib/ruby/site_ruby/
+export PYTHONSTARTUP=$HOME/.pythonrc.py
+export EDITOR=vim
+export SVN_EDITOR=vim
+export GISTY_DIR=$HOME/work/gist
+export GIT_EDITOR=vim
+export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
+
+alias ls='ls --color=auto'
+alias rm='rm'
+alias vi='LANG=C vim'
+alias vim='LANG=C vim'
+alias VIM='LANG=C vim -g'
+#alias em='emacs -nw'
+alias em='TERM=xterm-256color emacs -nw'
+alias py='python'
+alias pu='pushd'
+alias po='popd'
+alias d='nslookup d.hatena.ne.jp'
+if [ "`uname`" = "Darwin" ]; then
+    alias ls='ls -G'
+    alias em='open -a emacs'
+    alias VIM='open -a MacVim'
+fi
+if [ "${TERM}" = "eterm-color" ]; then
+    alias ls='ls -F'
+fi
+DAY=`date +%Y%m%d%H%M%S`
+if [ -f ~/.passwd ]; then
+    . ~/.passwd
+fi
+
+zstyle ':completion:*:sudo:*' command-path /opt/local/sbin /opt/local/bin \
+                                /usr/local/sbin /usr/local/bin /usr/sbin \
+                                /usr/bin /sbin /bin /usr/X11R6/bin
+zstyle ':completion:*:default' menu select=1
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+if [ "`uname`" = "Darwin" ]; then
+    zstyle ':completion:*' list-colors $LSCOLORS
+fi
+
+setopt NO_beep
+HISTFILE=~/.zsh-history
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt append_history
+setopt extended_history
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt share_history
+setopt hist_no_store
+setopt auto_list
+setopt auto_cd
+setopt auto_pushd
+setopt auto_remove_slash
+setopt print_eight_bit
+
+STERM="screen"
+
+# http://d.hatena.ne.jp/mollifier/20090814/p1
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' formats '%r(%s):%b'
+zstyle ':vcs_info:*' actionformats '%r(%s):%b|%a'
+# http://d.hatena.ne.jp/umezo/20100508/1273332857
+local COMMAND=""
+local COMMAND_TIME=""
+precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+    if [ -x "`which growlnotify`" ]; then
+        if [ "$COMMAND_TIME" -ne "0" ] ; then
+            local d=`date +%s`
+            d=`expr $d - $COMMAND_TIME`
+            if [ "$d" -ge "30" ] ; then
+                COMMAND="$COMMAND "
+                growlnotify -t "${${(s: :)COMMAND}[1]} done." -m "$COMMAND"
+            fi
+        fi
+        COMMAND="0"
+        COMMAND_TIME="0"
+    elif [ -n "$DISPLAY" -a -x "`which notify-send`" ]; then # for linux
+        if [ "$COMMAND_TIME" -ne "0" ] ; then
+            local d=`date +%s`
+            d=`expr $d - $COMMAND_TIME`
+            if [ "$d" -ge "30" ] ; then
+                COMMAND="$COMMAND "
+                notify-send -t 10000 "${${(s: :)COMMAND}[1]} done." "$COMMAND"
+            fi
+        fi
+        COMMAND="0"
+        COMMAND_TIME="0"
+    fi
+}
+preexec () {
+    COMMAND="${1}"
+    COMMAND_TIME=`date +%s`
+}
+
+# http://d.hatena.ne.jp/dayflower/20081031/1225428086
+if [ "$TERM" = "$STERM" ]; then
+    #local -a shorthost
+
+    #echo $TERMCAP | grep -q -i screen
+    #if [ $? -eq 0 ]; then
+    #    shorthost=""
+    #else
+    #    shorthost="${HOST%%.*}:"
+    #fi
+
+    #echo -ne "\ek$shorthost\e\\"
+
+    preexec() {
+        #echo -ne "\ek${shorthost}($1)\e\\"
+        echo -ne "\ek($1)\e\\"
+        echo -ne "\e_`dirs`\e\\"
+        COMMAND="${1}"
+        COMMAND_TIME=`date +%s`
+    }
+
+    precmd() {
+        #echo -ne "\ek${shorthost}$(basename $(pwd))\e\\"
+        echo -ne "\ek$(basename $(pwd))\e\\"
+        screen -X title $(basename $(print -P "%~"))
+        # vcs_info
+        psvar=()
+        LANG=en_US.UTF-8 vcs_info
+        [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+        if [ -x "`which growlnotify`" ]; then
+            if [ "$COMMAND_TIME" -ne "0" ] ; then
+                local d=`date +%s`
+                d=`expr $d - $COMMAND_TIME`
+                if [ "$d" -ge "30" ] ; then
+                    COMMAND="$COMMAND "
+                    growlnotify -t "${${(s: :)COMMAND}[1]} done." -m "$COMMAND"
+                fi
+            fi
+            COMMAND="0"
+            COMMAND_TIME="0"
+        elif [ -n "$DISPLAY" -a -x "`which notify-send`" ]; then # for linux
+            if [ "$COMMAND_TIME" -ne "0" ] ; then
+                local d=`date +%s`
+                d=`expr $d - $COMMAND_TIME`
+                if [ "$d" -ge "30" ] ; then
+                    COMMAND="$COMMAND "
+                    notify-send -t 10000 "${${(s: :)COMMAND}[1]} done." "$COMMAND"
+                fi
+            fi
+            COMMAND="0"
+            COMMAND_TIME="0"
+        fi
+    }
+fi
+
+function chpwd() {
+    ls
+}
+ 
+# SSHコマンドはscreenの新しい窓で
+function ssh_screen(){
+    eval server=\${$#}
+    screen -t $server ssh "$@"
+}
+if [ "$TERM" = "$STERM" ]; then
+    alias ssh=ssh_screen
+fi
+
+if [ ${TERM} != "$STERM" -a ${TERM} != "linux" -a ${TERM} != "eterm-color" ]; then
+    exec screen -RR
+fi
+
+setopt prompt_subst
+
+PROMPT='%{$fg[yellow]%}%n@%m%{$fg[yellow]%} %{$reset_color%}[%{$fg[cyan]%}%~%{$reset_color%}]
+%#%{$reset_color%} '
+RPROMPT="%1(v|[%F{green}%1v%f]|)"
+
+#http://d.hatena.ne.jp/hitode909/20100211/1265879271
+function u () {
+    cd ./$(git rev-parse --show-cdup)
+}
