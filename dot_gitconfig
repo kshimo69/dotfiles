@@ -5,7 +5,7 @@
 	user = kshimo69
 	token = 53a6a67aea7a0c6aac0ad1459915b506
 [core]
-	excluedesfile = $HOME/.gitignore
+	excludesfile = ~/.gitignore
 [color]
 	ui = auto
 [alias]
