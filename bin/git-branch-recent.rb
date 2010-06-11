@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+branches = `git branch -a`.gsub!(/^\*?\s+|\(no branch\)\s*/, "").split(/\n/)
+
+details = []
+Ref = Struct.new(:hash, :name, :time, :rtime, :author, :subject)
+
+IO.popen("-", "r+") do |io|
+	if io.nil?
+		exec "git", "show", "--pretty=format:%H\t%d\t%ct\t%cr\t%an\t%s", *branches
+	else
+		while l = io.gets
+			next unless l =~ /^[a-z0-9]{40}/
+			hash, refs, time, rtime, author, subject = * l.chomp.split(/\t/)
+			refs.gsub!(/^\s*\(|\)\s*$/, '')
+
+			refs.split(/\s*,\s*/).each do |ref|
+				ref.gsub!(%r{refs/(remotes|heads)/}, '')
+				details.push Ref.new(hash, ref, time.to_i, rtime, author, subject)
+			end
+		end
+	end
+end
+
+details = details.sort_by {|ref| ref.time }.last(10)
+remote_master = nil
+rtime_width = name_width = author_width = 0
+details.each do |ref|
+	name_width    = ref.name.size   if ref.name.size   > name_width
+	author_width  = ref.author.size if ref.author.size > author_width
+	rtime_width   = ref.rtime.size  if ref.rtime.size  > rtime_width
+	remote_master = ref.hash        if ref.name == 'origin/master'
+end
+
+puts "There are %d branches. (remote:%d, local:%d)" % [
+	branches.size,
+	branches.grep(/\//).size,
+	branches.size - branches.grep(/\//).size
+]
+details.each {|ref|
+	ref.instance_eval {
+		out = "\e[32m% -#{name_width}s\e[39m % #{rtime_width}s %s \e[31m% -#{author_width}s\e[39m %s" % [
+			name,
+			rtime,
+			hash[/^.{7}/],
+			author,
+			subject
+		]
+		puts (hash == remote_master) ? "\e[7m#{out}\e[m" : out
+	}
+}
+
+
