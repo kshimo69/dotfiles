@@ -3,7 +3,6 @@ bin/upload_org.sh
 dot_vim/GetLatest/GetLatestVimScripts.dist
 dot_vim/GetLatest/Installed
 dot_vim/.VimballRecord
-dot_vim/dict/skk/SKK-JISYO.L
 dot_vim/skk-jisyo
 dot_vim/skk-jisyo.BAK
 dot_vim/cookies/kshimo69
