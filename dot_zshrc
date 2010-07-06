@@ -31,7 +31,7 @@ reload-complete-functions() {
 }
 
 export GREP_COLOR="01;35"
-export GREP_OPTIONS=--color=auto
+export GREP_OPTIONS=--color=always
 export LSCOLORS=gxfxcxdxbxegedabagacad
 PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:$PATH:$HOME/bin
 typeset -U PATH
@@ -57,6 +57,7 @@ alias em='TERM=xterm-256color emacs -nw'
 alias py='python'
 alias pu='pushd'
 alias po='popd'
+alias scp='noflob scp'
 alias d='nslookup d.hatena.ne.jp'
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
