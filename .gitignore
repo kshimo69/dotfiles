@@ -1,5 +1,3 @@
-bin/download_org.sh
-bin/upload_org.sh
 dot_vim/GetLatest/GetLatestVimScripts.dist
 dot_vim/GetLatest/Installed
 dot_vim/.VimballRecord
