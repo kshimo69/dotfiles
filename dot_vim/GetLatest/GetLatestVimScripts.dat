@@ -20,5 +20,5 @@ ScriptID SourceID Filename
 #http://github.com/Shougo/vimshell
 2027 8712 :AutoInstall: taskpaper.vim
 1491 10728 :AutoInstall: javascript.vim(syntax)
-#1840 1 :AutoInstall: javascript(indent)
 1839 10228 :AutoInstall: IndentAnything
+#1840 1 :AutoInstall: javascript(indent)
