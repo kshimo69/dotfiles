@@ -58,6 +58,7 @@ alias py='python'
 alias pu='pushd'
 alias po='popd'
 alias scp='noflob scp'
+alias wget='noflob wget'
 alias d='nslookup d.hatena.ne.jp'
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
