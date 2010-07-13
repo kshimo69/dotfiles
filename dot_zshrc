@@ -60,6 +60,17 @@ alias po='popd'
 alias scp='noglob scp'
 alias wget='noglob wget'
 alias d='nslookup d.hatena.ne.jp'
+# clipboard
+if which pbcopy >/dev/null 2>&1 ; then 
+    # Mac  
+    alias -g C=' pbcopy'
+elif which xsel >/dev/null 2>&1 ; then 
+    # Linux
+    alias -g C=' xsel --input --clipboard'
+elif which putclip >/dev/null 2>&1 ; then 
+    # Cygwin 
+    alias -g C=' putclip'
+fi
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
     alias em='open -a emacs'
