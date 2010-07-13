@@ -108,6 +108,7 @@ setopt auto_cd
 setopt auto_pushd
 setopt auto_remove_slash
 setopt print_eight_bit
+setopt magic_equal_subst
 
 STERM="screen"
 
@@ -232,4 +233,17 @@ RPROMPT="%1(v|[%F{green}%1v%f]|)"
 #http://d.hatena.ne.jp/hitode909/20100211/1265879271
 function u () {
     cd ./$(git rev-parse --show-cdup)
+}
+
+#http://d.hatena.ne.jp/tkng/20100712/1278896396
+
+e_normal=`echo -e "\033[0;30m"`
+e_RED=`echo -e "\033[1;31m"`
+e_BLUE=`echo -e "\033[1;36m"`
+
+function make() {
+    LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
+}
+function gcc() {
+    LANG=C command gcc "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
