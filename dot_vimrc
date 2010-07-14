@@ -48,13 +48,30 @@ set number  " display line number
 set listchars=eol:$,tab:>\ ,extends:<  " character when use 'set list'
 "set list  " display TAB and CR
 colorscheme desert
+" GUI
+if has('gui_running')
+    " sidebar
+    set guioptions& " initialize
+    set guioptions+=b
+    " clip board
+    " http://vim-users.jp/2010/02/hack126/
+    set clipboard=unnamed,autoselect
+    set guioptions+=a
+    set guifont=M+2VM+IPAG\ circle\ 14
+    " window size
+    set lines=30
+    set columns=120
+    gui
+    "set transparency=20
+endif
 if has('gui_macvim')
     set guioptions& " initialize
     set guioptions-=T
     set imdisable
     set antialias
     colorscheme macvim
-    set guifont=M+2VM+IPAG\ circle\ Regular:h14
+    "set guifont=M+2VM+IPAG\ circle\ Regular:h14
+    set guifont=Monaco:h14
     "set transparency=40
     set fuoptions=maxvert,maxhorz
     "au GUIEnter * set fullscreen
@@ -110,22 +127,6 @@ nnoremap <C-S-J> <C-W>k<C-E><C-W><C-W>
 " If IME on, tunr the color of cursor
 if has('multi_byte_ime') || has('xim')
     highlight CursorIM guibg=LightRed guifg=NONE
-endif
-" GUI
-if has('gui_running')
-    " sidebar
-    set guioptions& " initialize
-    set guioptions+=b
-    " clip board
-    " http://vim-users.jp/2010/02/hack126/
-    set clipboard=unnamed,autoselect
-    set guioptions+=a
-    set guifont=M+2VM+IPAG\ circle\ 14
-    " window size
-    set lines=48
-    set columns=160
-    gui
-    "set transparency=20
 endif
 
 " Status line
