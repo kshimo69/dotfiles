@@ -270,6 +270,14 @@
                        command (car kill-ring)))))
 (define-key global-map "\C-cg" 'grep-find-current-word)
 
+;; 範囲指定してない時にC-wで前の単語を削除
+(defadvice kill-region (around kill-word-or-kill-region activate)
+  (if (and (interactive-p) transient-mark-mode (not mark-active))
+      (backward-kill-word 1)
+    ad-do-it))
+;; minibuffer用
+(define-key minibuffer-local-completion-map "\C-w" 'backward-kill-word)
+
 ;; Emacsを終了してもファイルを編集してた位置やminibuffer への入力内容を覚えておく
 (when (require 'session nil t)
   (setq session-initialize '(de-saveplace session keys menus places)
