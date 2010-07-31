@@ -12,7 +12,7 @@ ScriptID SourceID Filename
 #http://atlantisno.nazo.cc/clmemogrep0_0_3.zip (via. http://d.hatena.ne.jp/ampmmn/20090219/1235042852)
 2680 11580 :AutoInstall: cursoroverdictionary.vim
 2455 9544 :AutoInstall: outputz.vim
-2423 13105 :AutoInstall: gist.vim
+2423 13427 :AutoInstall: gist.vim
 #http://github.com/Shougo/neocomplcache
 23 8319 :AutoInstall: EnhancedCommentify.vim
 2419 11077 :AutoInstall: quickrun.vim
@@ -22,3 +22,4 @@ ScriptID SourceID Filename
 1491 10728 :AutoInstall: javascript.vim(syntax)
 1839 10228 :AutoInstall: IndentAnything
 #1840 1 :AutoInstall: javascript(indent)
+2771 13071 :AutoInstall: Conque Shell
