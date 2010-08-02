@@ -14,6 +14,7 @@ ScriptID SourceID Filename
 2455 9544 :AutoInstall: outputz.vim
 2423 13427 :AutoInstall: gist.vim
 #http://github.com/Shougo/neocomplcache
+2620 13456 :AutoInstall: neocomplcache
 23 8319 :AutoInstall: EnhancedCommentify.vim
 2419 11077 :AutoInstall: quickrun.vim
 850 11062 :AutoInstall: pydiction.vim
