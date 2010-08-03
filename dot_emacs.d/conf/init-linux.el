@@ -10,24 +10,30 @@
     (progn
       (menu-bar-mode t)
 
-      ;; (set-frame-font "Bitstream Vera Sans Mono-14")
+      ;; (set-frame-font "Bitstream Vera Sans Mono-13")
       (set-face-attribute 'default nil
                           :family "Bitstream Vera Sans Mono"
-                          :height 140)
-      (set-fontset-font
-       (frame-parameter nil 'font)
-       'japanese-jisx0208
-       '("MigMix 2M" . "iso10646-1"))
-      (set-fontset-font
-       (frame-parameter nil 'font)
-       'japanese-jisx0212
-       '("MigMix 2M" . "iso10646-1"))
-      (set-fontset-font
-       (frame-parameter nil 'font)
-       'mule-unicode-0100-24ff
-       '("Bitstream Vera Sans Mono" . "iso10646-1"))
+                          :height 130)
+      (set-fontset-font (frame-parameter nil 'font)
+                        'japanese-jisx0208
+                        '("MigMix 2M" . "unicode-bmp"))
+      (set-fontset-font (frame-parameter nil 'font)
+                        'katakana-jisx0201
+                        '("MigMix 2M" . "unicode-bmp"))
+      ;; (set-fontset-font
+      ;;  (frame-parameter nil 'font)
+      ;;  'japanese-jisx0208
+      ;;  '("MigMix 2M" . "iso10646-1"))
+      ;; (set-fontset-font
+      ;;  (frame-parameter nil 'font)
+      ;;  'japanese-jisx0212
+      ;;  '("MigMix 2M" . "iso10646-1"))
+      ;; (set-fontset-font
+      ;;  (frame-parameter nil 'font)
+      ;;  'mule-unicode-0100-24ff
+      ;;  '("Bitstream Vera Sans Mono" . "iso10646-1"))
       (setq face-font-rescale-alist
-            '((".*MigMix 2M.*" . 1.25)
+            '((".*MigMix 2M.*" . 1.2)
               ("-cdac$" . 1.3)))
 
       ;; 最初のフレーム
@@ -38,8 +44,8 @@
                      '(cursor-color . "orange")
                      '(mouse-color . "orange")
                      '(vertical-scroll-bars . nil)
-                     '(width . 166)                   ;; フレームの幅
-                     '(height . 55)                  ;; フレームの高さ
+                     '(width . 160)                  ;; フレームの幅
+                     '(height . 60)                  ;; フレームの高さ
                      '(top . 50)                     ;; Y 表示位置
                      '(left . 200)                   ;; X 表示位置
                      '(alpha . (85 20))
