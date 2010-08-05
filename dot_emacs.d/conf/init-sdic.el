@@ -1,6 +1,8 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 ;; http://www.namazu.org/~tsuchiya/sdic/index.html
+(setq sdic-eiwa-dictionary-list '((sdicf-client "~/.emacs.d/dict/gene.sdic")))
+(setq sdic-waei-dictionary-list '((sdicf-client "~/.emacs.d/dict/jedict.sdic")))
 (autoload 'sdic-describe-word "sdic" "英単語の意味を調べる" t nil)
 (global-set-key "\C-cW" 'sdic-describe-word)
 (autoload 'sdic-describe-word-at-point
