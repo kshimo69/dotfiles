@@ -208,7 +208,7 @@ command! Exec call <SID>ExecPy()
 autocmd FileType python map <silent> <C-P> :call <SID>ExecPy()<CR>
 " Pydiction
 autocmd FileType python let g:pydiction_location = '~/.vim/dict/pydiction/complete-dict'
-autocmd FileType python inoremap . .<C-x><C-u><C-p>
+"autocmd FileType python inoremap . .<C-x><C-u><C-p>
 
 " XML close tag
 augroup MyXML
