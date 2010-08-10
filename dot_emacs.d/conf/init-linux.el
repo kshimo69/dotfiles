@@ -10,7 +10,7 @@
     (progn
       (menu-bar-mode t)
 
-      ;; (set-frame-font "Bitstream Vera Sans Mono-13")
+      (set-frame-font "Bitstream Vera Sans Mono-13")
       (set-face-attribute 'default nil
                           :family "Bitstream Vera Sans Mono"
                           :height 130)
