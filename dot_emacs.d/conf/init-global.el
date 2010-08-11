@@ -330,7 +330,7 @@
 (split-window w nil t)
 
 ;; アクティブウインドウを目立たせる
-(require 'hiwin)
+;; (require 'hiwin)
 ;; (hiwin-mode)
 
 ;; http://emacs-fu.blogspot.com/2008/12/zooming-inout.html
