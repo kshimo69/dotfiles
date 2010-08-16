@@ -9,7 +9,9 @@
   "sdic" "カーソルの位置の英単語の意味を調べる" t nil)
 (global-set-key "\C-cw" 'sdic-describe-word-at-point)
 
-;; http://d.hatena.ne.jp/khiker/20100303/sdic_inline
+;;; http://d.hatena.ne.jp/khiker/20100303/sdic_inline
+;;; (auto-install-from-emacswiki "sdic-inline.el")
+;;; (auto-install-from-emacswiki "sdic-inline-pos-tip.el")
 (require 'sdic-inline)
 ;; sdic-inline モードの起動
 (sdic-inline-mode t)
