@@ -1,7 +1,7 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 ;; http://bitbucket.org/sakito/dot.emacs.d
-;; 
+;;
 ;; Emacs 設定ディレクトリを設定。Emacs 22以下用
 ;; Emacs 23.1 以上では user-emacs-directory 変数が用意されているのでそれを利用
 (unless (boundp 'user-emacs-directory)
@@ -122,7 +122,7 @@
             ))
 
 ;; 終了時に聞く
-(setq confirm-kill-emacs 'y-or-n-p)
+;; (setq confirm-kill-emacs 'y-or-n-p)
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
