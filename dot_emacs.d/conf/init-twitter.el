@@ -4,14 +4,9 @@
 
 (require 'twittering-mode)
 
-;;; server setting
-;; (setq twittering-api-host "kshimo69-gtap.appspot.com/api/")
-;; (setq twittering-api-search-host "kshimo69-gtap.appspot.com/")
-;; (setq twittering-web-host "kshimo69-gtap.appspot.com/")
-
-;;; user setting
 (setq twittering-username "kshimo69")
 (setq twittering-retweet-format "RT: @%s: %t")
+(setq twittering-reverse-mode t)
 
 (add-hook 'twittering-mode-hook
           (lambda ()
@@ -20,7 +15,7 @@
             (local-set-key "u" 'twittering-user-timeline)
             (local-set-key "w" 'twittering-update-status-interactive)))
 
-(twittering-icon-mode)
+(setq twittering-icon-mode nil)
 (setq twittering-timer-interval 120)
 
 ;; (add-hook 'twittering-new-tweets-hook
