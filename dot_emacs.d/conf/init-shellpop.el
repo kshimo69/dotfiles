@@ -1,4 +1,5 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; (auto-install-from-emacswiki "shell-pop.el")
 
 ;; .、..を展開しない
 (setq eshell-glob-include-dot-dot nil)

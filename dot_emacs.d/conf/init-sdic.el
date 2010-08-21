@@ -4,10 +4,10 @@
 ;; (setq sdic-eiwa-dictionary-list '((sdicf-client "~/.emacs.d/dict/gene.sdic")))
 ;; (setq sdic-waei-dictionary-list '((sdicf-client "~/.emacs.d/dict/jedict.sdic")))
 (autoload 'sdic-describe-word "sdic" "英単語の意味を調べる" t nil)
-(global-set-key "\C-cW" 'sdic-describe-word)
+(global-set-key (kbd "C-c W") 'sdic-describe-word)
 (autoload 'sdic-describe-word-at-point
   "sdic" "カーソルの位置の英単語の意味を調べる" t nil)
-(global-set-key "\C-cw" 'sdic-describe-word-at-point)
+(global-set-key (kbd "C-c w") 'sdic-describe-word-at-point)
 
 ;;; http://d.hatena.ne.jp/khiker/20100303/sdic_inline
 ;;; (auto-install-from-emacswiki "sdic-inline.el")
@@ -37,6 +37,6 @@
 ;; http://www.emacswiki.org/emacs/sdic-inline-pos-tip.el
 (require 'sdic-inline-pos-tip)
 (setq sdic-inline-display-func 'sdic-inline-pos-tip-show)
-(define-key sdic-inline-map "\C-c\C-p" 'sdic-inline-pos-tip-show)
+(define-key sdic-inline-map (kbd "C-c C-p") 'sdic-inline-pos-tip-show)
 
 (provide 'init-sdic)

@@ -1,4 +1,5 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; (auto-install-from-emacswiki "auto-install.el")
 
 ;; AutoInstall
 ;; http://www.emacswiki.org/emacs/AutoInstall

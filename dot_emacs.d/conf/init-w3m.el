@@ -4,7 +4,7 @@
 (setq browse-url-browser-function 'w3m-browse-url)
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
 ;; optional keyboard short-cut
-(global-set-key "\C-xm" 'browse-url-at-point)
+(global-set-key (kbd "C-x m") 'browse-url-at-point)
 (setq w3m-use-cookies t)
 ;; (setq w3m-cookie-accept-bad-cookies 'ask)
 (setq w3m-cookie-accept-bad-cookies t)
@@ -14,7 +14,7 @@
 (autoload 'w3m-search "w3m-search" "Search QUERY using SEARCH-ENGINE." t)
 ;; w3m-search-engine-alistの内容を確認してください
 (setq w3m-search-default-engine "google")
-(global-set-key "\C-cs" 'w3m-search)
+(global-set-key (kbd "C-c s") 'w3m-search)
 
 (autoload 'w3m-weather "w3m-weather" "Display weather report." t)
 (setq w3m-weather-default-area "神奈川県・東部")

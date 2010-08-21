@@ -46,15 +46,15 @@
   (info
    "~/.emacs.d/info/sicp.info.gz"))
 (define-key global-map
-  "\C-xS" 'scheme-other-frame)
+  (kbd "C-x S") 'scheme-other-frame)
 (define-key global-map
-  "\C-cS" 'scheme-other-window)
+  (kbd "C-c S") 'scheme-other-window)
 ;; (define-key global-map
-;;   "\C-cI" 'gauche-info)
+;;   (kbd "C-c I") 'gauche-info)
 (define-key global-map
-  "\C-cI" 'sicp-info-other-frame)
+  (kbd "C-c I") 'sicp-info-other-frame)
 (define-key global-map
-  "\C-ci" 'sicp-info-other-window)
+  (kbd "C-c i") 'sicp-info-other-window)
 
 ;; 以下はインデントの定義です。
 (put 'and-let* 'scheme-indent-function 1)

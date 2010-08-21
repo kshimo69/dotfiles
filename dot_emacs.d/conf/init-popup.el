@@ -1,10 +1,12 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; (auto-install-from-emacswiki "popup-pos-tip.el")
+;; (auto-install-from-emacswiki "popup-kill-ring.el")
 
 ;; http://d.hatena.ne.jp/khiker/20100425/popup_kill_ring
 (require 'popup)
 (require 'pos-tip)
 (require 'popup-kill-ring)
-(global-set-key "\M-y" 'popup-kill-ring)
+(global-set-key (kbd "M-y") 'popup-kill-ring)
 
 ;; http://www.emacswiki.org/emacs/PosTip#toc3
 (require 'pos-tip)

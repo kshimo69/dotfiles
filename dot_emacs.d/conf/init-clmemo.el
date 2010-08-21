@@ -1,9 +1,11 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; http://pop-club.hp.infoseek.co.jp/emacs/changelog.html#clmemo
+;; http://pop-club.hp.infoseek.co.jp/emacs/clmemo-1.0.tar.gz
 
 ;; clmemo
 (autoload 'clmemo "clmemo" "ChangeLog memo mode." t)
 (setq clmemo-file-name "~/clmemo/ChangeLog.txt")
-(global-set-key "\C-xM" 'clmemo)
+(global-set-key (kbd "C-x M") 'clmemo)
 ;; タイトルの補完
 (setq clmemo-title-list '(
                           ("job"."work")
@@ -67,7 +69,7 @@
 (autoload 'clgrep-entry-notag "clgrep" "ChangeLog grep for tag" t)
 (autoload 'clgrep-entry-nourl "clgrep" "ChangeLog grep entry except for url" t)
 (add-hook 'clmemo-mode-hook
-          '(lambda () (define-key clmemo-mode-map "\C-c\C-g" 'clgrep)))
+          '(lambda () (define-key clmemo-mode-map (kbd "C-c C-g") 'clgrep)))
 
 ;; item-headerに空白があっても色をつける
 (defface my-clmemo-item-header-face
