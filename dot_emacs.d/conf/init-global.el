@@ -357,4 +357,8 @@
 (global-set-key (kbd "C--")      '(lambda nil (interactive) (djcb-zoom -1)))
 (global-set-key [C-kp-subtract]  '(lambda nil (interactive) (djcb-zoom -1)))
 
+;; コマンド連続実行時の動作を変える
+(require 'sequential-command)
+(sequential-command-setup-keys)
+
 (provide 'init-global)
