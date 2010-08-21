@@ -169,7 +169,7 @@
 
 ;; 時刻を表示
 (setq display-time-string-forms
-      '(24-hours ":" minutes))
+      '(24-hours ":" minutes " " month "/" day "(" dayname ")"))
 (display-time)
 
 ;; 曜日表示は英語
