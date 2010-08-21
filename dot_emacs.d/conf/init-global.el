@@ -124,6 +124,13 @@
         ("." . "~/.emacs.d/var/emacs")
         ))
 
+;; ファイル保存時に自動的にバイトコンパイルする
+;; (auto-install-from-emacswiki "auto-async-byte-compile.el")
+(require 'auto-async-byte-compile)
+;; 自動バイトコンパイルを無効にするファイル名の正規表現
+(setq auto-async-byte-compile-exclude-files-regexp "/hoge")
+(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+
 ;; TAB はスペース 4 個ぶんを基本
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
