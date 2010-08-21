@@ -218,8 +218,14 @@
 ;; カーソル位置を戻す
 ;; (auto-install-from-emacswiki "point-undo.el")
 (require 'point-undo)
-(global-set-key (kbd "<f7>") 'point-undo)
-(global-set-key (kbd "S-<f7>") 'point-redo)
+(global-set-key (kbd "<f6>") 'point-undo)
+(global-set-key (kbd "S-<f6>") 'point-redo)
+
+;; 変更箇所にジャンプする
+;; (auto-install-from-emacswiki "goto-chg.el")
+(require 'goto-chg)
+(global-set-key (kbd "<f7>") 'goto-last-change)
+(global-set-key (kbd "S-<f7>") 'goto-last-change-reverse)
 
 ;; buffer切り替えを使い易く
 (iswitchb-mode 1)
