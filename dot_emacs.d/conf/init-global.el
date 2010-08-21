@@ -273,7 +273,7 @@
 ;; カーソル位置の単語でgrep-find
 (defun grep-find-current-word ()
   (interactive)
-  (let ((command "find . -type f -print0 | xargs -0 -e grep -n -e "))
+  (let ((command "find . -type f -print0 | xargs -0 grep -n -i "))
     (ffap-copy-string-as-kill)
     (grep-find (format "%s %s"
                        command (car kill-ring)))))
