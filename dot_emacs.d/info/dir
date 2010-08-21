@@ -15,7 +15,7 @@ File: dir,	Node: Top	This is the top of the INFO tree
 * Menu:
 
 Emacs
-* Magit: (magit).        Using Git from Emacs with Magit.
+* Magit: (magit).               Using Git from Emacs with Magit.
 * Org Mode: (org).      Outline-based notes management and organizer
 * ChangeLog Memo: (changelog).    ChangeLog Memo mode fro Emacs.
 * Elisp-ja: (elisp-ja).    Emacs Lisp Reference Manual(Japanese).
