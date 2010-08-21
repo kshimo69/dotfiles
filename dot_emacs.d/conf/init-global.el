@@ -215,6 +215,12 @@
     (bookmark-save))
   (add-hook 'bookmark-after-jump-hook 'bookmark-arrange-latest-top))
 
+;; カーソル位置を戻す
+;; (auto-install-from-emacswiki "point-undo.el")
+(require 'point-undo)
+(global-set-key (kbd "<f7>") 'point-undo)
+(global-set-key (kbd "S-<f7>") 'point-redo)
+
 ;; buffer切り替えを使い易く
 (iswitchb-mode 1)
 ;; C-f, C-b, C-n, C-p で候補を切り替えることができるように。
