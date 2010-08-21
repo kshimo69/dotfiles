@@ -361,6 +361,7 @@
 (global-set-key [C-kp-subtract]  '(lambda nil (interactive) (djcb-zoom -1)))
 
 ;; コマンド連続実行時の動作を変える
+;; (auto-install-batch "sequential-command")
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
 
