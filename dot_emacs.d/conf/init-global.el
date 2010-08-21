@@ -186,6 +186,10 @@
 
 ;; 履歴一覧を開く
 (global-set-key (kbd "C-x f") 'recentf-open-files)
+;; (auto-install-from-emacswiki "recentf-ext.el")
+(setq recentf-max-saved-items 500)
+(setq recentf-exclude '("/GTAGS$"))
+(require 'recentf-ext)
 
 ;; buffer切り替えを使い易く
 (iswitchb-mode 1)
