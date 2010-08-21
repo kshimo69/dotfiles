@@ -296,6 +296,16 @@
   (setq history-length t)
   (add-hook 'after-init-hook 'session-initialize))
 
+;; 履歴を次回Emacs起動時にも保存する
+(savehist-mode 1)
+;; ファイル内のカーソル位置を記録する
+(setq-default save-place t)
+(require 'saveplace)
+;; ログの記録行数を減らす
+(setq message-log-max 10000)
+;; ミニバッファを再帰的に呼び出せるようにする
+(setq enable-recursive-minibuffers t)
+
 ;; *scratch* バッファを消さないように
 (defun my-make-scratch (&optional arg)
   (interactive)
