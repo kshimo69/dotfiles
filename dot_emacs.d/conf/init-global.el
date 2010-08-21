@@ -151,7 +151,10 @@
 
 ;; ファイル名の1階層上を表示する
 (when (require 'uniquify nil t)
-  (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+  ;; *で囲まれたバッファ名は対象外
+  (setq uniquify-ignore-buffers-re "*[^*]+*")
+  )
 
 ;; シンボリックファイルを開く時にいちいち聞かない
 (setq vc-follow-symlinks t)
@@ -250,7 +253,7 @@
 (global-set-key (kbd "C-x C-h") 'help-command)
 
 ;; カーソル位置の単語をkill-ringにコピー
-(ffap-bindings)
+(ffap-bindings)                         ; カーソル位置のファイル名、URLで開く
 (global-set-key (kbd "M-c") 'ffap-copy-string-as-kill)
 
 ;; kill-ringに同じ内容の文字列を入れない
