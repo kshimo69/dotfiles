@@ -18,5 +18,7 @@ Emacs
 * Magit: (magit).        Using Git from Emacs with Magit.
 * Org Mode: (org).      Outline-based notes management and organizer
 * ChangeLog Memo: (changelog).    ChangeLog Memo mode fro Emacs.
+* Elisp-ja: (elisp-ja).    Emacs Lisp Reference Manual(Japanese).
+* Emacs-ja: (emacs-ja).    The extensible self-documenting text editor(Japanese).
 * Elisp: (elisplec).    Emacs Lisp Intro Japanese.
 * SDIC: (sdic).    SDIC with Emacs.
