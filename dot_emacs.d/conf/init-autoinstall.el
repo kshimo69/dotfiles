@@ -6,5 +6,6 @@
 (require 'auto-install)
 (setq auto-install-directory "~/.emacs.d/elisp/")
 (auto-install-update-emacswiki-package-name t)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (provide 'init-autoinstall)
