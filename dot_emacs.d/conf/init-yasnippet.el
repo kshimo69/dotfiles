@@ -10,9 +10,13 @@
 (define-auto-insert 'c-mode "c.c")
 
 ;; http://code.google.com/p/yasnippet/
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/elisp/snippets")
+;; (auto-install-from-emacswiki "yasnippet-config.el")
+(require 'yasnippet-config)
+(yas/setup "~/.emacs.d/elisp")
+
+;; (require 'yasnippet)
+;; (yas/initialize)
+;; (yas/load-directory "~/.emacs.d/elisp/snippets")
 ;; (add-to-list 'yas/extra-mode-hooks 'cperl-mode-hook)
 
 ;; (install-elisp "http://svn.coderepos.org/share/lang/elisp/anything-c-yasnippet/anything-c-yasnippet.el")
