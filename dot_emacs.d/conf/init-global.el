@@ -319,6 +319,11 @@
                        command (car kill-ring)))))
 (global-set-key (kbd "C-c g") 'grep-find-current-word)
 
+;; color-moccur
+;; (auto-install-from-emacswiki "color-moccur.el")
+(require 'color-moccur)
+(setq moccur-split-word t)
+
 ;; 範囲指定してない時にC-wで前の単語を削除
 (defadvice kill-region (around kill-word-or-kill-region activate)
   (if (and (interactive-p) transient-mark-mode (not mark-active))
