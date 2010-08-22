@@ -1,7 +1,9 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 ;; http://cx4a.org/software/auto-complete/manual.ja.html
+;; (auto-install-batch "auto-complete development version")
 
 (require 'auto-complete-config)
+(global-auto-complete-mode 1)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/ac-dict")
 (ac-config-default)
 
