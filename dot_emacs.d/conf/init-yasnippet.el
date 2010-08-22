@@ -13,6 +13,8 @@
 ;; (auto-install-from-emacswiki "yasnippet-config.el")
 (require 'yasnippet-config)
 (yas/setup "~/.emacs.d/elisp")
+(global-set-key (kbd "C-x y") 'yas/register-oneshot-snippet)
+(global-set-key (kbd "C-x C-y") 'yas/expand-oneshot-snippet)
 
 ;; (require 'yasnippet)
 ;; (yas/initialize)
