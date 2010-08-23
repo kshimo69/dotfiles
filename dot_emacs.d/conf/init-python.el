@@ -10,12 +10,7 @@
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 ;; python
-(cond
- (mac-p
-  (setq py-python-command "/opt/local/bin/python"))
- (linux-p
-  (setq py-python-command "/usr/local/bin/python"))
- )
+(setq py-python-command (executable-find "python"))
 
 ;; pdb
 (cond
@@ -55,6 +50,9 @@
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
 
+;; pycompleteとか一式
+;; http://sourceforge.net/project/downloading.php?groupname=page&filename=py-mode-ext-1.0.tgz&use_mirror=jaist
+
 ;; Flymake
 
 ;; You must prepare epylint by hand
@@ -82,6 +80,10 @@
 
 (add-hook 'python-mode-hook
           '(lambda ()
+             (setq indent-tabs-mode nil)
+             (setq py-indent-offset 4)
+             ;; pycompleteはM-C-i(M-tab)とかで補完する
+             ;; auto-completeに付けられないのかな
              (require 'pycomplete)
              (flymake-mode t)
              ))
