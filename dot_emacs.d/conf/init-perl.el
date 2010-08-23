@@ -25,7 +25,7 @@
 (add-hook 'cperl-mode-hook
           (lambda ()
             (set-face-italic-p 'cperl-hash-face nil)
-            ;; http://d.hatena.ne.jp/IMAKADO/20080612/1213223052
+            ;; (auto-install-batch "perl-completion")
             (require 'perl-completion)
             (add-to-list 'ac-sources 'ac-source-perl-completion)
             (perl-completion-mode t)
