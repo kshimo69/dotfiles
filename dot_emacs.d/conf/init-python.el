@@ -49,6 +49,8 @@
 ;; $ sudo easy_install ropemacs
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
+(require 'python)
+(define-key python-mode-map (kbd "C-c i") 'rope-code-assist)
 
 ;; Flymake
 
