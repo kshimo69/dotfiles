@@ -50,9 +50,6 @@
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
 
-;; pycompleteとか一式
-;; http://sourceforge.net/project/downloading.php?groupname=page&filename=py-mode-ext-1.0.tgz&use_mirror=jaist
-
 ;; Flymake
 
 ;; You must prepare epylint by hand
@@ -78,6 +75,9 @@
 ;; (add-to-list 'flymake-allowed-file-name-masks
 ;;              '("\\.py\\'" flymake-pep8-init))
 
+;; pycompleteとか一式
+;; http://sourceforge.net/project/downloading.php?groupname=page&filename=py-mode-ext-1.0.tgz&use_mirror=jaist
+
 (add-hook 'python-mode-hook
           '(lambda ()
              (setq indent-tabs-mode nil)
@@ -85,6 +85,7 @@
              ;; pycompleteはM-C-i(M-tab)とかで補完する
              ;; auto-completeに付けられないのかな
              (require 'pycomplete)
+             ;; (add-to-list 'ac-sources 'ac-source-ropemacs)
              (flymake-mode t)
              ))
 
