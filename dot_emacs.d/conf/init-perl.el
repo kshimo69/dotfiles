@@ -25,10 +25,10 @@
 (add-hook 'cperl-mode-hook
           (lambda ()
             (set-face-italic-p 'cperl-hash-face nil)
-            ;; ;; http://d.hatena.ne.jp/IMAKADO/20080612/1213223052
-            ;; (require 'perl-completion)
-            ;; (perl-completion-mode t)
-            ;; (add-to-list 'ac-sources 'ac-source-perl-completion)
+            ;; http://d.hatena.ne.jp/IMAKADO/20080612/1213223052
+            (require 'perl-completion)
+            (add-to-list 'ac-sources 'ac-source-perl-completion)
+            (perl-completion-mode t)
             ))
 
 ;; flymake
