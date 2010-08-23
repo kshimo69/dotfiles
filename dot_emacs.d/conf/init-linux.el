@@ -1,7 +1,6 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 ;; 会社だったら
-(setq url-proxy-services '(("http" . "10.209.149.1:8080")))
 (when (locate-library "init-passwd")
   (require 'init-passwd))
 (menu-bar-mode nil)
