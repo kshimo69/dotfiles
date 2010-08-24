@@ -321,8 +321,20 @@
 
 ;; color-moccur
 ;; (auto-install-from-emacswiki "color-moccur.el")
-(require 'color-moccur)
-(setq moccur-split-word t)
+;; (auto-install-from-emacswiki "moccur-edit.el")
+(when (require 'color-moccur)
+  ;; M-oをoccur-by-moccurに
+  (global-set-key (kbd "M-o") 'occur-by-moccur)
+  ;; スペース区切りでAND検索
+  (setq moccur-split-word t)
+  ;; ディレクトリ検索で除外するファイル
+  (add-to-list 'dmoccur-exclusion-mask "\\.DS_Store")
+  (add-to-list 'dmoccur-exclusion-mask "^#.+#$")
+  (require 'moccur-edit nil t)
+  ;; MigemoがあればMigemoを使う
+  (when (and (executable-find "migemo")
+             (require 'migemo nil t))
+    (setq moccur-use-migemo t)))
 
 ;; 範囲指定してない時にC-wで前の単語を削除
 (defadvice kill-region (around kill-word-or-kill-region activate)
