@@ -11,14 +11,15 @@
 
 ;; http://code.google.com/p/yasnippet/
 ;; (auto-install-from-emacswiki "yasnippet-config.el")
-;; (require 'yasnippet-config)
-;; (yas/setup "~/.emacs.d/elisp")
-;; (global-set-key (kbd "C-x y") 'yas/register-oneshot-snippet)
-;; (global-set-key (kbd "C-x C-y") 'yas/expand-oneshot-snippet)
+(require 'yasnippet-config)
+(yas/setup "~/.emacs.d/plugins/yasnippet")
+(global-set-key (kbd "C-x y") 'yas/register-oneshot-snippet)
+(global-set-key (kbd "C-x C-y") 'yas/expand-oneshot-snippet)
 
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/elisp/snippets")
+;; (require 'yasnippet)
+;; (yas/initialize)
+;; (yas/load-directory "~/.emacs.d/elisp/snippets")
+
 ;; (add-to-list 'yas/extra-mode-hooks 'cperl-mode-hook)
 
 ;; (install-elisp "http://svn.coderepos.org/share/lang/elisp/anything-c-yasnippet/anything-c-yasnippet.el")

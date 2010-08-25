@@ -21,6 +21,8 @@
 
 ;; Emacs Lisp のPathを通す
 (add-to-load-path "elisp"
+                  ;; download plugins
+                  "plugins"
                   ;; 自作の Emacs Lisp
                   ;; "local-elisp"
                   ;; 初期設定ファイル
