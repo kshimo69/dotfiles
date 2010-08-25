@@ -1,9 +1,5 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
-;; 会社だったらproxyとかの設定
-(when (locate-library "init-passwd")
-  (require 'init-passwd))
-
 (menu-bar-mode nil)
 
 (if window-system

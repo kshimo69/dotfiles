@@ -110,6 +110,10 @@
  (linux-p (require 'init-linux))
  )
 
+;; 会社だったらproxyとかの設定
+(when (locate-library "init-passwd")
+  (require 'init-passwd))
+
 ;; 終了時バイトコンパイル
 (add-hook 'kill-emacs-query-functions
           (lambda ()

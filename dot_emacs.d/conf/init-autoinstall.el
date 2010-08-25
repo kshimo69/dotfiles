@@ -5,7 +5,7 @@
 ;; http://www.emacswiki.org/emacs/AutoInstall
 (require 'auto-install)
 (setq auto-install-directory "~/.emacs.d/elisp/")
-(auto-install-update-emacswiki-package-name t)
+(auto-install-update-emacswiki-package-name nil)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (provide 'init-autoinstall)
