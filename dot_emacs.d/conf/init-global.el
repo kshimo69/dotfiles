@@ -442,4 +442,17 @@
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
 
+;; 略語展開、補完を行うコマンドをまとめる
+(setq hippie-expand-try-functions-list
+      '(try-complete-file-name-partially   ;ファイル名の一部
+        try-complete-file-name             ;ファイル名全体
+        ;; try-expand-all-addrevs             ;静的略語展開
+        try-expand-dabbrev                 ;動的略語展開(カレントバッファ)
+        try-expand-dabbrev-all-buffers     ;動的略語展開(全バッファ)
+        try-expand-dabbrev-from-kill       ;動的略語展開(キルリング)
+        try-complete-lisp-symbol-partially ;Lispシンボルの一部
+        try-complete-lisp-symbol           ;Lispシンボル全体
+        ))
+(global-set-key (kbd "M-/") 'hippie-expand)
+
 (provide 'init-global)

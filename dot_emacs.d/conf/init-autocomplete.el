@@ -12,7 +12,7 @@
 (define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
 
 ;; auto-completeをキーに割りあてておく
-(global-set-key (kbd "M-/") 'auto-complete)
+;; (global-set-key (kbd "M-/") 'auto-complete)
 
 ;; 補完開始までの秒数
 ;; (setq ac-auto-start 4)

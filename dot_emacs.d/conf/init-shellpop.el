@@ -29,4 +29,7 @@
 (shell-pop-set-window-height 30)
 (global-set-key [f2] 'shell-pop)
 
+;; スクリプトを実行する
+(global-set-key (kbd "C-c p") 'executable-interpret)
+
 (provide 'init-shellpop)

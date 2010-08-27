@@ -5,18 +5,11 @@
 (require 'twittering-mode)
 
 (setq twittering-username "kshimo69")
+(setq twittering-status-format
+      "%C{%Y/%m/%d %H:%M:%S} %s > %T // from %f%L%r%R")
 (setq twittering-retweet-format "RT: @%s: %t")
-(setq twittering-reverse-mode t)
-
-(add-hook 'twittering-mode-hook
-          (lambda ()
-            (local-set-key "f" 'twittering-friends-timeline)
-            (local-set-key "r" 'twittering-replies-timeline)
-            (local-set-key "u" 'twittering-user-timeline)
-            (local-set-key "w" 'twittering-update-status-interactive)))
-
-(setq twittering-icon-mode nil)
-(setq twittering-timer-interval 120)
+;; (setq twittering-reverse-mode t)
+;; (setq twittering-timer-interval 60)
 
 ;; (add-hook 'twittering-new-tweets-hook
 ;;           (lambda ()
