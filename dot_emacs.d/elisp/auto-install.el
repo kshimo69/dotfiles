@@ -857,13 +857,14 @@ If UNFORCED is non-nil, just update package name when `auto-install-package-name
   (interactive)
   (unless (and unforced
                auto-install-package-name-list)
-    (if (auto-install-network-available-p "www.emacswiki.org")
+    ;; (if (auto-install-network-available-p "www.emacswiki.org")
         (auto-install-download "http://www.emacswiki.org/cgi-bin/emacs?action=index;raw=1"
                                'auto-install-handle-emacswiki-package-name)
-      (message
-       (concat "Network unreachable!\n"
-               "Try M-x auto-install-handle-emacswiki-package-name afterward."))
-      (sit-for 2))))
+      ;; (message
+      ;;  (concat "Network unreachable!\n"
+      ;;          "Try M-x auto-install-handle-emacswiki-package-name afterward."))
+      ;; (sit-for 2))))
+        ))
 
 (defun auto-install-dired-mark-files ()
   "Mark dired files that contain at `EmacsWiki.org'."
