@@ -472,4 +472,8 @@
 (setq eldoc-idle-delay 0.2)
 (setq eldoc-minor-mode-string "")
 
+;; Emacs Lisp式の値をコメントで注釈する
+;; (auto-install-from-emacswiki "lispxmp.el")
+(require 'lispxmp)
+
 (provide 'init-global)
