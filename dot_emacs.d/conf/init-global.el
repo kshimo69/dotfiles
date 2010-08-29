@@ -476,4 +476,8 @@
 ;; (auto-install-from-emacswiki "lispxmp.el")
 (require 'lispxmp)
 
+;; ユニットテストを書く
+;; (auto-install-batch "el-expectations")
+(require 'el-expectations)
+
 (provide 'init-global)
