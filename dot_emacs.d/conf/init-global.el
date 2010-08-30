@@ -482,6 +482,7 @@
 
 ;; 使い捨てのファイルを開く
 ;; (auto-install-from-emacswiki "open-junk-file.el")
+(require 'open-junk-file)
 (setq open-junk-file-format "~/junk/%Y%m%d-%H%M%S.")
 
 ;; 現在の関数名を画面の上に表示する
