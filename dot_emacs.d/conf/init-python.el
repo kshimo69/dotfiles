@@ -47,10 +47,10 @@
 ;; $ sudo easy_install rope
 ;; $ mv ./ropemode/ropemode ./ropemacs
 ;; $ sudo easy_install ropemacs
-(pymacs-load "ropemacs" "rope-")
-(setq ropemacs-enable-autoimport t)
-(require 'python)
-(define-key python-mode-map (kbd "C-c i") 'rope-code-assist)
+;; (pymacs-load "ropemacs" "rope-")
+;; (setq ropemacs-enable-autoimport t)
+;; (require 'python)
+;; (define-key python-mode-map (kbd "C-c i") 'rope-code-assist)
 
 ;; Flymake
 
@@ -80,6 +80,22 @@
 ;; pycompleteとか一式
 ;; http://sourceforge.net/project/downloading.php?groupname=page&filename=py-mode-ext-1.0.tgz&use_mirror=jaist
 
+;; ac-pycomplete
+;; http://d.hatena.ne.jp/kitokitoki/20100828/p2
+(defun ac-complete-pycomplete-pycomplete ()
+  (interactive)
+  (auto-complete '(ac-source-python)))
+(setq ac-source-python
+      '((prefix "\\(?:\\.\\|->\\)\\(\\(?:[a-zA-Z_][a-zA-Z0-9_]*\\)?\\)" nil 1)
+        (candidates . ac-py-candidates)
+        (requires . 0)))
+(defun ac-py-candidates ()
+  (pycomplete-pycomplete (py-symbol-near-point) (py-find-global-imports)))
+;; (defun my-ac-python-mode ()
+;;   (setq ac-sources '(ac-source-words-in-same-mode-buffers ac-source-dictionary)))
+;; (add-hook 'python-mode-hook 'my-ac-python-mode)
+
+
 (add-hook 'python-mode-hook
           '(lambda ()
              (setq indent-tabs-mode nil)
@@ -88,6 +104,9 @@
              ;; auto-completeに付けられないのかな
              (require 'pycomplete)
              ;; (add-to-list 'ac-sources 'ac-source-ropemacs)
+             ;; (add-to-list 'ac-sources 'my-ac-python-mode)
+             ;; (add-to-list 'ac-sources 'ac-source-python)
+             ;; (add-to-list 'ac-sources 'ac-source-pycomplete)
              (flymake-mode t)
              ))
 

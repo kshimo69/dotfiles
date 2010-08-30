@@ -2,6 +2,8 @@
 ;; http://www.gnu.org/software/global/download.html
 
 (autoload 'gtags-mode "gtags" "" t)
+(setq gtags-path-style 'relative)
+(setq gtags-read-only t)
 (setq gtags-mode-hook
       '(lambda ()
          (local-set-key (kbd "M-t") 'gtags-find-tag)

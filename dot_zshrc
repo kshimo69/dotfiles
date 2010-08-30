@@ -61,6 +61,7 @@ alias scp='noglob scp'
 alias wget='noglob wget'
 alias d='nslookup d.hatena.ne.jp'
 alias clear_terminal='echo c'
+alias fgrep='find . -type f -print0 | xargs -0 grep'
 # clipboard
 if which pbcopy >/dev/null 2>&1 ; then
     # Mac

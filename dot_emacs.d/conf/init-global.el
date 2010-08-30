@@ -135,7 +135,7 @@
 ;; (auto-install-from-emacswiki "auto-async-byte-compile.el")
 (require 'auto-async-byte-compile)
 ;; 自動バイトコンパイルを無効にするファイル名の正規表現
-(setq auto-async-byte-compile-exclude-files-regexp "/hoge")
+(setq auto-async-byte-compile-exclude-files-regexp "~/junk/")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
 ;; TAB はスペース 4 個ぶんを基本
@@ -441,5 +441,55 @@
 ;; (auto-install-batch "sequential-command")
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
+
+;; 略語展開、補完を行うコマンドをまとめる
+(setq hippie-expand-try-functions-list
+      '(try-complete-file-name-partially   ;ファイル名の一部
+        try-complete-file-name             ;ファイル名全体
+        ;; try-expand-all-addrevs             ;静的略語展開
+        try-expand-dabbrev                 ;動的略語展開(カレントバッファ)
+        try-expand-dabbrev-all-buffers     ;動的略語展開(全バッファ)
+        try-expand-dabbrev-from-kill       ;動的略語展開(キルリング)
+        try-complete-lisp-symbol-partially ;Lispシンボルの一部
+        try-complete-lisp-symbol           ;Lispシンボル全体
+        ))
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+;; 括弧の対応を取りながらS式を編集する
+;; (auto-install-from-url "http://mumble.net/~campbell/emacs/paredit.el")
+(require 'paredit)
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+
+;; Emacs Lisp関数・変数のヘルプをエコーエリアに表示する
+;; (auto-install-from-emacswiki "eldoc-extension.el")
+(require 'eldoc-extension)
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+(setq eldoc-idle-delay 0.2)
+(setq eldoc-minor-mode-string "")
+
+;; Emacs Lisp式の値をコメントで注釈する
+;; (auto-install-from-emacswiki "lispxmp.el")
+(require 'lispxmp)
+
+;; ユニットテストを書く
+;; (auto-install-batch "el-expectations")
+(require 'el-expectations)
+
+;; 使い捨てのファイルを開く
+;; (auto-install-from-emacswiki "open-junk-file.el")
+(setq open-junk-file-format "~/junk/%Y%m%d-%H%M%S.")
+
+;; 現在の関数名を画面の上に表示する
+(which-func-mode 1)
+;; すべてのメジャーモードにwhich-func-modeを適用する
+(setq which-func-modes t)
+;; 画面上部に表示する
+(delete (assoc 'which-func-mode mode-line-format) mode-line-format)
+(setq-default header-line-format '(which-func-mode ("" which-func-format)))
 
 (provide 'init-global)
