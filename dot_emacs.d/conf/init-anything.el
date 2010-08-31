@@ -89,6 +89,7 @@
         anything-c-source-file-name-history
         anything-c-source-files-in-current-dir+
         ;; anything-c-source-man-pages
+        anything-c-source-imenu
         anything-c-source-gtags-select
         anything-c-source-extended-command-history
         anything-c-source-emacs-commands
