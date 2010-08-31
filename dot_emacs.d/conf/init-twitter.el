@@ -16,6 +16,9 @@
   (interactive)
   (twittering-visit-timeline '"kshimo69/jazzout"))
 
+;; 更新はminibufferに入力する
+(setq twittering-update-status-function 'twittering-update-status-from-minibuffer)
+
 (add-hook 'twittering-mode-hook
           (lambda ()
             (mapc (lambda (pair)
