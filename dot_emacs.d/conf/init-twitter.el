@@ -7,7 +7,7 @@
 (setq twittering-username "kshimo69")
 (setq twittering-status-format
       ;; "%C{%Y/%m/%d %H:%M:%S} %s > %T // from %f%L%r%R")
-      "%C{%H:%M:%S} %s > %T [from %f]%r%R")
+      "%C{%H:%M:%S} %s %T [from %f]%r%R")
 (setq twittering-retweet-format "RT: @%s: %t")
 ;; (setq twittering-reverse-mode t)
 (setq twittering-timer-interval 60)
