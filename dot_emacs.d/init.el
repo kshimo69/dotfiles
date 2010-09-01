@@ -83,7 +83,7 @@
 (require 'init-yasnippet)
 (require 'init-autocomplete)
 (require 'init-skk)
-(require 'init-w3m)
+;; (require 'init-w3m)
 (require 'init-clmemo)
 (require 'init-shellpop)
 (require 'init-flymake)
