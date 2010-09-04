@@ -24,6 +24,17 @@
 ;; auto-complete-modeを有効にするモードを追加
 ;; (add-to-list 'ac-modes 'hoge-mode)
 
+(defun ac-emacs-lisp-mode-setup ()
+  (setq ac-sources (append '(ac-source-features
+                             ac-source-functions
+                             ac-source-variables
+                             ac-source-symbols
+                             ) ac-sources)))
+
+(defun ac-cc-mode-setup ()
+  (setq ac-sources (append '(ac-source-gtags
+                             ) ac-sources)))
+
 (provide 'init-autocomplete)
 
 
