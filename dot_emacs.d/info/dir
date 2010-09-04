@@ -22,3 +22,7 @@ Emacs
 * Emacs-ja: (emacs-ja).    The extensible self-documenting text editor(Japanese).
 * Elisp: (elisplec).    Emacs Lisp Intro Japanese.
 * SDIC: (sdic).    SDIC with Emacs.
+* SKK: (skk).           Simple Kana to Kanji conversion program.
+
+GNU Emacs Lisp
+* SKK: (skk).           Simple Kana to Kanji conversion program.
