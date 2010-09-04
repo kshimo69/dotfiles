@@ -36,13 +36,3 @@
                              ) ac-sources)))
 
 (provide 'init-autocomplete)
-
-
-
-
-
-
-
-
-
-
