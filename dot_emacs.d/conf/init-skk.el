@@ -25,6 +25,9 @@
                          skk-isearch-mode-enable)
                 (skk-isearch-mode-cleanup))))
 
+;; C-x C-j でSKK
+(global-set-key (kbd "C-x C-j") 'skk-mode)
+
 ;; C-\ でも SKK に切り替えられるように設定
 (setq default-input-method "japanese-skk")
 
