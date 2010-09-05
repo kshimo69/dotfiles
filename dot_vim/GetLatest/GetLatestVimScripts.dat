@@ -2,10 +2,10 @@ ScriptID SourceID Filename
 --------------------------
 294 10110 :AutoInstall: Align.vim
 642 8136 :AutoInstall: getscript.vim
-90 12743 :AutoInstall: vcscommand.vim
+90 13751 :AutoInstall: vcscommand.vim
 #http://github.com/motemen/git-vim.git
 1066 7618 :AutoInstall: cecutil.vim
-1234 12258 :AutoInstall: yankring.vim
+1234 13554 :AutoInstall: yankring.vim
 1589 6283 :AutoInstall: skk.vim
 1334 6377 :AutoInstall: vst.vim
 #git://github.com/motemen/hatena-vim.git
@@ -19,8 +19,9 @@ ScriptID SourceID Filename
 2419 11077 :AutoInstall: quickrun.vim
 850 11062 :AutoInstall: pydiction.vim
 #http://github.com/Shougo/vimshell
-2027 8712 :AutoInstall: taskpaper.vim
+2027 13646 :AutoInstall: taskpaper.vim
 1491 10728 :AutoInstall: javascript.vim(syntax)
 1839 10228 :AutoInstall: IndentAnything
 #1840 1 :AutoInstall: javascript(indent)
 2771 13071 :AutoInstall: Conque Shell
+1697 12566 :Autoinstall: surround.vim
