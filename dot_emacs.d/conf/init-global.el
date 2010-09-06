@@ -126,6 +126,7 @@
 ;; 使わないバッファを自動的に消す
 ;; (auto-install-from-emacswiki "tempbuf.el")
 (require 'tempbuf)
+(setq tempbuf-life-extension-ratio 10)
 ;; ファイルを開いたら自動的にtempbufを有効にする
 (add-hook 'find-file-hooks 'turn-on-tempbuf-mode)
 ;; diredバッファに対してtempbufを有効にする
