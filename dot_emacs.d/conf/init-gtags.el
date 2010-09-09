@@ -18,10 +18,11 @@
              (gtags-mode 1)
              (gtags-make-complete-list)
              ))
-(add-hook 'python-mode-hook
-          '(lambda()
-             (gtags-mode 1)
-             (gtags-make-complete-list)
-             ))
+;; gtags not support python
+;; (add-hook 'python-mode-hook
+;;           '(lambda()
+;;              (gtags-mode 1)
+;;              (gtags-make-complete-list)
+;;              ))
 
 (provide 'init-gtags)
