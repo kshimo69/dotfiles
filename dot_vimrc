@@ -45,6 +45,7 @@ nmap ,ej :e ++enc=iso-2022-jp<CR>
 nmap ,eu :e ++enc=utf-8<CR>
 " View
 set number  " display line number
+set diffopt+=vertical
 set listchars=eol:$,tab:>\ ,extends:<  " character when use 'set list'
 "set list  " display TAB and CR
 colorscheme desert
