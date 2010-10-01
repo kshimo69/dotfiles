@@ -51,7 +51,7 @@ alias ls='ls --color=auto'
 alias rm='rm'
 alias vi='LANG=C vim'
 alias vim='LANG=C vim'
-alias VIM='LANG=C vim -g'
+alias VIM='LANG=C gvim'
 #alias em='emacs -nw'
 alias em='TERM=xterm-256color emacs -nw'
 alias py='python'
@@ -184,7 +184,7 @@ if [ "$TERM" = "$STERM" ]; then
         psvar=()
         LANG=en_US.UTF-8 vcs_info
         [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-        if [ -x "`which growlnotify`" ]; then
+        if [ -x "`which growlnotify 2>/dev/null`" ]; then
             if [ "$COMMAND_TIME" -ne "0" ] ; then
                 local d=`date +%s`
                 d=`expr $d - $COMMAND_TIME`
