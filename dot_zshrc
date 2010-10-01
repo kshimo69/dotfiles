@@ -39,7 +39,8 @@ export PATH
 export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
 export PERL5LIB=$HOME/local/lib/perl5:$HOME/local/lib/perl5/site_perl:$HOME/local/lib/perl:$HOME/local/share/perl
 export PERL_AUTOINSTALL="--defaultdeps"
-export RUBYLIB=$HOME/local/lib/ruby/site_ruby/
+export RUBYLIB=$HOME/local/lib/
+export GEM_HOME=$HOME/local/lib/rubygems/
 export PYTHONSTARTUP=$HOME/.pythonrc.py
 export EDITOR=vim
 export SVN_EDITOR=vim
