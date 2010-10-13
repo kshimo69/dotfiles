@@ -14,7 +14,7 @@ ScriptID SourceID Filename
 2455 9544 :AutoInstall: outputz.vim
 2423 13427 :AutoInstall: gist.vim
 #http://github.com/Shougo/neocomplcache
-2620 13456 :AutoInstall: neocomplcache
+2620 13978 :AutoInstall: neocomplcache
 23 8319 :AutoInstall: EnhancedCommentify.vim
 2419 11077 :AutoInstall: quickrun.vim
 850 11062 :AutoInstall: pydiction.vim
@@ -23,5 +23,6 @@ ScriptID SourceID Filename
 1491 10728 :AutoInstall: javascript.vim(syntax)
 1839 10228 :AutoInstall: IndentAnything
 #1840 1 :AutoInstall: javascript(indent)
-2771 13071 :AutoInstall: Conque Shell
+2771 14041 :AutoInstall: Conque Shell
 1697 12566 :Autoinstall: surround.vim
+973 2979 :Autoinstall: rest.vim
