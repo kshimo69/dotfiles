@@ -312,7 +312,7 @@ let g:outputz_secret_key = 'Bby9m2635Q.C'
 " rtm-vim
 let g:rtm_api_key = 'f5f8dd1b0f0fefbb8debe6d206868df2'
 let g:rtm_shared_secret = '0740d5f2e9c4f6b8'
-let g:rtm_token = '4a42095faab4513653cd55d45cc80b37fd93e920'
+let g:rtm_token = '39d422c2f07a605614cf9593e22d1a0bbf117f96'
 
 " ChangeLog
 let g:changelog_username = "Kimihiko Shimomura  <kshimo69@gmail.com>"
