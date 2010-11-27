@@ -30,24 +30,6 @@ reload-complete-functions() {
     autoload -U $f:t
 }
 
-export GREP_COLOR="01;35"
-export GREP_OPTIONS=--color=always
-export LSCOLORS=gxfxcxdxbxegedabagacad
-PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:$PATH:$HOME/bin
-typeset -U PATH
-export PATH
-export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
-export PERL5LIB=$HOME/local/lib/perl5:$HOME/local/lib/perl5/site_perl:$HOME/local/lib/perl:$HOME/local/share/perl
-export PERL_AUTOINSTALL="--defaultdeps"
-export RUBYLIB=$HOME/local/lib/ruby/site_ruby/
-export GEM_HOME=$HOME/local/lib/rubygems/
-export PYTHONSTARTUP=$HOME/.pythonrc.py
-export EDITOR=vim
-export SVN_EDITOR=vim
-export GISTY_DIR=$HOME/work/gist
-export GIT_EDITOR=vim
-export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
-
 alias ls='ls --color=auto'
 alias rm='rm'
 alias vi='LANG=C vim'
@@ -78,7 +60,9 @@ fi
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
     alias em='open -a emacs'
-    alias VIM='open -a MacVim'
+    alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    alias VIM='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app/Contents/MacOS/MacVim'
 fi
 if [ "${TERM}" = "eterm-color" ]; then
     alias ls='ls -F'
@@ -87,6 +71,24 @@ DAY=`date +%Y%m%d%H%M%S`
 if [ -f ~/.passwd ]; then
     . ~/.passwd
 fi
+
+export GREP_COLOR="01;35"
+export GREP_OPTIONS=--color=always
+export LSCOLORS=gxfxcxdxbxegedabagacad
+PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:$PATH:$HOME/bin
+typeset -U PATH
+export PATH
+export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
+export PERL5LIB=$HOME/local/lib/perl5:$HOME/local/lib/perl5/site_perl:$HOME/local/lib/perl:$HOME/local/share/perl
+export PERL_AUTOINSTALL="--defaultdeps"
+export RUBYLIB=$HOME/local/lib/ruby/site_ruby/
+export GEM_HOME=$HOME/local/lib/rubygems/
+export PYTHONSTARTUP=$HOME/.pythonrc.py
+export EDITOR=vim
+export SVN_EDITOR=vim
+export GISTY_DIR=$HOME/work/gist
+export GIT_EDITOR=vim
+export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
 
 zstyle ':completion:*:sudo:*' command-path /opt/local/sbin /opt/local/bin \
                                 /usr/local/sbin /usr/local/bin /usr/sbin \

@@ -73,7 +73,9 @@ if has('gui_macvim')
     colorscheme macvim
     "set guifont=M+2VM+IPAG\ circle\ Regular:h14
     set guifont=Monaco:h14
-    "set transparency=40
+    set transparency=10
+    set lines=30
+    set columns=120
     set fuoptions=maxvert,maxhorz
     "au GUIEnter * set fullscreen
 endif
@@ -129,6 +131,23 @@ nnoremap <C-S-J> <C-W>k<C-E><C-W><C-W>
 if has('multi_byte_ime') || has('xim')
     highlight CursorIM guibg=LightRed guifg=NONE
 endif
+
+" http://d.hatena.ne.jp/yuroyoro/20101104/1288879591
+" highlight cursor line
+set cursorline
+" display line on current buffer
+augroup cch
+    autocmd! cch
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter,BufRead * set cursorline
+augroup END
+:hi clear CursorLine
+":hi CursorLine gui=underline
+highlight CursorLine ctermbg=blue guibg=grey20
+" cancel highlight search
+nmap <ESC><ESC> :nohlsearch<CR><ESC>
+" search help under cursor keyword
+nnoremap <C-h> :<C-u>help<Space><C-r><C-w><Enter>
 
 " Status line
 set laststatus=2
