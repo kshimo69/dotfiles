@@ -127,11 +127,6 @@ nnoremap <SID>(split-to-l) : <C-u>botright vsplit<CR>
 " scroll top window with key Ctrl+Shift+J
 nnoremap <C-S-J> <C-W>k<C-E><C-W><C-W>
 
-" If IME on, tunr the color of cursor
-if has('multi_byte_ime') || has('xim')
-    highlight CursorIM guibg=LightRed guifg=NONE
-endif
-
 " http://d.hatena.ne.jp/yuroyoro/20101104/1288879591
 " highlight cursor line
 set cursorline
