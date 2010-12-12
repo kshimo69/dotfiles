@@ -77,6 +77,7 @@ if has('gui_macvim')
     set lines=30
     set columns=120
     set fuoptions=maxvert,maxhorz
+    set fullscreen
     "au GUIEnter * set fullscreen
 endif
 syntax on
