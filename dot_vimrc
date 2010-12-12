@@ -48,7 +48,7 @@ set number  " display line number
 set diffopt+=vertical
 set listchars=eol:$,tab:>\ ,extends:<  " character when use 'set list'
 "set list  " display TAB and CR
-colorscheme desert
+colorscheme koehler
 " GUI
 if has('gui_running')
     " sidebar
