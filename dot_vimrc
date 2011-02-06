@@ -451,3 +451,9 @@ function! s:open_junk_file()
         execute 'edit ' . l:filename
     endif
 endfunction"}}}
+
+" raimei setting
+let raimei_api="google"
+let raimei_from="en"
+let raimei_to="ja"
+map <silent> <C-I> :pyfile ~/bin/raimei.py<CR>
