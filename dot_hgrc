@@ -1,5 +1,6 @@
 [ui]
 username = kshimo69
+ignore = ~/.hgignore
 
 [extensions]
 color =
