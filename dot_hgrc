@@ -1,9 +1,0 @@
-[ui]
-username = kshimo69
-ignore = ~/.hgignore
-
-[extensions]
-color =
-hgext.color =
-hgext.graphlog =
-hgext.pager =

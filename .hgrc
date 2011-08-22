@@ -1,0 +1,21 @@
+[ui]
+username = kshimo69
+ignore = ~/.hgignore
+
+[extensions]
+color =
+hgext.color =
+hgext.graphlog =
+hgext.pager =
+
+[alias]
+l = log
+lb = log -b
+gl = glog
+gll = glob --limit
+pr = pull --rebase
+sh = shelve
+ush = unshelve
+qi = qimport
+qr = qrefresh
+qf = qfinish

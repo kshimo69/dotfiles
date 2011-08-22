@@ -38,14 +38,17 @@ alias VIM='LANG=C gvim'
 #alias em='emacs -nw'
 alias em='TERM=xterm-256color emacs -nw'
 alias py='python'
+alias r='rails'
 alias pu='pushd'
 alias po='popd'
 alias scp='noglob scp'
 alias wget='noglob wget'
 alias todoedit='todo.pl download;vim tasks.txt;todo.pl upload tasks.txt'
-alias d='nslookup d.hatena.ne.jp'
+alias sukico='ssh kshimo69@49.212.62.39 -p 10022'
 alias clear_terminal='echo c'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
+alias ngrep='grep --color=never'
+alias earthquake='NOTIFY=notify-send earthquake'
 # clipboard
 if which pbcopy >/dev/null 2>&1 ; then
     # Mac
@@ -59,10 +62,12 @@ elif which putclip >/dev/null 2>&1 ; then
 fi
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
-    alias em='open -a emacs'
+    alias emacs='open -a Emacs'
+    alias em='emacsclient -n'
     alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias VIM='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app/Contents/MacOS/MacVim'
+    alias earthquake='earthquake'
 fi
 if [ "${TERM}" = "eterm-color" ]; then
     alias ls='ls -F'
@@ -73,20 +78,30 @@ if [ -f ~/.passwd ]; then
 fi
 
 export GREP_COLOR="01;35"
-export GREP_OPTIONS=--color=always
+export GREP_OPTIONS=--color=auto
 export LSCOLORS=gxfxcxdxbxegedabagacad
-PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:/Developer/android-sdk-mac_x86/tools:$PATH:$HOME/bin
+PATH=$HOME/local/bin:$HOME/bin:$PATH
+#PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:/Developer/android-sdk-mac_x86/platform-tools/:$PATH:$HOME/bin
 typeset -U PATH
 export PATH
 export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
 export PERL5LIB=$HOME/local/lib/perl5:$HOME/local/lib/perl5/site_perl:$HOME/local/lib/perl:$HOME/local/share/perl
 export PERL_AUTOINSTALL="--defaultdeps"
-export RUBYLIB=$HOME/local/lib/ruby/site_ruby/
-export GEM_HOME=$HOME/local/lib/rubygems/
+#export RUBYLIB=$HOME/local/lib/ruby/site_ruby/
+#export GEM_HOME=$HOME/local/lib/rubygems/
 export PYTHONSTARTUP=$HOME/.pythonrc.py
+export WORKON_HOME=$HOME/python_virtual
+export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
+export PIP_RESPECT_VIRTUALENV=true
+#export PIP_REQUIRE_VIRTUALENV=true
+if [ -f ~/bin/virtualenvwrapper.sh ]; then
+    . ~/bin/virtualenvwrapper.sh
+fi
 export EDITOR=vim
 export SVN_EDITOR=vim
-export GISTY_DIR=$HOME/work/gist
+export GISTY_DIR=$HOME/gist
+export GISTY_SSL_CA=/etc/ssl/certs/ca-certificates.crt
+export GISTY_SSL_VERIFY="none"
 export GIT_EDITOR=vim
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
 
@@ -253,3 +268,4 @@ e_BLUE=`echo -e "\033[1;36m"`
 #function gcc() {
 #    LANG=C command gcc "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 #}
+[[ -s "/home/kshimo69/.rvm/scripts/rvm" ]] && source "/home/kshimo69/.rvm/scripts/rvm"  # This loads RVM into a shell session.
