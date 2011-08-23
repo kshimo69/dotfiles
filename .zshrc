@@ -94,9 +94,20 @@ export WORKON_HOME=$HOME/python_virtual
 export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
 export PIP_RESPECT_VIRTUALENV=true
 #export PIP_REQUIRE_VIRTUALENV=true
-if [ -f ~/bin/virtualenvwrapper.sh ]; then
-    . ~/bin/virtualenvwrapper.sh
+# if virtualenvwrapper ver > 2.0
+if [ -x `which virtualenvwrapper.sh` ]; then
+    . `which virtualenvwrapper.sh`
 fi
+#echo '#!/usr/bin/zsh' > $WORKON_HOME/postmkvirtualenv
+#echo '# This hook is run after a new virtualenv is activated.' >> $WORKON_HOME/postmkvirtualenv
+#echo '' >> $WORKON_HOME/postmkvirtualenv
+#echo '# virtualenv毎に pip をインストールする場合' >> $WORKON_HOME/postmkvirtualenv
+#echo 'easy_install pip' >> $WORKON_HOME/postmkvirtualenv
+#echo '' >> $WORKON_HOME/postmkvirtualenv
+#echo 'pip install ipython' >> $WORKON_HOME/postmkvirtualenv
+#echo '' >> $WORKON_HOME/postmkvirtualenv
+#echo '# pudb も便利かもよ' >> $WORKON_HOME/postmkvirtualenv
+#echo '#pip install pudb' >> $WORKON_HOME/postmkvirtualenv
 export EDITOR=vim
 export SVN_EDITOR=vim
 export GISTY_DIR=$HOME/gist
