@@ -48,7 +48,12 @@ alias sukico='ssh kshimo69@49.212.62.39 -p 10022'
 alias clear_terminal='echo c'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
-alias earthquake='NOTIFY=notify-send earthquake'
+NOTIFY=""
+if [ -n "$DISPLAY" -a -x "`which notify-send`" ]; then
+    NOTIFY='NOTIFY=notify-send'
+fi
+alias earthquake="$NOTIFY earthquake"
+alias earthquake_sub="$NOTIFY earthquake ~/.earthquake_sub"
 # clipboard
 if which pbcopy >/dev/null 2>&1 ; then
     # Mac
