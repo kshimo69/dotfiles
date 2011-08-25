@@ -246,6 +246,10 @@ fi
 
 function chpwd() {
     ls
+    if pwd | grep -q wire; then
+        echo "change ruby version."
+        rvm use ruby-1.8.7
+    fi
 }
  
 # SSHコマンドはscreenの新しい窓で
