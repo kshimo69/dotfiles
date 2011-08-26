@@ -31,6 +31,7 @@ Bundle 'motemen/git-vim'
 Bundle 'skk.vim'
 Bundle 'motemen/hatena-vim'
 Bundle 'kshimo69/rtm-vim'
+Bundle 'cursoroverdictionary'
 "vimfiler
 "echodoc
 
@@ -554,6 +555,30 @@ let g:rtm_api_key = 'f5f8dd1b0f0fefbb8debe6d206868df2'
 let g:rtm_shared_secret = '0740d5f2e9c4f6b8'
 let g:rtm_token = '39d422c2f07a605614cf9593e22d1a0bbf117f96'
 " }}} rtm setting end
+
+" cursoroverdictionar setting {{{
+" English to Japanese
+call cursoroverdictionary#add("gtj", "http://www.google.com/translate_t?langpair=auto|ja&text={word}", "utf-8", "sjis")
+call cursoroverdictionary#set_trim_pattern("gtj", '<span id=result_box.\{-}>', '</span>')
+call cursoroverdictionary#set_user_agent("gtj", "Mozilla/4.0 (ja)")
+" Japanese to English
+call cursoroverdictionary#add("gte", "http://www.google.com/translate_t?langpair=auto|en&text={word}", "utf-8", "sjis")
+call cursoroverdictionary#set_trim_pattern("gte", '<span id=result_box.\{-}>', '</span>')
+call cursoroverdictionary#set_user_agent("gte", "Mozilla/5.0 (ja)")
+" Alc
+call cursoroverdictionary#add("alc", "http://eow.alc.co.jp/{word}/UTF-8", "utf-8", "utf-8")
+call cursoroverdictionary#set_trim_pattern("alc", '<div id="resultsList".\{-}>', '\t\t\t\t</div>')
+call cursoroverdictionary#set_user_agent("alc", 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ja; rv:1.9.0.6) Gecko/2009011913 Firefox/3.0.6')
+" Wikipedia日本語版
+call cursoroverdictionary#add("wp", "http://ja.wikipedia.org/wiki/{word}", "utf-8", "utf-8")
+call cursoroverdictionary#set_trim_pattern("wp", '<div id="bodyContent">', '\t\t</div>')
+" keymap
+nnoremap <silent> ,t :<c-u>CODToggle<cr>
+vnoremap <silent> ,gtj :<c-u>CODSelectedEx gtj<cr>
+vnoremap <silent> ,gte :<c-u>CODSelectedEx gte<cr>
+vnoremap <silent> ,alc :<c-u>CODSelectedEx alc<cr>
+vnoremap <silent> ,wp :<c-u>CODSelectedEx wp<cr>
+" }}} cursoroverdictionar setting end
 
 " }}} Plugins end
 
