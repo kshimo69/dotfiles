@@ -30,6 +30,7 @@ Bundle 'tyru/open-browser.vim'
 Bundle 'motemen/git-vim'
 Bundle 'skk.vim'
 Bundle 'motemen/hatena-vim'
+Bundle 'kshimo69/rtm-vim'
 "vimfiler
 "echodoc
 
@@ -541,6 +542,12 @@ let g:skk_abbrev_mode_string = 'aあ' " SKK abbrevモード (SKK:aあ )
 " hatena setting {{{
 let g:hatena_user = 'kshimo69'
 " }}} hatena setting end
+
+" rtm setting {{{
+let g:rtm_api_key = 'f5f8dd1b0f0fefbb8debe6d206868df2'
+let g:rtm_shared_secret = '0740d5f2e9c4f6b8'
+let g:rtm_token = '39d422c2f07a605614cf9593e22d1a0bbf117f96'
+" }}} rtm setting end
 
 " }}} Plugins end
 
