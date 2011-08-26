@@ -28,7 +28,8 @@ Bundle 'tsukkee/unite-tag'
 Bundle 'rails.vim'
 Bundle 'tyru/open-browser.vim'
 Bundle 'motemen/git-vim'
-"hatena-edit
+Bundle 'skk.vim'
+Bundle 'motemen/hatena-vim'
 "vimfiler
 "echodoc
 
@@ -93,7 +94,7 @@ set nrformats&
 set nrformats-=octal
 set ffs=unix,dos,mac  " return code
 if !(has("win32") || has("win95") || has("win64") || has("win16"))
-  set encoding=utf-8  " default encoding
+   set encoding=utf-8  " default encoding
 endif
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 nmap ,ee :e ++enc=euc-jp<CR>
@@ -512,6 +513,34 @@ let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 " }}} open-browser setting end
+
+" skk setting {{{
+let skk_jisyo = '~/.vim/bundle/dict/skk-jisyo'
+let skk_large_jisyo = '.vim/bundle/skk.vim/dict/SKK-JISYO.L'
+let skk_auto_save_jisyo = 1
+let skk_keep_state = 0
+let skk_egg_like_newline = 1
+let skk_show_annotation = 1
+let skk_use_face = 1
+
+let g:skk_sticky_key = ';'
+let g:skk_kakutei_key = '.'
+let g:skk_use_color_cursor = 1
+let g:skk_cursor_hiragana_color = '#ff0000' " かなモード
+let g:skk_cursor_katakana_color = '#00ff00' " カナモード
+let g:skk_cursor_jisx0208_color = '#ffcc00' " 全英モード
+let g:skk_cursor_latin_color = '#000000' " アスキーモード
+let g:skk_cursor_abbrev_color = '#0000ff' " SKK abbrevモード
+let g:skk_latin_mode_string = 'SKK' " アスキーモード ( SKK:aA )
+let g:skk_hiragana_mode_string = 'かな' " かなモード ( SKK:あ )
+let g:skk_katakana_mode_string = 'カナ' " カナモード ( SKK:ア )
+let g:skk_jisx0208_latin_mode_string = '全英' " 全英モード ( SKK:Ａ )
+let g:skk_abbrev_mode_string = 'aあ' " SKK abbrevモード (SKK:aあ )
+" }}} skk setting end
+
+" hatena setting {{{
+let g:hatena_user = 'kshimo69'
+" }}} hatena setting end
 
 " }}} Plugins end
 
