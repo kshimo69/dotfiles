@@ -597,7 +597,3 @@ vnoremap <silent> ,wp :<c-u>CODSelectedEx wp<cr>
 " }}} cursoroverdictionar setting end
 
 " }}} Plugins end
-
-" HOGE setting {{{
-" }}} HOGE setting end
-
