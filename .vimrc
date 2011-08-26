@@ -342,6 +342,12 @@ augroup MyXML
 augroup END
 " }}} Xml setting end
 
+" ChangeLog setting {{{
+let g:changelog_username = "Kimihiko Shimomura  <kshimo69@gmail.com>"
+let g:changelog_dateformat = "%Y-%m-%d (%a)"
+nmap <C-m> :e ~/Dropbox/ChangeLog.txt<CR>
+" }}} ChangeLog setting end
+
 " }}} Programming end
 
 " ==== Functions ==== {{{
