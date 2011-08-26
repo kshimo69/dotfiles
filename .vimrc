@@ -32,6 +32,7 @@ Bundle 'skk.vim'
 Bundle 'motemen/hatena-vim'
 Bundle 'kshimo69/rtm-vim'
 Bundle 'cursoroverdictionary'
+Bundle 'thinca/vim-quickrun'
 "vimfiler
 "echodoc
 
@@ -318,12 +319,6 @@ endif
 " }}} General end
 
 " ==== Programming ==== {{{
-
-" Execute editting script
-function! s:ExecCode()
-    exe "!" . &ft . " %"
-:endfunction
-command! Exec call <SID>ExecCode()
 
 " Python setting {{{
 " Configuration for python
