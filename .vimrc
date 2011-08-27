@@ -40,6 +40,7 @@ Bundle 'kshimo69/rtm-vim'
 Bundle 'cursoroverdictionary'
 Bundle 'thinca/vim-quickrun'
 Bundle 'thinca/vim-ref'
+Bundle 'Shougo/echodoc'
 "vimfiler
 "echodoc
 
@@ -603,5 +604,9 @@ vnoremap <silent> ,gte :<c-u>CODSelectedEx gte<cr>
 vnoremap <silent> ,alc :<c-u>CODSelectedEx alc<cr>
 vnoremap <silent> ,wp :<c-u>CODSelectedEx wp<cr>
 " }}} cursoroverdictionar setting end
+
+" echodoc setting {{{
+let g:echodoc_enable_at_startup = 1
+" }}} echodoc setting end
 
 " }}} Plugins end
