@@ -28,6 +28,7 @@ call vundle#rc()
 
 " repositories
 Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/clang_complete'
 Bundle 'Shougo/unite.vim'
 Bundle 'tsukkee/unite-tag'
 Bundle 'rails.vim'
@@ -175,7 +176,8 @@ set number
 set diffopt+=vertical
 " character when use 'set list'
 set listchars=eol:$,tab:>\ ,extends:<
-"set list  " display TAB and CR
+" display TAB and CR
+"set list
 colorscheme koehler
 syntax on
 highlight Folded ctermbg=grey ctermfg=blue guibg=grey guifg=blue
@@ -542,6 +544,10 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 " skk setting {{{
 let skk_jisyo = '~/.vim/bundle/dict/skk-jisyo'
+" mkdir -p .vim/bundle/skk/dict
+" cd .vim/bundle/skk/dict
+" wget http://openlab.jp/skk/dic/SKK-JISYO.L.gz
+" gunzip SKK-JISYO.L.gz
 let skk_large_jisyo = '.vim/bundle/skk.vim/dict/SKK-JISYO.L'
 let skk_auto_save_jisyo = 1
 let skk_keep_state = 0
