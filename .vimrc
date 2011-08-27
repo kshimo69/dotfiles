@@ -42,7 +42,7 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'thinca/vim-ref'
 Bundle 'Shougo/echodoc'
 "vimfiler
-"echodoc
+"surround
 
 filetype plugin indent on
 " }}} vundle setting end
