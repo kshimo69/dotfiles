@@ -170,7 +170,7 @@ if has('gui_macvim')
     set guioptions-=T
     set imdisable
     set antialias
-    "colorscheme macvim
+    colorscheme macvim
     "set guifont=M+2VM+IPAG\ circle\ Regular:h14
     "set guifont=Monaco:h14
     set guifont=Ricty\ Regular:h16
