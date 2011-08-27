@@ -122,33 +122,6 @@ let g:yankring_history_file = '.yankring_history_file'
 " }}} Basic setting end
 
 " View setting {{{
-" display line number
-set number
-set diffopt+=vertical
-" character when use 'set list'
-set listchars=eol:$,tab:>\ ,extends:<
-"set list  " display TAB and CR
-colorscheme koehler
-syntax on
-highlight Folded ctermbg=grey ctermfg=blue guibg=grey guifg=blue
-highlight FoldColumn ctermfg=green guifg=green
-set title
-set ruler
-set cursorline
-" display line on current buffer
-augroup cch
-    autocmd! cch
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter,BufRead * set cursorline
-augroup END
-:hi clear CursorLine
-":hi CursorLine gui=underline
-highlight CursorLine ctermbg=blue guibg=grey20
-" Change cursor color when IME on/off
-if has('multi_byte_ime') || has('xim')
-    highlight CursorIM guibg=LightRed guifg=NONE
-endif
-
 " GUI {{{
 if has('gui_macvim')
     set guioptions& " initialize
@@ -195,6 +168,34 @@ augroup InsertHook
     autocmd InsertLeave * highlight StatusLine guifg=Black guibg=LightYellow
 augroup END
 " }}} Status line setting end
+
+" display line number
+set number
+set diffopt+=vertical
+" character when use 'set list'
+set listchars=eol:$,tab:>\ ,extends:<
+"set list  " display TAB and CR
+colorscheme koehler
+syntax on
+highlight Folded ctermbg=grey ctermfg=blue guibg=grey guifg=blue
+highlight FoldColumn ctermfg=green guifg=green
+set title
+set ruler
+set cursorline
+" display line on current buffer
+augroup cch
+    autocmd! cch
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter,BufRead * set cursorline
+augroup END
+:hi clear CursorLine
+":hi CursorLine gui=underline
+highlight CursorLine ctermbg=blue guibg=grey20
+" Change cursor color when IME on/off
+if has('multi_byte_ime') || has('xim')
+    highlight CursorIM guibg=LightRed guifg=NONE
+endif
+
 " }}} View setting end
 
 " Search setting {{{
