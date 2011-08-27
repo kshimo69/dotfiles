@@ -38,6 +38,7 @@ Bundle 'motemen/hatena-vim'
 Bundle 'kshimo69/rtm-vim'
 Bundle 'cursoroverdictionary'
 Bundle 'thinca/vim-quickrun'
+Bundle 'thinca/vim-ref'
 "vimfiler
 "echodoc
 
