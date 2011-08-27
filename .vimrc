@@ -138,6 +138,7 @@ if has('gui_macvim')
     set fuoptions=maxvert,maxhorz
     set fullscreen
     "au GUIEnter * set fullscreen
+    gui
 elseif has('gui_running')
     " sidebar
     set guioptions& " initialize
