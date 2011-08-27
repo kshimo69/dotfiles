@@ -549,7 +549,7 @@ let skk_jisyo = '~/.vim/bundle/dict/skk-jisyo'
 " cd .vim/bundle/skk/dict
 " wget http://openlab.jp/skk/dic/SKK-JISYO.L.gz
 " gunzip SKK-JISYO.L.gz
-let skk_large_jisyo = '.vim/bundle/skk.vim/dict/SKK-JISYO.L'
+let skk_large_jisyo = '~/.vim/bundle/skk.vim/dict/SKK-JISYO.L'
 let skk_auto_save_jisyo = 1
 let skk_keep_state = 0
 let skk_egg_like_newline = 1
