@@ -150,22 +150,6 @@ if has('multi_byte_ime') || has('xim')
 endif
 
 " GUI {{{
-if has('gui_running')
-    " sidebar
-    set guioptions& " initialize
-    set guioptions+=b
-    " clip board
-    " http://vim-users.jp/2010/02/hack126/
-    set clipboard=unnamed,autoselect
-    set guioptions+=a
-    "set guifont=M+2VM+IPAG\ circle\ 14
-    set guifont=VL\ Gothic\ 14
-    " window size
-    set lines=30
-    set columns=120
-    gui
-    "set transparency=20
-endif
 if has('gui_macvim')
     set guioptions& " initialize
     set guioptions-=T
@@ -181,6 +165,21 @@ if has('gui_macvim')
     set fuoptions=maxvert,maxhorz
     set fullscreen
     "au GUIEnter * set fullscreen
+elseif has('gui_running')
+    " sidebar
+    set guioptions& " initialize
+    set guioptions+=b
+    " clip board
+    " http://vim-users.jp/2010/02/hack126/
+    set clipboard=unnamed,autoselect
+    set guioptions+=a
+    "set guifont=M+2VM+IPAG\ circle\ 14
+    set guifont=VL\ Gothic\ 14
+    " window size
+    set lines=30
+    set columns=120
+    gui
+    "set transparency=20
 endif
 " GUI end }}}
 
