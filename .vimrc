@@ -545,7 +545,7 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 " skk setting {{{
 let skk_jisyo = '~/.vim/bundle/dict/skk-jisyo'
-" mkdir -p .vim/bundle/skk/dict
+" mkdir -p .vim/bundle/skk.vim/dict
 " cd .vim/bundle/skk/dict
 " wget http://openlab.jp/skk/dic/SKK-JISYO.L.gz
 " gunzip SKK-JISYO.L.gz
