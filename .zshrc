@@ -41,8 +41,8 @@ alias py='python'
 alias r='rails'
 alias pu='pushd'
 alias po='popd'
-alias scp='noglob scp'
-alias wget='noglob wget'
+#alias scp='noglob scp'
+#alias wget='noglob wget'
 alias todoedit='todo.pl download;vim tasks.txt;todo.pl upload tasks.txt'
 alias sukico='ssh kshimo69@49.212.62.39 -p 10022'
 alias clear_terminal='echo c'
@@ -95,7 +95,7 @@ export PERL_AUTOINSTALL="--defaultdeps"
 #export RUBYLIB=$HOME/local/lib/ruby/site_ruby/
 #export GEM_HOME=$HOME/local/lib/rubygems/
 export PYTHONSTARTUP=$HOME/.pythonrc.py
-export WORKON_HOME=$HOME/python_virtual
+export WORKON_HOME=$HOME/.virtualenv
 export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
 export PIP_RESPECT_VIRTUALENV=true
 #export PIP_REQUIRE_VIRTUALENV=true
@@ -115,8 +115,9 @@ fi
 #echo '#pip install pudb' >> $WORKON_HOME/postmkvirtualenv
 export EDITOR=vim
 export SVN_EDITOR=vim
-export GISTY_DIR=$HOME/gist
-export GISTY_SSL_CA=/etc/ssl/certs/ca-certificates.crt
+export GISTY_DIR=$HOME/repos/gist
+export GISTY_SSL_CA=$HOME/.rvm/usr/ssl/cert.pem
+#export GISTY_SSL_CA=/etc/ssl/certs/ca-certificates.crt
 export GISTY_SSL_VERIFY="none"
 export GIT_EDITOR=vim
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
@@ -288,4 +289,5 @@ e_BLUE=`echo -e "\033[1;36m"`
 #function gcc() {
 #    LANG=C command gcc "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 #}
-[[ -s "/home/kshimo69/.rvm/scripts/rvm" ]] && source "/home/kshimo69/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
