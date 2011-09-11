@@ -609,4 +609,16 @@ vnoremap <silent> ,wp :<c-u>CODSelectedEx wp<cr>
 let g:echodoc_enable_at_startup = 1
 " }}} echodoc setting end
 
+" quickrun setting {{{
+let g:quickrun_config = {}
+
+" RSpec
+let g:quickrun_config['ruby.rspec'] = {'command': 'spec'}
+"let g:quickrun_config['ruby.rspec'] = {'command': "spec -l {line('.')}"}
+augroup UjihisaRSpec
+    autocmd!
+    autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+augroup END
+" }}} quickrun setting end
+
 " }}} Plugins end
