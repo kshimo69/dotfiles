@@ -43,6 +43,7 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'thinca/vim-ref'
 Bundle 'Shougo/echodoc'
 Bundle 'kana/vim-smartchr'
+Bundle 'kshimo69/rsense-copy'
 "vimfiler
 "surround
 
