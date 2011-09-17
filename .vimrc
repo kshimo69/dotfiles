@@ -506,6 +506,12 @@ if !exists('g:neocomplcache_omni_patterns')
 endif
 "let g:neocomplcache_omni_patterns.python = '[^. \t]\.\h\w*'
 "let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"" ruby rsense setting
+"let g:rsenseUseOmniFunc = 1
+"if filereadable(expand('~/repos/rsense/bin/rsense'))
+"    let g:rsenseHome = expand('~/repos/rsense')
+"    let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
