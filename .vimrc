@@ -180,7 +180,7 @@ augroup END
 set number
 set diffopt+=vertical
 " character when use 'set list'
-set listchars=eol:$,tab:>\ ,extends:<
+set listchars=eol:$,tab:>-,trail:_
 " display TAB and CR
 "set list
 colorscheme koehler
