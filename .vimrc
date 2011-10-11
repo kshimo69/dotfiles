@@ -183,6 +183,13 @@ set diffopt+=vertical
 set listchars=eol:$,tab:>-,trail:_
 " display TAB and CR
 "set list
+" display full length space
+scriptencoding utf-8
+augroup highlightIdegraphicSpace
+    autocmd!
+    autocmd ColorScheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+    autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+augroup END
 colorscheme koehler
 syntax on
 highlight Folded ctermbg=grey ctermfg=blue guibg=grey guifg=blue
