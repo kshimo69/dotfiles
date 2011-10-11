@@ -44,6 +44,7 @@ Bundle 'thinca/vim-ref'
 Bundle 'Shougo/echodoc'
 Bundle 'kana/vim-smartchr'
 "Bundle 'kshimo69/rsense-copy'
+Bundle 'project.tar.gz'
 "vimfiler
 "surround
 
@@ -661,5 +662,16 @@ let g:quickrun_config['rst'] = {
     \ 'outputter': 'browser',
     \ }
 " }}} quickrun setting end
+
+" project setting {{{
+:let g:proj_flags = "imstc"
+:nmap <silent> <Leader>p <Plug>ToggleProject
+:nmap <silent> <Leader>P :Project<CR>
+if getcwd() != $HOME
+    if filereadable(getcwd(). '/.vimprojects')
+        Project .vimprojects
+    endif
+endif
+" }}} project setting end
 
 " }}} Plugins end
