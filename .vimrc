@@ -351,6 +351,14 @@ autocmd FileType python setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
 "autocmd FileType python inoremap . .<C-x><C-u><C-p>
 " }}} Python setting end
 
+" Ruby setting {{{
+" syntax check
+augroup rbsyntaxcheck
+    autocmd!
+    autocmd BufWrite *.rb w !ruby -c
+augroup END
+" }}} Ruby setting end
+
 " Xml setting {{{
 " XML close tag
 augroup MyXML
