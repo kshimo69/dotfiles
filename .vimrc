@@ -373,6 +373,13 @@ let g:changelog_dateformat = "%Y-%m-%d (%a)"
 nmap <C-m> :e ~/Dropbox/ChangeLog.txt<CR>
 " }}} ChangeLog setting end
 
+" Sukicolle setting {{{
+augroup sukicolleroot
+    autocmd!
+    autocmd BufEnter ~/Dropbox/project/rails/wire/**/* lcd ~/Dropbox/project/rails/wire
+augroup END
+" }}} Sukicolle setting end
+
 " }}} Programming end
 
 " ==== Functions ==== {{{
