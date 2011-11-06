@@ -127,7 +127,7 @@ au BufNewFile,BufRead * match ZenkakuSpace /　/
 " yank
 let g:yankring_history_file = '.yankring_history_file'
 " clipboard
-set clipboard+=autoselect
+set clipboard+=unnamed,autoselect
 " }}} Basic setting end
 
 " View setting {{{
