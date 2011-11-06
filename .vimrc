@@ -126,7 +126,11 @@ au BufNewFile,BufRead * set tabstop=4 shiftwidth=4 softtabstop=4
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 au BufNewFile,BufRead * match ZenkakuSpace /　/
 " yank
-let g:yankring_history_file = '.yankring_history_file'
+let g:yankring_history_dir = expand('$HOME')
+let g:yankring_history_file = '.yankring_history'
+nnoremap <silent> cy  ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+vnoremap <silent> cy  c<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 " clipboard
 set clipboard+=unnamed,autoselect
 " }}} Basic setting end
@@ -716,10 +720,5 @@ if getcwd() != $HOME
 endif
 autocmd BufAdd .vimprojects silent! %foldopen!
 " }}} project setting end
-
-" YankRing setting {{{
-let g:yankring_history_dir = expand('$HOME')
-let g:yankring_history_file = '.yankring_history'
-" }}} YankRing setting end
 
 " }}} Plugins end
