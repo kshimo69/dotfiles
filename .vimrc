@@ -49,8 +49,8 @@ Bundle 'thinca/vim-visualstar'
 Bundle 'YankRing.vim'
 Bundle 'matchit.zip'
 Bundle 'Align'
+Bundle 'tpope/vim-surround'
 "vimfiler
-"surround
 
 filetype plugin indent on
 " }}} vundle setting end
