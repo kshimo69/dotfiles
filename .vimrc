@@ -126,6 +126,8 @@ highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 au BufNewFile,BufRead * match ZenkakuSpace /　/
 " yank
 let g:yankring_history_file = '.yankring_history_file'
+" clipboard
+set clipboard+=autoselect
 " }}} Basic setting end
 
 " View setting {{{
@@ -149,6 +151,7 @@ endif
 if has('gui_macvim')
     set guioptions& " initialize
     set guioptions-=T
+    set guioptions+=a
     set imdisable
     set antialias
     colorscheme macvim
