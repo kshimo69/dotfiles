@@ -48,6 +48,7 @@ Bundle 'project.tar.gz'
 Bundle 'thinca/vim-visualstar'
 Bundle 'YankRing.vim'
 Bundle 'matchit.zip'
+Bundle 'Align'
 "vimfiler
 "surround
 
@@ -721,5 +722,10 @@ if getcwd() != $HOME
 endif
 autocmd BufAdd .vimprojects silent! %foldopen!
 " }}} project setting end
+
+" Align setting {{{
+let g:Align_xstrlen = 3
+let g:DrChipTopLvlMenu = ''
+" }}} Align setting end
 
 " }}} Plugins end
