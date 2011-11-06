@@ -46,6 +46,7 @@ Bundle 'kana/vim-smartchr'
 "Bundle 'kshimo69/rsense-copy'
 Bundle 'project.tar.gz'
 Bundle 'thinca/vim-visualstar'
+Bundle 'YankRing.vim'
 "vimfiler
 "surround
 
@@ -715,5 +716,10 @@ if getcwd() != $HOME
 endif
 autocmd BufAdd .vimprojects silent! %foldopen!
 " }}} project setting end
+
+" YankRing setting {{{
+let g:yankring_history_dir = expand('$HOME')
+let g:yankring_history_file = '.yankring_history'
+" }}} YankRing setting end
 
 " }}} Plugins end
