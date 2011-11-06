@@ -45,6 +45,7 @@ Bundle 'Shougo/echodoc'
 Bundle 'kana/vim-smartchr'
 "Bundle 'kshimo69/rsense-copy'
 Bundle 'project.tar.gz'
+Bundle 'thinca/vim-visualstar'
 "vimfiler
 "surround
 
