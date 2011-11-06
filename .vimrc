@@ -709,6 +709,7 @@ if getcwd() != $HOME
         Project .vimprojects
     endif
 endif
+autocmd BufAdd .vimprojects silent! %foldopen!
 " }}} project setting end
 
 " }}} Plugins end
