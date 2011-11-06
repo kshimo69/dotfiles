@@ -155,7 +155,7 @@ if has('gui_macvim')
     "set guifont=Monaco:h14
     set guifont=Ricty\ Regular:h16
     set transparency=20
-    set lines=30
+    set lines=50
     set columns=120
     set fuoptions=maxvert,maxhorz
     set fullscreen
