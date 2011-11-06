@@ -47,6 +47,7 @@ Bundle 'kana/vim-smartchr'
 Bundle 'project.tar.gz'
 Bundle 'thinca/vim-visualstar'
 Bundle 'YankRing.vim'
+Bundle 'matchit.zip'
 "vimfiler
 "surround
 
