@@ -1,0 +1,10 @@
+*.elc
+.*~
+*~
+.#*
+history
+conf/init-passwd.el
+ac-comphist.dat
+customize.el
+.org-id-locations
+share/pylookup/pylookup.db
