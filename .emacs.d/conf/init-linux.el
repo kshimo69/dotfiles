@@ -1,6 +1,6 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
-;; (menu-bar-mode nil)
+(menu-bar-mode nil)
 
 (if window-system
     (progn
