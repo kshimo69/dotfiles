@@ -57,6 +57,7 @@
 ;; scratch のメッセージを空にする
 (setq initial-scratch-message nil)
 
+;; TODO: X起動してるか確認する
 ;; emacsclient を利用するためにサーバ起動
 ;; サーバが起動していた場合は先に起動していた方を優先
 (require 'server)
