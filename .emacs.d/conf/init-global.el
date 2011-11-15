@@ -57,18 +57,20 @@
 ;; scratch のメッセージを空にする
 (setq initial-scratch-message nil)
 
-;; TODO: X起動してるか確認する
 ;; emacsclient を利用するためにサーバ起動
 ;; サーバが起動していた場合は先に起動していた方を優先
-(require 'server)
-(unless (server-running-p) (server-start))
-(defun skt:raise-frame()
-  ;; Frame を前面にする
-  (raise-frame (selected-frame))
-  ;; キーボードフォーカスを選択しているFrameにする
-  (x-focus-frame (selected-frame)))
-(add-hook 'server-visit-hook 'skt:raise-frame)
-(add-hook 'find-file-hook 'skt:raise-frame)
+(if window-system
+    (progn
+      (require 'server)
+      (unless (server-running-p) (server-start))
+      (defun skt:raise-frame()
+        ;; Frame を前面にする
+        (raise-frame (selected-frame))
+        ;; キーボードフォーカスを選択しているFrameにする
+        (x-focus-frame (selected-frame)))
+      (add-hook 'server-visit-hook 'skt:raise-frame)
+      (add-hook 'find-file-hook 'skt:raise-frame)
+      ))
 
 ;; メニューバー、ツールバー非表示
 ;; (menu-bar-mode nil)
