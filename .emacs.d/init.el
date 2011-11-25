@@ -139,7 +139,7 @@
 (require 'init-twitter)
 (require 'init-auto-install)
 (require 'init-riece)
-(require 'init-hatena)
+(require 'init-hahhah)
 
 ;; 環境依存設定
 (cond
