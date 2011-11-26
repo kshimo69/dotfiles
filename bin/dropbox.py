@@ -4,7 +4,7 @@
 #
 # dropbox
 # Dropbox frontend script
-# This file is part of nautilus-dropbox 0.6.9.
+# This file is part of nautilus-dropbox 0.7.1.
 #
 # nautilus-dropbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,34 +21,65 @@
 #
 from __future__ import with_statement
 
-import sys
-import optparse
-import socket
-import os
-import shutil
-import time
-import platform
-import tarfile
-import threading
-import urllib
-import subprocess
-import fcntl
 import errno
+import fcntl
 import locale
-from contextlib import closing
+import optparse
+import os
+import platform
+import shutil
+import socket
+import StringIO
+import subprocess
+import sys
+import tarfile
+import tempfile
+import threading
+import time
+import urllib
+
+try:
+    import gpgme
+except ImportError:
+    gpgme = None
+
+from contextlib import closing, contextmanager
 from posixpath import curdir, sep, pardir, join, abspath, commonprefix
 
 INFO = u"Dropbox is the easiest way to share and store your files online. Want to learn more? Head to"
 LINK = u"http://www.dropbox.com/"
 WARNING = u"In order to use Dropbox, you must download the proprietary daemon."
+GPG_WARNING = u"Note: python-gpgme is not installed, we will not be able to verify binary signatures."
 
 DOWNLOADING = u"Downloading Dropbox... %d%%"
 UNPACKING = u"Unpacking Dropbox... %d%%"
 
 PARENT_DIR = os.path.expanduser("~")
 DROPBOXD_PATH = "%s/.dropbox-dist/dropboxd" % PARENT_DIR
+DESKTOP_FILE = u"/usr/share/applications/dropbox.desktop"
 
 enc = locale.getpreferredencoding()
+
+# Available from http://linux.dropbox.com/fedora/rpm-public-key.asc
+DROPBOX_PUBLIC_KEY = """
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: SKS 1.1.0
+
+mQENBEt0ibEBCACv4hZRPqwtpU6z8+BB5YZU1a3yjEvg2W68+a6hEwxtCa2U++4dzQ+7EqaU
+q5ybQnwtbDdpFpsOi9x31J+PCpufPUfIG694/0rlEpmzl2GWzY8NqfdBFGGm/SPSSwvKbeNc
+FMRLu5neo7W9kwvfMbGjHmvUbzBUVpCVKD0OEEf1q/Ii0Qcekx9CMoLvWq7ZwNHEbNnij7ec
+nvwNlE2MxNsOSJj+hwZGK+tM19kuYGSKw4b5mR8IyThlgiSLIfpSBh1n2KX+TDdk9GR+57TY
+vlRu6nTPu98P05IlrrCP+KF0hYZYOaMvQs9Rmc09tc/eoQlN0kkaBWw9Rv/dvLVc0aUXABEB
+AAG0MURyb3Bib3ggQXV0b21hdGljIFNpZ25pbmcgS2V5IDxsaW51eEBkcm9wYm94LmNvbT6J
+ATYEEwECACAFAkt0ibECGwMGCwkIBwMCBBUCCAMEFgIDAQIeAQIXgAAKCRD8kYszUESRLi/z
+B/wMscEa15rS+0mIpsORknD7kawKwyda+LHdtZc0hD/73QGFINR2P23UTol/R4nyAFEuYNsF
+0C4IAD6y4pL49eZ72IktPrr4H27Q9eXhNZfJhD7BvQMBx75L0F5gSQwuC7GdYNlwSlCD0AAh
+Qbi70VBwzeIgITBkMQcJIhLvllYo/AKD7Gv9huy4RLaIoSeofp+2Q0zUHNPl/7zymOqu+5Ox
+e1ltuJT/kd/8hU+N5WNxJTSaOK0sF1/wWFM6rWd6XQUP03VyNosAevX5tBo++iD1WY2/lFVU
+JkvAvge2WFk3c6tAwZT/tKxspFy4M/tNbDKeyvr685XKJw9ei6GcOGHD
+=5rWG
+-----END PGP PUBLIC KEY BLOCK-----
+"""
 
 # Futures
 
@@ -105,7 +136,7 @@ def yes_no_question(question):
             return False
         else:
             console_print(u"Sorry, I didn't understand that. Please type yes or no.")
-    
+
 def plat():
     if sys.platform.lower().startswith('linux'):
         arch = platform.machine()
@@ -137,62 +168,116 @@ def is_dropbox_running():
 def unicode_abspath(path):
     global enc
     assert type(path) is unicode
-    # shouldn't pass unicode to this craphead, it appends with os.getcwd() which is always a str 
+    # shouldn't pass unicode to this craphead, it appends with os.getcwd() which is always a str
     return os.path.abspath(path.encode(sys.getfilesystemencoding())).decode(sys.getfilesystemencoding())
+
+@contextmanager
+def gpgme_context(keys):
+    gpg_conf_contents = ''
+    _gpghome = tempfile.mkdtemp(prefix='tmp.gpghome')
+
+    try:
+        os.environ['GNUPGHOME'] = _gpghome
+        fp = open(os.path.join(_gpghome, 'gpg.conf'), 'wb')
+        fp.write(gpg_conf_contents)
+        fp.close()
+        ctx = gpgme.Context()
+
+        loaded = []
+        for key_file in keys:
+            result = ctx.import_(key_file)
+            key = ctx.get_key(result.imports[0][0])
+            loaded.append(key)
+
+        ctx.signers = loaded
+
+        yield ctx
+    finally:
+        del os.environ['GNUPGHOME']
+        shutil.rmtree(_gpghome, ignore_errors=True)
+
+def verify_signature(key_file, sig_file, plain_file):
+    with gpgme_context([key_file]) as ctx:
+        sigs = ctx.verify(sig_file, plain_file, None)
+        return sigs[0].status == None
+
+def download_file_chunk(socket, buf, size):
+    progress = 0
+    with closing(socket) as f:
+        while True:
+            try:
+                chunk = os.read(f.fileno(), 4096)
+                progress += len(chunk)
+                buf.write(chunk)
+                yield (progress, True)
+                if progress == size:
+                    break
+            except OSError, e:
+                if hasattr(e, 'errno') and e.errno == errno.EAGAIN:
+                    # nothing left to read
+                    yield (progress, False)
+                else:
+                    raise
+
+def download_uri_to_buffer(uri):
+    try:
+        socket = urllib.urlopen(uri)
+    except IOError:
+        FatalVisibleError("Trouble connecting to Dropbox servers. Maybe your internet connection is down, or you need to set your http_proxy environment variable.")
+
+    fcntl.fcntl(socket, fcntl.F_SETFL, os.O_NONBLOCK)
+    size = int(socket.info()['content-length'])
+
+    buf = StringIO.StringIO()
+    download_chunk = download_file_chunk(socket, buf, size)
+
+    for _ in download_chunk:
+        pass
+
+    buf.seek(0)
+    return buf
 
 # This sets a custom User-Agent
 class DropboxURLopener(urllib.FancyURLopener):
-    version = "DropboxLinuxDownloader/0.6.9"
+    version = "DropboxLinuxDownloader/0.7.1"
 urllib._urlopener = DropboxURLopener()
 
 class DownloadState(object):
     def __init__(self):
         try:
-            self.file = urllib.urlopen("http://www.dropbox.com/download?plat=%s" % plat())
+            self.socket = urllib.urlopen("http://www.dropbox.com/download?plat=%s" % plat())
         except IOError:
-            FatalVisibleError("Trouble connecting to Dropbox servers. Maybe your internet connection is down, or you need to set your http_proxy environment variable.")
-            
-        fcntl.fcntl(self.file, fcntl.F_SETFL, os.O_NONBLOCK)
-        
-        self.size = int(self.file.info()['content-length'])
-        self.progress = 0
+            FatalVisibleError("Trouble connecting to Dropbox servers. Maybe your internet connection is down, or you need to set your http_proxy environment variable")
 
-        self.local_path = "%s/dropbox.tar.gz" % PARENT_DIR
-        self.local_file = open(self.local_path, 'wb')
+        fcntl.fcntl(self.socket, fcntl.F_SETFL, os.O_NONBLOCK)
+        self.size = int(self.socket.info()['content-length'])
+
+        self.local_file = StringIO.StringIO()
+        self.download_chunk = download_file_chunk(self.socket, self.local_file, self.size)
 
     def copy_data(self):
-        while True:
-            try:
-                chunk = os.read(self.file.fileno(), 4096)
-                self.progress += len(chunk)
-                self.local_file.write(chunk)
-                yield True
-                if self.progress == self.size:
-                    break
-            except OSError, e:
-                if hasattr(e, 'errno') and e.errno == errno.EAGAIN:
-                    # nothing left to read
-                    yield False
-                else:
-                    raise
-
-        self.file.close()
+        return self.download_chunk
 
     def unpack(self):
-        self.local_file.close()
-        archive = tarfile.open(self.local_path, 'r:gz')
+        # download signature
+        signature = download_uri_to_buffer("http://www.dropbox.com/download?plat=%s&signature=1" % plat())
+
+        self.local_file.seek(0)
+        if gpgme:
+            if not verify_signature(StringIO.StringIO(DROPBOX_PUBLIC_KEY), signature, self.local_file):
+                FatalVisibleError("Downloaded binary does not match Dropbox signature, aborting install.")
+
+        self.local_file.seek(0)
+        archive = tarfile.open(fileobj=self.local_file, mode='r:gz')
         total_members = len(archive.getmembers())
         for i, member in enumerate(archive.getmembers()):
             archive.extract(member, PARENT_DIR)
             yield member.name, i, total_members
         archive.close()
-        os.remove(self.local_path)
 
     def cancel(self):
         if not self.local_file.closed:
             self.local_file.close()
-        if os.path.exists(self.local_path):
-            os.remove(self.local_path)
 
 def load_serialized_images():
     global box_logo_pixbuf, window_icon
@@ -249,8 +334,8 @@ if GUI_AVAILABLE:
                 self.ok.hide()
                 self.download = DownloadState()
                 self.one_chunk = self.download.copy_data()
-                self.watch = gobject.io_add_watch(self.download.file,
-                                                  gobject.IO_IN | 
+                self.watch = gobject.io_add_watch(self.download.socket,
+                                                  gobject.IO_IN |
                                                   gobject.IO_PRI |
                                                   gobject.IO_ERR |
                                                   gobject.IO_HUP,
@@ -270,14 +355,17 @@ if GUI_AVAILABLE:
                 elif condition == gobject.IO_ERR:
                     FatalVisibleError("Unexpected error occurred with download.")
                 try:
-                    while self.one_chunk.next():
-                        self.update_progress(DOWNLOADING, float(self.download.progress)/self.download.size)
+                    while True:
+                        progress, status = self.one_chunk.next()
+                        if not status:
+                            break
+                        self.update_progress(DOWNLOADING, float(progress)/self.download.size)
                 except StopIteration:
                     self.update_progress(DOWNLOADING, 1.0)
                     self.unpack_dropbox()
                     return False
                 else:
-                    self.update_progress(DOWNLOADING, float(self.download.progress)/self.download.size)
+                    self.update_progress(DOWNLOADING, float(progress)/self.download.size)
                     return True
 
             def unpack_dropbox(self):
@@ -344,7 +432,8 @@ if GUI_AVAILABLE:
                 self.progress.set_property('width-request', 300)
 
                 self.label = gtk.Label()
-                self.label.set_markup('%s <span foreground="#000099" underline="single" weight="bold">%s</span>\n\n%s' % (INFO, LINK, WARNING))
+                GPG_WARNING_MSG = (u"\n\n" + GPG_WARNING) if not gpgme else u""
+                self.label.set_markup('%s <span foreground="#000099" underline="single" weight="bold">%s</span>\n\n%s%s' % (INFO, LINK, WARNING, GPG_WARNING_MSG))
                 self.label.set_line_wrap(True)
                 self.label.set_property('width-request', 300)
                 self.label.show()
@@ -431,17 +520,18 @@ else:
             write(save)
             flush()
         console_print(u"%s %s\n" % (INFO, LINK))
+        GPG_WARNING_MSG = (u"\n%s" % GPG_WARNING) if not gpgme else u""
 
-        if not yes_no_question(WARNING):
+        if not yes_no_question("%s%s" % (WARNING, GPG_WARNING_MSG)):
             return
 
         download = DownloadState()
         one_chunk = download.copy_data()
 
-        try:    
+        try:
             while True:
-                one_chunk.next()
-                setprogress(DOWNLOADING, float(download.progress)/download.size)
+                progress = one_chunk.next()[0]
+                setprogress(DOWNLOADING, float(progress)/download.size)
         except StopIteration:
             setprogress(DOWNLOADING, 1.0)
             console_print()
@@ -481,7 +571,7 @@ class CommandTicker(threading.Thread):
                 sys.stderr.flush()
             i += 1
         sys.stderr.flush()
-                
+
 
 class DropboxCommand(object):
     class CouldntConnectError(Exception): pass
@@ -521,23 +611,23 @@ class DropboxCommand(object):
                                              [v])) + u"\n").encode('utf8')
                           for k,v in args.iteritems())
         self.f.write(u"done\n".encode('utf8'))
-                
+
         self.f.flush()
 
         # Start a ticker
         ticker_thread = CommandTicker()
         ticker_thread.start()
 
-        # This is the potentially long-running call. 
+        # This is the potentially long-running call.
         try:
             ok = self.__readline() == u"ok"
         except KeyboardInterrupt:
             raise DropboxCommand.BadConnectionError("Keyboard interruption detected")
-        finally:    
-            # Tell the ticker to stop. 
+        finally:
+            # Tell the ticker to stop.
             ticker_thread.stop()
             ticker_thread.join()
-        
+
         if ok:
             toret = {}
             for i in range(21):
@@ -547,7 +637,7 @@ class DropboxCommand(object):
                 line = self.__readline()
                 if line == u"done":
                     break
-                        
+
                 argval = line.split(u"\t")
                 toret[argval[0]] = argval[1:]
 
@@ -561,9 +651,9 @@ class DropboxCommand(object):
                 line = self.__readline()
                 if line == u"done":
                     break
-                        
+
                 problems.append(line)
-                    
+
             raise DropboxCommand.CommandError(u"\n".join(problems))
 
     # this is the hotness, auto marshalling
@@ -603,7 +693,7 @@ def requires_dropbox_running(meth):
         if is_dropbox_running():
             return meth(*n, **kw)
         else:
-            console_print(u"Dropbox isn't running!")            
+            console_print(u"Dropbox isn't running!")
     newmeth.func_name = meth.func_name
     newmeth.__doc__ = meth.__doc__
     return newmeth
@@ -615,7 +705,7 @@ def start_dropbox():
         # we don't reap the child because we're gonna die anyway, let init do it
         a = subprocess.Popen([db_path], preexec_fn=os.setsid, cwd=os.path.expanduser("~"),
                              stderr=sys.stderr, stdout=f, close_fds=True)
-        
+
         # in seconds
         interval = 0.5
         wait_for = 60
@@ -624,7 +714,7 @@ def start_dropbox():
                 return True
             # back off from connect for a while
             time.sleep(interval)
-                
+
         return False
     else:
         return False
@@ -634,7 +724,7 @@ def columnize(list, display_list=None, display_width=None):
     if not list:
         console_print(u"<empty>")
         return
-        
+
     non_unicode = [i for i in range(len(list)) if not (isinstance(list[i], unicode))]
     if non_unicode:
         raise TypeError, ("list[i] not a string for i in %s" %
@@ -648,10 +738,10 @@ def columnize(list, display_list=None, display_width=None):
             for item in list:
                 console_print(item)
             return
-        
+
     if not display_list:
         display_list = list
-        
+
     size = len(list)
     if size == 1:
         console_print(display_list[0])
@@ -728,9 +818,9 @@ options:
     try:
         with closing(DropboxCommand()) as dc:
             if options.list:
-                # Listing. 
+                # Listing.
 
-                # Separate directories from files. 
+                # Separate directories from files.
                 if len(args) == 0:
                     dirs, nondirs = [u"."], []
                 else:
@@ -743,13 +833,13 @@ options:
                             continue
 
                     if len(dirs) == 0 and len(nondirs) == 0:
-                        #TODO: why? 
+                        #TODO: why?
                         exit(1)
 
                 dirs.sort(key=methodcaller('lower'))
                 nondirs.sort(key=methodcaller('lower'))
 
-                # Gets a string representation for a path. 
+                # Gets a string representation for a path.
                 def path_to_string(file_path):
                     if not os.path.exists(file_path):
                         path = u"%s (File doesn't exist!)" % os.path.basename(file_path)
@@ -757,19 +847,19 @@ options:
                     try:
                         status = dc.icon_overlay_file_status(path=file_path).get(u'status', [None])[0]
                     except DropboxCommand.CommandError, e:
-                        path =  u"%s (%s)" % (os.path.basename(file_path), e) 
+                        path =  u"%s (%s)" % (os.path.basename(file_path), e)
                         return (path, path)
 
                     env_term = os.environ.get('TERM','')
                     supports_color = (sys.stderr.isatty() and (
-                                        env_term.startswith('vt') or 
-                                        env_term.startswith('linux') or 
-                                        'xterm' in env_term or 
+                                        env_term.startswith('vt') or
+                                        env_term.startswith('linux') or
+                                        'xterm' in env_term or
                                         'color' in env_term
                                         )
                                      )
-                    
-                    # TODO: Test when you don't support color.    
+
+                    # TODO: Test when you don't support color.
                     if not supports_color:
                         path = os.path.basename(file_path)
                         return (path, path)
@@ -788,14 +878,14 @@ options:
                     path = os.path.basename(file_path)
                     return (path, u"%s%s%s" % (init, path, cleanup))
 
-                # Prints a directory. 
+                # Prints a directory.
                 def print_directory(name):
                     clean_paths = []
                     formatted_paths = []
                     for subname in sorted(os.listdir(name), key=methodcaller('lower')):
                         if type(subname) != unicode:
                             continue
-                        
+
                         if not options.all and subname[0] == u'.':
                             continue
 
@@ -805,7 +895,7 @@ options:
                             formatted_paths.append(formatted)
                         except (UnicodeEncodeError, UnicodeDecodeError), e:
                             continue
-                    
+
                     columnize(clean_paths, formatted_paths)
 
                 try:
@@ -822,9 +912,9 @@ options:
                             except (UnicodeEncodeError, UnicodeDecodeError), e:
                                 continue
 
-                        if nondir_clean_paths:        
+                        if nondir_clean_paths:
                             columnize(nondir_clean_paths, nondir_formatted_paths)
-                        
+
                         if len(nondirs) == 0:
                             console_print(dirs[0] + u":")
                             print_directory(dirs[0])
@@ -834,7 +924,7 @@ options:
                             console_print()
                             console_print(name + u":")
                             print_directory(name)
-                    
+
                 except DropboxCommand.EOFError:
                     console_print(u"Dropbox daemon stopped.")
                 except DropboxCommand.BadConnectionError, e:
@@ -855,7 +945,7 @@ options:
                         console_print(u"%-*s %s" % \
                                           (indent, file+':', "File doesn't exist"))
                         continue
-                        
+
                     try:
                         status = dc.icon_overlay_file_status(path=fp).get(u'status', [u'unknown'])[0]
                         console_print(u"%-*s %s" % (indent, file+':', status))
@@ -893,7 +983,7 @@ Prints out a public url for FILE.
             except DropboxCommand.CommandError, e:
                 console_print(u"Couldn't get public url: " + str(e))
             except DropboxCommand.BadConnectionError, e:
-                console_print(u"Dropbox isn't responding!")        
+                console_print(u"Dropbox isn't responding!")
             except DropboxCommand.EOFError:
                 console_print(u"Dropbox daemon stopped.")
     except DropboxCommand.CouldntConnectError, e:
@@ -916,7 +1006,7 @@ Prints out the current status of the Dropbox daemon.
             try:
                 lines = dc.get_dropbox_status()[u'status']
                 if len(lines) == 0:
-                    console_print(u'Idle')                    
+                    console_print(u'Idle')
                 else:
                     for line in lines:
                         console_print(line)
@@ -953,7 +1043,7 @@ Stops the dropbox daemon.
             try:
                 dc.tray_action_hard_exit()
             except DropboxCommand.BadConnectionError, e:
-                console_print(u"Dropbox isn't responding!")        
+                console_print(u"Dropbox isn't responding!")
             except DropboxCommand.EOFError:
                 console_print(u"Dropbox daemon stopped.")
     except DropboxCommand.CouldntConnectError, e:
@@ -973,11 +1063,40 @@ def grab_link_url_if_necessary():
             except DropboxCommand.CommandError, e:
                 pass
             except DropboxCommand.BadConnectionError, e:
-                console_print(u"Dropbox isn't responding!")        
+                console_print(u"Dropbox isn't responding!")
             except DropboxCommand.EOFError:
                 console_print(u"Dropbox daemon stopped.")
     except DropboxCommand.CouldntConnectError, e:
         console_print(u"Dropbox isn't running!")
+
+@command
+@requires_dropbox_running
+def lansync(argv):
+    u"""enables or disables LAN sync
+dropbox lansync [y/n]
+
+options:
+  y  dropbox will use LAN sync (default)
+  n  dropbox will not use LAN sync
+"""
+    if len(argv) != 1:
+        console_print(lansync.__doc__, linebreak=False)
+        return
+
+    s = argv[0].lower()
+    if s.startswith('y') or s.startswith('-y'):
+        should_lansync = True
+    elif s.startswith('n') or s.startswith('-n'):
+        should_lansync = False
+    else:
+        should_lansync = None
+
+    if should_lansync is None:
+        console_print(lansync.__doc__,linebreak=False)
+    else:
+        with closing(DropboxCommand()) as dc:
+            dc.set_lan_sync(lansync='enabled' if should_lansync else 'disabled')
+
 
 @command
 @requires_dropbox_running
@@ -987,10 +1106,10 @@ dropbox exclude [list]
 dropbox exclude add [DIRECTORY] [DIRECTORY] ...
 dropbox exclude remove [DIRECTORY] [DIRECTORY] ...
 
-"list" prints a list of directories currently excluded from syncing.  
-"add" adds one or more directories to the exclusion list, then resynchronizes Dropbox. 
+"list" prints a list of directories currently excluded from syncing.
+"add" adds one or more directories to the exclusion list, then resynchronizes Dropbox.
 "remove" removes one or more directories from the exclusion list, then resynchronizes Dropbox.
-With no arguments, executes "list". 
+With no arguments, executes "list".
 Any specified path must be within Dropbox.
 """
     if len(args) == 0:
@@ -1000,9 +1119,9 @@ Any specified path must be within Dropbox.
                     lines = [relpath(path) for path in dc.get_ignore_set()[u'ignore_set']]
                     lines.sort()
                     if len(lines) == 0:
-                        console_print(u'No directories are being ignored.') 
+                        console_print(u'No directories are being ignored.')
                     else:
-                        console_print(u'Excluded: ') 
+                        console_print(u'Excluded: ')
                         for line in lines:
                             console_print(unicode(line))
                 except KeyError:
@@ -1024,13 +1143,13 @@ Any specified path must be within Dropbox.
         sub_command = args[0]
         paths = args[1:]
         absolute_paths = [unicode_abspath(path.decode(sys.getfilesystemencoding())) for path in paths]
-        if sub_command == u"add": 
+        if sub_command == u"add":
             try:
                 with closing(DropboxCommand(timeout=None)) as dc:
-                    try: 
+                    try:
                         result = dc.ignore_set_add(paths=absolute_paths)
                         if result[u"ignored"]:
-                            console_print(u"Excluded: ") 
+                            console_print(u"Excluded: ")
                             lines = [relpath(path) for path in result[u"ignored"]]
                             for line in lines:
                                 console_print(unicode(line))
@@ -1053,7 +1172,7 @@ Any specified path must be within Dropbox.
                     try:
                         result = dc.ignore_set_remove(paths=absolute_paths)
                         if result[u"removed"]:
-                            console_print(u"No longer excluded: ") 
+                            console_print(u"No longer excluded: ")
                             lines = [relpath(path) for path in result[u"removed"]]
                             for line in lines:
                                 console_print(unicode(line))
@@ -1070,7 +1189,7 @@ Any specified path must be within Dropbox.
                         console_print(u"Dropbox daemon stopped.")
             except DropboxCommand.CouldntConnectError, e:
                 console_print(u"Dropbox isn't running!")
-        else: 
+        else:
             console_print(exclude.__doc__, linebreak=False)
             return
     else:
@@ -1081,7 +1200,7 @@ Any specified path must be within Dropbox.
 def start(argv):
     u"""start dropboxd
 dropbox start [-i]
-    
+
 Starts the dropbox daemon, dropboxd. If dropboxd is already running, this will do nothing.
 
 options:
@@ -1089,7 +1208,7 @@ options:
 """
 
     should_install = "-i" in argv or "--install" in argv
-    
+
     # first check if dropbox is already running
     if is_dropbox_running():
         if not grab_link_url_if_necessary():
@@ -1133,13 +1252,12 @@ def reroll_autostart(should_autostart):
     # UBUNTU
     if u".config" in contents:
         autostart_dir = os.path.join(home_dir, u".config", u"autostart")
-        autostart_link = os.path.join(autostart_dir, u"%s.desktop" % "dropbox") #BUILD_KEY.lower()
-        desktop_file = u"/usr/local/share/applications/%s.desktop" % "dropbox" #BUILD_KEY.lower()
+        autostart_link = os.path.join(autostart_dir, u"dropbox.desktop")
         if should_autostart:
-            if os.path.exists(desktop_file):
+            if os.path.exists(DESKTOP_FILE):
                 if not os.path.exists(autostart_dir):
                     os.makedirs(autostart_dir)
-                shutil.copyfile(desktop_file, autostart_link)
+                shutil.copyfile(DESKTOP_FILE, autostart_link)
         elif os.path.exists(autostart_link):
             os.remove(autostart_link)
 
@@ -1203,7 +1321,7 @@ def usage(argv):
     for o in out:
         console_print(" %-*s%s" % (spacing, o[0], o[1]))
     console_print()
-    
+
 def main(argv):
     global commands
 
@@ -1215,7 +1333,7 @@ def main(argv):
         if argv[i] in commands or argv[i] in aliases:
             cut = i
             break
-    
+
     if cut == None:
         usage(argv)
         os._exit(0)
@@ -1232,7 +1350,7 @@ def main(argv):
     elif argv[i] in aliases:
         result = aliases[argv[i]](argv[i+1:])
 
-    # flush, in case output is rerouted to a file. 
+    # flush, in case output is rerouted to a file.
     console_flush()
 
     # done
