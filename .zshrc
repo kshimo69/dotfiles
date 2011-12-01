@@ -152,6 +152,7 @@ setopt auto_pushd
 setopt auto_remove_slash
 setopt print_eight_bit
 setopt magic_equal_subst
+setopt interactive_comments
 
 STERM="screen"
 
