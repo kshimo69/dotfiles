@@ -219,6 +219,10 @@
 (global-set-key (kbd "<f6>") 'point-undo)
 (global-set-key (kbd "S-<f6>") 'point-redo)
 
+;; C-u C-SPC C-SPC... でカーソル位置を辿る
+;; http://d.hatena.ne.jp/kbkbkbkb1/20111205/1322988550
+(setq set-mark-command-repeat-pop t)
+
 ;; 変更箇所にジャンプする
 ;; (auto-install-from-emacswiki "goto-chg.el")
 (require 'goto-chg)
