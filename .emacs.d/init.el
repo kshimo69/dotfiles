@@ -103,7 +103,6 @@
 ;; 全環境共通設定
 (require 'init-global)
 (require 'init-migemo)
-(require 'init-windows)
 (require 'init-moccur)
 (require 'init-color)
 (require 'init-anything)
@@ -111,6 +110,7 @@
 (require 'init-auto-complete)
 (require 'init-popwin)
 (require 'init-skk)
+(require 'init-windows)
 ;; (require 'init-mozc)
 (require 'init-clmemo)
 (require 'init-sdic)
