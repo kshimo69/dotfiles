@@ -123,6 +123,7 @@
 (require 'init-ruby)
 (require 'init-systemtap)
 (require 'init-javascript)
+(require 'init-coffee)
 (require 'init-gauche)
 (require 'init-git)
 (require 'init-mercurial)
