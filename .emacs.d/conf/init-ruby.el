@@ -60,4 +60,10 @@
             (add-to-list 'ac-sources 'ac-source-rcodetools)
             ))
 
+;; rvm.el
+;; https://github.com/senny/rvm.el
+;; (auto-install-from-url "https://raw.github.com/senny/rvm.el/master/rvm.el")
+;; (require 'rvm)
+;; (rvm-use-default)
+
 (provide 'init-ruby)
