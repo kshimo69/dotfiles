@@ -121,6 +121,7 @@
 (require 'init-perl)
 (require 'init-python)
 (require 'init-ruby)
+(require 'init-rails)
 (require 'init-systemtap)
 (require 'init-javascript)
 (require 'init-coffee)
