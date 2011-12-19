@@ -30,6 +30,35 @@
 ;; repeat task
 (require 'org-habit)
 
+;; http://d.hatena.ne.jp/rubikitch/20100819/org
+(setq org-capture-templates
+      '(("n" "Note" entry
+         (file+headline nil "Note")
+         "** %?\n   %i\n   Added: %T")
+        ("t" "Todo" entry
+         (file+headline nil "Inbox")
+         "** TODO %?\n   %i\n   %a\n   Added %T")
+        ;; ("b" "Bug" entry
+        ;;  (file+headline nil "Inbox")
+        ;;  "** TODO %?   :bug:\n   %i\n   %a\n   %t")
+        ("b" "Bug" entry
+         (file+headline nil "Tasks")
+         "** NEW %?   :bug:\n   %i\n   %a\n   Added: %T")
+        ;; ("i" "Idea" entry
+        ;;  (file+headline nil "New Ideas")
+        ;;  "** %?\n   %i\n   %a\n   %t")
+        ("i" "Idea" entry
+         (file+headline nil "New Ideas")
+         "** SOMEDAY %?\n   %i\n   Added: %T")
+        ("d" "Daily review" entry
+         (file+headline nil "Note")
+         "** Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/Dropbox/org/daily_review.txt]")
+        ("w" "Weekly review" entry
+         (file+headline nil "Note")
+         "** Weekly Review %T[/] :review:\n%?%[~/Dropbox/org/weekly_review.txt]")
+        ))
+(global-set-key (kbd "C-c c") 'org-capture)
+
 ;; http://d.hatena.ne.jp/rubikitch/20090121/1232468026
 ;; http://d.hatena.ne.jp/tomoya/20090309/1236588957
 (org-remember-insinuate)
