@@ -14,7 +14,7 @@
 (add-hook 'rst-mode-hook
           (lambda ()
             (setq indent-tabs-mode nil)
-            (define-key rst-mode-map (kbd "C-@") 'anything-rst-toc-command)
+            ;; (define-key rst-mode-map (kbd "C-@") 'anything-rst-toc-command)
             (define-key rst-mode-map (kbd "C-c C-t") 'anything-rst-toc-command)))
 
 (defalias 'sc 'sphinx-compile)
