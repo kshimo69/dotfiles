@@ -378,8 +378,8 @@
 (global-set-key (kbd "M-<RET>") 'toggle-fullscreen)
 
 ;; 起動時に縦分割
-(setq w (selected-window))
-(split-window w nil t)
+;; (setq w (selected-window))
+;; (split-window w nil t)
 
 ;; ;; C-+とC--でフォントサイズを変える
 ;; ;; http://emacs-fu.blogspot.com/2008/12/zooming-inout.html
