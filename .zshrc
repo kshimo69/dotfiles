@@ -10,6 +10,12 @@ bindkey '' history-beginning-search-forward-end
 bindkey '^r' history-incremental-search-backward
 bindkey '^e' end-of-line
 bindkey '^u' backward-kill-line
+# http://qiita.com/items/1536
+if zle -la | grep -q '^history-incremental-pattern-search'; then
+    # zsh 4.3.10 以降でのみ有効
+    bindkey '^R' history-incremental-pattern-search-backward
+    bindkey '^S' history-incremental-pattern-search-forward
+fi
 
 # http://subtech.g.hatena.ne.jp/secondlife/20071003/1191394868
 # % mkdir -p ~/.zsh/functions/completion
