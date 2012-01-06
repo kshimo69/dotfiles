@@ -141,7 +141,7 @@ Option for 1st argument of `current-word'.")
 (defvar sdic-inline-map
   (let ((keymap (make-sparse-keymap)))
     (define-key keymap "\C-c\@\C-c" 'sdic-inline-clear-last-word)
-    (define-key keymap "\C-c\C-p" 'sdic-inline-display-popup)
+    ;; (define-key keymap "\C-c\C-p" 'sdic-inline-display-popup)
     keymap))
 
 
