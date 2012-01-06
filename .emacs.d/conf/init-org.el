@@ -37,7 +37,7 @@
          "** %?\n   %i\n   Added: %T")
         ("t" "Todo" entry
          (file+headline nil "Inbox")
-         "** TODO %?\n   %i\n   %a\n   Added %T")
+         "** TODO %?\n   %i\n   %a\n   Added: %T")
         ;; ("b" "Bug" entry
         ;;  (file+headline nil "Inbox")
         ;;  "** TODO %?   :bug:\n   %i\n   %a\n   %t")
