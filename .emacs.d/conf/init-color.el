@@ -104,4 +104,8 @@
     (progn
       (set-cursor-color "orange")))
 
+;; enable hi-lock mode
+(global-hi-lock-mode 1)
+(setq hi-lock-file-patterns-policy t)
+
 (provide 'init-color)
