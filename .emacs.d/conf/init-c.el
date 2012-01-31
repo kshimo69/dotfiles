@@ -82,6 +82,20 @@
   (setq ac-sources (append '(ac-source-gtags
                              ) ac-sources)))
 
+(add-hook 'c-mode-hook
+          '(lambda ()
+             (setq c-basic-offset 4)
+             (setq tab-width 4)
+             (setq indent-tabs-mode t)
+             ))
+
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (setq c-basic-offset 4)
+            (setq tab-width 4)
+            (setq indent-tabs-mode t)
+            ))
+
 (defun linux-c-mode ()
   "C mode with adjusted defaults for use with the Linux kernel."
   (interactive)
