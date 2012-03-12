@@ -49,6 +49,7 @@ alias pu='pushd'
 alias po='popd'
 #alias scp='noglob scp'
 #alias wget='noglob wget'
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
 alias todoedit='todo.pl download;vim tasks.txt;todo.pl upload tasks.txt'
 alias sukico='ssh kshimo69@49.212.62.39 -p 10022'
 alias sukicodb1='ssh kshimo69@49.212.62.39 -p 10022'
