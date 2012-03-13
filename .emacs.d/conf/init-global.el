@@ -90,6 +90,10 @@
 (line-number-mode t)
 (column-number-mode t)
 
+;; %の代わりに全体の行数を表示する
+(setcar mode-line-position
+        '(:eval (format "%d" (count-lines (point-max) (point-min)))))
+
 ;; 行番号を表示
 ;; http://macemacsjp.sourceforge.jp/index.php?CocoaEmacs#aae602ba
 ;; (global-linum-mode t)
