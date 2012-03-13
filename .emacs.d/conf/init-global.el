@@ -1,29 +1,5 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
-;; Memo
-;;
-;; 文字コードの変更方法
-;;
-;; キーボードから入力する文字コード
-;; C-x RET kの後、ミニバッファの質問に変更したい文字コードを入力する。
-;; M-x set-keyboard-coding-systemと同じ
-;;
-;; 画面表示に使用する文字コード
-;; C-x RET tの後、ミニバッファの質問に変更したい文字コードを入力する。
-;; M-x set-terminal-coding-systemと同じ
-;;
-;; ファイルの保存に使用する文字コード(カレントバッファのみ)
-;; C-x RET fの後、ミニバッファの質問に変更したい文字コードを入力する。
-;; M-x set-buffer-file-coding-systemと同じ
-;;
-;; バッファやファイルの文字コード(emacs全体で有効)
-;; C-x RET cの後、ミニバッファの質問に変更したい文字コードを入力する。
-;; M-x universal-coding-system-argumentと同じ
-;;
-;; 文字コードを指定して再読み込み
-;; C-x RET rの後、ミニバッファの質問に変更したい文字コードを入力する。
-;; M-x revert-buffer-with-coding-systemと同じ
-
 ;; user設定
 (setq user-full-name "Kimihiko Shimomura")
 (setq user-mail-address "kshimo69@gmail.com")
