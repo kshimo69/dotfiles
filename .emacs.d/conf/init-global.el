@@ -109,14 +109,14 @@
         ("." . "~/.emacs.d/var/emacs")
         ))
 
-;; ;; 使わないバッファを自動的に消す
-;; ;; (auto-install-from-emacswiki "tempbuf.el")
-;; (require 'tempbuf)
-;; (setq tempbuf-life-extension-ratio 100)
-;; ;; ファイルを開いたら自動的にtempbufを有効にする
-;; (add-hook 'find-file-hooks 'turn-on-tempbuf-mode)
-;; ;; diredバッファに対してtempbufを有効にする
-;; (add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
+;; 使わないバッファを自動的に消す
+;; (auto-install-from-emacswiki "tempbuf.el")
+(require 'tempbuf)
+(setq tempbuf-life-extension-ratio 100)
+;; ファイルを開いたら自動的にtempbufを有効にする
+(add-hook 'find-file-hooks 'turn-on-tempbuf-mode)
+;; diredバッファに対してtempbufを有効にする
+(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
 
 ;; ファイル保存時に自動的にバイトコンパイルする
 ;; (auto-install-from-emacswiki "auto-async-byte-compile.el")
