@@ -75,6 +75,8 @@
 ;; (global-linum-mode t)
 (dolist (hook (list
               'c-mode-hook
+              'c++-mode-hook
+              'cperl-mode-hook
               'emacs-lisp-mode-hook
               'lisp-interaction-mode-hook
               'lisp-mode-hook
@@ -83,6 +85,8 @@
               'sh-mode-hook
               'python-mode-hook
               'ruby-mode-hook
+              'text-mode-hook
+              'rst-mode-hook
               ))
 (add-hook hook (lambda () (linum-mode t))))
 
