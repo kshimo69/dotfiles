@@ -34,7 +34,6 @@
 ;; exec-path、PATH、MANPATHの追加 (下が優先)
 ;; http://sakito.jp/emacs/emacsshell.html
 (dolist (dir (list
-              (expand-file-name "~/bin")
               "/sbin"
               "/bin"
               "/usr/sbin"
@@ -44,6 +43,7 @@
               "/opt/local/sbin"
               "/opt/local/bin"
               (expand-file-name "~/local/bin")
+              (expand-file-name "~/bin")
               ))
   (when (and (file-exists-p dir) (not (member dir exec-path)))
     (setenv "PATH" (concat dir ":" (getenv "PATH")))
