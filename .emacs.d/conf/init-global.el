@@ -70,6 +70,14 @@
 (setcar mode-line-position
         '(:eval (format "%d" (count-lines (point-max) (point-min)))))
 
+;; 時刻を表示
+(setq display-time-string-forms
+      '(24-hours ":" minutes " " month "/" day "(" dayname ")"))
+(display-time)
+
+;; 曜日表示は英語
+(setq system-time-locale "C")
+
 ;; 行番号を表示
 ;; http://macemacsjp.sourceforge.jp/index.php?CocoaEmacs#aae602ba
 ;; (global-linum-mode t)
@@ -159,14 +167,6 @@
 
 ;; default to unified diffs
 (setq diff-switches "-u")
-
-;; 時刻を表示
-(setq display-time-string-forms
-      '(24-hours ":" minutes " " month "/" day "(" dayname ")"))
-(display-time)
-
-;; 曜日表示は英語
-(setq system-time-locale "C")
 
 ;; ファイルの最後には \n
 (setq require-final-newline t)
