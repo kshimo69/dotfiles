@@ -168,6 +168,9 @@
 ;; default to unified diffs
 (setq diff-switches "-u")
 
+;; 行末の空白をめだたせる M-x delete-trailing-whitespaceで削除出来る
+(when (boundp 'show-trailing-whitespace) (setq-default show-trailing-whitespace t))
+
 ;; ファイルの最後には \n
 (setq require-final-newline t)
 
