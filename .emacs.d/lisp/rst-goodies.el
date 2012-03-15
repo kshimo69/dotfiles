@@ -90,4 +90,9 @@
     (cond ((string= "" html) (message "%s is not found" "index.html"))
           (t (browse-url (file-truename html))))))
 
+(defmacro* with-temp-directory (dir &body body)
+  `(with-temp-buffer
+     (cd ,dir)
+     ,@body))
+
 (provide 'rst-goodies)
