@@ -9,3 +9,4 @@ customize.el
 .org-id-locations
 share/pylookup/pylookup.db
 url/cookies
+elpa/archives/*

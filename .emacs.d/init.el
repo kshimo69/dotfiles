@@ -68,6 +68,8 @@
 
 ;; Emacs Lisp のPathを通す
 (add-to-load-path "lisp"
+                  ;; ELPA packages
+                  "elpa"
                   ;; download plugins
                   ;; "plugins"
                   ;; 自作の Emacs Lisp
@@ -126,6 +128,7 @@
 
 ;; 全環境共通設定
 (require 'init-global)
+(require 'init-elpa)
 (require 'init-migemo)
 (require 'init-moccur)
 (require 'init-color)
