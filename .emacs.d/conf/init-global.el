@@ -281,6 +281,13 @@
 ;; C-h に割り当てられている関数 help-command を C-x C-h に割り当てる
 (global-set-key (kbd "C-x C-h") 'help-command)
 
+;; C-mにnewline-and-indentを割り当てる
+(global-set-key (kbd "C-m") 'newline-and-indent)
+
+;; ファイルが#!から始まる場合に実行権をつける
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
 ;; カーソル位置の単語をコピー
 (ffap-bindings) ; カーソル位置のファイル名、URLで開く
 (global-set-key (kbd "M-c") 'ffap-copy-string-as-kill)
