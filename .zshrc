@@ -79,10 +79,11 @@ elif which putclip >/dev/null 2>&1 ; then
     COPY='putclip'
 fi
 copy-prev-cmd-to-clipboard () {
-    tail -1 $HISTFILE | perl -e '<> =~  m/;(.+)/; print $1;' | $COPY
+    tail -1 $HISTFILE | perl -e '<> =~  m/;(.+)\s?C?/; print $1;' | $COPY
 }
 zle -N copy-prev-cmd-to-clipboard
 bindkey '^x^p' copy-prev-cmd-to-clipboard
+alias -g C="|$COPY"
 
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
