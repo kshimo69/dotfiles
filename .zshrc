@@ -66,17 +66,24 @@ if [ -n "$DISPLAY" -a -x "`which notify-send`" ]; then
 fi
 alias earthquake="$NOTIFY earthquake"
 alias earthquake_sub="$NOTIFY earthquake ~/.earthquake_sub"
+
 # clipboard
 if which pbcopy >/dev/null 2>&1 ; then
     # Mac
-    alias -g C=' pbcopy'
+    COPY='pbcopy'
 elif which xsel >/dev/null 2>&1 ; then
     # Linux
-    alias -g C=' xsel --input --clipboard'
+    COPY='xsel --input --clipboard'
 elif which putclip >/dev/null 2>&1 ; then
     # Cygwin
-    alias -g C=' putclip'
+    COPY='putclip'
 fi
+copy-prev-cmd-to-clipboard () {
+    tail -1 $HISTFILE | perl -e '<> =~  m/;(.+)/; print $1;' | $COPY
+}
+zle -N copy-prev-cmd-to-clipboard
+bindkey '^x^p' copy-prev-cmd-to-clipboard
+
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
     alias emacs='open -a Emacs'
