@@ -51,6 +51,7 @@ Bundle 'matchit.zip'
 Bundle 'Align'
 Bundle 'tpope/vim-surround'
 "vimfiler
+Bundle 'Lokaltog/vim-powerline'
 
 filetype plugin indent on
 " }}} vundle setting end
