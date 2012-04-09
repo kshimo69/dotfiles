@@ -4,7 +4,7 @@
 
 (if window-system
     (progn
-      (menu-bar-mode t)
+      (menu-bar-mode nil)
 
       ;; (set-frame-font "ricty-12")
       ;; ;; (add-to-list 'default-frame-alist '(font . "ricty-16"))
@@ -12,10 +12,10 @@
       ;;                     ;; :family "Bitstream Vera Sans Mono"
       ;;                     :family "ricty"
       ;;                     :height 130)
-      (set-frame-font "DejaVu Sans Mono-12")
+      (set-frame-font "DejaVu LGC Sans Mono-12")
       (set-face-attribute 'default nil
                           ;; :family "Bitstream Vera Sans Mono"
-                          :family "DejaVu Sans Mono"
+                          :family "DejaVu LGC Sans Mono"
                           :height 120)
       (set-fontset-font (frame-parameter nil 'font)
                         'japanese-jisx0208
