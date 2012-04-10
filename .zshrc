@@ -120,9 +120,10 @@ export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
 export PIP_RESPECT_VIRTUALENV=true
 #export PIP_REQUIRE_VIRTUALENV=true
 # if virtualenvwrapper ver > 2.0
-if [ -x `which virtualenvwrapper.sh` ]; then
-    . `which virtualenvwrapper.sh`
-fi
+#if [ -x `which virtualenvwrapper.sh` ]; then
+#    . `which virtualenvwrapper.sh`
+#fi
+which virtualenvwrapper.sh >/dev/null 2>&1 && . `which virtualenvwrapper.sh`
 #echo '#!/usr/bin/zsh' > $WORKON_HOME/postmkvirtualenv
 #echo '# This hook is run after a new virtualenv is activated.' >> $WORKON_HOME/postmkvirtualenv
 #echo '' >> $WORKON_HOME/postmkvirtualenv
