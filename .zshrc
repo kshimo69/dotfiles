@@ -89,8 +89,8 @@ if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
     alias emacs='open -a Emacs'
     alias em='emacsclient -n'
-    alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-    alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    alias vi='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    alias vim='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias VIM='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app/Contents/MacOS/MacVim'
     alias earthquake='earthquake'
 fi
@@ -115,6 +115,7 @@ export PERL_AUTOINSTALL="--defaultdeps"
 #export RUBYLIB=$HOME/local/lib/ruby/site_ruby/
 #export GEM_HOME=$HOME/local/lib/rubygems/
 export PYTHONSTARTUP=$HOME/.pythonrc.py
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export WORKON_HOME=$HOME/.virtualenv
 export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
 export PIP_RESPECT_VIRTUALENV=true
