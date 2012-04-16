@@ -20,10 +20,10 @@ bind -c REGION 3 split -v
 bind -c REGION 2 split
 bind -c REGION 1 only
 bind -c REGION 0 remove
-#bind -c REGION o focus down
-#bind -c REGION p focus up
-bind -c REGION o focus next
-bind -c REGION p focus prev
+bind -c REGION o focus down
+bind -c REGION p focus up
+#bind -c REGION o focus next
+#bind -c REGION p focus prev
 bind -c REGION \^ resize +2
 bind -c REGION } resize +2
 bind -c REGION { resize -2
