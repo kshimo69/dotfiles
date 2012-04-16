@@ -7,6 +7,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	editor = vim -u NONE -i NONE -N -c 'syntax on'
+	autocrlf = input
 [color]
 	ui = auto
 [alias]
@@ -16,7 +17,7 @@
 	pr = pull --rebase
 	fo = fetch origin
 	ro = rebase origin
-    #lg = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
+	#lg = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
 	lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(black bold)%an, %ar%Creset'
 	newly = log HEAD@{1}..HEAD --reverse
 	newlyp = log HEAD@{1}..HEAD -p --reverse

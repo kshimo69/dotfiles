@@ -38,9 +38,9 @@ reload-complete-functions() {
 
 alias ls='ls --color=auto'
 alias rm='rm'
-alias vi='LANG=C TERM=xterm-256color vim'
-alias vim='LANG=C TERM=xterm-256color vim'
-alias VIM='LANG=C gvim'
+alias vi='TERM=xterm-256color vim'
+alias vim='TERM=xterm-256color vim'
+alias VIM='gvim'
 #alias em='emacs -nw'
 alias em='TERM=xterm-256color emacs -nw'
 alias py='python'
@@ -93,6 +93,8 @@ if [ "`uname`" = "Darwin" ]; then
     alias vim='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias VIM='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app/Contents/MacOS/MacVim'
     alias earthquake='earthquake'
+elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
+    alias vim='d:/vim/gvim.exe'
 fi
 if [ "${TERM}" = "eterm-color" ]; then
     alias ls='ls -F'
