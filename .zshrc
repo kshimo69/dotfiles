@@ -94,7 +94,7 @@ if [ "`uname`" = "Darwin" ]; then
     alias VIM='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app/Contents/MacOS/MacVim'
     alias earthquake='earthquake'
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
-    alias vim='d:/vim/gvim.exe'
+    alias gvim='d:/vim/gvim.exe'
 fi
 if [ "${TERM}" = "eterm-color" ]; then
     alias ls='ls -F'
