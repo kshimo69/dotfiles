@@ -94,7 +94,7 @@ if [ "`uname`" = "Darwin" ]; then
     alias VIM='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app/Contents/MacOS/MacVim'
     alias earthquake='earthquake'
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
-    alias vim='d:/vim/gvim.exe'
+    alias gvim='d:/vim/gvim.exe'
 fi
 if [ "${TERM}" = "eterm-color" ]; then
     alias ls='ls -F'
@@ -316,3 +316,4 @@ e_BLUE=`echo -e "\033[1;36m"`
 #}
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"  # pythonbrew
