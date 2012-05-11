@@ -108,7 +108,7 @@ export GREP_COLOR="01;35"
 export GREP_OPTIONS=--color=auto
 export LSCOLORS=gxfxcxdxbxegedabagacad
 PATH=$HOME/local/bin:$HOME/bin:$PATH
-#PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:/Developer/android-sdk-mac_x86/platform-tools/:$PATH:$HOME/bin
+#PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Developer/android-sdk-mac_x86/platform-tools:$PATH:$HOME/bin
 typeset -U PATH
 export PATH
 export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
