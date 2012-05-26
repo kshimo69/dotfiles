@@ -51,7 +51,7 @@ alias po='popd'
 #alias wget='noglob wget'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
 alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
-alias 64bitbooy='sudo systemsetup -setkernelbootarchitecture x86_64'
+alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
 alias sukico='ssh kshimo69@49.212.62.39 -p 10022'
 alias sukicodb1='ssh kshimo69@49.212.62.39 -p 10022'
 alias sukicoweb1='ssh kshimo69@49.212.51.125 -p 10022'
