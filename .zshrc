@@ -105,6 +105,7 @@ if [ -f ~/.passwd ]; then
     . ~/.passwd
 fi
 
+export LANG="ja_JP.UTF-8"
 export GREP_COLOR="01;35"
 export GREP_OPTIONS=--color=auto
 export LSCOLORS=gxfxcxdxbxegedabagacad
