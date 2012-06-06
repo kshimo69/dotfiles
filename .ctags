@@ -1,0 +1,3 @@
+--verbose
+--exclude=Temp
+--exclude=environment
