@@ -32,4 +32,10 @@ bind ^x command -c REGION
 bind ^U encoding utf8
 bind ^E encoding euc
 
+# 分割サイズを変更する r で変更開始 j,kでサイズ変更
+bind r eval 'echo "Resize window"' 'command -c resize'
+bind -c resize ^]  command
+bind -c resize j eval 'resize +1' 'command -c resize'
+bind -c resize k eval 'resize -1' 'command -c resize'
+
 bind -c app p screen -t python python
