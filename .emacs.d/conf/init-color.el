@@ -95,6 +95,8 @@
       (linux-p
        ;; (require 'color-theme-ntemacs)
        (color-theme-dark-laptop))
+      (windows-p
+       (color-theme-dark-laptop))
       )))
 
 ;; カーソルの色
