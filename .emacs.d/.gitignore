@@ -10,3 +10,4 @@ customize.el
 share/pylookup/pylookup.db
 url/cookies
 elpa/archives/*
+server/*
