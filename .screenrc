@@ -3,7 +3,7 @@ defencoding UTF-8
 encoding UTF-8 UTF-8
 startup_message off
 escape ^z^z
-zombie ^[
+# zombie ^[
 vbell off
 altscreen on
 defscrollback 10000
