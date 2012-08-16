@@ -165,6 +165,7 @@ setopt NO_beep
 HISTFILE=~/.zsh-history
 HISTSIZE=1000000
 SAVEHIST=1000000
+REPORTTIME=10
 setopt append_history
 setopt extended_history
 setopt hist_ignore_dups
