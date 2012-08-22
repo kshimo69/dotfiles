@@ -8,7 +8,7 @@ vbell off
 altscreen on
 defscrollback 10000
 #caption always "[%02c] $USER@$HOST %`%-w%{=b bw}%n %t%{-}%+w"
-caption always "%{=b y}%-w%{=b BW}%10L>%n %t%{-}%+w %-030=%{=b g}%Y/%m/%d %c:%s %{=b m}%l"
+caption always "%{+ k.}%-w%{=b BW}%10L>%n %t%{-}%+w %-031=%{= .g} %Y/%m/%d %c:%s %{= .m}%l"
 #hardstatus alwayslastline "[%02c] $USER@$HOST %`%-w%{=b bw}%n %t%{-}%+w"
 term screen
 #termcapinfo xterm-256color hs@:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l
