@@ -149,7 +149,7 @@ export GISTY_SSL_CA=$HOME/.rvm/usr/ssl/cert.pem
 #export GISTY_SSL_CA=/etc/ssl/certs/ca-certificates.crt
 export GISTY_SSL_VERIFY="none"
 export GIT_EDITOR=vim
-export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R --jump-target=10'
+export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
 export LESSCHARSET="utf-8"
 
 zstyle ':completion:*:sudo:*' command-path /opt/local/sbin /opt/local/bin \
