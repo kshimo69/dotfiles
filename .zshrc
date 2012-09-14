@@ -38,8 +38,8 @@ reload-complete-functions() {
 
 alias ls='ls --color=auto'
 alias rm='rm'
-alias vi='TERM=xterm-256color vim'
-alias vim='TERM=xterm-256color vim'
+alias vi='vim'
+alias vim='vim'
 alias VIM='gvim'
 #alias em='emacs -nw'
 alias em='TERM=xterm-256color emacs -nw'
