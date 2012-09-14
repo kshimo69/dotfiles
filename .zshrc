@@ -38,8 +38,8 @@ reload-complete-functions() {
 
 alias ls='ls --color=auto'
 alias rm='rm'
-alias vi='TERM=xterm-256color vim'
-alias vim='TERM=xterm-256color vim'
+alias vi='vim'
+alias vim='vim'
 alias VIM='gvim'
 #alias em='emacs -nw'
 alias em='TERM=xterm-256color emacs -nw'
@@ -150,7 +150,7 @@ export GISTY_SSL_CA=$HOME/.rvm/usr/ssl/cert.pem
 #export GISTY_SSL_CA=/etc/ssl/certs/ca-certificates.crt
 export GISTY_SSL_VERIFY="none"
 export GIT_EDITOR=vim
-export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R --jump-target=10'
+export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
 export LESSCHARSET="utf-8"
 
 zstyle ':completion:*:sudo:*' command-path /opt/local/sbin /opt/local/bin \
