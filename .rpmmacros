@@ -1,0 +1,2 @@
+# % mkdir -p ~/rpmbuild/{BUILD,SOURCES,SPECS,SRPMS,RPMS}
+%_topdir $HOME/rpmbuild
