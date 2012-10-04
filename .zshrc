@@ -285,7 +285,7 @@ function chpwd() {
     #     rvm use ruby-1.8.7
     # fi
 }
- 
+
 # SSHコマンドはscreenの新しい窓で
 function ssh_screen(){
     eval server=\${$#}
@@ -300,6 +300,8 @@ if [ ${TERM} != "$STERM" -a ${TERM} != "linux" -a ${TERM} != "eterm-color" -a ${
 fi
 
 setopt prompt_subst
+# コマンド実行後は右プロンプトを消す
+setopt transient_rprompt
 
 PROMPT='%{$fg[yellow]%}%n@%m%{$fg[yellow]%} %{$reset_color%}[%{$fg[cyan]%}%~%{$reset_color%}]
 %#%{$reset_color%} '
