@@ -303,7 +303,7 @@ setopt prompt_subst
 # コマンド実行後は右プロンプトを消す
 setopt transient_rprompt
 
-PROMPT='%{$fg[yellow]%}%n@%m%{$fg[yellow]%} %{$reset_color%}[%{$fg[cyan]%}%~%{$reset_color%}]
+PROMPT='%{$reset_color%}%B%(?.%F{green}%(!.#.（\`･ω･´）)%f.%F{red}%(!.#.（´･ω･\`）)%f)%b%{$reset_color%}%{$fg[yellow]%}%n@%m%{$fg[yellow]%} %{$reset_color%}[%{$fg[cyan]%}%~%{$reset_color%}]
 %#%{$reset_color%} '
 RPROMPT="%1(v|[%F{green}%1v%f]|)"
 
