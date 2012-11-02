@@ -8,6 +8,7 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 (global-set-key (kbd "C-c r") 'org-remember)
+(global-set-key (kbd "C-c c") 'org-capture)
 (setq org-directory "~/Dropbox/org/")
 (setq org-agenda-files (list "~/Dropbox/org/agenda.org"
                              "~/Dropbox/org/code-reading.org"
@@ -29,6 +30,10 @@
 (setq org-log-done 'time)
 ;; repeat task
 (require 'org-habit)
+
+;; show TODOs
+(setq org-agenda-custom-commands
+      '(("x" "Unscheduled TODO" tags-todo "-SCHEDULED=>\"<now>\"" nil)))
 
 ;; http://d.hatena.ne.jp/rubikitch/20100819/org
 (setq org-capture-templates
@@ -57,7 +62,6 @@
          (file+headline nil "Note")
          "** Weekly Review %T[/] :review:\n%?%[~/Dropbox/org/weekly_review.txt]")
         ))
-(global-set-key (kbd "C-c c") 'org-capture)
 
 ;; http://d.hatena.ne.jp/rubikitch/20090121/1232468026
 ;; http://d.hatena.ne.jp/tomoya/20090309/1236588957
