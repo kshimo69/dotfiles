@@ -37,13 +37,13 @@
          "** %?\nAdded: %T\n   %i\n")
         ("t" "Todo" entry
          (file+headline nil "Tasks")
-         "** TODO %?\n   Added: %T\n   %i\n   %a\n")
+         "** TODO %?\n   Added: %T\n   %a\n   %i\n")
         ;; ("b" "Bug" entry
         ;;  (file+headline nil "Inbox")
         ;;  "** TODO %?   :bug:\n   %i\n   %a\n   %t")
         ("b" "Bug" entry
          (file+headline nil "Tasks")
-         "** NEW %?   :bug:\n   Added: %T\n   %i\n   %a\n")
+         "** NEW %?   :bug:\n   Added: %T\n   %a\n   %i\n")
         ;; ("i" "Idea" entry
         ;;  (file+headline nil "New Ideas")
         ;;  "** %?\n   %i\n   %a\n   %t")
