@@ -40,7 +40,7 @@
 (setq org-capture-templates
       '(("n" "Note" entry
          (file+headline nil "Note")
-         "** %?\nAdded: %T\n   %i\n")
+         "** %?\n   Added: %T\n   %i\n")
         ("t" "Todo" entry
          (file+headline nil "Tasks")
          "** TODO %?\n   %a\n   %i\n")
