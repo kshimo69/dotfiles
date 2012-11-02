@@ -176,6 +176,7 @@
  (carbon-p (require 'init-carbon))
  (ns-p (require 'init-ns))
  (linux-p (require 'init-linux))
+ (windows-p (require 'init-nt))
  )
 
 ;; 会社だったらproxyとかの設定

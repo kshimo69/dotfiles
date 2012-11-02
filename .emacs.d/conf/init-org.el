@@ -68,8 +68,8 @@
         ("Idea" ?i "** SOMEDAY %^{Brief Description} %^g\n%?\n%i\nAdded: %T" nil "New Ideas")
         ;; ("Todo" ?t "** %?\n   %i\n   %a\n   %T" nil "Tasks")
         ("Todo" ?t "** TODO %^{Brief Description} %^g\n%?\n%i\nAdded: %T" nil "Tasks")
-        ("Daily review" ?d "** Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/org/daily_review.txt]\n" nil "Note")
-        ("Weekly review" ?w "** Weekly Review %T[/] :review:\n%?%[~/org/weekly_review.txt]\n" nil "Note")
+        ("Daily review" ?d "** Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/Dropbox/org/daily_review.txt]\n" nil "Note")
+        ("Weekly review" ?w "** Weekly Review %T[/] :review:\n%?%[~/Dropbox/org/weekly_review.txt]\n" nil "Note")
         ))
 
 (defvar org-code-reading-software-name nil)
