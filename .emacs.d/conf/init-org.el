@@ -3,6 +3,7 @@
 (require 'org-install)
 (setq org-startup-truncated nil)
 (setq org-return-follows-link t)
+(setq org-agenda-start-with-clockreport-mode t)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
