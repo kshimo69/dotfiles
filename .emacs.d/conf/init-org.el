@@ -34,22 +34,22 @@
 (setq org-capture-templates
       '(("n" "Note" entry
          (file+headline nil "Note")
-         "** %?\n   %i\n   Added: %T")
+         "** %?\nAdded: %T\n   %i\n")
         ("t" "Todo" entry
          (file+headline nil "Tasks")
-         "** TODO %?\n   %i\n   %a\n   Added: %T")
+         "** TODO %?\n   Added: %T\n   %i\n   %a\n")
         ;; ("b" "Bug" entry
         ;;  (file+headline nil "Inbox")
         ;;  "** TODO %?   :bug:\n   %i\n   %a\n   %t")
         ("b" "Bug" entry
          (file+headline nil "Tasks")
-         "** NEW %?   :bug:\n   %i\n   %a\n   Added: %T")
+         "** NEW %?   :bug:\n   Added: %T\n   %i\n   %a\n")
         ;; ("i" "Idea" entry
         ;;  (file+headline nil "New Ideas")
         ;;  "** %?\n   %i\n   %a\n   %t")
         ("i" "Idea" entry
          (file+headline nil "New Ideas")
-         "** SOMEDAY %?\n   %i\n   Added: %T")
+         "** SOMEDAY %?\n   Added: %T\n   %i\n")
         ("d" "Daily review" entry
          (file+headline nil "Note")
          "** Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/Dropbox/org/daily_review.txt]")
