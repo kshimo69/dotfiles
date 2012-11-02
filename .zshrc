@@ -152,6 +152,11 @@ export GISTY_SSL_VERIFY="none"
 export GIT_EDITOR=vim
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
 export LESSCHARSET="utf-8"
+# gtagsの設定
+# % cd /usr/include
+# % gtags ~/.inctags
+#export GTAGSROOT=/usr/include
+#export GTAGDBPATH=~/.inctags
 
 zstyle ':completion:*:sudo:*' command-path /opt/local/sbin /opt/local/bin \
                                 /usr/local/sbin /usr/local/bin /usr/sbin \
