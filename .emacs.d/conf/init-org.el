@@ -57,11 +57,11 @@
          (file+headline nil "New Ideas")
          "** SOMEDAY %?\n   Added: %T\n   %i\n")
         ("d" "Daily review" entry
-         (file+headline nil "Note")
-         "** Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/Dropbox/org/daily_review.txt]")
+         (file+headline nil "Tasks")
+         "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/Dropbox/org/daily_review.txt]")
         ("w" "Weekly review" entry
-         (file+headline nil "Note")
-         "** Weekly Review %T[/] :review:\n%?%[~/Dropbox/org/weekly_review.txt]")
+         (file+headline nil "Tasks")
+         "** TODO Weekly Review %T[/] :review:\n%?%[~/Dropbox/org/weekly_review.txt]")
         ))
 
 ;; http://d.hatena.ne.jp/rubikitch/20090121/1232468026
@@ -73,8 +73,8 @@
         ("Idea" ?i "** SOMEDAY %^{Brief Description} %^g\n%?\n%i\nAdded: %T" nil "New Ideas")
         ;; ("Todo" ?t "** %?\n   %i\n   %a\n   %T" nil "Tasks")
         ("Todo" ?t "** TODO %^{Brief Description} %^g\n%?\n%i\nAdded: %T" nil "Tasks")
-        ("Daily review" ?d "** Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/Dropbox/org/daily_review.txt]\n" nil "Note")
-        ("Weekly review" ?w "** Weekly Review %T[/] :review:\n%?%[~/Dropbox/org/weekly_review.txt]\n" nil "Note")
+        ("Daily review" ?d "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/Dropbox/org/daily_review.txt]\n" nil "Tasks")
+        ("Weekly review" ?w "** TODO Weekly Review %T[/] :review:\n%?%[~/Dropbox/org/weekly_review.txt]\n" nil "Tasks")
         ))
 
 (defvar org-code-reading-software-name nil)
