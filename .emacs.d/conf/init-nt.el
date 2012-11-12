@@ -16,6 +16,8 @@
               "/opt/local/bin"
               (expand-file-name "~/local/bin")
               (expand-file-name "~/bin")
+              (substitute-in-file-name "/home/$USERNAME/local/bin")
+              (substitute-in-file-name "/home/$USERNAME/bin")
               ))
   (when (and (file-exists-p dir) (not (member dir exec-path)))
     (setenv "PATH" (concat dir ":" (getenv "PATH")))
