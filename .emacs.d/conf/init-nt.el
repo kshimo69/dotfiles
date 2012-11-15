@@ -20,7 +20,7 @@
               (substitute-in-file-name "/home/$USERNAME/bin")
               ))
   (when (and (file-exists-p dir) (not (member dir exec-path)))
-    (setenv "PATH" (concat dir ":" (getenv "PATH")))
+    (setenv "PATH" (concat dir ";" (getenv "PATH")))
     (setq exec-path (append (list dir) exec-path))))
 (setenv "MANPATH"
         (concat "/usr/local/man:/usr/share/man:/Developer/usr/share/man:/sw/share/man"
