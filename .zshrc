@@ -157,6 +157,7 @@ export LESSCHARSET="utf-8"
 # % gtags ~/.inctags
 #export GTAGSROOT=/usr/include
 #export GTAGDBPATH=~/.inctags
+export GTAGSLABEL=exuberant-ctags
 
 zstyle ':completion:*:sudo:*' command-path /opt/local/sbin /opt/local/bin \
                                 /usr/local/sbin /usr/local/bin /usr/sbin \
