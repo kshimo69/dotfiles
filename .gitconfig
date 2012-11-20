@@ -22,3 +22,5 @@
 	newly = log HEAD@{1}..HEAD --reverse
 	newlyp = log HEAD@{1}..HEAD -p --reverse
 	diff-cache = diff --cached
+[merge]
+	ff = false
