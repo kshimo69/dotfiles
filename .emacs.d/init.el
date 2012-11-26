@@ -82,6 +82,7 @@
 (defun x->bool (elt) (not (not elt)))
 (defvar emacs22-p (equal emacs-major-version 22))
 (defvar emacs23-p (equal emacs-major-version 23))
+(defvar emacs24-p (equal emacs-major-version 24))
 (defvar darwin-p (eq system-type 'darwin))
 (defvar ns-p (featurep 'ns))
 (defvar carbon-p (and (eq window-system 'mac) emacs22-p))
