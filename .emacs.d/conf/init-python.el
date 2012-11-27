@@ -14,7 +14,7 @@
              (define-key python-mode-map (kbd "C-m") 'newline-and-indent)))
 
 ;; http://d.hatena.ne.jp/CortYuming/20101008/p1
-(when emacs23-p
+(when (or emacs23-p emacs24-p)
   (defun python-partial-symbol ()
     "Return the partial symbol before point (for completion)."
     (let ((end (point))

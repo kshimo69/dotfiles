@@ -54,14 +54,20 @@ alias po='popd'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
 alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
 alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
-alias sukico='ssh kshimo69@49.212.62.39 -p 10022'
-alias sukicodb1='ssh kshimo69@49.212.62.39 -p 10022'
-alias sukicoweb1='ssh kshimo69@49.212.51.125 -p 10022'
-alias sukicoweb2='ssh kshimo69@49.212.58.101 -p 10022'
-alias sukicobatch1old='ssh kshimo69@49.212.49.42 -p 10022'
-alias sukicobatch1='ssh kshimo69@219.94.244.123 -p 10022'
-alias sukicothumb='ssh kshimo69@49.212.166.121 -p 10022'
-alias sukicoec2='ssh -i $HOME/.ssh/sukico01.pem ec2-user@ec2-46-51-229-107.ap-northeast-1.compute.amazonaws.com'
+# SAKURA
+#alias sukico='ssh kshimo69@49.212.62.39 -p 10022'
+#alias sukicodb1='ssh kshimo69@49.212.62.39 -p 10022'
+#alias sukicoweb1='ssh kshimo69@49.212.51.125 -p 10022'
+#alias sukicoweb2='ssh kshimo69@49.212.58.101 -p 10022'
+#alias sukicobatch1old='ssh kshimo69@49.212.49.42 -p 10022'
+#alias sukicobatch1='ssh kshimo69@219.94.244.123 -p 10022'
+#alias sukicothumb='ssh kshimo69@49.212.166.121 -p 10022'
+#EC2
+#alias sukicoec2='ssh -i $HOME/.ssh/sukico01.pem ec2-user@ec2-46-51-229-107.ap-northeast-1.compute.amazonaws.com'
+alias sukicolle_web01='ssh appuser@54.248.253.85' # EC2 Web01
+alias sukicolle_web02='ssh appuser@54.248.253.218' # EC2 Web02
+alias sukicolle_batch01='ssh appuser@54.248.252.174' # EC2 Batch01
+alias sukicolle_web00='ssh appuser@54.248.226.74' # EC2 Web00
 alias clear_terminal='echo c'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
@@ -307,7 +313,7 @@ fi
 
 setopt prompt_subst
 # コマンド実行後は右プロンプトを消す
-setopt transient_rprompt
+#setopt transient_rprompt
 
 PROMPT='%{$reset_color%}%B%(?.%F{green}%(!.#.（\`･ω･´）)%f.%F{red}%(!.#.（´･ω･\`）)%f)%b%{$reset_color%}%{$fg[yellow]%}%n@%m%{$fg[yellow]%} %{$reset_color%}[%{$fg[cyan]%}%~%{$reset_color%}]
 %#%{$reset_color%} '
