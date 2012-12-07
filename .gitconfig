@@ -23,5 +23,5 @@
 	newlyp = log HEAD@{1}..HEAD -p --reverse
 	diff-cache = diff --cached
 	info = remote show origin
-[merge]
-	ff = false
+#[merge]
+#	ff = false
