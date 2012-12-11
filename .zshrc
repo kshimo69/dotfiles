@@ -8,6 +8,7 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey '' history-beginning-search-backward-end
 bindkey '' history-beginning-search-forward-end
 bindkey '^r' history-incremental-search-backward
+bindkey '^r' history-incremental-search-forward
 bindkey '^e' end-of-line
 bindkey '^u' backward-kill-line
 # http://qiita.com/items/1536
@@ -16,6 +17,7 @@ if zle -la | grep -q '^history-incremental-pattern-search'; then
     bindkey '^R' history-incremental-pattern-search-backward
     bindkey '^S' history-incremental-pattern-search-forward
 fi
+setopt no_flow_control
 
 # http://subtech.g.hatena.ne.jp/secondlife/20071003/1191394868
 # % mkdir -p ~/.zsh/functions/completion
@@ -178,6 +180,7 @@ setopt NO_beep
 HISTFILE=~/.zsh-history
 HISTSIZE=1000000
 SAVEHIST=1000000
+function history-all { history -id 1 }  # 全履歴一覧
 REPORTTIME=10
 setopt append_history
 setopt extended_history
