@@ -292,6 +292,9 @@
 (ffap-bindings) ; カーソル位置のファイル名、URLで開く
 (global-set-key (kbd "M-c") 'ffap-copy-string-as-kill)
 
+;; GUI上のコピー
+(setq x-select-enable-primary t)
+
 ;; kill-ringに同じ内容の文字列を入れない
 ;; http://d.hatena.ne.jp/kitokitoki/20100515/p1
 (defadvice kill-new (before ys:no-kill-new-duplicates activate)
