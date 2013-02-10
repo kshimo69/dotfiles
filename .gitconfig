@@ -10,6 +10,8 @@
 	autocrlf = input
 [color]
 	ui = auto
+[log]
+    date = iso
 [alias]
 	co = checkout
 	ci = commit
