@@ -311,9 +311,9 @@ if [ "$TERM" = "$STERM" ]; then
     alias ssh=ssh_screen
 fi
 
-if [ ${TERM} != "$STERM" -a ${TERM} != "linux" -a ${TERM} != "eterm-color" -a ${TERM} != "vt100" ]; then
-    exec screen -RR
-fi
+#if [ ${TERM} != "$STERM" -a ${TERM} != "linux" -a ${TERM} != "eterm-color" -a ${TERM} != "vt100" ]; then
+#    exec screen -RR
+#fi
 
 setopt prompt_subst
 # コマンド実行後は右プロンプトを消す
