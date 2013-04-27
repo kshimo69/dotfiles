@@ -151,6 +151,19 @@ which virtualenvwrapper.sh >/dev/null 2>&1 && . `which virtualenvwrapper.sh`
 #echo '' >> $WORKON_HOME/postmkvirtualenv
 #echo '# pudb も便利かもよ' >> $WORKON_HOME/postmkvirtualenv
 #echo '#pip install pudb' >> $WORKON_HOME/postmkvirtualenv
+
+# http://ymotongpoo.hatenablog.com/entry/20120516/1337123564
+#PYTHON_VER=2.7
+#export MACPORTS_PREFIX=/opt/local
+#export VIRTUALENV_BIN=$MACPORTS_PREFIX/Library/Frameworks/Python.framework/Versions/$PYTHON_VER
+#export PYTHONPATH=$MACPORTS_PREFIX/lib/python$PYTHON_VER/:$PYTHONPATH
+#export WORKON_HOME=$HOME/.virtualenvs
+#. $VIRTUALENV_BIN/bin/virtualenvwrapper.sh
+#mkvenv () {
+#    base_python=`which python$1` 
+#    mkvirtualenv --distribute --python=$base_python $2
+#}
+
 export EDITOR=vim
 export SVN_EDITOR=vim
 export GISTY_DIR=$HOME/repos/gist
