@@ -27,5 +27,6 @@
 	newlyp = log HEAD@{1}..HEAD -p --reverse
 	diff-cache = diff --cached
 	info = remote show origin
+	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 #[merge]
 #	ff = false
