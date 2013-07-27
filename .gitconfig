@@ -28,5 +28,6 @@
 	diff-cache = diff --cached
 	info = remote show origin
 	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+	pull-dry-run = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
 #[merge]
 #	ff = false
