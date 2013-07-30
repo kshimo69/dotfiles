@@ -415,7 +415,7 @@ if has('gui_macvim')
   "set guifont=M+2VM+IPAG\ circle\ Regular:h14
   "set guifont=Monaco:h14
   "set guifont=Ricty\ Regular:h16
-  set guifont=Ricty\ Discord\ Regular\ for\ Powerline:h16
+  set guifont=Ricty\ Discord\ Regular\ for\ Powerline:h14
   set transparency=5
   "set lines=40
   "set columns=120
