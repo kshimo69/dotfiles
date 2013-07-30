@@ -749,7 +749,7 @@ endfunction
 " }}} Open junk file
 
 " Change current directory {{{
-command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>') 
+command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
 function! s:ChangeCurrentDir(directory, bang)
   if a:directory == ''
     lcd %:p:h
