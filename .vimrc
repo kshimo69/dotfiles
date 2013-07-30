@@ -365,11 +365,15 @@ set t_vb=
 set vb
 
 " デフォルト不可視文字は美しくないのでUnicodeで綺麗に
-"set listchars=eol:$,tab:>-,trail:_
-"set listchars=eol:¬,tab:▸.
-"set listchars=tab:▸␣,trail:␣
-"set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
-set listchars=tab:»␣,trail:␣,extends:»,precedes:«,nbsp:%,eol:↲
+if !(has("win32") || has("win95") || has("win64") || has("win16"))
+  "set listchars=eol:$,tab:>-,trail:_
+  "set listchars=eol:¬,tab:▸.
+  "set listchars=tab:▸␣,trail:␣
+  "set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
+  set listchars=tab:»␣,trail:␣,extends:»,precedes:«,nbsp:%,eol:↲
+else
+  set listchars=eol:$,tab:>-,trail:_
+endif
 
 " 日本語入力をリセットする
 au BufNewFile,BufRead * set iminsert=0
@@ -743,6 +747,23 @@ function! s:open_junk_file()
   endif
 endfunction
 " }}} Open junk file
+
+" Change current directory {{{
+command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>') 
+function! s:ChangeCurrentDir(directory, bang)
+  if a:directory == ''
+    lcd %:p:h
+  else
+    execute 'lcd' . a:directory
+  endif
+
+  if a:bang == ''
+    pwd
+  endif
+endfunction
+
+nnoremap <silent> <Space>cd :<C-u>CD<CR>
+" }}} Change current directory
 
 " ==== Programming ==== {{{
 
