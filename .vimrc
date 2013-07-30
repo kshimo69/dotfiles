@@ -955,11 +955,13 @@ nnoremap <silent> ,ur :<C-u>Unite register -buffer-name=register -direction=botr
 nnoremap <silent> ,um :<C-u>Unite file_mru -direction=botright -auto-resize -toggle<CR>
 " ブックマーク
 nnoremap <silent> ,uc :<C-u>Unite bookmark -direction=botright -auto-resize -toggle<CR>
+" ブックマークに追加
+nnoremap <silent> ,ua :<C-u>UniteBookmarkAdd<CR>
 " 常用セット
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru file file/new -direction=botright -auto-preview -toggle<CR>
 nnoremap <silent> ;; :<C-u>Unite buffer file_mru file file/new -direction=botright -auto-resize -toggle<CR>
 " 全部乗せ
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file file/new -direction=botright -auto-resize -toggle<CR>
+nnoremap <silent> ,uz :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file file/new -direction=botright -auto-resize -toggle<CR>
 " outline
 nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=botright -auto-preview -auto-resize<CR>
 " tab
@@ -1018,6 +1020,10 @@ endfunction
 
 " plugin vimfiler {{{
 nnoremap <Leader>e :VimFilerExplorer<CR>
+" 現在開いているバッファのディレクトリを開く
+nnoremap <silent> <Leader>fe :<C-u>VimFilerBufferDir -quit<CR>
+" 現在開いているバッファをIDE風に開く
+nnoremap <silent> <Leader>fi :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
 " vimfilerだけになったら閉じる
 autocmd MyAutoCmd BufEnter * if (winnr('$') == 1 && &filetype ==# 'vimfiler') | q | endif
 let g:vimfiler_as_default_explorer = 1
