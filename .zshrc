@@ -307,6 +307,16 @@ if [ "$TERM" = "$STERM" ]; then
     }
 fi
 
+show-current-dir-as-window-name() {
+    tmux set-window-option window-status-format " #I ${PWD:t} " > /dev/null
+}
+
+# tmux環境だったら
+autoload -U add-zsh-hook
+if [ "q$TMUX" != "q" ]; then
+    add-zsh-hook chpwd show-current-dir-as-window-name
+fi
+
 function chpwd() {
     ls
     # if pwd | grep -q wire; then
