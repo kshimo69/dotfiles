@@ -393,7 +393,9 @@ set t_Co=256
 if has('gui_running')
   " sidebar
   set guioptions& " initialize
-  set guioptions+=b
+  set guioptions-=m  "メニューバー
+  set guioptions-=T  "ツールバー
+  set guioptions-=r  "スクロールバー
   " clip board
   " http://vim-users.jp/2010/02/hack126/
   set guioptions+=a
