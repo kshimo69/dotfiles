@@ -396,6 +396,8 @@ if has('gui_running')
   set guioptions-=m  "メニューバー
   set guioptions-=T  "ツールバー
   set guioptions-=r  "スクロールバー
+  set guioptions-=l  "スクロールバー
+  set guioptions-=b  "スクロールバー
   " clip board
   " http://vim-users.jp/2010/02/hack126/
   set guioptions+=a
