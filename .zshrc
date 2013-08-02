@@ -37,6 +37,7 @@ reload-complete-functions() {
     unfunction $f:t 2> /dev/null
     autoload -U $f:t
 }
+autoload -U add-zsh-hook
 
 alias ls='ls --color=auto'
 alias rm='rm'
@@ -220,6 +221,12 @@ zstyle ':vcs_info:*' actionformats '%r(%s):%b|%a'
 local COMMAND=""
 local COMMAND_TIME=""
 precmd () {
+    if [ "$TERM" = "$STERM" ]; then
+        echo -ne "\ek$(basename $(pwd))\e\\"
+    fi
+    if [ "q$TMUX" != "q" ]; then
+        echo -ne "\ek$(basename $(pwd))\e\\"
+    fi
     psvar=()
     LANG=en_US.UTF-8 vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
@@ -248,74 +255,16 @@ precmd () {
     fi
 }
 preexec () {
+    if [ "$TERM" = "$STERM" ]; then
+        echo -ne "\ek($1)\e\\"
+        # echo -ne "\e_`dirs`\e\\"
+    fi
+    if [ "q$TMUX" != "q" ]; then
+        echo -ne "\ek($1)\e\\"
+    fi
     COMMAND="${1}"
     COMMAND_TIME=`date +%s`
 }
-
-# http://d.hatena.ne.jp/dayflower/20081031/1225428086
-if [ "$TERM" = "$STERM" ]; then
-    #local -a shorthost
-
-    #echo $TERMCAP | grep -q -i screen
-    #if [ $? -eq 0 ]; then
-    #    shorthost=""
-    #else
-    #    shorthost="${HOST%%.*}:"
-    #fi
-
-    #echo -ne "\ek$shorthost\e\\"
-
-    preexec() {
-        #echo -ne "\ek${shorthost}($1)\e\\"
-        echo -ne "\ek($1)\e\\"
-        echo -ne "\e_`dirs`\e\\"
-        COMMAND="${1}"
-        COMMAND_TIME=`date +%s`
-    }
-
-    precmd() {
-        #echo -ne "\ek${shorthost}$(basename $(pwd))\e\\"
-        echo -ne "\ek$(basename $(pwd))\e\\"
-        screen -X title $(basename $(print -P "%~"))
-        # vcs_info
-        psvar=()
-        LANG=en_US.UTF-8 vcs_info
-        [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-        if [ -x "`which growlnotify 2>/dev/null`" ]; then
-            if [ "$COMMAND_TIME" -ne "0" ] ; then
-                local d=`date +%s`
-                d=`expr $d - $COMMAND_TIME`
-                if [ "$d" -ge "30" ] ; then
-                    COMMAND="$COMMAND "
-                    growlnotify -t "${${(s: :)COMMAND}[1]} done." -m "$COMMAND"
-                fi
-            fi
-            COMMAND="0"
-            COMMAND_TIME="0"
-        elif [ -n "$DISPLAY" -a -x "`which notify-send`" ]; then # for linux
-            if [ "$COMMAND_TIME" -ne "0" ] ; then
-                local d=`date +%s`
-                d=`expr $d - $COMMAND_TIME`
-                if [ "$d" -ge "30" ] ; then
-                    COMMAND="$COMMAND "
-                    notify-send -t 10000 "${${(s: :)COMMAND}[1]} done." "$COMMAND"
-                fi
-            fi
-            COMMAND="0"
-            COMMAND_TIME="0"
-        fi
-    }
-fi
-
-show-current-dir-as-window-name() {
-    tmux set-window-option window-status-format " #I ${PWD:t} " > /dev/null
-}
-
-# tmux環境だったら
-autoload -U add-zsh-hook
-if [ "q$TMUX" != "q" ]; then
-    add-zsh-hook chpwd show-current-dir-as-window-name
-fi
 
 function chpwd() {
     ls
