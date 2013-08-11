@@ -209,6 +209,7 @@ else
 
   " Javascript
   NeoBundle 'JavaScript-syntax'
+  NeoBundle 'moll/vim-node'
 
   " JQuery
   NeoBundle 'jQuery'
