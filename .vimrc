@@ -1030,7 +1030,7 @@ nnoremap <Leader>e :VimFilerExplorer<CR>
 " 現在開いているバッファのディレクトリを開く
 nnoremap <Leader>ff :VimFilerBufferDir<CR>
 " vimfilerだけになったら閉じる
-autocmd MyAutoCmd BufEnter * if (winnr('$') == 1 && &filetype ==# 'vimfiler') | q | endif
+" autocmd MyAutoCmd BufEnter * if (winnr('$') == 1 && &filetype ==# 'vimfiler') | q | endif
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_enable_auto_cd = 1
 " }}} plugin vimfiler
