@@ -1182,7 +1182,7 @@ let g:syntastic_auto_loc_list=2
 " plugin powerline {{{
 "   let g:Powerline_symbols = 'compatible'
 "   " splitしてない時にstatus lineが出ない対策
-"   set laststatus=2
+  set laststatus=2
 "   " Overriding symbols
 "   let g:Powerline_symbols_override = {
 "     \ 'LINE': 'L',
