@@ -232,7 +232,7 @@ else
   NeoBundle 'Shougo/echodoc.git'
   NeoBundle 'thinca/vim-ref'
   NeoBundle 'taka84u9/vim-ref-ri.git'
-  NeoBundle 'taq/vim-rspec.git'
+  NeoBundle 'thoughtbot/vim-rspec.git'
   NeoBundle 'glidenote/memolist.vim'
 
   " Project
