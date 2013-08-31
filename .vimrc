@@ -127,6 +127,7 @@ else
   NeoBundle 'vim-scripts/YankRing.vim'
   NeoBundle 'kana/vim-smartchr'
   NeoBundle 'fuenor/qfixgrep.git'
+  NeoBundle 'kana/vim-altr'  " いい感じにファイルを開くやつ
   " コメント
   NeoBundle 'scrooloose/nerdcommenter'
   " 高機能なUndo
@@ -1139,6 +1140,12 @@ vmap ,, <Plug>NERDCommenterToggle
 " cnoremap <expr> / smartchr#loop('/', '~/', '//', {'ctype': ':'}
 autocmd FileType c,cpp inoremap <buffer> <expr> . smartchr#loop('.', '->', '...')
 " }}} plugin smartchr
+
+" plugin vim-altr {{{
+nmap <F2> <Plug>(altr-forward)
+" 設定を追加する場合のサンプル
+" call altr#define('autoload/%.vim', 'doc/%.txt', 'plugin/%.vim')
+" }}} pluginvim-altr
 
 " plugin Gundo {{{
 nnoremap <Leader>u :GundoToggle<CR>
