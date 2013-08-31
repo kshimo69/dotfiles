@@ -489,7 +489,7 @@ inoremap jj <Esc>
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
 
 " カーソル下の単語を * で検索
-vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
+" vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
 
 " カーソル下のキーワードでヘルプ
 nnoremap <C-h> :<C-u>help<Space><C-r><C-w><Enter>
