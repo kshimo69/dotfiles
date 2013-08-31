@@ -1156,14 +1156,14 @@ nmap <Leader>T <plug>TaskList
 " }}} plugin TaskList
 
 " plugin Trinity {{{
-" Open and close all the three plugins on the same time 
-nmap <F8>  :TrinityToggleAll<CR> 
-" Open and close the Source Explorer separately 
-nmap <F9>  :TrinityToggleSourceExplorer<CR> 
-" Open and close the Taglist separately 
-nmap <F10> :TrinityToggleTagList<CR> 
-" Open and close the NERD Tree separately 
-nmap <F11> :TrinityToggleNERDTree<CR> 
+" Open and close all the three plugins on the same time
+nmap <F8>  :TrinityToggleAll<CR>
+" Open and close the Source Explorer separately
+nmap <F9>  :TrinityToggleSourceExplorer<CR>
+" Open and close the Taglist separately
+nmap <F10> :TrinityToggleTagList<CR>
+" Open and close the NERD Tree separately
+nmap <F11> :TrinityToggleNERDTree<CR>
 " }}} plugin Trinity
 
 " plugin taglist {{{
