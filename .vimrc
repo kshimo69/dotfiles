@@ -458,7 +458,8 @@ syntax on
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 set background=dark
-colorscheme solarized
+" colorscheme solarized
+colorscheme desert256
 
 " highlight Folded ctermbg=grey ctermfg=blue guibg=grey guifg=blue
 " highlight FoldColumn ctermfg=green guifg=green
