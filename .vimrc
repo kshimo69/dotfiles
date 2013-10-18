@@ -774,6 +774,17 @@ endfunction
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
 " }}} Change current directory
 
+" :mesをクリップボードにコピー {{{
+command! MessCopy call s:messcopy()
+function! s:messcopy()
+  redir @+>
+  silent messages
+  redir END
+  " Copy to selection too.
+  call setreg('*', getreg('+', 1), getregtype('+'))
+endfunction
+" }}} :mesをクリップボードにコピー
+
 " ==== Programming ==== {{{
 
 " ChangeLog {{{
