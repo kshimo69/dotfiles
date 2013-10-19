@@ -1,0 +1,37 @@
+set gui=nomenu
+
+" Shortcut
+nnoremap gi :goto 受信トレイ<CR>
+nnoremap gs :goto __☆__<CR>
+nnoremap gt :goto 送信済みトレイ<CR>
+nnoremap / <C-b>
+
+nnoremap <C-S-n> <C-TAB>
+nnoremap <C-S-p> <S-C-TAB>
+nnoremap <C-n> <C-TAB>
+nnoremap <C-p> <S-C-TAB>
+
+" Star & Archive
+nnoremap s is<ESC>
+nnoremap a ia<ESC>
+
+" Message Scroll
+nnoremap J 10<DOWN>
+nnoremap K 10<UP>
+
+nnoremap <C-F> <NOP>
+nnoremap d <NOP>
+
+
+" 補完リストの選択をC-n, C-pで
+cmap <C-n> <TAB>
+cmap <C-p> <S-TAB>
+
+
+"""
+" ,r で .muttatorrc をリロード
+map ,r :source .muttatorrc<CR>
+" Restart
+map ,,r :restart<CR>
+
+echo "###  Finish loading rc file.  ###"
