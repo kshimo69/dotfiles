@@ -122,7 +122,7 @@ export LANG="ja_JP.UTF-8"
 export GREP_COLOR="01;35"
 export GREP_OPTIONS=--color=auto
 export LSCOLORS=gxfxcxdxbxegedabagacad
-PATH=$HOME/local/bin:$HOME/bin:$PATH
+PATH=$HOME/.rbenv/bin:$HOME/local/bin:$HOME/bin:$PATH
 #PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Developer/android-sdk-mac_x86/platform-tools:$PATH:$HOME/bin
 typeset -U PATH
 export PATH
@@ -316,4 +316,15 @@ e_BLUE=`echo -e "\033[1;36m"`
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"  # pythonbrew
 [[ -d "$HOME/repos/powerline/powerline" ]] && which powerline >/dev/null 2>&1 && source ~/repos/powerline/powerline/bindings/zsh/powerline.zsh
+
+# https://github.com/sstephenson/rbenv
+# $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+eval "$(rbenv init -)"
+# note
+# need install ruby-builder
+#
+# $ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+# cd ~/.rbenv/plugins/ruby-build/
+# sudo ./install.sh
+
 true
