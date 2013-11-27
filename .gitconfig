@@ -1,33 +1,37 @@
 [user]
-	email = kshimo69@gmail.com
-	name = Kimihiko Shimomura
+    email = kshimo69@gmail.com
+    name = Kimihiko Shimomura
 [github]
-	user = kshimo69
-	token = 53a6a67aea7a0c6aac0ad1459915b506
+    user = kshimo69
+    token = 53a6a67aea7a0c6aac0ad1459915b506
 [core]
-	excludesfile = ~/.gitignore
-	editor = vim -u NONE -i NONE -N -c 'syntax on'
-	autocrlf = input
+    excludesfile = ~/.gitignore
+    editor = vim -u NONE -i NONE -N -c 'syntax on'
+    autocrlf = input
 [color]
-	ui = auto
+    ui = auto
 [log]
     date = iso
 [alias]
-	co = checkout
-	ci = commit
-	st = status -sb
-	pr = pull --rebase
-	fo = fetch origin
-	ro = rebase origin
-	#lg = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
-	lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(black bold)%an, %ar %ad%Creset'
-	#lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(blue)%an, %ar %ad%Creset'
-	#lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %an, %ar %ad'
-	newly = log HEAD@{1}..HEAD --reverse
-	newlyp = log HEAD@{1}..HEAD -p --reverse
-	diff-cache = diff --cached
-	info = remote show origin
-	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
-	pull-dry-run = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
+    co = checkout
+    ci = commit
+    st = status -sb
+    pr = pull --rebase
+    fo = fetch origin
+    ro = rebase origin
+    #lg = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
+    lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(black bold)%an, %ar %ad%Creset'
+    #lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(blue)%an, %ar %ad%Creset'
+    #lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %an, %ar %ad'
+    newly = log HEAD@{1}..HEAD --reverse
+    newlyp = log HEAD@{1}..HEAD -p --reverse
+    diff-cache = diff --cached
+    info = remote show origin
+    delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+    pull-dry-run = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
 #[merge]
-#	ff = false
+#    ff = false
+[pager]
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less
