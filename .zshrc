@@ -230,7 +230,19 @@ precmd () {
     psvar=()
     LANG=en_US.UTF-8 vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-    if [ -x "`which growlnotify 2>/dev/null`" ]; then
+    # if [ "`hostname`" = "shimomura" -a -x "`which growl 2>/dev/null`" ]; then
+    if [ -n "$SSH_CLIENT" -a -x "`which growl 2>/dev/null`" ]; then
+        if [ "$COMMAND_TIME" -ne "0" ] ; then
+            local d=`date +%s`
+            d=`expr $d - $COMMAND_TIME`
+            if [ "$d" -ge "30" ] ; then
+                COMMAND="$COMMAND "
+                growl -H `echo $SSH_CLIENT | awk '{ print $1 }'` -t "${${(s: :)COMMAND}[1]} done." -m "$COMMAND"
+            fi
+        fi
+        COMMAND="0"
+        COMMAND_TIME="0"
+    elif [ -x "`which growlnotify 2>/dev/null`" ]; then
         if [ "$COMMAND_TIME" -ne "0" ] ; then
             local d=`date +%s`
             d=`expr $d - $COMMAND_TIME`
