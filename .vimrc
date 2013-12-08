@@ -102,6 +102,7 @@ else
   NeoBundle 'thinca/vim-openbuf'
   NeoBundle 'kshimo69/unite-vim_hacks'
   NeoBundle 'Shougo/vimfiler'
+  NeoBundle 'kannokanno/unite-todo'
 
   " quickrun
   NeoBundle 'thinca/vim-quickrun'
@@ -990,6 +991,10 @@ nnoremap <silent> ,ut :<C-u>Unite tab -buffer-name=tab -direction=botright -auto
 nnoremap <silent> ,uw :<C-u>Unite window -buffer-name=window -direction=botright -auto-preview -auto-resize<CR>
 " snippets
 imap <C-s> <Plug>(neocomplcache_start_unite_snippet)
+" unite-todo
+let g:unite_todo_note_suffix = 'md'
+nnoremap <silent> ,ui :<C-u>UniteTodoAddSimple -tag -memo<CR>
+nnoremap <silent> ,ui :<C-u>Unite todo:undone<CR>
 
 " ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
