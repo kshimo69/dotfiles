@@ -464,6 +464,7 @@ colorscheme desert256
 
 " ターミナルの透過がそのまま見えるように
 highlight Normal ctermbg=NONE
+highlight NonText ctermbg=NONE
 
 " highlight Folded ctermbg=grey ctermfg=blue guibg=grey guifg=blue
 " highlight FoldColumn ctermfg=green guifg=green
