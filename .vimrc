@@ -460,8 +460,8 @@ let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 set background=dark
 " colorscheme solarized
-" colorscheme desert256
-colorscheme molokai
+colorscheme desert256
+" colorscheme molokai
 
 " ターミナルの透過がそのまま見えるように
 highlight Normal ctermbg=NONE
