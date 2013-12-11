@@ -13,3 +13,5 @@ set transparency=230
 "set listchars=eol:$,tab:>-,trail:_
 set listchars=tab:»␣,trail:␣,extends:»,precedes:«,nbsp:%,eol:↲
 
+" 背景透過
+set transparency=210
