@@ -412,7 +412,7 @@ if has('gui_running')
   "set lines=30
   "set columns=120
   gui
-  "set transparency=20
+  set transparency=210
 endif
 if has('gui_macvim')
   set guioptions& " initialize
