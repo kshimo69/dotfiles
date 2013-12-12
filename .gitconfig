@@ -20,7 +20,7 @@
     fo = fetch origin
     ro = rebase origin
     #lg = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
-    lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(black bold)%an, %ar %ad%Creset'
+    lg = log --graph --pretty='format:%C(yellow)%h%Cgreen%d%Creset %s %C(black bold)%an, %ar %ad%Creset'
     #lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(blue)%an, %ar %ad%Creset'
     #lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %an, %ar %ad'
     newly = log HEAD@{1}..HEAD --reverse
