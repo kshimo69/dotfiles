@@ -6,10 +6,10 @@ nnoremap gs :goto __☆__<CR>
 nnoremap gt :goto 送信済みトレイ<CR>
 nnoremap / <C-b>
 
-nnoremap <C-S-n> <C-TAB>
-nnoremap <C-S-p> <S-C-TAB>
-nnoremap <C-n> <C-TAB>
-nnoremap <C-p> <S-C-TAB>
+"nnoremap <C-S-n> <C-TAB>
+"nnoremap <C-S-p> <S-C-TAB>
+"nnoremap <C-n> <C-TAB>
+"nnoremap <C-p> <S-C-TAB>
 
 " Star & Archive
 nnoremap s is<ESC>
@@ -30,7 +30,7 @@ cmap <C-p> <S-TAB>
 
 """
 " ,r で .muttatorrc をリロード
-map ,r :source .muttatorrc<CR>
+map ,r :source ~/.muttatorrc<CR>
 " Restart
 map ,,r :restart<CR>
 
