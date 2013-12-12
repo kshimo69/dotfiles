@@ -373,7 +373,8 @@ if !(has("win32") || has("win95") || has("win64") || has("win16"))
   "set listchars=eol:¬,tab:▸.
   "set listchars=tab:▸␣,trail:␣
   "set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
-  set listchars=tab:»␣,trail:␣,extends:»,precedes:«,nbsp:%,eol:↲
+  "set listchars=tab:»␣,trail:␣,extends:»,precedes:«,nbsp:%,eol:↲
+  set listchars=tab:»␣,trail:␣,extends:»,precedes:«,nbsp:%,eol:\ 
 else
   set listchars=eol:$,tab:>-,trail:_
 endif
