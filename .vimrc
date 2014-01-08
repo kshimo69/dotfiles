@@ -129,6 +129,7 @@ else
   NeoBundle 'kana/vim-smartchr'
   NeoBundle 'fuenor/qfixgrep.git'
   NeoBundle 'kana/vim-altr'  " いい感じにファイルを開くやつ
+  NeoBundle 't9md/vim-quickhl'  " Highlight on the fly
   " コメント
   NeoBundle 'scrooloose/nerdcommenter'
   " 高機能なUndo
@@ -1169,6 +1170,17 @@ nmap <F2> <Plug>(altr-forward)
 " 設定を追加する場合のサンプル
 " call altr#define('autoload/%.vim', 'doc/%.txt', 'plugin/%.vim')
 " }}} pluginvim-altr
+
+" plugin vim-quickhl {{{
+nmap <Leader><Space> <Plug>(quickhl-manual-this)
+xmap <Leader><Space> <Plug>(quickhl-manual-this)
+nmap <Leader>M <Plug>(quickhl-manual-reset)
+xmap <Leader>M <Plug>(quickhl-manual-reset)
+
+nmap <Leader>j <Plug>(quickhl-cword-toggle)
+nmap <Leader>] <Plug>(quickhl-tag-toggle)
+" map H <Plug>(operator-quickhl-manual-this-motion)
+" }}} pluginvim-quickhl
 
 " plugin Gundo {{{
 nnoremap <Leader>u :GundoToggle<CR>
