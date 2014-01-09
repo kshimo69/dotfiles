@@ -242,6 +242,9 @@ else
   " Project
   NeoBundle 'vtreeexplorer'
 
+  " Calendar
+  NeoBundle 'itchyny/calendar.vim'
+
   " Brief help
   " :NeoBundleList          - list configured bundles
   " :NeoBundleInstall(!)    - install(update) bundles
@@ -1354,6 +1357,11 @@ let g:memolist_vimfiler_option = ''
 " let g:treeExplVertical = 1
 " let g:treeExplWinSize = 30
 " }}} plugin vtreeexplorer
+
+" plugin Clendar {{{
+" let g:calendar_google_calendar = 1
+" let g:calendar_google_task = 1
+" }}} plugin Calendar
 
 " plugin HOGEHOGE {{{
 " }}} plugin HOGEHOGE
