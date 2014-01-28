@@ -605,6 +605,7 @@ augroup END
 "  endif
 "endfunction
 " }}}
+command! -nargs=0 CdCurrent cd %:p:h
 
 " ~/.vimrc.localが存在する場合のみ設定を読み込む {{{
 let s:local_vimrc = expand('~/.vimrc.local')
