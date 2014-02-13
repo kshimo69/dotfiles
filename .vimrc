@@ -353,7 +353,7 @@ set modeline        " モードラインを表示
 set showcmd         " 入力したコマンドを表示
 set wildmenu        " コマンドライン補完
 set wildchar=<tab>  " TABで補完
-set wildmode=list,full
+set wildmode=longest:full,full
 set history=1000    " コマンドヒストリー1000件
 "set foldmethod=indent  " fold with indent
 "set foldlevel=0  " all level folding
