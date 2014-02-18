@@ -477,6 +477,7 @@ highlight NonText ctermbg=NONE
 set title
 set ruler
 set cursorline
+set cursorcolumn
 " display line on current buffer
 augroup cch
   autocmd! cch
@@ -484,7 +485,8 @@ augroup cch
   autocmd WinEnter,BufRead * set cursorline
 augroup END
 "hi clear CursorLine
-"hi CursorLine gui=underline
+"hi CursorLine gui=underline term=underline cterm=underline
+hi CursorLine term=reverse cterm=reverse
 "highlight CursorLine ctermbg=blue guibg=grey20
 " Change cursor color when IME on/off
 if has('multi_byte_ime') || has('xim')
