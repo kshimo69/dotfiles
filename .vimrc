@@ -103,6 +103,7 @@ else
   NeoBundle 'kshimo69/unite-vim_hacks'
   NeoBundle 'Shougo/vimfiler'
   NeoBundle 'kannokanno/unite-todo'
+  NeoBundle 'osyo-manga/unite-quickrun_config'
 
   " quickrun
   NeoBundle 'thinca/vim-quickrun'
