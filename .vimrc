@@ -1095,6 +1095,11 @@ let g:quickrun_config['rst'] = {
   \ 'outputter': 'browser',
   \ }
 
+" markdown
+let g:quickrun_config['markdown'] = {
+  \ 'outputter': 'browser',
+  \ }
+
 " u-nya-
 " 使用しない場合は 0 にする
 let g:quickrun_config._ = {
