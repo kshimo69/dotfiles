@@ -489,6 +489,7 @@ augroup END
 "hi CursorLine gui=underline term=underline cterm=underline
 hi CursorLine term=reverse cterm=reverse
 "highlight CursorLine ctermbg=blue guibg=grey20
+hi Visual term=reverse cterm=reverse
 " Change cursor color when IME on/off
 if has('multi_byte_ime') || has('xim')
   highlight CursorIM guibg=LightRed guifg=NONE
