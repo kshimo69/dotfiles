@@ -331,9 +331,8 @@ e_BLUE=`echo -e "\033[1;36m"`
 
 # https://github.com/sstephenson/rbenv
 # $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-if [ -d $HOME/.rbenv ]; then
-    eval "$(rbenv init -)"
-fi
+[[ -d "$HOME/.rbenv" ]] && eval "$(rbenv init -)"
+
 # note
 # need install ruby-builder
 #
