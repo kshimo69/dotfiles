@@ -6,7 +6,7 @@ if [ -d $HOME/.anyenv ]; then
     PATH=$HOME/.anyenv/bin:$PATH
     eval "$(anyenv init -)"
     # for tmux
-    for D in `find $HOME.anyenv/envs -type d -d 1`
+    for D in `find $HOME/.anyenv/envs -maxdepth 1 -type d`
     do
         PATH=$D/shims:$PATH
     done
