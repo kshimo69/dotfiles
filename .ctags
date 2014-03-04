@@ -1,5 +1,11 @@
 --verbose
 --recurse
---exclude=Temp
---exclude=environments
+--c++-kinds=+p
+--fields=+iaS
+--extra=+q
+--exclude=*.git*
+--exclude=*.pyc
+--exclude=*.pyo
+--exclude=*/environments/*
+--exclude=*/Build/*
 --regex-python=/([A-Za-z0-9_.]+)[ \t]*=[ \t]*property\(/\1/p,property/
