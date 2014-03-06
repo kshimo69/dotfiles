@@ -948,15 +948,19 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 "let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
-" neocomplcacheでjediを使う設定
-" autocmd FileType python setlocal omnifunc=jedi#completions
-" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-" let g:jedi#completions_enabled = 0
-" let g:jedi#auto_vim_configuration = 0
-
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+" neocomplcacheでjediを使う設定
+" autocmd FileType python setlocal omnifunc=jedi#completions
+" if !exists('g:neocomplcache_force_omni_patterns')
+  " let g:neocomplcache_force_omni_patterns = {}
+" endif
+" let g:neocomplcache_force_omni_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+" let g:jedi#completions_enabled = 0
+" let g:jedi#auto_vim_configuration = 0
+
 " }}} plugin neocomplcache
 
 " plugin vim-template {{{
