@@ -1012,7 +1012,14 @@ nnoremap <silent> ,uz :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mr
 " outline
 nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=botright -auto-preview -auto-resize<CR>
 " tab
-nnoremap <silent> ,ut :<C-u>Unite tab -buffer-name=tab -direction=botright -auto-preview -auto-resize<CR>
+" nnoremap <silent> ,ut :<C-u>Unite tab -buffer-name=tab -direction=botright -auto-preview -auto-resize<CR>
+" tag
+nnoremap <silent> ,ut :<C-u>Unite tag -buffer-name=tag -direction=botright -auto-preview -auto-resize<CR>
+" C-] の代わりに unite-tag を使う設定
+" autocmd BufEnter *
+      " \   if empty(&buftype)
+      " \|    nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immidiately tag<CR>
+      " \|  endif
 " window
 nnoremap <silent> ,uw :<C-u>Unite window -buffer-name=window -direction=botright -auto-preview -auto-resize<CR>
 " snippets
