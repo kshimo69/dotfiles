@@ -220,7 +220,7 @@ else
   NeoBundle 'jQuery'
 
   " Markdown
-  NeoBundle 'tpope/vim-markdown'
+  NeoBundle 'rcmdnk/vim-markdown'
 
   " Tasks
   NeoBundle 'samsonw/vim-task'
