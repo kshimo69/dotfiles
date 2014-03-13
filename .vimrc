@@ -1116,6 +1116,8 @@ let g:quickrun_config['rst'] = {
 
 " markdown
 let g:quickrun_config['markdown'] = {
+  \ 'type': 'markdown/pandoc',
+  \ 'cmdopt': '-s ',
   \ 'outputter': 'browser',
   \ }
 
