@@ -122,7 +122,8 @@ export LANG="ja_JP.UTF-8"
 export GREP_COLOR="01;35"
 export GREP_OPTIONS=--color=auto
 export LSCOLORS=gxfxcxdxbxegedabagacad
-PATH=$HOME/.rbenv/bin:$HOME/local/bin:$HOME/bin:$PATH
+# PATH=$HOME/.rbenv/bin:$HOME/local/bin:$HOME/bin:$PATH
+PATH=$HOME/local/bin:$HOME/bin:$PATH
 #PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Developer/android-sdk-mac_x86/platform-tools:$PATH:$HOME/bin
 typeset -U PATH
 export PATH
@@ -132,7 +133,7 @@ export PERL_AUTOINSTALL="--defaultdeps"
 #export RUBYLIB=$HOME/local/lib/ruby/site_ruby/
 #export GEM_HOME=$HOME/local/lib/rubygems/
 export PYTHONSTARTUP=$HOME/.pythonrc.py
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+# export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export WORKON_HOME=$HOME/.virtualenv
 export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
 export PIP_RESPECT_VIRTUALENV=true
@@ -325,13 +326,13 @@ e_BLUE=`echo -e "\033[1;36m"`
 #    LANG=C command gcc "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 #}
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"  # pythonbrew
 [[ -d "$HOME/repos/powerline/powerline" ]] && which powerline >/dev/null 2>&1 && source ~/repos/powerline/powerline/bindings/zsh/powerline.zsh
 
 # https://github.com/sstephenson/rbenv
 # $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-[[ -d "$HOME/.rbenv" ]] && eval "$(rbenv init -)"
+# [[ -d "$HOME/.rbenv" ]] && eval "$(rbenv init -)"
 
 # note
 # need install ruby-builder
