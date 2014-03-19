@@ -246,6 +246,9 @@ else
   " Calendar
   NeoBundle 'itchyny/calendar.vim'
 
+  " Game
+  NeoBundle 'thinca/vim-threes'
+
   " Brief help
   " :NeoBundleList          - list configured bundles
   " :NeoBundleInstall(!)    - install(update) bundles
