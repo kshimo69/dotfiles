@@ -238,7 +238,7 @@ precmd () {
             d=`expr $d - $COMMAND_TIME`
             if [ "$d" -ge "30" ] ; then
                 COMMAND="$COMMAND "
-                growl -H `echo $SSH_CLIENT | awk '{ print $1 }'` -t "${${(s: :)COMMAND}[1]} done." -m "$COMMAND"
+                growl -H `echo $SSH_CLIENT | awk '{ print $1 }'` -t "${${(s: :)COMMAND}[1]} done." -m "$COMMAND" -P "password"
             fi
         fi
         COMMAND="0"
