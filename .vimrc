@@ -359,7 +359,7 @@ set wildmenu        " コマンドライン補完
 set wildchar=<tab>  " TABで補完
 set wildmode=longest:full,full
 set history=1000    " コマンドヒストリー1000件
-"set foldmethod=indent  " fold with indent
+set foldmethod=indent  " fold with indent
 "set foldlevel=0  " all level folding
 "set foldlevel=99  " all level not folding when open buffer
 "set foldcolumn=4  " show folding line
