@@ -1,0 +1,10 @@
+#!/usr/bin/zsh
+# This hook is run after a new virtualenv is activated.
+
+# virtualenv毎に pip をインストールする場合
+easy_install pip
+
+pip install ipython
+
+# pudb も便利かもよ
+#pip install pudb
