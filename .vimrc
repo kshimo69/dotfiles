@@ -104,6 +104,7 @@ else
   NeoBundle 'Shougo/vimfiler'
   NeoBundle 'kannokanno/unite-todo'
   NeoBundle 'osyo-manga/unite-quickrun_config'
+  NeoBundle 'Shougo/neomru.vim'
 
   " quickrun
   NeoBundle 'thinca/vim-quickrun'
