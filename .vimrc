@@ -498,6 +498,13 @@ hi Visual term=reverse cterm=reverse
 if has('multi_byte_ime') || has('xim')
   highlight CursorIM guibg=LightRed guifg=NONE
 endif
+
+" カーソルの変更
+" コマンドモードは長方形、入力モードは点滅下線
+let &t_ti .= "\e[3 q"
+let &t_SI .= "\e[3 q"
+let &t_EI .= "\e[1 q"
+let &t_te .= "\e[1 q"
 " }}} 色、GUI
 
 " マクロ、キー設定 {{{
