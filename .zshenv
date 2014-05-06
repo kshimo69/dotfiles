@@ -6,9 +6,9 @@ if [ -d $HOME/.anyenv ]; then
     PATH=$HOME/.anyenv/bin:$PATH
     eval "$(anyenv init -)"
     # for tmux
-    for D in `find $HOME/.anyenv/envs -maxdepth 1 -type d`
+    for D in `ls $HOME/.anyenv/envs`
     do
-        PATH=$D/shims:$PATH
+        PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
     done
 fi
 
@@ -19,4 +19,4 @@ export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 export GTAGSLABEL=exuberant-ctags
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"  # pythonbrew
+# [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"  # pythonbrew
