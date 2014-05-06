@@ -304,7 +304,7 @@ setopt prompt_subst
 # コマンド実行後は右プロンプトを消す
 #setopt transient_rprompt
 
-PROMPT='%{$reset_color%}%B%(?.%F{green}%(!.#.%n)%f.%F{red}%(!.#.%n)%f)%b%{$reset_color%}%{$fg[yellow]%}@%m%{$fg[yellow]%} %{$reset_color%}[%{$fg[cyan]%}%~%{$reset_color%}]
+PROMPT='%{$reset_color%}%B%(?.%F{green}%n%f.%F{red}%n%f)%b%{$reset_color%}%{$fg[yellow]%}@%m %{$reset_color%}[%{$fg[cyan]%}%~%{$reset_color%}]
 %#%{$reset_color%} '
 RPROMPT="%1(v|[%F{green}%1v%f]|)"
 
@@ -328,7 +328,7 @@ e_BLUE=`echo -e "\033[1;36m"`
 
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"  # pythonbrew
-[[ -d "$HOME/repos/powerline/powerline" ]] && which powerline >/dev/null 2>&1 && source ~/repos/powerline/powerline/bindings/zsh/powerline.zsh
+# [[ -d "$HOME/repos/powerline/powerline" ]] && which powerline >/dev/null 2>&1 && source ~/repos/powerline/powerline/bindings/zsh/powerline.zsh
 
 # https://github.com/sstephenson/rbenv
 # $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
