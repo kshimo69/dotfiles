@@ -1,0 +1,14 @@
+*.elc
+.*~
+*~
+.#*
+url/cookies
+elpa/archives/*
+var/*
+server/*
+.cask
+.session
+customize.el
+elpa/*.txt
+tramp
+eshell/history

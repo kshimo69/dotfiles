@@ -1,0 +1,36 @@
+;; % curl -fsSkL https://raw.github.com/cask/cask/master/go | python
+;; % cask init
+;; % cask
+;; % cask update
+;; (require 'cask "~/.cask/cask.el")
+;; (cask-initialize)
+
+(source gnu)
+(source melpa)
+(source marmalade)
+
+(depends-on "ag")
+(depends-on "auto-complete")
+(depends-on "ac-dabbrev")
+(depends-on "browse-kill-ring")
+(depends-on "color-theme")
+(depends-on "color-theme-solarized")
+(depends-on "elscreen" :git "git@github.com:knu/elscreen.git")
+(depends-on "flycheck")
+(depends-on "git-gutter")
+(depends-on "pbcopy")
+(depends-on "popup")
+(depends-on "popwin")
+(depends-on "powerline")
+(depends-on "quickrun")
+(depends-on "recentf-ext")
+(depends-on "session")
+
+;; prog modes
+(depends-on "js2-mode")
+(depends-on "json-mode")
+(depends-on "rhtml-mode")
+(depends-on "ruby-mode")
+(depends-on "ruby-block")
+(depends-on "ruby-electric")
+(depends-on "ruby-end")
