@@ -122,7 +122,7 @@ export LANG="ja_JP.UTF-8"
 export GREP_COLOR="01;35"
 export GREP_OPTIONS=--color=auto
 export LSCOLORS=gxfxcxdxbxegedabagacad
-PATH=$HOME/.rbenv/bin:$HOME/local/bin:$HOME/bin:$PATH
+# PATH=$HOME/.rbenv/bin:$HOME/local/bin:$HOME/bin:$PATH
 PATH=$HOME/local/bin:$HOME/bin:$PATH
 #PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Developer/android-sdk-mac_x86/platform-tools:$PATH:$HOME/bin
 typeset -U PATH
@@ -332,7 +332,7 @@ e_BLUE=`echo -e "\033[1;36m"`
 
 # https://github.com/sstephenson/rbenv
 # $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-[[ -d "$HOME/.rbenv" ]] && eval "$(rbenv init -)"
+# [[ -d "$HOME/.rbenv" ]] && eval "$(rbenv init -)"
 
 # note
 # need install ruby-builder
