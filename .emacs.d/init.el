@@ -462,7 +462,6 @@
   )
 
 ;; AutoInstall
-;; http://www.emacswiki.org/emacs/AutoInstall
 (when (require 'auto-install nil t)
   (setq auto-install-directory "~/.emacs.d/plugins/")
   (setq auto-install-use-wget nil)
@@ -484,13 +483,37 @@
   (browse-kill-ring-default-keybindings) ; M-y
   )
 
+;; migemo
+(when (and (executable-find "cmigemo")
+           (require 'migemo nil t))
+  (setq migemo-use-pattern-alist t)
+  (setq migemo-use-frequent-pattern-alist t)
+
+  ;; for cmigemo
+  (setq migemo-command "cmigemo")
+  ;; (setq migemo-options '("-q" "--emacs" "-i" "\a"))
+  (setq migemo-options '("-q" "--emacs"))
+  (setq migemo-dictionary (expand-file-name "~/.emacs.d/share/migemo/utf-8/migemo-dict"))
+
+  (setq migemo-user-dictionary nil)
+  (setq migemo-regex-dictionary nil)
+  (setq migemo-coding-system 'utf-8-unix)
+
+  (load-library "migemo")
+  (migemo-init)
+  )
+
 ;; 変更箇所にジャンプする
-;; (auto-install-from-emacswiki "goto-chg.el")
 (when (require 'goto-chg nil t)
   (global-set-key (kbd "<f7>") 'goto-last-change)
   (global-set-key (kbd "S-<f7>") 'goto-last-change-reverse)
   )
 
+;; markdown
+(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
+(setq auto-mode-alist (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.txt" . markdown-mode) auto-mode-alist))
 
 
 ;;;

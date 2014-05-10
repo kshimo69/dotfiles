@@ -21,6 +21,7 @@
 ;; edit
 (depends-on "goto-chg")
 (depends-on "browse-kill-ring")
+(depends-on "migemo" :git "https://github.com/emacs-jp/migemo.git")
 
 ;; colortheme
 (depends-on "color-theme")
@@ -42,6 +43,9 @@
 (depends-on "magit")
 (depends-on "gist" :git "http://github.com/defunkt/gist.el")
 (depends-on "git-gutter")
+
+;; markdown
+(depends-on "markdown-mode")
 
 ;; javascript
 (depends-on "js2-mode")
