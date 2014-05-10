@@ -343,6 +343,7 @@ endif
 set nowritebackup
 set nobackup
 set noswapfile
+set undodir=~/.vim/undo
 
 " 上書きされたファイルを自動的に読み込む
 set autoread
