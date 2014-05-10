@@ -22,6 +22,9 @@
 (depends-on "goto-chg")
 (depends-on "browse-kill-ring")
 (depends-on "migemo" :git "https://github.com/emacs-jp/migemo.git")
+(depends-on "open-junk-file")
+(depends-on "point-undo")
+(depends-on "popwin")
 
 ;; colortheme
 (depends-on "color-theme")
@@ -33,7 +36,6 @@
 (depends-on "flycheck")
 (depends-on "pbcopy")
 (depends-on "popup")
-(depends-on "popwin")
 (depends-on "quickrun")
 (depends-on "recentf-ext")
 (depends-on "session")

@@ -509,6 +509,49 @@
   (global-set-key (kbd "S-<f7>") 'goto-last-change-reverse)
   )
 
+;; 使い捨てのファイルを開く
+(when (require 'open-junk-file nil t)
+  (setq open-junk-file-format "~/junk/%Y%m%d-%H%M%S.")
+  )
+
+;; カーソル位置を戻す
+(when (require 'point-undo nil t)
+  (global-set-key (kbd "<f6>") 'point-undo)
+  (global-set-key (kbd "S-<f6>") 'point-redo)
+  )
+
+(when (require 'popwin nil t)
+  (defvar popwin:special-display-config-backup popwin:special-display-config)
+  (setq display-buffer-function 'popwin:display-buffer)
+  ;; (setq special-display-function 'popwin:special-display-popup-window)
+  (setq popwin:popup-window-height 0.4)
+
+  ;; popwinで表示するバッファ
+  (setq anything-samewindow nil)
+  (setq popwin:special-display-config
+        (append '(
+                  ;; ("*anything*" :height 20)
+                  ("*Compile-Log*" :height 20 :noselect t)
+                  (dired-mode :position top)
+                  ("*Org Agenda*")
+                  (" *Agenda Commands*")
+                  ("*Backtrace*")
+                  ("*sdic*" :noselect t :height 20)
+                  (" *auto-async-byte-compile*" :height 20 :noselect t)
+                  ("*interpretation*")
+                  ;; ("\\*hg command" :regexp t :noselect)
+                  ("*grep*\\*" :regexp t)
+                  (twittering-mode :position top)
+                  ("*Packages*")
+                  )
+                popwin:special-display-config))
+  (define-key global-map (kbd "C-x p") 'popwin:display-last-buffer)
+  (define-key dired-mode-map "o" #'(lambda ()
+                                     (interactive)
+                                     (popwin:find-file
+                                      (dired-get-file-for-visit))))
+  )
+
 ;; markdown
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (setq auto-mode-alist (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
