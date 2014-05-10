@@ -10,26 +10,40 @@
 (source marmalade)
 
 (depends-on "ag")
+
+;; autocomplete
 (depends-on "auto-complete")
 (depends-on "ac-dabbrev")
+
 (depends-on "browse-kill-ring")
+
+;; colortheme
 (depends-on "color-theme")
 (depends-on "color-theme-solarized")
 (depends-on "color-theme-molokai")
-(depends-on "elscreen" :git "git@github.com:knu/elscreen.git")
+(depends-on "powerline")
+
+(depends-on "elscreen" :git "https://github.com/knu/elscreen.git")
 (depends-on "flycheck")
-(depends-on "git-gutter")
 (depends-on "pbcopy")
 (depends-on "popup")
 (depends-on "popwin")
-(depends-on "powerline")
 (depends-on "quickrun")
 (depends-on "recentf-ext")
 (depends-on "session")
+(depends-on "auto-async-byte-compile")
+(depends-on "auto-install")
 
-;; prog modes
+;; git
+(depends-on "magit")
+(depends-on "gist" :git "http://github.com/defunkt/gist.el")
+(depends-on "git-gutter")
+
+;; javascript
 (depends-on "js2-mode")
 (depends-on "json-mode")
+
+;; ruby
 (depends-on "rhtml-mode")
 (depends-on "ruby-mode")
 (depends-on "ruby-block")
