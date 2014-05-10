@@ -15,6 +15,7 @@
 (depends-on "browse-kill-ring")
 (depends-on "color-theme")
 (depends-on "color-theme-solarized")
+(depends-on "color-theme-molokai")
 (depends-on "elscreen" :git "git@github.com:knu/elscreen.git")
 (depends-on "flycheck")
 (depends-on "git-gutter")
