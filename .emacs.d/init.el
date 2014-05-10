@@ -478,6 +478,19 @@
   (setq gist-view-gist t)
   )
 
+;; browse-kill-ring
+(when (require 'browse-kill-ring nil t)
+  ;; (global-set-key (kbd "C-c k") 'browse-kill-ring)
+  (browse-kill-ring-default-keybindings) ; M-y
+  )
+
+;; 変更箇所にジャンプする
+;; (auto-install-from-emacswiki "goto-chg.el")
+(when (require 'goto-chg nil t)
+  (global-set-key (kbd "<f7>") 'goto-last-change)
+  (global-set-key (kbd "S-<f7>") 'goto-last-change-reverse)
+  )
+
 
 
 ;;;

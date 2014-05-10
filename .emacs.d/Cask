@@ -15,6 +15,11 @@
 (depends-on "auto-complete")
 (depends-on "ac-dabbrev")
 
+;; package
+(depends-on "auto-install")
+
+;; edit
+(depends-on "goto-chg")
 (depends-on "browse-kill-ring")
 
 ;; colortheme
@@ -32,7 +37,6 @@
 (depends-on "recentf-ext")
 (depends-on "session")
 (depends-on "auto-async-byte-compile")
-(depends-on "auto-install")
 
 ;; git
 (depends-on "magit")
