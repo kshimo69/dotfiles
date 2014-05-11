@@ -896,17 +896,17 @@
   ;;  ・M-n     ：カーソル位置の単語を検索パターンに追加
   ;;  ・C-z     ：チラ見
   ;;  ・C-c C-f ：helm-follow-mode の ON/OFF
-  ;; (global-set-key (kbd "C-x C-b") 'helm-for-files)
-  ;; (global-set-key (kbd "C-x C-;") 'helm-for-files)
-  ;; (define-key helm-command-map (kbd "C-;") 'helm-resume)
+  (define-key helm-command-map (kbd "C-;") 'helm-resume)
   ;; (define-key helm-command-map (kbd "y")   'helm-show-kill-ring)
-  ;; (define-key helm-command-map (kbd "o")   'helm-occur)
+  (define-key helm-command-map (kbd "o")   'helm-occur)
   ;; (define-key helm-command-map (kbd "C-s") 'helm-occur-from-isearch)
-  ;; (define-key helm-command-map (kbd "g")   'helm-do-grep) ; C-u 付で起動すると、recursive となる
-  ;; (define-key helm-command-map (kbd "t")   'helm-gtags-find-tag)
+  (define-key helm-command-map (kbd "g")   'helm-do-grep) ; C-u 付で起動すると、recursive となる
+  (define-key helm-command-map (kbd "t")   'helm-gtags-find-tag)
 
-  (global-set-key (kbd "C-;") 'helm-mini)
-  (global-set-key (kbd "C-x C-l") 'helm-mini)
+  ;; (global-set-key (kbd "C-;") 'helm-mini)
+  ;; (global-set-key (kbd "C-x C-l") 'helm-mini)
+  (global-set-key (kbd "C-;") 'helm-for-files)
+  (global-set-key (kbd "C-x C-l") 'helm-for-files)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
   ;; helmコマンドで migemo を有効にする
