@@ -7,7 +7,6 @@ elpa/archives/*
 var/*
 server/*
 .cask
-.session
 customize.el
 elpa/*.txt
 tramp

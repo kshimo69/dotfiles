@@ -113,7 +113,7 @@
 ;; Emacs Lisp のPathを通す
 (add-to-load-path
  ;; download plugins
- ;; "plugins"
+ "plugins"
  ;; ELPA packages
  ;; "elpa"
  ;; 自作の Emacs Lisp
@@ -309,6 +309,7 @@
 
 ;; Emacsを終了してもファイルを編集してた位置やminibuffer への入力内容を覚えておく
 (when (require 'session nil t)
+  (setq session-save-file (expand-file-name "~/.emacs.d/var/session"))
   (setq session-initialize '(de-saveplace session keys menus places)
         session-globals-include '((kill-ring 50)
                                   (session-file-alist 500 t)
@@ -392,15 +393,14 @@
 ;;; plugins
 ;;;
 
-;; ファイル保存時に自動的にバイトコンパイルする
-;; (auto-install-from-emacswiki "auto-async-byte-compile.el")
+;;; ファイル保存時に自動的にバイトコンパイルする
 (when (require 'auto-async-byte-compile nil t)
   ;; 自動バイトコンパイルを無効にするファイル名の正規表現
   (setq auto-async-byte-compile-exclude-files-regexp "~/junk/")
   (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
   )
 
-;; Auto Complete
+;;; Auto Complete
 (when (require 'auto-complete-config nil t)
   (ac-config-default)
 
@@ -461,7 +461,7 @@
           (symbol . "d")))
   )
 
-;; AutoInstall
+;;; AutoInstall
 (when (require 'auto-install nil t)
   (setq auto-install-directory "~/.emacs.d/plugins/")
   (setq auto-install-use-wget nil)
@@ -469,7 +469,7 @@
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
   )
 
-;; git
+;;; git
 (when (require 'magit nil t)
   (global-set-key (kbd "C-c s") 'magit-status)
   )
@@ -477,13 +477,13 @@
   (setq gist-view-gist t)
   )
 
-;; browse-kill-ring
+;;; browse-kill-ring
 (when (require 'browse-kill-ring nil t)
   ;; (global-set-key (kbd "C-c k") 'browse-kill-ring)
   (browse-kill-ring-default-keybindings) ; M-y
   )
 
-;; migemo
+;;; migemo
 (when (and (executable-find "cmigemo")
            (require 'migemo nil t))
   (setq migemo-use-pattern-alist t)
@@ -503,23 +503,24 @@
   (migemo-init)
   )
 
-;; 変更箇所にジャンプする
+;;; 変更箇所にジャンプする
 (when (require 'goto-chg nil t)
   (global-set-key (kbd "<f7>") 'goto-last-change)
   (global-set-key (kbd "S-<f7>") 'goto-last-change-reverse)
   )
 
-;; 使い捨てのファイルを開く
+;;; 使い捨てのファイルを開く
 (when (require 'open-junk-file nil t)
   (setq open-junk-file-format "~/junk/%Y%m%d-%H%M%S.")
   )
 
-;; カーソル位置を戻す
+;;; カーソル位置を戻す
 (when (require 'point-undo nil t)
   (global-set-key (kbd "<f6>") 'point-undo)
   (global-set-key (kbd "S-<f6>") 'point-redo)
   )
 
+;;; popwin
 (when (require 'popwin nil t)
   (defvar popwin:special-display-config-backup popwin:special-display-config)
   (setq display-buffer-function 'popwin:display-buffer)
@@ -543,6 +544,7 @@
                   ("*grep*\\*" :regexp t)
                   (twittering-mode :position top)
                   ("*Packages*")
+                  ("^\*helm .+\*$" :regexp t)
                   )
                 popwin:special-display-config))
   (define-key global-map (kbd "C-x p") 'popwin:display-last-buffer)
@@ -552,12 +554,622 @@
                                       (dired-get-file-for-visit))))
   )
 
-;; markdown
+;;; recentf
+;; 保存先変更
+(set-default 'recentf-save-file "~/.emacs.d/var/recentf")
+(when (require 'recentf nil t)
+  (setq recentf-max-saved-items 2000)
+  (setq recentf-auto-cleanup 30)
+  (setq recentf-auto-save-timer
+        (run-with-idle-timer 300 t 'recentf-save-list))
+  ;; 保存ファイルの設定に リモートファイル tramp の先等を追加。
+  ;; これを実施すると起動時にパスワード等の確認はされない
+  (add-to-list 'recentf-keep 'file-remote-p)
+  (add-to-list 'recentf-keep 'file-readable-p)
+  ;; 除外ファイル
+  (setq recentf-exclude
+        '("\\.elc$"
+          "\\.pyc$"
+          "\\.cache$"
+          "recentf$"
+          "revive$"
+          "/.emacs.d/var/"
+          ))
+  ;; Emacs 終了時に cleanup
+  (add-hook 'kill-emacs-query-functions 'recentf-cleanup)
+  (recentf-mode 1)
+)
+;; 履歴一覧を開く
+(when (require 'recentf-ext nil t)
+  (global-set-key (kbd "C-x f") 'recentf-open-files)
+  (setq recentf-max-saved-items 500)
+  (setq recentf-exclude '("/GTAGS$"))
+  )
+
+;;; revive
+(autoload 'save-current-configuration "revive" "Save status" t)
+(autoload 'resume "revive" "Resume Emacs" t)
+(autoload 'wipe "revive" "Wipe Emacs" t)
+(setq revive:configuration-file (expand-file-name "~/.emacs.d/var/revive"))
+;; C-x Sで保存 C-x Fで復元 C-x KでKill
+(global-set-key (kbd "C-x S") 'save-current-configuration)
+(global-set-key (kbd "C-x F") 'resume)
+(global-set-key (kbd "C-x K") 'wipe)
+;; 終了時に保存
+(add-hook 'kill-emacs-hook 'save-current-configuration)
+
+;; ;;; 使わないバッファを自動的に消す
+;; ;; (auto-install-from-emacswiki "tempbuf.el")
+;; (when (require 'tempbuf nil t)
+;;   (setq tempbuf-life-extension-ratio 100)
+;;   ;; ファイルを開いたら自動的にtempbufを有効にする
+;;   (add-hook 'find-file-hooks 'turn-on-tempbuf-mode)
+;;   ;; diredバッファに対してtempbufを有効にする
+;;   (add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
+;;   )
+
+;;; gtags
+(autoload 'gtags-mode "gtags" "" t)
+(add-hook 'gtags-mode-hook
+          '(lambda ()
+             ;; Local customization (overwrite key mapping)
+             ;; (define-key gtags-mode-map (kbd "C-f") 'scroll-up)
+             ;; (define-key gtags-mode-map (kbd "C-b") 'scroll-down)
+             ;; (define-key gtags-mode-map (kbd "M-t") 'gtags-find-tag)
+             ;; (define-key gtags-mode-map (kbd "M-r") 'gtags-find-rtag)
+             ;; (define-key gtags-mode-map (kbd "M-s") 'gtags-find-symbol)
+             ;; (define-key gtags-mode-map (kbd "M-g") 'gtags-find-with-grep)
+             ;; (define-key gtags-mode-map (kbd "C-t") 'gtags-pop-stack)
+))
+(add-hook 'gtags-select-mode-hook
+          '(lambda ()
+             (setq hl-line-face 'underline)
+             (hl-line-mode 1)
+             ))
+(setq gtags-prefix-key (kbd "C-x g"))
+(setq gtags-suggested-key-mapping t)
+(setq gtags-auto-update t)
+(setq gtags-path-style 'relative)
+;; (setq gtags-read-only t)
+
+;; update GTAGS
+(defun update-gtags (&optional prefix)
+  (interactive "P")
+  (let ((rootdir (gtags-get-rootpath))
+        (args (if prefix "-v" "-iv")))
+    (when rootdir
+      (let* ((default-directory rootdir)
+             (buffer (get-buffer-create "*update GTAGS*")))
+        (save-excursion
+          (set-buffer buffer)
+          (erase-buffer)
+          (let ((result (process-file "gtags" nil buffer nil args)))
+            (if (= 0 result)
+                (message "update GTAGS error with exit status %d" result))))))))
+;; (add-hook 'after-save-hook 'update-gtags)
+
+;; 自動で gtags-mode になるように＆補完リスト作成
+(add-hook 'c-mode-hook
+          '(lambda ()
+             (gtags-mode 1)
+             ))
+(add-hook 'c-mode-common-hook
+          '(lambda()
+             (gtags-mode 1)
+             ))
+(add-hook 'c++-mode-hook
+          '(lambda()
+             (gtags-mode 1)
+             ))
+;; gtags not support python
+;; (add-hook 'python-mode-hook
+;;           '(lambda()
+;;              (gtags-mode 1)
+;;              ))
+
+;; /usr/includeを参照しつつ別のパスでコードを書く場合
+;; $ cd /usr/include
+;; $ gtags ~/.include_gtags
+;; $ export GTAGSROOT=/usr/include #gtagsを実行したパスを設定
+;; $ export GTAGSDBPATH=/.include_gtags #GTAGSなどのインデックスファイルが存在するパスを設定
+
+;;; コマンド連続実行時の動作を変える
+(when (require 'sequential-command-config nil t)
+  (sequential-command-setup-keys)
+  )
+
+;;; ブックマーク
+;; ブックマークファイル変更
+(set-default 'bookmark-default-file "~/.emacs.d/var/emacs.bmk")
+;; ブックマークを変更したら即保存する
+(setq bookmark-save 1)
+;; ブックマークの使い方
+;; ブックマークの設定
+;; C-x r m (bookmark-set)
+;; ブックマーク選択メニューの表示
+;; C-x r l (bookmark-bmenu-list)
+;; 超整理法
+(progn
+  (setq bookmark-sort-flag nil)
+  (defun bookmark-arrange-latest-top ()
+    (let ((latest (bookmark-get-bookmark bookmark)))
+      (setq bookmark-alist (cons latest (delq latest bookmark-alist))))
+    (bookmark-save))
+  (add-hook 'bookmark-after-jump-hook 'bookmark-arrange-latest-top))
+
+;;; dired
+;; 今日変更したファイルを色付け
+;; http://masutaka.net/chalow/2011-12-17-1.html
+(defface dired-todays-face '((t (:foreground "green"))) nil)
+(defvar dired-todays-face 'dired-todays-face)
+(defconst month-name-alist
+  '(("1"  . "Jan") ("2"  . "Feb") ("3"  . "Mar") ("4"  . "Apr")
+    ("5"  . "May") ("6"  . "Jun") ("7"  . "Jul") ("8"  . "Aug")
+    ("9"  . "Sep") ("10" . "Oct") ("11" . "Nov") ("12" . "Dec")))
+(defun dired-today-search (arg)
+  "Fontlock search function for dired."
+  (search-forward-regexp
+   (let ((month-name
+          (cdr (assoc (format-time-string "%b") month-name-alist))))
+     (if month-name
+         (format
+          (format-time-string
+           "\\(%Y-%m-%d\\|%b %e\\|%%s %e\\) [0-9]....") month-name)
+       (format-time-string
+        "\\(%Y-%m-%d\\|%b %e\\) [0-9]....")))
+   arg t))
+(eval-after-load "dired"
+  '(font-lock-add-keywords
+    'dired-mode
+    (list '(dired-today-search . dired-todays-face))))
+;; C-x j で dired-jump
+(global-set-key (kbd "C-x j") 'dired-jump)
+
+;;; 現在の関数名を画面の上に表示する
+(defun toggle-which-func-mode ()
+  (interactive)
+  (which-func-mode)
+  (if which-func-mode
+      (progn
+        (delete (assoc 'which-func-mode mode-line-format)
+                mode-line-format)
+        (setq-default header-line-format
+                      '(which-func-mode ("" which-func-format)))
+        (set-face-foreground 'which-func "pink")
+        )
+    (setq-default header-line-format nil)))
+
+;;;
+;;; grep
+;;;
+;; カーソル位置の単語でgrep-find
+;; (defun grep-find-current-word ()
+;;   (interactive)
+;;   (let ((command "find . -type f -print0 | xargs -0 grep -n -i "))
+;;     (ffap-copy-string-as-kill)
+;;     (grep-find (format "%s %s"
+;;                        command (car kill-ring)))))
+;; (global-set-key (kbd "C-c g") 'grep-find-current-word)
+
+;; igrep - 対話的にgrepする
+(when (require 'igrep nil t)
+;; ;; lgrepに-0u8オプションをつけると出力がutf-8になる
+;; (igrep-define lgrep (igrep-use-zgrep nil)(ignore-regex-option "-n -0u8"))
+;; (igrep-find-define lgrep (igrep-use-zgrep nil)(ignore-regex-option "-n -0u8"))
+  )
+
+;; 複数のgrepバッファを使う
+(when (require 'grep-a-lot nil t)
+  (grep-a-lot-setup-keys)
+  ;; ;; igrep用
+  ;; (grep-a-lot-advise igrep)
+  )
+
+;; grepの検索結果を編集する
+;; (auto-install-from-emacswiki "grep-edit.el")
+(when (require 'grep-edit nil t))
+
+;; color-moccur
+(when (require 'color-moccur nil t)
+  ;; M-oをoccur-by-moccurに
+  (global-set-key (kbd "M-o") 'occur-by-moccur)
+  ;; C-M-oをmoccur-grep-findに
+  (global-set-key (kbd "C-M-o") 'moccur-grep-find)
+  ;; スペース区切りでAND検索
+  (setq moccur-split-word t)
+  ;; ディレクトリ検索で除外するファイル
+  (add-to-list 'dmoccur-exclusion-mask "\\.DS_Store")
+  (add-to-list 'dmoccur-exclusion-mask "^#.+#$")
+  (add-to-list 'dmoccur-exclusion-mask "\\~$")
+  (add-to-list 'dmoccur-exclusion-mask "\\.svn\\/\*")
+  ;; (auto-install-from-emacswiki "moccur-edit.el")
+  (when (require 'moccur-edit nil t))
+  ;; MigemoがあればMigemoを使う
+  (when (and (executable-find "cmigemo")
+             (require 'migemo nil t))
+    (setq moccur-use-migemo t))
+  )
+
+;; ag
+(when (require 'ag nil t)
+  (custom-set-variables
+   '(ag-highlight-search t)  ; 検索結果の中の検索語をハイライトする
+   '(ag-reuse-window 'nil)   ; 現在のウィンドウを検索結果表示に使う
+   '(ag-reuse-buffers 'nil)) ; 現在のバッファを検索結果表示に使う
+  (when (require 'wgrep-ag nil t)
+    (autoload 'wgrep-ag-setup "wgrep-ag")
+    (add-hook 'ag-mode-hook 'wgrep-ag-setup)
+    ;; agの検索結果バッファで"r"で編集モードに。
+    ;; C-x C-sで保存して終了、C-x C-kで保存せずに終了
+    (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
+    )
+  ;; キーバインドを適当につけておくと便利。"\C-xg"とか
+  (global-set-key (kbd "C-c g") 'ag)
+  ;; ;; ag開いたらagのバッファに移動するには以下をつかう
+  ;; (defun my/filter (condp lst)
+  ;;   (delq nil
+  ;;         (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
+  ;; (defun my/get-buffer-window-list-regexp (regexp)
+  ;;   "Return list of windows whose buffer name matches regexp."
+  ;;   (my/filter #'(lambda (window)
+  ;;                  (string-match regexp
+  ;;                                (buffer-name (window-buffer window))))
+  ;;              (window-list)))
+  ;; (global-set-key (kbd "C-c g")
+  ;;                 #'(lambda ()
+  ;;                     (interactive)
+  ;;                     (call-interactively 'ag)
+  ;;                     (select-window ; select ag buffer
+  ;;                      (car (my/get-buffer-window-list-regexp "^\\*ag ")))))
+  )
+
+;; http://sleepboy-zzz.blogspot.jp/2013/10/emacsaghelmhelm-ag-r_4267.html
+;; agがあればgrepのかわりに使う
+(when (and (require 'grep nil t)
+           (require 'thingatpt nil t))
+  ;; Use ag if the command was exist, otherwise use grep
+  (defvar grep-command-before-query
+    (if (zerop (shell-command "which ag"))
+        "ag --nogroup -a -S "
+      ;; Recursive grep by -r
+      "grep -nH -r -e "))
+
+  (defun grep-default-command ()
+    (lexical-let*
+        ((grep-read-from-point
+          (let ((grep-command-before-target
+                 (concat grep-command-before-query
+                         (shell-quote-argument (grep-tag-default)))))
+            (cons (if buffer-file-name
+                      (concat grep-command-before-target
+                              " *."
+                              (file-name-extension buffer-file-name))
+                    (concat grep-command-before-target " ."))
+                  (1+ (length grep-command-before-target))))))
+      grep-read-from-point))
+
+  (setq grep-command (cons (concat grep-command-before-query "\"\" .")
+                           (+ (length grep-command-before-query) 2)))
+  )
+
+;;;
+;;; flymake / flycheck
+;;;
+
+;;; markdown
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (setq auto-mode-alist (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.txt" . markdown-mode) auto-mode-alist))
 
+;;;
+;;; anything / helm
+;;;
+(when (require 'helm-config nil t)
+  (helm-mode 1)
+  (setq helm-buffer-max-length 50)
+
+  ;; ;; tramp で remote-directory を開いているときに、helm-for-files を起動すると反応が悪い
+  ;; ;; 原因は helm-source-files-in-current-dir だったので、この情報源の指定を削除する
+  ;; (setq helm-for-files-preferred-list
+  ;;       '(helm-source-buffers-list
+  ;;         helm-source-recentf
+  ;;         helm-source-bookmarks
+  ;;         helm-source-file-cache
+  ;;         ;; helm-source-files-in-current-dir
+  ;;         helm-source-locate))
+
+  ;; ;; ミニバッファで C-k 入力時にカーソル以降を削除する（C-u C-k でも同様の動きをする）
+  ;; (setq helm-delete-minibuffer-contents-from-point t)
+
+  ;; ;; 自動補完を無効にする
+  ;; (setq helm-ff-auto-update-initial-value nil)
+
+  ;; C-h でバックスペースと同じように文字を削除できるようにする
+  (define-key helm-read-file-map (kbd "C-h") 'delete-backward-char)
+  (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+
+  ;; ;; プレフィックスキーを C-; に設定する
+  ;; (custom-set-variables '(helm-command-prefix-key "C-;"))
+
+  ;; キーバインドを設定する。コマンド起動後は、以下のキーが利用可能となる
+  ;;  ・M-n     ：カーソル位置の単語を検索パターンに追加
+  ;;  ・C-z     ：チラ見
+  ;;  ・C-c C-f ：helm-follow-mode の ON/OFF
+  ;; (global-set-key (kbd "C-x C-b") 'helm-for-files)
+  ;; (global-set-key (kbd "C-x C-;") 'helm-for-files)
+  ;; (define-key helm-command-map (kbd "C-;") 'helm-resume)
+  ;; (define-key helm-command-map (kbd "y")   'helm-show-kill-ring)
+  ;; (define-key helm-command-map (kbd "o")   'helm-occur)
+  ;; (define-key helm-command-map (kbd "C-s") 'helm-occur-from-isearch)
+  ;; (define-key helm-command-map (kbd "g")   'helm-do-grep) ; C-u 付で起動すると、recursive となる
+  ;; (define-key helm-command-map (kbd "t")   'helm-gtags-find-tag)
+
+  (global-set-key (kbd "C-;") 'helm-mini)
+  (global-set-key (kbd "C-x C-l") 'helm-mini)
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+
+  ;; helmコマンドで migemo を有効にする
+  (when (require 'helm-migemo nil t)
+    (setq helm-migemize-command-idle-delay helm-idle-delay)
+    ;; (helm-migemize-command helm-for-files)
+    )
+
+  ;; ag
+  (when (require 'helm-ag nil t)
+    (setq helm-ag-base-command "ag --nocolor --nogroup")
+    (global-set-key (kbd "C-M-g") 'helm-ag)
+    )
+
+  ;; helpのdescbinds
+  (when (require 'helm-descbinds nil t)
+    (global-set-key (kbd "C-x C-h b") 'helm-descbinds)
+    )
+
+  ;; ;; helm-occur コマンドの起動時に helm-maybe-use-default-as-input（helm コマンドに :input パラメータが
+  ;; ;; 指定されていなければ、:default の値を使って表示を更新する）を設定する
+  ;; (defadvice helm-occur (around ad-helm-occur activate)
+  ;;   (let ((helm-maybe-use-default-as-input t))
+  ;;     ad-do-it))
+
+  ;; ;; 情報源 helm-source-occur と helm-source-grep について、利用開始時点から helm-follow-mode を ON にする
+  ;; ;; 情報源 helm-source-locate と helm-source-grep について、検索必要最低文字数を 2 とする。
+  ;; ;; helm-occur コマンドを使う際に migemo でマッチした箇所がハイライトするようにする
+  ;; (add-hook 'helm-before-initialize-hook
+  ;;           (lambda ()
+  ;;             (when helm-source-locate
+  ;;               ;; (setcdr (assq 'candidate-number-limit helm-source-locate) helm-candidate-number-limit)
+  ;;               (setcdr (assq 'requires-pattern helm-source-locate) 2))
+  ;;             (when helm-source-occur
+  ;;               (helm-attrset 'follow 1 helm-source-occur)
+  ;;               (delete '(nohighlight) helm-source-occur))
+  ;;             (when helm-source-grep
+  ;;               (helm-attrset 'follow 1 helm-source-grep)
+  ;;               ;; (setcdr (assq 'candidate-number-limit helm-source-grep) helm-candidate-number-limit)
+  ;;               (setcdr (assq 'requires-pattern helm-source-grep) 2))))
+
+  ;; http://d.hatena.ne.jp/a666666/20100221/1266695355
+  ;; エラーを抑制する対策（エラーが発生した際に設定してみてください）
+  ;; (setq max-lisp-eval-depth 5000)
+  ;; (setq max-specpdl-size 5000)
+
+  ;; ;; helm-delete-minibuffer-contents-from-point（ミニバッファで C-k 入力時にカーソル以降を
+  ;; ;; 削除する)を設定すると、pattern 文字入力後に action が表示されない症状が出ることの対策
+  ;; (defadvice helm-select-action (around ad-helm-select-action activate)
+  ;;   (let ((helm-delete-minibuffer-contents-from-point nil))
+  ;;     ad-do-it))
+
+  ;; ;; helm と elscreen を一緒に使う際に helm の helm-follow-mode を使うと、カーソル制御が
+  ;; ;; おかしくなることの対策
+  ;; (defadvice helm (around ad-helm-for-elscreen activate)
+  ;;   (let ((elscreen-screen-update-hook nil))
+  ;;     ad-do-it))
+
+  (cond
+   (windows-p
+    ;; w32-ime-buffer-switch-p が t の場合に、ミニバッファで漢字を使えるようにする対策
+    (setq w32-ime-buffer-switch-p t) ; バッファ切り替え時にIME状態を引き継ぐ
+    (defadvice helm (around ad-helm-for-w32-ime activate)
+      (let ((select-window-functions nil)
+            (w32-ime-composition-window (minibuffer-window)))
+        ad-do-it))
+
+    ;; UNC や Tramp のパスに対して、helm-reduce-file-name が正しく機能しないことの対策
+    ;; （ (helm-mode 1) として dired を動かした際に C-l（helm-find-files-down-one-level）
+    ;; 　が正しく機能するようにする対策）
+    (defadvice helm-reduce-file-name (around ad-helm-reduce-file-name activate)
+      (let ((fname (ad-get-arg 0))
+            (level (ad-get-arg 1)))
+        (while (> level 0)
+          (setq fname (expand-file-name (concat fname "/../")))
+          (setq level (1- level)))
+        (setq ad-return-value fname)))
+
+    ;; ffap を使っていて find-file-at-point を起動した場合に、カーソル位置の UNC が正しく
+    ;; 取り込まれないことの対策
+    (defadvice helm-completing-read-default-1 (around ad-helm-completing-read-default-1 activate)
+      (if (listp (ad-get-arg 4))
+          (ad-set-arg 4 (car (ad-get-arg 4))))
+      ;; (cl-letf (((symbol-function 'regexp-quote)
+      (letf (((symbol-function 'regexp-quote)
+              (symbol-function 'identity)))
+        ad-do-it))
+
+    ;; w32-symlinks を使っている場合に C-u 付きで helm-do-grep を起動すると、選択したファイルを
+    ;; no conversion で開いてしまうことの対策
+    (defadvice find-file (around ad-find-file activate)
+      (let ((current-prefix-arg nil))
+        ad-do-it))
+    )  ;; windows-p
+   )
+
+  )
+
+;;; SKK
+(when (require 'skk-autoloads nil t)
+  (setq skk-large-jisyo "~/.emacs.d/share/skk/SKK-JISYO.L")
+  (setq skk-aux-large-jisyo "~/.emacs.d/share/skk/SKK-JISYO.L")
+  (setq skk-tut-file "~/.emacs.d/share/skk/SKK.tut")
+
+  ;; ;; SKK使用時のインクリメント検索用設定
+  ;; ;; http://openlab.jp/skk/skk-manual/skk-manual-ja_3.html#SEC7
+  ;; (add-hook 'isearch-mode-hook
+  ;;           #'(lambda ()
+  ;;               (when (and (boundp 'skk-mode)
+  ;;                          skk-mode
+  ;;                          skk-isearch-mode-enable)
+  ;;                 (skk-isearch-mode-setup))))
+  ;; (add-hook 'isearch-mode-end-hook
+  ;;           #'(lambda ()
+  ;;               (when (and (featurep 'skk-isearch)
+  ;;                          skk-isearch-mode-enable)
+  ;;                 (skk-isearch-mode-cleanup))))
+
+  ;; C-x C-j でSKK
+  (global-set-key (kbd "C-x C-j") 'skk-mode)
+
+  ;; C-\ でも SKK に切り替えられるように設定
+  (setq default-input-method "japanese-skk")
+
+  ;; SKK句読点変更
+  ;; (setq skk-kuten-touten-alist '((jp . ("。" . "，"))))
+  ;; (setq-default skk-kutouten-type 'jp)
+
+  ;; 変換時，改行でも確定
+  (setq skk-egg-like-newline t)
+
+  ;; メッセージは日本語で
+  (setq skk-japanese-message-and-error t)
+
+  ;; "「"を入力したら"」"も自動で挿入
+  (setq skk-auto-insert-paren t)
+
+  ;; 漢字登録のミスをチェックする
+  (setq skk-check-okurigana-on-touroku t)
+
+  ;; 変換候補をツールチップに表示
+  ;; (setq skk-show-tooltip t)
+
+  ;; 変換候補をインラインに表示
+  (setq skk-show-inline t)
+
+  ;; BSを押した時に前の候補を表示する
+  (setq skk-delete-implies-kakutei t)
+
+  ;; 10 分放置すると個人辞書が自動的に保存される設定
+  (defvar skk-auto-save-jisyo-interval 600)
+  (defun skk-auto-save-jisyo ()
+    (skk-save-jisyo)
+    (skk-bayesian-save-history)
+    (skk-bayesian-corpus-save))
+  (run-with-idle-timer skk-auto-save-jisyo-interval
+                       skk-auto-save-jisyo-interval
+                       'skk-auto-save-jisyo)
+  )
+
+;;; org-mode
+(when (require 'org-install nil t)
+  (setq org-startup-truncated nil)
+  (setq org-return-follows-link t)
+  (setq org-agenda-start-with-clockreport-mode t)
+  (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c b") 'org-iswitchb)
+  (global-set-key (kbd "C-c r") 'org-remember)
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (add-hook 'org-mode-hook '(lambda ()
+                              (define-key org-mode-map (kbd "C-c C-p")
+                                'outline-previous-visible-heading)
+                              (define-key org-mode-map (kbd "C-c C-n")
+                                'outline-next-visible-heading)
+                              ))
+  (setq org-directory "~/org/")
+  (setq org-agenda-files (list "~/org/agenda.org"
+                               "~/org/code-reading.org"
+                               "~/org/mobileorg.org"
+                               ))
+  ;; (setq org-agenda-files (list org-directory))
+  (setq org-default-notes-file (concat org-directory "agenda.org"))
+  ;; (add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
+  ;; (setq hl-line-face 'underline)
+
+  ;; http://unknownplace.org/archives/orgmode-meets-blosxom.html
+  ;; バッファ内のコードブロッックをそのコード用のモードと同じ色でハイライト
+  (setq org-src-fontify-natively t)
+  ;; カーソルをコードに合わせて C-c ' するとそのモードで編集バッファが立ちあがる
+
+  ;; TODO keywords as workflow state
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "WAIT(w)" "CALENDAR(c)"
+                    "SOMEDAY(s)" "REFERENCE(r)" "PROJECT(p)"
+                    "|" "DONE(d!)")
+          (sequence "NEW(n)" "ASSIGNED(a!)" "|" "FIXED(f!)")
+          ))
+  ;; record DONE time
+  (setq org-log-done 'time)
+  ;; repeat task
+  (require 'org-habit nil t)
+
+  ;; show TODOs
+  (setq org-agenda-custom-commands
+        '(("x" "Unscheduled TODO" tags-todo "-SCHEDULED=>\"<now>\"" nil)))
+
+  ;; http://d.hatena.ne.jp/rubikitch/20100819/org
+  (setq org-capture-templates
+        '(("n" "Note" entry
+           (file+headline nil "Note")
+           "** %?\n   Added: %T\n   %i\n")
+          ("t" "Todo" entry
+           (file+headline nil "Tasks")
+           "** TODO %?\n   Added: %T\n   %a\n   %i\n")
+          ("b" "Bug" entry
+           (file+headline nil "Tasks")
+           "** NEW %?   :bug:\n   Added: %T\n   %a\n   %i\n")
+          ("i" "Idea" entry
+           (file+headline nil "New Ideas")
+           "** SOMEDAY %?\n   Added: %T\n   %i\n")
+          ("d" "Daily review" entry
+           (file+headline nil "Tasks")
+           "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/org/daily_review.txt]")
+          ("w" "Weekly review" entry
+           (file+headline nil "Tasks")
+           "** TODO Weekly Review %T[/] :review:\n%?%[~/org/weekly_review.txt]")
+          ))
+
+  ;; http://d.hatena.ne.jp/rubikitch/20090121/1232468026
+  ;; http://d.hatena.ne.jp/tomoya/20090309/1236588957
+  (org-remember-insinuate)
+  (setq org-remember-templates
+        '(("Note" ?n "** %^{Brief Description} %^g\n%?\n%i\nAdded: %T" nil "Note")
+          ("Bug" ?b "** NEW %^{Brief Description} :bug%^g\n%?\n%i\n%a\nAdded: %T" nil "Tasks")
+          ("Idea" ?i "** SOMEDAY %^{Brief Description} %^g\n%?\n%i\nAdded: %T" nil "New Ideas")
+          ("Todo" ?t "** TODO %^{Brief Description} %^g\n%?\n%i\nAdded: %T" nil "Tasks")
+          ("Daily review" ?d "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/org/daily_review.txt]\n" nil "Tasks")
+          ("Weekly review" ?w "** TODO Weekly Review %T[/] :review:\n%?%[~/org/weekly_review.txt]\n" nil "Tasks")
+          ))
+
+  (defvar org-code-reading-software-name nil)
+  (defvar org-code-reading-file "code-reading.org")
+  (defun org-code-reading-read-software-name ()
+    (set (make-local-variable 'org-code-reading-software-name)
+         (read-string "Code Reading Software: "
+                      (or org-code-reading-software-name
+                          (file-name-nondirectory
+                           (buffer-file-name))))))
+
+  (defun org-code-reading-get-prefix (lang)
+    (concat "[" lang "]"
+            "[" (org-code-reading-read-software-name) "]"))
+  (defun org-remember-code-reading ()
+    (interactive)
+    (let* ((prefix (org-code-reading-get-prefix (substring (symbol-name major-mode) 0 -5)))
+           (org-remember-templates
+            `(("CodeReading" ?r "** %(identity prefix)%^{Brief Description}\n   %?\n   %a\n   %T"
+               ,org-code-reading-file "Memo"))))
+      (org-remember)))
+  (global-set-key (kbd "C-x m") 'org-remember-code-reading)
+  )
 
 ;;;
 ;;; key-bind
@@ -565,6 +1177,8 @@
 
 ;; C-hをバックスペースに
 (global-set-key (kbd "C-h") 'delete-backward-char)
+;; mini-bufferとかどこでも効くように
+;; (keyboard-translate ?\C-h ?\C-?)
 
 ;; C-h に割り当てられている関数 help-command を C-x C-h に割り当てる
 (global-set-key (kbd "C-x C-h") 'help-command)

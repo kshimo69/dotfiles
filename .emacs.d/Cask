@@ -9,8 +9,6 @@
 (source melpa)
 (source marmalade)
 
-(depends-on "ag")
-
 ;; autocomplete
 (depends-on "auto-complete")
 (depends-on "ac-dabbrev")
@@ -19,12 +17,16 @@
 (depends-on "auto-install")
 
 ;; edit
+(depends-on "auto-async-byte-compile")
 (depends-on "goto-chg")
 (depends-on "browse-kill-ring")
 (depends-on "migemo" :git "https://github.com/emacs-jp/migemo.git")
 (depends-on "open-junk-file")
 (depends-on "point-undo")
 (depends-on "popwin")
+(depends-on "recentf-ext")
+(depends-on "revive")
+(depends-on "sequential-command")
 
 ;; colortheme
 (depends-on "color-theme")
@@ -37,14 +39,37 @@
 (depends-on "pbcopy")
 (depends-on "popup")
 (depends-on "quickrun")
-(depends-on "recentf-ext")
 (depends-on "session")
-(depends-on "auto-async-byte-compile")
+
+;; grep
+(depends-on "grep-a-lot")
+(depends-on "color-moccur")
+(depends-on "ag")
+(depends-on "wgrep-ag")
+
+;; helm
+(depends-on "helm")
+(depends-on "helm-ag")
+(depends-on "ac-helm")
+(depends-on "helm-c-moccur")
+(depends-on "helm-c-yasnippet")
+(depends-on "helm-descbinds")
+(depends-on "helm-gist")
+(depends-on "helm-git-grep")
+(depends-on "helm-google")
+(depends-on "helm-gtags")
+(depends-on "helm-helm-commands")
+(depends-on "helm-migemo")
+(depends-on "helm-pydoc")
+(depends-on "helm-rb")
 
 ;; git
 (depends-on "magit")
 (depends-on "gist" :git "http://github.com/defunkt/gist.el")
 (depends-on "git-gutter")
+
+;; org
+(depends-on "org")
 
 ;; markdown
 (depends-on "markdown-mode")
