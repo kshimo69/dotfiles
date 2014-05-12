@@ -65,7 +65,7 @@
 
 ;; git
 (depends-on "magit")
-(depends-on "gist" :git "http://github.com/defunkt/gist.el")
+(depends-on "gist" :git "https://github.com/defunkt/gist.el")
 (depends-on "git-gutter")
 
 ;; org
