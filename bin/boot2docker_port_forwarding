@@ -1,0 +1,14 @@
+for i in {49000..49900}; do
+    VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port$i,tcp,,$i,,$i";
+    VBoxManage modifyvm "boot2docker-vm" --natpf1 "udp-port$i,udp,,$i,,$i";
+done
+
+# % boot2docker ssh
+# User: docker
+# Pwd:  tcuser
+# % ssh-keygen -R '[localhost]:2022'
+
+# Upgrading to a newer release of boot2docker
+# % boot2docker stop
+# % boot2docker download
+# % boot2docker start
