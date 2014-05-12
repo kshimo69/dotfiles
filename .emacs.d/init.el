@@ -177,6 +177,7 @@
 ;; メニューバー、ツールバー、スクロールバー非表示
 ;; (menu-bar-mode nil)
 ;; (tool-bar-mode nil)
+(menu-bar-mode -1)
 (tool-bar-mode -1)
 ;; (scroll-bar-mode nil)
 (scroll-bar-mode -1)
