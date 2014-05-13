@@ -830,7 +830,7 @@
            (require 'thingatpt nil t))
   ;; Use ag if the command was exist, otherwise use grep
   (defvar grep-command-before-query
-    (if (zerop (shell-command "which ag"))
+    (if (executable-find "ag")
         "ag --nogroup -a -S "
       ;; Recursive grep by -r
       "grep -nH -r -e "))
