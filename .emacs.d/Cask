@@ -75,6 +75,14 @@
 ;; markdown
 (depends-on "markdown-mode")
 
+;; c
+(depends-on "c-eldoc")
+
+;; elisp
+(depends-on "eldoc-extension")
+(depends-on "lispxmp")
+
+
 ;; javascript
 (depends-on "js2-mode")
 (depends-on "json-mode")

@@ -21,4 +21,7 @@ export GTAGSLABEL=exuberant-ctags
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 # [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"  # pythonbrew
 
+# docker
+export DOCKER_HOST=tcp://localhost:4243
+
 true
