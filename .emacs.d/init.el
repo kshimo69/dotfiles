@@ -45,6 +45,7 @@
 ;; Cask
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
+(when (require 'pallet nil t)
 ;; Emacs の種類バージョンを判別するための変数を定義
 ;; @see http://github.com/elim/dotemacs/blob/master/init.el
 (defun x->bool (elt) (not (not elt)))

@@ -15,6 +15,7 @@
 
 ;; package
 (depends-on "auto-install")
+(depends-on "pallet")
 
 ;; edit
 (depends-on "auto-async-byte-compile")
