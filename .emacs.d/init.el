@@ -2245,6 +2245,7 @@
            ;; シェルモードの入出力文字コード
            (set-buffer-process-coding-system 'sjis-dos 'sjis-unix)
            (set-buffer-file-coding-system    'sjis-unix)
+           (set-terminal-coding-system 'sjis-dos)
            ;; (set-buffer-process-coding-system 'utf-8-dos 'utf-8-unix)
            ;; (set-buffer-file-coding-system    'utf-8-unix)
            )))
@@ -2259,6 +2260,7 @@
                ;; シェルモードの入出力文字コード
                (set-buffer-process-coding-system 'sjis-dos 'sjis-unix)
                (set-buffer-file-coding-system    'sjis-unix)
+               (set-terminal-coding-system 'sjis-dos)
                ;; (set-buffer-process-coding-system 'utf-8-dos 'utf-8-unix)
                ;; (set-buffer-file-coding-system    'utf-8-unix)
                ))
