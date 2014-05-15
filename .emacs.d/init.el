@@ -935,7 +935,7 @@
   ;;  ・M-n     ：カーソル位置の単語を検索パターンに追加
   ;;  ・C-z     ：チラ見
   ;;  ・C-c C-f ：helm-follow-mode の ON/OFF
-  (define-key helm-command-map (kbd "C-;") 'helm-resume)
+  ;; (define-key helm-command-map (kbd "C-;") 'helm-resume)
   ;; (define-key helm-command-map (kbd "y")   'helm-show-kill-ring)
   (define-key helm-command-map (kbd "o")   'helm-occur)
   ;; (define-key helm-command-map (kbd "C-s") 'helm-occur-from-isearch)
@@ -951,7 +951,7 @@
   ;; helmコマンドで migemo を有効にする
   (when (require 'helm-migemo nil t)
     (setq helm-migemize-command-idle-delay helm-idle-delay)
-    ;; (helm-migemize-command helm-for-files)
+    (helm-migemize-command helm-for-files)
     )
 
   ;; ag
@@ -1004,43 +1004,43 @@
   ;;   (let ((elscreen-screen-update-hook nil))
   ;;     ad-do-it))
 
-  (cond
-   (windows-p
-    ;; w32-ime-buffer-switch-p が t の場合に、ミニバッファで漢字を使えるようにする対策
-    (setq w32-ime-buffer-switch-p t) ; バッファ切り替え時にIME状態を引き継ぐ
-    (defadvice helm (around ad-helm-for-w32-ime activate)
-      (let ((select-window-functions nil)
-            (w32-ime-composition-window (minibuffer-window)))
-        ad-do-it))
+  ;; (cond
+  ;;  (windows-p
+  ;;   ;; w32-ime-buffer-switch-p が t の場合に、ミニバッファで漢字を使えるようにする対策
+  ;;   (setq w32-ime-buffer-switch-p t) ; バッファ切り替え時にIME状態を引き継ぐ
+  ;;   (defadvice helm (around ad-helm-for-w32-ime activate)
+  ;;     (let ((select-window-functions nil)
+  ;;           (w32-ime-composition-window (minibuffer-window)))
+  ;;       ad-do-it))
 
-    ;; UNC や Tramp のパスに対して、helm-reduce-file-name が正しく機能しないことの対策
-    ;; （ (helm-mode 1) として dired を動かした際に C-l（helm-find-files-down-one-level）
-    ;; 　が正しく機能するようにする対策）
-    (defadvice helm-reduce-file-name (around ad-helm-reduce-file-name activate)
-      (let ((fname (ad-get-arg 0))
-            (level (ad-get-arg 1)))
-        (while (> level 0)
-          (setq fname (expand-file-name (concat fname "/../")))
-          (setq level (1- level)))
-        (setq ad-return-value fname)))
+  ;;   ;; UNC や Tramp のパスに対して、helm-reduce-file-name が正しく機能しないことの対策
+  ;;   ;; （ (helm-mode 1) として dired を動かした際に C-l（helm-find-files-down-one-level）
+  ;;   ;; 　が正しく機能するようにする対策）
+  ;;   (defadvice helm-reduce-file-name (around ad-helm-reduce-file-name activate)
+  ;;     (let ((fname (ad-get-arg 0))
+  ;;           (level (ad-get-arg 1)))
+  ;;       (while (> level 0)
+  ;;         (setq fname (expand-file-name (concat fname "/../")))
+  ;;         (setq level (1- level)))
+  ;;       (setq ad-return-value fname)))
 
-    ;; ffap を使っていて find-file-at-point を起動した場合に、カーソル位置の UNC が正しく
-    ;; 取り込まれないことの対策
-    (defadvice helm-completing-read-default-1 (around ad-helm-completing-read-default-1 activate)
-      (if (listp (ad-get-arg 4))
-          (ad-set-arg 4 (car (ad-get-arg 4))))
-      ;; (cl-letf (((symbol-function 'regexp-quote)
-      (letf (((symbol-function 'regexp-quote)
-              (symbol-function 'identity)))
-        ad-do-it))
+  ;;   ;; ffap を使っていて find-file-at-point を起動した場合に、カーソル位置の UNC が正しく
+  ;;   ;; 取り込まれないことの対策
+  ;;   (defadvice helm-completing-read-default-1 (around ad-helm-completing-read-default-1 activate)
+  ;;     (if (listp (ad-get-arg 4))
+  ;;         (ad-set-arg 4 (car (ad-get-arg 4))))
+  ;;     ;; (cl-letf (((symbol-function 'regexp-quote)
+  ;;     (letf (((symbol-function 'regexp-quote)
+  ;;             (symbol-function 'identity)))
+  ;;       ad-do-it))
 
-    ;; w32-symlinks を使っている場合に C-u 付きで helm-do-grep を起動すると、選択したファイルを
-    ;; no conversion で開いてしまうことの対策
-    (defadvice find-file (around ad-find-file activate)
-      (let ((current-prefix-arg nil))
-        ad-do-it))
-    )  ;; windows-p
-   )
+  ;;   ;; w32-symlinks を使っている場合に C-u 付きで helm-do-grep を起動すると、選択したファイルを
+  ;;   ;; no conversion で開いてしまうことの対策
+  ;;   (defadvice find-file (around ad-find-file activate)
+  ;;     (let ((current-prefix-arg nil))
+  ;;       ad-do-it))
+  ;;   )  ;; windows-p
+  ;;  )
 
   )
 
