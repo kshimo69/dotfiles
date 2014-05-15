@@ -2229,9 +2229,9 @@
   ;; (setq explicit-shell-file-name "bash.exe")
   ;; (setq shell-command-switch "-c")
   ;; (setq shell-file-name "bash.exe")
-  (setq explicit-shell-file-name "cmd.exe")
-  (setq shell-command-switch "")
-  (setq shell-file-name "cmd.exe")
+  (setq explicit-shell-file-name "cmdproxy.exe")
+  (setq shell-command-switch nil)
+  (setq shell-file-name "cmdproxy.exe")
 
   ;; (M-! and M-| and compile.el)
   ;; (setq shell-file-name "bash.exe")
