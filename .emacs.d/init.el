@@ -940,13 +940,19 @@
   (define-key helm-command-map (kbd "o")   'helm-occur)
   ;; (define-key helm-command-map (kbd "C-s") 'helm-occur-from-isearch)
   (define-key helm-command-map (kbd "g")   'helm-do-grep) ; C-u 付で起動すると、recursive となる
-  (define-key helm-command-map (kbd "t")   'helm-gtags-find-tag)
 
   ;; (global-set-key (kbd "C-;") 'helm-mini)
   ;; (global-set-key (kbd "C-x C-l") 'helm-mini)
   (global-set-key (kbd "C-;") 'helm-for-files)
   (global-set-key (kbd "C-x C-l") 'helm-for-files)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+
+  ;; helm-gtags
+  (when (require 'helm-gtags nil t)
+    (setq helm-gtags-auto-update t)     ; ファイル保存時に非同期で自動更新する
+    (setq helm-gtags-use-input-at-cursor t) ; カーソル下の単語がデフォルトで選択される
+    (define-key helm-command-map (kbd "t") 'helm-gtags-find-tag)
+    )
 
   ;; helmコマンドで migemo を有効にする
   (when (require 'helm-migemo nil t)
