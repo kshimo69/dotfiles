@@ -41,6 +41,7 @@
 (depends-on "popup")
 (depends-on "quickrun")
 (depends-on "session")
+(depends-on "jabber")
 
 ;; grep
 (depends-on "grep-a-lot")
@@ -81,7 +82,6 @@
 ;; elisp
 (depends-on "eldoc-extension")
 (depends-on "lispxmp")
-
 
 ;; javascript
 (depends-on "js2-mode")

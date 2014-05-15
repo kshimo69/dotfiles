@@ -367,8 +367,8 @@
               (my-make-scratch 1))))
 
 ;; 会社だったらproxyとかの設定
-(when (locate-library "init-passwd")
-  (require 'init-passwd))
+(when (locate-library "passwd")
+  (require 'passwd))
 
 ;; custom-file
 (setq custom-file (expand-file-name "customize.el" user-emacs-directory))
@@ -900,6 +900,88 @@
   (defun flymake-create-temp-in-system-tempdir (filename prefix)
     (make-temp-file (or prefix "flymake")))
   )
+
+;;;
+;;; jabber
+;;;
+;; (when (not (package-installed-p 'jabber))
+;;   (package-install 'jabber))
+
+;; ;; http://www.emacswiki.org/JabberEl
+;; (require 'jabber-autoloads)
+
+;; (require 'jabber)
+;; (setq jabber-account-list
+;;       '(("nwdcom"
+;;          (:network-server . "nwdcom")
+;;          ;; (:port . 5222)
+;;          (:connection-type . ssl))))
+;;          )))
+
+;; ;; 別フレームで表示
+;; (setq
+;;  special-display-regexps
+;;  '(("jabber-chat"
+;;     (width . 80)
+;;     (scroll-bar-width . 16)
+;;     (height . 15)
+;;     (tool-bar-lines . 0)
+;;     (menu-bar-lines 0)
+;;     (left . 80))))
+
+;; (defun jabber ()
+;;   (interactive)
+;;   (require 'jabber)
+;;   (define-key jabber-chat-mode-map [escape]
+;;     'my-jabber-chat-delete-or-bury)
+;;   (define-key mode-specific-map "jr"
+;;     (lambda ()
+;;       (interactive)
+;;       (switch-to-buffer "*-jabber-*")))
+;;   (define-key mode-specific-map "jc"
+;;     '(lambda ()
+;;        (interactive)
+;;        (call-interactively 'jabber-connect)))
+;;   (define-key mode-specific-map "jd"
+;;     '(lambda ()
+;;        (interactive)
+;;        (call-interactively 'jabber-disconnect)))
+;;   (define-key mode-specific-map "jj"
+;;     '(lambda ()
+;;        (interactive)
+;;        (call-interactively 'jabber-chat-with)))
+;;   (define-key mode-specific-map "ja"
+;;     '(lambda ()
+;;        (interactive)
+;;        (jabber-send-presence "away" "" 10)))
+;;   (define-key mode-specific-map "jo"
+;;     '(lambda ()
+;;        (interactive)
+;;        (jabber-send-presence "" "" 10)))
+;;   (define-key mode-specific-map "jx"
+;;     '(lambda ()
+;;        (interactive)
+;;        (jabber-send-presence "xa" "" 10)))
+;;   (jabber-connect))
+
+;; (setq
+;;  jabber-history-enabled t
+;;  jabber-use-global-history nil
+;;  jabber-backlog-number 400
+;;  jabber-backlog-days 300
+;;  )
+
+;; ;; ステータス変更を自動通知しない
+;; ;; (set  jabber-alert-presence-message-function (lambda (who oldstatus newstatus statustext) nil))
+
+;; ;; Highlight URL and open in browser-url with C-c RET
+;; (add-hook 'jabber-chat-mode-hook 'goto-address)
+
+;; ;; ;; Message alert hooks
+;; ;; (define-jabber-alert echo "Show a message in the echo area"
+;; ;;   (lambda (msg)
+;; ;;     (unless (minibuffer-prompt)
+;; ;;       (message "%s" msg))))
 
 ;;;
 ;;; anything / helm
