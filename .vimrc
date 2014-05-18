@@ -89,6 +89,8 @@ else
   NeoBundle 'Shougo/neosnippet.git'
   NeoBundle 'Shougo/neosnippet-snippets.git'
   NeoBundle 'vim-scripts/snipmate-snippets'
+  NeoBundle 'osyo-manga/vim-marching'
+  NeoBundle 'osyo-manga/vim-reunions'
 
   " ファイル管理関係
   NeoBundle 'thinca/vim-template'
@@ -182,6 +184,12 @@ else
   " HTMLが開かれるまでロードしない
   NeoBundleLazy 'mattn/zencoding-vim', {
     \ "autoload": {"filetypes": ['html']}}
+
+  " C++
+  NeoBundleLazy 'vim-jp/cpp-vim', {
+    \ 'autoload' : {'filetypes' : 'cpp'}
+    \ }
+  NeoBundle 'Mizuchi/STL-Syntax'
 
   " Python
   NeoBundleLazy 'davidhalter/jedi-vim', {
@@ -429,28 +437,29 @@ if has('gui_running')
   "set lines=30
   "set columns=120
   gui
-  set transparency=210
-endif
-if has('gui_macvim')
-  set guioptions& " initialize
-  set guioptions-=T
-  set guioptions+=a
-  set imdisable
-  set antialias
-  colorscheme macvim
-  "set guifont=M+2VM+IPAG\ circle\ Regular:h14
-  "set guifont=Monaco:h14
-  "set guifont=Ricty\ Regular:h16
-  set guifont=Ricty\ Discord\ Regular\ for\ Powerline:h14
-  set transparency=20
-  "set lines=40
-  "set columns=120
-  set fuoptions=maxvert,maxhorz
-  " http://code.google.com/p/macvim-kaoriya/wiki/Readme
-  " Lionのフルスクリーンじゃなくて従来のフルスクリーンを使う
-  " % defaults write org.vim.MacVim MMNativeFullScreen 0
-  set fullscreen
-  "au GUIEnter * set fullscreen
+  if has('gui_macvim')
+    set guioptions& " initialize
+    set guioptions-=T
+    set guioptions+=a
+    set imdisable
+    set antialias
+    colorscheme macvim
+    "set guifont=M+2VM+IPAG\ circle\ Regular:h14
+    "set guifont=Monaco:h14
+    "set guifont=Ricty\ Regular:h16
+    set guifont=Ricty\ Discord\ Regular\ for\ Powerline:h14
+    set transparency=20
+    "set lines=40
+    "set columns=120
+    set fuoptions=maxvert,maxhorz
+    " http://code.google.com/p/macvim-kaoriya/wiki/Readme
+    " Lionのフルスクリーンじゃなくて従来のフルスクリーンを使う
+    " % defaults write org.vim.MacVim MMNativeFullScreen 0
+    set fullscreen
+    "au GUIEnter * set fullscreen
+  else
+    set transparency=210
+  endif
 endif
 
 " Statusline {{{
@@ -837,7 +846,7 @@ set grepprg=grep\ -rnIH\ --color\ --exclude=\.hg\ --exclude=\.git\ --exclude=\.s
 
 " IncludePATH {{{
 " PATHにインクルードディレクトリを設定する
-let $DEFAULT_INCLUDE_DIR = "/usr/include"
+let $DEFAULT_INCLUDE_DIR = "/usr/include,/usr/local/include"
 set path+=$DEFAULT_INCLUDE_DIR
 " }}} IncludePATH
 
@@ -849,15 +858,35 @@ let b:match_words = &matchpairs . '\<if\>:\<fi\>,\<if\>:\<else\>,\<if\>:\<elif\>
 " cpp {{{
 function s:cpp()
   " インクルードパスの設定
-  if !(has("win32") || has("win95") || has("win64") || has("win16"))
+  if (has("win32") || has("win95") || has("win64") || has("win16"))
     setlocal path+=D:/home/project/center
   endif
 endfunction
-
 augroup vimrc-cpp
   autocmd!
   autocmd FileType cpp call s:cpp()
 augroup END
+
+augroup cpp-namespace
+  autocmd!
+  autocmd FileType cpp inoremap <buffer><expr>; <SID>expand_namespace()
+augroup END
+function! s:expand_namespace()
+  let s = getline('.')[0:col('.')-1]
+  if s =~# '\<b;$'
+    return "\<BS>oost::"
+  elseif s =~# '\<s;$'
+    return "\<BS>td::"
+  elseif s =~# '\<d;$'
+    return "\<BS>etail::"
+  elseif s =~# '\<n;$'
+    return "\<BS>n::"
+  elseif s =~# '\<e;$'
+    return "\<BS><BS>nex::"
+  else
+    return ';'
+  endif
+endfunction
 " }}} cpp
 
 " }}} ==== Programming ====
@@ -911,16 +940,30 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets behavior.
-"imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-"imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" スニペットを展開するキーマッピング
+" <Tab> で選択されているスニペットの展開を行う
+" 選択されている候補がスニペットであれば展開し、
+" それ以外であれば次の候補を選択する
+" また、既にスニペットが展開されている場合は次のマークへと移動する
+imap <expr><Tab> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: "\<TAB>"
+
+" 現在の filetype のスニペットを編集する為のキーマッピング
+" こうしておくことでサッと編集や追加などを行うことができる
+" 以下の設定では新しいタブでスニペットファイルを開く
+nnoremap <Space>ns :execute "tabnew\|:NeoSnippetEdit ".&filetype<CR>
+
+" スニペットファイルの保存ディレクトリを設定
+let g:neosnippet#snippets_directory = "~/.vim/neosnippet"
 
 " For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
+" if has('conceal')
+  " set conceallevel=2 concealcursor=i
+" endif
 
 " snipmate-snnipets
 let g:neosnippet#enable_snipmate_compatibility = 1
@@ -941,27 +984,6 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplete#enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplete#enable_insert_char_pre = 1
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -988,6 +1010,52 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " set completeopt=menuone
 
 " }}} plugin neocomplete
+
+" plugin vim-marching {{{
+
+if !(has("win32") || has("win95") || has("win64") || has("win16"))
+  " clang コマンドの設定
+  let g:marching_clang_command = "/usr/bin/clang"
+  " インクルードディレクトリのパスを設定
+  let g:marching_include_paths = [
+    \   "/usr/include,/usr/local/include"
+    \]
+else
+  " clang コマンドの設定
+  let g:marching_clang_command = "C:/clang.exe"
+  " インクルードディレクトリのパスを設定
+  let g:marching_include_paths = [
+    \   "C:/MinGW/lib/gcc/mingw32/4.6.2/include/c++"
+    \   "C:/cpp/boost"
+    \]
+endif
+
+" オプションを追加する場合
+" let g:marching_clang_command_option="-std=c++1y"
+
+" neocomplete.vim と併用して使用する場合
+let g:marching_enable_neocomplete = 1
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+let g:neocomplete#force_omni_input_patterns.cpp =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+" 処理のタイミングを制御する
+" 短いほうがより早く補完ウィンドウが表示される
+set updatetime=200
+
+" オムニ補完時に補完ワードを挿入したくない場合
+imap <buffer> <C-x><C-o> <Plug>(marching_start_omni_complete)
+
+" キャッシュを削除してからオムに補完を行う
+imap <buffer> <C-x><C-x><C-o> <Plug>(marching_force_start_omni_complete)
+
+" 非同期ではなくて、同期処理でコード補完を行う場合
+" let g:marching_backend = "sync_clang_command"
+" }}} plugin vim-marching
 
 " plugin vim-template {{{
 " テンプレート中に含まれる特定文字列を置き換える
