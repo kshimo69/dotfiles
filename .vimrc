@@ -84,12 +84,13 @@ else
 
   " 補完
   NeoBundle 'Shougo/neocomplcache.git'
-  NeoBundle 'Shougo/neocomplcache-clang'
+  " NeoBundle 'Shougo/neocomplcache-clang'
   NeoBundle 'Shougo/neosnippet.git'
   NeoBundle 'vim-scripts/snipmate-snippets'
 
   " ファイル管理関係
   NeoBundle 'thinca/vim-template'
+
   " Unite
   NeoBundle 'Shougo/unite.vim'
   NeoBundle 'tsukkee/unite-help'
@@ -132,8 +133,10 @@ else
   NeoBundle 'fuenor/qfixgrep.git'
   NeoBundle 'kana/vim-altr'  " いい感じにファイルを開くやつ
   NeoBundle 't9md/vim-quickhl'  " Highlight on the fly
+
   " コメント
   NeoBundle 'scrooloose/nerdcommenter'
+
   " 高機能なUndo
   " 'GundoToggle'が呼ばれるまでロードしない
   NeoBundleLazy 'sjl/gundo.vim', {
@@ -169,10 +172,10 @@ else
   NeoBundle 'Lokaltog/powerline'  " new repository
 
   " カラー
-  NeoBundle 'desert256.vim'
+  " NeoBundle 'desert256.vim'
   NeoBundle 'tomasr/molokai'
-  NeoBundle 'xoria256.vim'
-  NeoBundle 'altercation/vim-colors-solarized'
+  " NeoBundle 'xoria256.vim'
+  " NeoBundle 'altercation/vim-colors-solarized'
 
   " HTMLが開かれるまでロードしない
   NeoBundleLazy 'mattn/zencoding-vim', {
@@ -343,7 +346,7 @@ endif
 set nowritebackup
 set nobackup
 set noswapfile
-set undodir=~/.vim/undo
+set undodir=$HOME/.vim/undo
 
 " 上書きされたファイルを自動的に読み込む
 set autoread
@@ -973,6 +976,9 @@ let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " let g:jedi#completions_enabled = 0
 " let g:jedi#auto_vim_configuration = 0
 
+" 補完時にウインドウを表示しない
+" set completeopt=menuone
+
 " }}} plugin neocomplcache
 
 " plugin vim-template {{{
@@ -1207,7 +1213,7 @@ vmap ,, <Plug>NERDCommenterToggle
 " inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
 " inoremap <expr> , smartchr#one_of(',', ', ')
 " cnoremap <expr> / smartchr#loop('/', '~/', '//', {'ctype': ':'}
-autocmd FileType c,cpp inoremap <buffer> <expr> . smartchr#loop('.', '->', '...')
+autocmd FileType c,cpp inoremap <buffer> <expr> . smartchr#loop('.', '->', '..')
 " }}} plugin smartchr
 
 " plugin vim-altr {{{
