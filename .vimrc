@@ -83,9 +83,11 @@ else
   "NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
 
   " 補完
-  NeoBundle 'Shougo/neocomplcache.git'
+  " NeoBundle 'Shougo/neocomplcache.git'
   " NeoBundle 'Shougo/neocomplcache-clang'
+  NeoBundle 'Shougo/neocomplete.vim'
   NeoBundle 'Shougo/neosnippet.git'
+  NeoBundle 'Shougo/neosnippet-snippets.git'
   NeoBundle 'vim-scripts/snipmate-snippets'
 
   " ファイル管理関係
@@ -94,7 +96,7 @@ else
   " Unite
   NeoBundle 'Shougo/unite.vim'
   NeoBundle 'tsukkee/unite-help'
-  NeoBundle 'h1mesuke/unite-outline'
+  NeoBundle 'Shougo/unite-outline'
   NeoBundle 'Shougo/unite-build'
   NeoBundle 'tsukkee/unite-tag'
   NeoBundle 'Sixeight/unite-grep'
@@ -249,6 +251,7 @@ else
 
   " Calendar
   NeoBundle 'itchyny/calendar.vim'
+
 
   " Game
   NeoBundle 'thinca/vim-threes'
@@ -843,6 +846,20 @@ source $VIMRUNTIME/macros/matchit.vim
 let b:match_words = &matchpairs . '\<if\>:\<fi\>,\<if\>:\<else\>,\<if\>:\<elif\>,\<begin\>:\<end\>'
 " }}} matchit
 
+" cpp {{{
+function s:cpp()
+  " インクルードパスの設定
+  if !(has("win32") || has("win95") || has("win64") || has("win16"))
+    setlocal path+=D:/home/project/center
+  endif
+endfunction
+
+augroup vimrc-cpp
+  autocmd!
+  autocmd FileType cpp call s:cpp()
+augroup END
+" }}} cpp
+
 " }}} ==== Programming ====
 
 " ==== Plugins ==== {{{
@@ -851,43 +868,45 @@ let b:match_words = &matchpairs . '\<if\>:\<fi\>,\<if\>:\<else\>,\<if\>:\<elif\>
 command! VS :VimShell
 " }}} plugin vimshel
 
-" plugin neocomplcache {{{
+" plugin neocomplete {{{
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Enable heavy features.
 " Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplete#enable_camel_case_completion = 1
 " Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplete#enable_underbar_completion = 1
+" 補完に時間がかかってもスキップしない
+" let g:neocomplete#skip_auto_completion_time = ""
 
 " Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
+let g:neocomplete#sources#dictionary#dictionaries = {
   \ 'default' : '',
   \ 'vimshell' : $HOME.'/.vimshell_hist',
   \ 'scheme' : $HOME.'/.gosh_completions'
   \ }
 
 " Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " 補完に辞書ファイルを追加
 set complete+=k
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -911,37 +930,37 @@ let g:neosnippet#snippets_directory = s:bundle_root . '/snipmate-snippets/snippe
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
+  return neocomplete#close_popup() . "\<CR>"
   " For no inserting <CR> key.
-  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
 " Or set this.
-"let g:neocomplcache_enable_cursor_hold_i = 1
+"let g:neocomplete#enable_cursor_hold_i = 1
 " Or set this.
-"let g:neocomplcache_enable_insert_char_pre = 1
+"let g:neocomplete#enable_insert_char_pre = 1
 
 " AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplete#enable_auto_select = 1
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
@@ -952,34 +971,23 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
-let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
-" neocomplcacheでjediを使う設定
-" autocmd FileType python setlocal omnifunc=jedi#completions
-" if !exists('g:neocomplcache_force_omni_patterns')
-  " let g:neocomplcache_force_omni_patterns = {}
-" endif
-" let g:neocomplcache_force_omni_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-" let g:jedi#completions_enabled = 0
-" let g:jedi#auto_vim_configuration = 0
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " 補完時にウインドウを表示しない
 " set completeopt=menuone
 
-" }}} plugin neocomplcache
+" }}} plugin neocomplete
 
 " plugin vim-template {{{
 " テンプレート中に含まれる特定文字列を置き換える
@@ -1028,7 +1036,8 @@ nnoremap <silent> ;; :<C-u>Unite buffer file_mru file file/new -direction=botrig
 " 全部乗せ
 nnoremap <silent> ,uz :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file file/new -direction=botright -auto-resize -toggle<CR>
 " outline
-nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=botright -auto-preview -auto-resize<CR>
+" nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=topleft -auto-preview -auto-resize<CR>
+nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=topleft<CR>
 " tab
 " nnoremap <silent> ,ut :<C-u>Unite tab -buffer-name=tab -direction=botright -auto-preview -auto-resize<CR>
 " tag
