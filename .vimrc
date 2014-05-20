@@ -696,14 +696,15 @@ endif
 " }}} Cscope
 
 " タブ {{{
-nnoremap <silent> tt :<c-u>Texplore<cr>
+nnoremap <silent> tt :<c-u>VimFilerTab<cr>
 nnoremap <silent> tf :<c-u>tabfirst<cr>
 nnoremap <silent> tl :<c-u>tablast<cr>
 nnoremap <silent> tn :<c-u>tabnext<cr>
 nnoremap <silent> tN :<c-u>tabNext<cr>
 nnoremap <silent> tp :<c-u>tabprevious<cr>
 nnoremap <silent> te :<c-u>tabedit<cr>
-nnoremap <silent> tc :<c-u>tabclose<cr>
+nnoremap <silent> tc :<c-u>tablast <bar> tabnew<cr>
+nnoremap <silent> tx :<c-u>tabclose<cr>
 nnoremap <silent> to :<c-u>tabonly<cr>
 nnoremap <silent> ts :<c-u>tabs<cr>
 " http://doruby.kbmj.com/aisi/20091218/Vim__
