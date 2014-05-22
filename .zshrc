@@ -23,6 +23,10 @@ setopt no_flow_control
 # % mkdir -p ~/.zsh/functions/completion
 # % touch ~/.zsh/functions/completion/dummy
 # % (mkdir ~/bin; cd ~/bin; wget http://www.rubyist.net/~rubikitch/archive/zshcomplete.txt; mv zshcomplete.txt zshcomplete.rb; chmod 755 zshcomplete.rb;
+if [ ! -f ~/.zsh/functions/completion/_dummy ]; then
+    mkdir -p ~/.zsh/functions/completion
+    touch ~/.zsh/functions/completion/dummy
+fi
 fpath=($HOME/.zsh/functions/completion $fpath)
 autoload -U $HOME/.zsh/functions/completion/*(:t)
 autoload -U compinit
