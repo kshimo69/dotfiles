@@ -7,7 +7,8 @@
     oauth-token = 13b360ce1c6a3abc15bc77d48e0ffbd9051b95f9
 [core]
     excludesfile = ~/.gitignore
-    editor = vim -u NONE -i NONE -N -c 'syntax on'
+    ; editor = vim -u NONE -i NONE -N -c 'syntax on'
+    editor = vim -i NONE
     autocrlf = input
 [color]
     ui = auto
@@ -34,6 +35,7 @@
     info = remote show origin
     delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
     pull-dry-run = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
+    fixup = commit --amend -C HEAD
 #[merge]
 #    ff = false
 [pager]
