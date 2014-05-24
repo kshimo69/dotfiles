@@ -651,18 +651,25 @@ endif
 " }}}
 
 " Remember cursor potition {{{
-autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \     exe "normal! g'\"" |
-  \ let b:posBufReadPost = getpos('.') |
-  \ endif
-autocmd BufWinEnter *
-  \ if exists('b:posBufReadPost') |
-  \     if b:posBufReadPost == getpos('.') |
-  \     execute 'normal! zvzz' |
-  \     endif |
-  \ unlet b:posBufReadPost |
-  \ endif
+augroup rememberCursor
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \     exe "normal! g'\"" |
+    \ let b:posBufReadPost = getpos('.') |
+    \ endif
+  autocmd BufWinEnter *
+    \ if exists('b:posBufReadPost') |
+    \     if b:posBufReadPost == getpos('.') |
+    \     execute 'normal! zvzz' |
+    \     endif |
+    \ unlet b:posBufReadPost |
+    \ endif
+  " autocmd BufReadPost *
+    " \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    " \   exe "normal g`\"" |
+    " \ endif
+augroup END
 " }}} Remember cursor potition
 " }}} マクロ、キー設定
 
