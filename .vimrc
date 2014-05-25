@@ -859,7 +859,7 @@ set grepprg=grep\ -rnIH\ --color\ --exclude=\.hg\ --exclude=\.git\ --exclude=\.s
 
 " IncludePATH {{{
 " PATHにインクルードディレクトリを設定する
-let $DEFAULT_INCLUDE_DIR = "/usr/include,/usr/local/include"
+let $DEFAULT_INCLUDE_DIR = "/usr/include,/usr/local/include,/mnt/project/center/CTR_SDK/include,/mnt/project/center/CTR_NEX/include"
 set path+=$DEFAULT_INCLUDE_DIR
 " }}} IncludePATH
 
@@ -873,6 +873,8 @@ function s:cpp()
   " インクルードパスの設定
   if (has("win32") || has("win95") || has("win64") || has("win16"))
     setlocal path+=D:/home/project/center
+  else
+    setlocal path+=/mnt/project/center/CTR_SDK/include,/mnt/project/center/CTR_NEX/include
   endif
 endfunction
 augroup vimrc-cpp
@@ -1028,10 +1030,10 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 if !(has("win32") || has("win95") || has("win64") || has("win16"))
   " clang コマンドの設定
-  let g:marching_clang_command = "/usr/bin/clang"
+  let g:marching_clang_command = "/usr/local/bin/clang"
   " インクルードディレクトリのパスを設定
   let g:marching_include_paths = [
-    \   "/usr/include,/usr/local/include"
+    \   "/usr/include,/usr/local/include,/mnt/project/center/CTR_SDK/include,/mnt/project/center/CTR_NEX/include"
     \]
 else
   " clang コマンドの設定
