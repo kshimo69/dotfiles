@@ -141,7 +141,6 @@ else
 
   NeoBundle 'migemo', {
     \ "type": "nosync",
-    \ "base": "~/.vim/bundle/manual",
     \ }
 
   " コメント
