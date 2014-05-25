@@ -7,8 +7,8 @@
     oauth-token = 13b360ce1c6a3abc15bc77d48e0ffbd9051b95f9
 [core]
     excludesfile = ~/.gitignore
-    editor = /usr/local/bin/vim -u NONE -i NONE -N -c 'syntax on'
-    ; editor = vim
+    ; editor = /usr/local/bin/vim -u NONE -i NONE -N -c 'syntax on'
+    editor = /usr/local/bin/vim
     autocrlf = input
 [color]
     ui = auto
