@@ -11,7 +11,7 @@ setl nosmartindent
 setl cindent
 " setl textwidth=80
 setl textwidth=0  "80文字で自動改行されるのを無効化
-setl colorcolumn=80
+" setl colorcolumn=80
 
 " Folding
 " setl foldmethod=indent

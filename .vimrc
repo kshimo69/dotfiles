@@ -128,6 +128,7 @@ else
     \   "commands": ["Gist"],
     \ }}
   NeoBundle 'mattn/webapi-vim'
+  NeoBundle 'airblade/vim-gitgutter'
 
   " テキスト編集
   NeoBundle 'tpope/vim-surround'
@@ -177,8 +178,8 @@ else
     " \   "unix": ["pip install flake8", "npm -g install coffeelint"],
     " \ }}
 
-  " Powerline
-  NeoBundle 'Lokaltog/powerline'  " new repository
+  " StatusLine
+  NeoBundle 'itchyny/lightline.vim'
 
   " カラー
   " NeoBundle 'desert256.vim'
@@ -373,7 +374,7 @@ set list            " 不可視文字の可視化
 set number          " 行番号の表示
 set wrap            " 長いテキストの折り返し
 set textwidth=0     " 自動的に改行が入るのを無効化
-set colorcolumn=80  " その代わり80文字目にラインを入れる
+" set colorcolumn=80  " その代わり80文字目にラインを入れる
 set modeline        " モードラインを表示
 set showcmd         " 入力したコマンドを表示
 set wildmenu        " コマンドライン補完
@@ -503,7 +504,7 @@ highlight NonText ctermbg=NONE
 set title
 set ruler
 set cursorline
-set cursorcolumn
+" set cursorcolumn
 " display line on current buffer
 augroup cch
   autocmd! cch
@@ -1404,29 +1405,91 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
 " }}} plugin syntastic
 
-" plugin powerline {{{
-"   let g:Powerline_symbols = 'compatible'
-" splitしてない時にstatus lineが出ない対策
+" plugin lightline {{{
 set laststatus=2
-"   " Overriding symbols
-"   let g:Powerline_symbols_override = {
-"     \ 'LINE': 'L',
-"     \ }
-"   " Overriding dividers
-"   " 1: Hard right-pointing arrow
-"   " 2: Soft right-pointing arrow
-"   " 3: Hard left-pointing arrow
-"   " 4: Soft left-pointing arrow
-"   "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
-"   let g:Powerline_dividers_override = ['', '', '', '']
-"   " ファイル名を短く表示する
-"   "let g:Powerline_stl_path_style = "short"
-"   " Insert the charcode segment after the filetype segment
-"   "call Pl#Theme#InsertSegment('charcode', 'after', 'filetype')
+let g:lightline = {
+  \ 'colorscheme': 'wombat',
+  \ 'mode_map': {'c': 'NORMAL'},
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'gitgutter', 'filename' ] ]
+  \ },
+  \ 'component_function': {
+  \   'modified': 'MyModified',
+  \   'readonly': 'MyReadonly',
+  \   'fugitive': 'MyFugitive',
+  \   'filename': 'MyFilename',
+  \   'fileformat': 'MyFileformat',
+  \   'filetype': 'MyFiletype',
+  \   'fileencoding': 'MyFileencoding',
+  \   'mode': 'MyMode',
+  \   'gitgutter': 'MyGitGutter',
+  \ }
+  \ }
 
-" set rtp+=s:bundle_root.'/powerline/powerline/bindings/vim'
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-" }}} plugin powerline
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+    \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+    \  &ft == 'unite' ? unite#get_status_string() :
+    \  &ft == 'vimshell' ? vimshell#get_status_string() :
+    \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+    \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  try
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+      return fugitive#head()
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+function! MyGitGutter()
+  if ! exists('*GitGutterGetHunkSummary')
+    \ || ! get(g:, 'gitgutter_enabled', 0)
+    \ || winwidth('.') <= 90
+    return ''
+  endif
+  let symbols = [
+    \ g:gitgutter_sign_modified . '',
+    \ g:gitgutter_sign_added . '',
+    \ g:gitgutter_sign_removed . ''
+    \ ]
+  let hunks = GitGutterGetHunkSummary()
+  let ret = []
+  for i in [0, 1, 2]
+    if hunks[i] > 0
+      call add(ret, symbols[i] . hunks[i])
+    endif
+  endfor
+  return join(ret, ' ')
+endfunction
+" }}} plugin lightline
 
 " plugin jedi {{{
 let s:hooks = neobundle#get_hooks("jedi-vim")
