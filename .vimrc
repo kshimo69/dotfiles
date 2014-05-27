@@ -1533,6 +1533,7 @@ vnoremap go :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
 " }}} plugin open-browser
 
 " plugin echodoc {{{
+set cmdheight=2
 " 自動的に有効
 let g:echodoc_enable_at_startup = 1
 " }}} plugin echodoc
