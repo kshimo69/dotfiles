@@ -1060,7 +1060,7 @@ let g:neocomplete#force_omni_input_patterns.cpp =
 
 " 処理のタイミングを制御する
 " 短いほうがより早く補完ウィンドウが表示される
-set updatetime=200
+set updatetime=4000
 
 " オムニ補完時に補完ワードを挿入したくない場合
 imap <buffer> <C-x><C-o> <Plug>(marching_start_omni_complete)
