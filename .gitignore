@@ -8,3 +8,6 @@
 *.sw[po]
 TAGS
 tags
+GPATH
+GRTAGS
+GTAGS
