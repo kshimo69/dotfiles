@@ -83,6 +83,7 @@ if [ -n "$DISPLAY" -a -x "`which notify-send`" ]; then
 fi
 alias earthquake="$NOTIFY earthquake"
 alias earthquake_sub="$NOTIFY earthquake ~/.earthquake_sub"
+alias now="date +%Y%m%d_%H%M%S"
 
 # clipboard
 if which pbcopy >/dev/null 2>&1 ; then
