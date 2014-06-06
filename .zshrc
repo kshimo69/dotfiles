@@ -44,46 +44,22 @@ reload-complete-functions() {
 autoload -U add-zsh-hook
 
 alias ls='ls --color=auto'
-alias rm='rm'
 alias vi='vim'
 alias VIM='gvim'
-#alias em='emacs -nw'
 alias em='TERM=xterm-256color emacs -nw'
 alias gst='git st && git stash list'
 alias gch='git cherry -v'
+alias g='git'
 alias py='python'
 alias r='rails'
 alias pu='pushd'
 alias po='popd'
-#alias scp='noglob scp'
-#alias wget='noglob wget'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
 alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
 alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
-# SAKURA
-#alias sukico='ssh kshimo69@49.212.62.39 -p 10022'
-#alias sukicodb1='ssh kshimo69@49.212.62.39 -p 10022'
-#alias sukicoweb1='ssh kshimo69@49.212.51.125 -p 10022'
-#alias sukicoweb2='ssh kshimo69@49.212.58.101 -p 10022'
-#alias sukicobatch1old='ssh kshimo69@49.212.49.42 -p 10022'
-#alias sukicobatch1='ssh kshimo69@219.94.244.123 -p 10022'
-#alias sukicothumb='ssh kshimo69@49.212.166.121 -p 10022'
-#EC2
-#alias sukicoec2='ssh -i $HOME/.ssh/sukico01.pem ec2-user@ec2-46-51-229-107.ap-northeast-1.compute.amazonaws.com'
-alias sukicolle_web01='ssh appuser@54.248.253.85' # EC2 Web01
-alias sukicolle_web02='ssh appuser@54.248.253.218' # EC2 Web02
-alias sukicolle_batch01='ssh appuser@54.248.252.174' # EC2 Batch01
-alias sukicolle_web00='ssh appuser@54.248.226.74' # EC2 Web00
-alias clear_terminal='echo c'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
-NOTIFY=""
-if [ -n "$DISPLAY" -a -x "`which notify-send`" ]; then
-    NOTIFY='NOTIFY=notify-send'
-fi
-alias earthquake="$NOTIFY earthquake"
-alias earthquake_sub="$NOTIFY earthquake ~/.earthquake_sub"
-alias now="date +%Y%m%d_%H%M%S"
+alias now='date +%Y%m%d%H%M%S'
 
 # clipboard
 if which pbcopy >/dev/null 2>&1 ; then
@@ -110,14 +86,13 @@ if [ "`uname`" = "Darwin" ]; then
     alias vi='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias vim='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias VIM='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app/Contents/MacOS/MacVim'
-    alias earthquake='earthquake'
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
     alias gvim='d:/vim/gvim.exe'
 fi
 if [ "${TERM}" = "eterm-color" ]; then
     alias ls='ls -F'
 fi
-DAY=`date +%Y%m%d%H%M%S`
+
 if [ -f ~/.passwd ]; then
     . ~/.passwd
 fi
@@ -215,26 +190,21 @@ setopt print_eight_bit
 setopt magic_equal_subst
 setopt interactive_comments
 
-STERM="screen"
-
 # http://d.hatena.ne.jp/mollifier/20090814/p1
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '%r(%s):%b'
 zstyle ':vcs_info:*' actionformats '%r(%s):%b|%a'
+
 # http://d.hatena.ne.jp/umezo/20100508/1273332857
 local COMMAND=""
 local COMMAND_TIME=""
 precmd () {
-    if [ "$TERM" = "$STERM" ]; then
-        echo -ne "\ek$(basename $(pwd))\e\\"
-    fi
     if [ "q$TMUX" != "q" ]; then
         echo -ne "\ek$(basename $(pwd))\e\\"
     fi
     psvar=()
     LANG=en_US.UTF-8 vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-    # if [ "`hostname`" = "shimomura" -a -x "`which growl 2>/dev/null`" ]; then
     if [ -n "$SSH_CLIENT" -a -x "`which growl 2>/dev/null`" ]; then
         if [ "$COMMAND_TIME" -ne "0" ] ; then
             local d=`date +%s`
@@ -271,10 +241,6 @@ precmd () {
     fi
 }
 preexec () {
-    if [ "$TERM" = "$STERM" ]; then
-        echo -ne "\ek($1)\e\\"
-        # echo -ne "\e_`dirs`\e\\"
-    fi
     if [ "q$TMUX" != "q" ]; then
         echo -ne "\ek($1)\e\\"
     fi
@@ -284,24 +250,7 @@ preexec () {
 
 function chpwd() {
     ls
-    # if pwd | grep -q wire; then
-    #     echo "change ruby version."
-    #     rvm use ruby-1.8.7
-    # fi
 }
-
-# SSHコマンドはscreenの新しい窓で
-function ssh_screen(){
-    eval server=\${$#}
-    screen -t $server ssh "$@"
-}
-if [ "$TERM" = "$STERM" ]; then
-    alias ssh=ssh_screen
-fi
-
-#if [ ${TERM} != "$STERM" -a ${TERM} != "linux" -a ${TERM} != "eterm-color" -a ${TERM} != "vt100" ]; then
-#    exec screen -RR
-#fi
 
 setopt prompt_subst
 # コマンド実行後は右プロンプトを消す
