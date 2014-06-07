@@ -145,9 +145,9 @@ which virtualenvwrapper.sh >/dev/null 2>&1 && . `which virtualenvwrapper.sh`
 #}
 
 if [ "`uname`" = "Darwin" ]; then
-    export EDITOR=vim
-    export SVN_EDITOR=vim
-    export GIT_EDITOR=vim
+    export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
+    export SVN_EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
+    export GIT_EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
 else
     export EDITOR=`which vim`
     export SVN_EDITOR=`which vim`
