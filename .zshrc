@@ -238,8 +238,8 @@ if is-at-least 4.3.11; then
                                             git-hook-begin \
                                             git-untracked \
                                             git-push-status \
-                                            git-nomerge-branch \
                                             git-stash-count
+                                            # git-nomerge-branch \
 
     # フックの最初の関数
     # git の作業コピーのあるディレクトリのみフック関数を呼び出すようにする
@@ -362,10 +362,12 @@ function _update_vcs_info_msg() {
         [[ -n "$vcs_info_msg_2_" ]] && messages+=( "%F{red}${vcs_info_msg_2_}%f" )
 
         # 間にスペースを入れて連結する
-        prompt="${(j: :)messages}"
+        # prompt="${(j: :)messages}"
+        prompt="${(j::)messages}"
+        # prompt="[${(j::)messages}]"
     fi
 
-    RPROMPT="[$prompt]"
+    RPROMPT="$prompt"
 }
 add-zsh-hook precmd _update_vcs_info_msg
 
