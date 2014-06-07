@@ -1412,11 +1412,15 @@ let g:lightline = {
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'gitgutter', 'filename' ] ]
   \ },
+  \ 'inactive': {
+  \    'left': [ [ 'filenameinactive' ] ]
+  \ },
   \ 'component_function': {
   \   'modified': 'MyModified',
   \   'readonly': 'MyReadonly',
   \   'fugitive': 'MyFugitive',
   \   'filename': 'MyFilename',
+  \   'filenameinactive': 'MyFilenameInactive',
   \   'fileformat': 'MyFileformat',
   \   'filetype': 'MyFiletype',
   \   'fileencoding': 'MyFileencoding',
@@ -1434,6 +1438,17 @@ function! MyReadonly()
 endfunction
 
 function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+    \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+    \  &ft == 'unite' ? unite#get_status_string() :
+    \  &ft == 'vimshell' ? vimshell#get_status_string() :
+    \ '' != expand('%:p') ? stridx(expand('%:p'), expand('~')) == 0 ?
+    \ substitute(expand('%:p'), expand('~'), '~', '') :
+    \ expand('%:p') : '[No Name]') .
+    \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFilenameInactive()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
     \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
     \  &ft == 'unite' ? unite#get_status_string() :
