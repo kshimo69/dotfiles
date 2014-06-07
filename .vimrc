@@ -139,10 +139,6 @@ else
   NeoBundle 'kana/vim-altr'  " いい感じにファイルを開くやつ
   NeoBundle 't9md/vim-quickhl'  " Highlight on the fly
 
-  NeoBundle 'migemo', {
-    \ "type": "nosync",
-    \ }
-
   " コメント
   NeoBundle 'scrooloose/nerdcommenter'
 
