@@ -144,14 +144,20 @@ which virtualenvwrapper.sh >/dev/null 2>&1 && . `which virtualenvwrapper.sh`
 #    mkvirtualenv --distribute --python=$base_python $2
 #}
 
-export EDITOR=`which vim`
-export SVN_EDITOR=`which vim`
+if [ "`uname`" = "Darwin" ]; then
+    export EDITOR=vim
+    export SVN_EDITOR=vim
+    export GIT_EDITOR=vim
+else
+    export EDITOR=`which vim`
+    export SVN_EDITOR=`which vim`
+    export GIT_EDITOR=`which vim`
+fi
 export GISTY_DIR=$HOME/repos/gist
 # export GISTY_SSL_CA=$HOME/.rvm/usr/ssl/cert.pem
 #export GISTY_SSL_CA=/etc/ssl/certs/ca-certificates.crt
 export GISTY_SSL_VERIFY="none"
 export GISTY_ACCESS_TOKEN=2d84fc458cc532057f5aac4e96a09a8652dc79d9
-export GIT_EDITOR=`which vim`
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
 export LESSCHARSET="utf-8"
 # gtagsの設定
