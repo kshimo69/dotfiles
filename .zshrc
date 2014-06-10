@@ -372,10 +372,14 @@ function _update_vcs_info_msg() {
 add-zsh-hook precmd _update_vcs_info_msg
 
 
+function s() {
+    $*
+}
 
 # http://d.hatena.ne.jp/umezo/20100508/1273332857
 local COMMAND=""
 local COMMAND_TIME=""
+local TIMEOUT="30"
 precmd () {
     if [ "q$TMUX" != "q" ]; then
         echo -ne "\ek$(basename $(pwd))\e\\"
@@ -387,8 +391,10 @@ precmd () {
         if [ "$COMMAND_TIME" -ne "0" ] ; then
             local d=`date +%s`
             d=`expr $d - $COMMAND_TIME`
-            if [ "$d" -ge "30" ] ; then
-                COMMAND="$COMMAND "
+            COMMAND="$COMMAND "
+            if [ "${${(s: :)COMMAND}[1]}" = "s" ]; then
+                growl -H `echo $SSH_CLIENT | awk '{ print $1 }'` -t "${${(s: :)COMMAND}[2]} done." -m "${${(s: :)COMMAND}[2,-1]}" -s -P "password" 2>/dev/null
+            elif [ "$d" -ge "$TIMEOUT" ] ; then
                 growl -H `echo $SSH_CLIENT | awk '{ print $1 }'` -t "${${(s: :)COMMAND}[1]} done." -m "$COMMAND" -P "password" 2>/dev/null
             fi
         fi
@@ -398,7 +404,7 @@ precmd () {
         if [ "$COMMAND_TIME" -ne "0" ] ; then
             local d=`date +%s`
             d=`expr $d - $COMMAND_TIME`
-            if [ "$d" -ge "30" ] ; then
+            if [ "$d" -ge $TIMEOUT ] ; then
                 COMMAND="$COMMAND "
                 growlnotify -t "${${(s: :)COMMAND}[1]} done." -m "$COMMAND"
             fi
@@ -409,7 +415,7 @@ precmd () {
         if [ "$COMMAND_TIME" -ne "0" ] ; then
             local d=`date +%s`
             d=`expr $d - $COMMAND_TIME`
-            if [ "$d" -ge "30" ] ; then
+            if [ "$d" -ge $TIMEOUT ] ; then
                 COMMAND="$COMMAND "
                 notify-send -t 10000 "${${(s: :)COMMAND}[1]} done." "$COMMAND"
             fi
