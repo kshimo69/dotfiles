@@ -306,13 +306,14 @@ if is-at-least 4.3.11; then
             return 0
         fi
 
-        if [[ "${hook_com[branch]}" == "master" ]]; then
+        # if [[ "${hook_com[branch]}" == "master" ]]; then
             # master ブランチの場合は何もしない
-            return 0
-        fi
+            # return 0
+        # fi
 
         local nomerged
-        nomerged=$(command git rev-list master..${hook_com[branch]} 2>/dev/null | wc -l | tr -d ' ')
+        # nomerged=$(command git rev-list master..${hook_com[branch]} 2>/dev/null | wc -l | tr -d ' ')
+        nomerged=$(command git rev-list origin/${hook_com[branch]}..${hook_com[branch]} 2>/dev/null | wc -l | tr -d ' ')
 
         if [[ "$nomerged" -gt 0 ]] ; then
             # misc (%m) に追加
