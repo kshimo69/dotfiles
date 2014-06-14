@@ -404,8 +404,10 @@ precmd () {
         if [ "$COMMAND_TIME" -ne "0" ] ; then
             local d=`date +%s`
             d=`expr $d - $COMMAND_TIME`
-            if [ "$d" -ge $TIMEOUT ] ; then
-                COMMAND="$COMMAND "
+            COMMAND="$COMMAND "
+            if [ "${${(s: :)COMMAND}[1]}" = "s" ]; then
+                growlnotify -s -t "${${(s: :)COMMAND}[2]} done." -m "${${(s: :)COMMAND}[2,-1]}"
+            elif [ "$d" -ge "$TIMEOUT" ] ; then
                 growlnotify -t "${${(s: :)COMMAND}[1]} done." -m "$COMMAND"
             fi
         fi
