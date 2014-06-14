@@ -101,11 +101,6 @@ export LANG="ja_JP.UTF-8"
 export GREP_COLOR="01;35"
 export GREP_OPTIONS=--color=auto
 export LSCOLORS=gxfxcxdxbxegedabagacad
-# PATH=$HOME/.rbenv/bin:$HOME/local/bin:$HOME/bin:$PATH
-PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Developer/android-sdk-mac_x86/platform-tools:$PATH:$HOME/bin
-typeset -U PATH
-export PATH
-export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
 export PERL5LIB=$HOME/local/lib/perl5:$HOME/local/lib/perl5/site_perl:$HOME/local/lib/perl:$HOME/local/share/perl
 export PERL_AUTOINSTALL="--defaultdeps"
 #export RUBYLIB=$HOME/local/lib/ruby/site_ruby/
@@ -120,7 +115,7 @@ export PIP_RESPECT_VIRTUALENV=true
 #if [ -x `which virtualenvwrapper.sh` ]; then
 #    . `which virtualenvwrapper.sh`
 #fi
-which virtualenvwrapper.sh >/dev/null 2>&1 && . `which virtualenvwrapper.sh`
+# which virtualenvwrapper.sh >/dev/null 2>&1 && . `which virtualenvwrapper.sh`
 #echo '#!/usr/bin/zsh' > $WORKON_HOME/postmkvirtualenv
 #echo '# This hook is run after a new virtualenv is activated.' >> $WORKON_HOME/postmkvirtualenv
 #echo '' >> $WORKON_HOME/postmkvirtualenv
