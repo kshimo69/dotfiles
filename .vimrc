@@ -14,6 +14,28 @@ elseif isdirectory($VIM . '\vimfiles')
 endif
 " }}}
 
+" PATHの自動更新関数 {{{
+" | 指定された path が $PATH に存在せず、ディレクトリとして存在している場合
+" | のみ $PATH に加える
+function! s:IncludePath(path)
+  " define delimiter depends on platform
+  if has('win16') || has('win32') || has('win64')
+    let delimiter = ";"
+  else
+    let delimiter = ":"
+  endif
+  let pathlist = split($PATH, delimiter)
+  if isdirectory(a:path) && index(pathlist, a:path) == -1
+    let $PATH=a:path.delimiter.$PATH
+  endif
+endfunction
+" }}}
+
+" ~/.anyenv/envs/pyenv/shims を $PATH に追加する {{{
+" これを行わないとpythonが正しく検索されない
+call s:IncludePath(expand("~/.anyenv/envs/pyenv/shims"))
+" }}}
+
 " plugin neobundle {{{
 " https://github.com/Shougo/neobundle.vim
 " $ mkdir -p ~/.vim/bundle
@@ -210,7 +232,14 @@ else
     \   "filetypes": ["python", "python3", "djangohtml"]
     \ }}
   " Vimで正しくvirtualenvを処理できるようにする
-  NeoBundleLazy "jmcantrell/vim-virtualenv", {
+  " NeoBundleLazy "jmcantrell/vim-virtualenv", {
+    " \ "autoload": {
+    " \   "filetypes": ["python", "python3", "djangohtml"]
+    " \ }}
+  " pyenv用にvim-pyenvを追加
+  " Note: dependsが指定されているためjedi-vimより後にロードされる（ことを期待）
+  NeoBundleLazy "lambdalisue/vim-pyenv", {
+    \ "depends": ['davidhalter/jedi-vim'],
     \ "autoload": {
     \   "filetypes": ["python", "python3", "djangohtml"]
     \ }}
@@ -1405,7 +1434,7 @@ let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ 'mode_map': {'c': 'NORMAL'},
   \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'gitgutter', 'filename' ] ]
+  \   'left': [ [ 'mode', 'paste' ], [ 'pyenv' ], [ 'fugitive', 'gitgutter', 'filename' ] ]
   \ },
   \ 'inactive': {
   \    'left': [ [ 'filenameinactive' ] ]
@@ -1421,6 +1450,7 @@ let g:lightline = {
   \   'fileencoding': 'MyFileencoding',
   \   'mode': 'MyMode',
   \   'gitgutter': 'MyGitGutter',
+  \   'pyenv': 'MyPyenv',
   \ }
   \ }
 
@@ -1497,6 +1527,10 @@ function! MyGitGutter()
     endif
   endfor
   return join(ret, ' ')
+endfunction
+
+function! MyPyenv()
+  return (&ft == 'python' ? pyenv#statusline#component() : '')
 endfunction
 " }}} plugin lightline
 
