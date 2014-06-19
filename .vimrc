@@ -238,11 +238,11 @@ else
     " \ }}
   " pyenv用にvim-pyenvを追加
   " Note: dependsが指定されているためjedi-vimより後にロードされる（ことを期待）
-  NeoBundleLazy "lambdalisue/vim-pyenv", {
-    \ "depends": ['davidhalter/jedi-vim'],
-    \ "autoload": {
-    \   "filetypes": ["python", "python3", "djangohtml"]
-    \ }}
+  " NeoBundleLazy "lambdalisue/vim-pyenv", {
+    " \ "depends": ['davidhalter/jedi-vim'],
+    " \ "autoload": {
+    " \   "filetypes": ["python", "python3", "djangohtml"]
+    " \ }}
   NeoBundle 'mitechie/pyflakes-pathogen'
   NeoBundle 'reinh/vim-makegreen'
   NeoBundle 'lambdalisue/nose.vim'
@@ -1434,7 +1434,7 @@ let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ 'mode_map': {'c': 'NORMAL'},
   \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ], [ 'pyenv' ], [ 'fugitive', 'gitgutter', 'filename' ] ]
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'gitgutter', 'filename' ] ]
   \ },
   \ 'inactive': {
   \    'left': [ [ 'filenameinactive' ] ]
