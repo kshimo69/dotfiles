@@ -22,6 +22,8 @@ export GTAGSLABEL=exuberant-ctags
 # [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"  # pythonbrew
 
 # docker
-export DOCKER_HOST=tcp://localhost:4243
+if [ "`uname`" = "Darwin" ]; then
+    export DOCKER_HOST=tcp://localhost:4243
+fi
 
 true
