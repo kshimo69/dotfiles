@@ -581,13 +581,10 @@ nnoremap Y y$
 nnoremap ¥ \
 inoremap ¥ \
 
-" j, k による移動を折り返されたテキストでも自然に振る舞うように変更 {{{
+" j, k による移動を折り返されたテキストでも自然に振る舞うように変更
 nnoremap j gj
 nnoremap k gk
-" }}}
 
-" vを二回で行末まで選択
-vnoremap v $h
 " }}}
 
 " バッファ分割 {{{
