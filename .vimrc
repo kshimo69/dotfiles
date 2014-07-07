@@ -588,10 +588,6 @@ nnoremap k gk
 
 " vを二回で行末まで選択
 vnoremap v $h
-
-" TABで対応ペアにジャンプ {{{
-nnoremap <Tab> %
-vnoremap <Tab> %
 " }}}
 
 " バッファ分割 {{{
