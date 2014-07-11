@@ -205,7 +205,7 @@ else
   " NeoBundle 'altercation/vim-colors-solarized'
 
   " HTMLが開かれるまでロードしない
-  NeoBundleLazy 'mattn/zencoding-vim', {
+  NeoBundleLazy 'mattn/emmet-vim', {
     \ "autoload": {"filetypes": ['html']}}
 
   " C++
