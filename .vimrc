@@ -1064,6 +1064,10 @@ endif
 
 " オプションを追加する場合
 " let g:marching_clang_command_option="-std=c++1y"
+" filetype=cpp に対して設定する場合
+" let g:marching#clang_command#options = {
+" \   "cpp" : "-std=gnu++1y"
+" \}
 
 " neocomplete.vim と併用して使用する場合
 let g:marching_enable_neocomplete = 1
