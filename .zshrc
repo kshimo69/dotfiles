@@ -60,6 +60,13 @@ alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
 alias now='date +%Y%m%d%H%M%S'
+function backup() {
+    if [ $# -lt 1 ]; then
+        echo "usage: backup <filename>"
+    else
+        cp -v $1{,.`now`}
+    fi
+}
 
 # clipboard
 if which pbcopy >/dev/null 2>&1 ; then
