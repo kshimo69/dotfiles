@@ -475,4 +475,13 @@ e_BLUE=`echo -e "\033[1;36m"`
 # cd ~/.rbenv/plugins/ruby-build/
 # sudo ./install.sh
 
+# peco
+function peco-snippets() {
+    BUFFER=$(grep -v "^#" ~/.snippets/* | peco --query "$LBUFFER")
+    # BUFFER=$(grep -v "^#" ~/.snippets/* | peco --query "$LBUFFER" | $COPY)
+    zle clear-screen
+}
+zle -N peco-snippets
+bindkey '^x^s' peco-snippets
+
 true

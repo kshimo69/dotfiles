@@ -1,0 +1,9 @@
+# dstat
+dstat -Tclmdrn
+dstat -Tclm
+dstat -Tclr
+dstat -Tclnd
+dstat -Tcldr
+dstat --top-cpu --top-cputime
+dstat --top-io --top-bio
+dstat --top-io-adv --top-bio-adv
