@@ -1,5 +1,10 @@
 PATH=$HOME/.cask/bin:$HOME/.cabal/bin:$HOME/local/bin:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Developer/android-sdk-mac_x86/platform-tools:/usr/bin:/bin:/usr/sbin:/sbin:$PATH:/Applications/android-sdk-macosx/tools
 
+# go
+PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+PATH=$PATH:$HOME/go/bin
+
 # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
 # git clone https://github.com/riywo/anyenv ~/.anyenv
 if [ -d $HOME/.anyenv ]; then
