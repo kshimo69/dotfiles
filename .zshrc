@@ -484,8 +484,8 @@ e_BLUE=`echo -e "\033[1;36m"`
 
 # peco
 function peco-snippets() {
-    BUFFER=$(grep -v "^#" ~/.snippets/* | peco --query "$LBUFFER")
-    # BUFFER=$(grep -v "^#" ~/.snippets/* | peco --query "$LBUFFER" | $COPY)
+    BUFFER=$(cat ~/.snippets/* | grep -v "^#" | peco --query "$LBUFFER")
+    # BUFFER=$(cat ~/.snippets/* | grep -v "^#" | peco --query "$LBUFFER" | $COPY)
     zle clear-screen
 }
 zle -N peco-snippets
