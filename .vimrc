@@ -250,6 +250,9 @@ else
   " $ pythonbrew off    # システムのPythonにインストールする
   " $ sudo pip install rope ropemode ropevim
 
+  " golang
+  NeoBundle 'fatih/vim-go'
+
   " Rails
   " NeoBundle 'tpope/vim-rails'
 
@@ -921,6 +924,23 @@ function! s:expand_namespace()
 endfunction
 " }}} cpp
 
+" golang {{{
+" prepare
+" % go get code.google.com/p/go.tools/cmd/godoc
+" % go get github.com/nsf/gocode
+" % go get github.com/golang/lint
+
+" set rtp+=$GOROOT/misc/vim
+" exe "set rtp+=".globalpath($GOPATH, "src/github.com/nsf/gocode/vim")
+" exe "set rtp+=".globalpath($GOPATH, "src/github.com/lint/misc/vim")
+
+" packaging
+" % go get go get github.com/mitchellh/gox
+" % gox -build-toolchain
+" % gox -os=linux
+" % gox -os=windows
+" }}} golang
+
 " }}} ==== Programming ====
 
 " ==== Plugins ==== {{{
@@ -1037,6 +1057,9 @@ let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+" golang
+let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\.\?'
 
 " 補完時にウインドウを表示しない
 " set completeopt=menuone
@@ -1250,6 +1273,12 @@ let g:quickrun_config['markdown'] = {
   \ 'type': 'markdown/pandoc',
   \ 'cmdopt': '-s ',
   \ 'outputter': 'browser',
+  \ }
+
+" golang
+let g:quickrun_config['go'] = {
+  \ 'command': 'go',
+  \ 'exec': ['%c run %s']
   \ }
 
 " u-nya-
@@ -1556,6 +1585,29 @@ endfunction
 " plugin pyflakes-pathgen {{{
 " let pyflakes_use_quickfix = 0
 " }}} plugin pyflakes-pathgen
+
+" plugin vim-go {{{
+" let g:go_bin_path = expand("/usr/local/go/bin")
+let g:go_play_open_browser = 0
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_autosave = 0
+let g:go_fmt_command = "gofmt"
+let g:go_disable_autoinstall = 1
+let g:go_snippet_engine = "neosnippet"
+
+au FileType go nmap <Leader>gi <Plug>(go-import)
+au FileType go nmap <Leader>gr <Plug>(go-run)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gt <Plug>(go-test)
+au FileType go nmap gd <Plug>(go-def)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gl :GoLint<CR>
+au FileType go au BufWritePost *.go silent GoFmt
+" }}} plugin vim-go
 
 " plugin vim-task {{{
 "autocmd FileType taskedit inoremap <silent> <buffer> <CR> <ESC>:call Toggle_task_status()<CR>i
