@@ -30,6 +30,8 @@ export GTAGSLABEL=exuberant-ctags
 # docker
 if [ "`uname`" = "Darwin" ]; then
     export DOCKER_HOST=tcp://localhost:4243
+else
+    export DOCKER_HOST=tcp://172.16.81.94:4243
 fi
 
 true
