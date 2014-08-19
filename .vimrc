@@ -490,7 +490,7 @@ if has('gui_running')
     set fullscreen
     "au GUIEnter * set fullscreen
   else
-    set transparency=210
+    set transparency=230
   endif
 endif
 
