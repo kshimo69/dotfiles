@@ -558,6 +558,11 @@ let &t_te .= "\e[1 q"
 " マクロ、キー設定 {{{
 let mapleader = " "  "<Leader>をスペースに
 
+" 英語キーボード用設定
+" ノーマルモードのコロンとセミコロンを入れ替え
+nnoremap ; :
+nnoremap : ;
+
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 
