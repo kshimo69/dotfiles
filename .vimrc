@@ -567,7 +567,7 @@ nnoremap : ;
 inoremap jj <Esc>
 
 " ESCを二回押すことでハイライトを消す
-nmap <silent> <Esc><Esc> :nohlsearch<CR>
+nnoremap <silent><Esc><Esc> :nohlsearch<CR>
 
 " カーソル下の単語を * で検索
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
