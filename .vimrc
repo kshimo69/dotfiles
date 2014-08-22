@@ -1637,9 +1637,9 @@ let g:echodoc_enable_at_startup = 1
 " }}} plugin echodoc
 
 " plugin memolist {{{
-map <Leader>mn  :MemoNew<CR>
-map <Leader>ml  :MemoList<CR>
-map <Leader>mg  :MemoGrep<CR>
+nnoremap <Leader>mn  :MemoNew<CR>
+nnoremap <Leader>ml  :MemoList<CR>
+nnoremap <Leader>mg  :MemoGrep<CR>
 " let g:memolist_memo_suffix  =  "rst"
 let g:memolist_memo_suffix  =  "md"
 let g:memolist_memo_date  =  "%Y-%m-%d %H:%M"
