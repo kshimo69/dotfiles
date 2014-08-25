@@ -1151,36 +1151,36 @@ let g:unite_source_file_mru_filename_format = ''
 " カーソル行の色
 let g:unite_cursor_line_highlight="CursorLine"
 " バッファ一覧
-nnoremap <silent> ,ub :<C-u>Unite buffer -direction=botright -auto-resize -toggle<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " ファイル一覧
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -direction=botright -auto-resize -toggle<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " レジスタ一覧
-nnoremap <silent> ,ur :<C-u>Unite register -buffer-name=register -direction=botright -auto-resize -toggle<CR>
+nnoremap <silent> ,ur :<C-u>Unite register -buffer-name=register -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " 最近使用したファイル一覧
-nnoremap <silent> ,um :<C-u>Unite file_mru -direction=botright -auto-resize -toggle<CR>
+nnoremap <silent> ,um :<C-u>Unite file_mru -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " ブックマーク
-nnoremap <silent> ,uc :<C-u>Unite bookmark -direction=botright -auto-resize -toggle<CR>
+nnoremap <silent> ,uc :<C-u>Unite bookmark -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " ブックマークに追加
 nnoremap <silent> ,ua :<C-u>UniteBookmarkAdd<CR>
 " 常用セット
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru file file/new -direction=botright -auto-preview -toggle<CR>
-nnoremap <silent> ;; :<C-u>Unite buffer file_mru file file/new -direction=botright -auto-resize -toggle<CR>
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru file file/new -direction=botright -prompt-direction=top -auto-preview -toggle<CR>
+nnoremap <silent> ;;  :<C-u>Unite buffer file_mru file file/new -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " 全部乗せ
-nnoremap <silent> ,uz :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file file/new -direction=botright -auto-resize -toggle<CR>
+nnoremap <silent> ,uz :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file file/new -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " outline
 " nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=topleft -auto-preview -auto-resize<CR>
-nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=topleft<CR>
+nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=topleft -prompt-direction=top<CR>
 " tab
 " nnoremap <silent> ,ut :<C-u>Unite tab -buffer-name=tab -direction=botright -auto-preview -auto-resize<CR>
 " tag
-nnoremap <silent> ,ut :<C-u>Unite tag -buffer-name=tag -direction=botright -auto-preview -auto-resize<CR>
+nnoremap <silent> ,ut :<C-u>Unite tag -buffer-name=tag -direction=botright -prompt-direction=top -auto-preview -auto-resize<CR>
 " C-] の代わりに unite-tag を使う設定
 " autocmd BufEnter *
       " \   if empty(&buftype)
       " \|    nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immidiately tag<CR>
       " \|  endif
 " window
-nnoremap <silent> ,uw :<C-u>Unite window -buffer-name=window -direction=botright -auto-preview -auto-resize<CR>
+nnoremap <silent> ,uw :<C-u>Unite window -buffer-name=window -direction=botright -prompt-direction=top -auto-preview -auto-resize<CR>
 " snippets
 imap <C-s> <Plug>(neocomplcache_start_unite_snippet)
 " unite-todo
