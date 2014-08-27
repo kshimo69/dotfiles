@@ -356,10 +356,10 @@ set ffs=unix,dos,mac  " 想定される開業の種類
   set encoding=utf-8  " default encoding
 "endif
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
-nmap ,ee :e ++enc=euc-jp<CR>
-nmap ,es :e ++enc=cp932<CR>
-nmap ,ej :e ++enc=iso-2022-jp<CR>
-nmap ,eu :e ++enc=utf-8<CR>
+nnoremap ,ee :e ++enc=euc-jp<CR>
+nnoremap ,es :e ++enc=cp932<CR>
+nnoremap ,ej :e ++enc=iso-2022-jp<CR>
+nnoremap ,eu :e ++enc=utf-8<CR>
 
 set shiftround         " '<'や'>'でインデントする際に'shiftwidth'の倍数に丸める
 set infercase          " 補完時に大文字小文字を区別しない
@@ -600,10 +600,10 @@ nnoremap k gk
 " nmap <silent> <C-x><C-p> :bprevious<CR>
 " nmap <silent> <C-x><C-l> :buffers<CR>
 " split
-nmap spj <SID>(split-to-j)
-nmap spk <SID>(split-to-k)
-nmap sph <SID>(split-to-h)
-nmap spl <SID>(split-to-l)
+nnoremap spj <SID>(split-to-j)
+nnoremap spk <SID>(split-to-k)
+nnoremap sph <SID>(split-to-h)
+nnoremap spl <SID>(split-to-l)
 nnoremap <SID>(split-to-j) : <C-u>belowright split<CR>
 nnoremap <SID>(split-to-k) : <C-u>aboveleft split<CR>
 nnoremap <SID>(split-to-h) : <C-u>topleft vsplit<CR>
@@ -628,7 +628,7 @@ nnoremap <S-Down>  <C-w>+<CR>
 
 " T + ? で各種設定をトグル {{{
 nnoremap [toggle] <Nop>
-nmap T [toggle]
+nnoremap T [toggle]
 nnoremap <silent> [toggle]s :setl spell!<CR>:setl spell?<CR>
 nnoremap <silent> [toggle]l :setl list!<CR>:setl list?<CR>
 nnoremap <silent> [toggle]t :setl expandtab!<CR>:setl expandtab?<CR>
@@ -1364,7 +1364,7 @@ autocmd FileType c,cpp inoremap <buffer> <expr> . smartchr#loop('.', '->', '..')
 " }}} plugin smartchr
 
 " plugin vim-altr {{{
-nmap <F2> <Plug>(altr-forward)
+nnoremap <F2> <Plug>(altr-forward)
 " 設定を追加する場合のサンプル
 " call altr#define('autoload/%.vim', 'doc/%.txt', 'plugin/%.vim')
 " }}} pluginvim-altr
@@ -1390,13 +1390,13 @@ nmap <Leader>T <plug>TaskList
 
 " plugin Trinity {{{
 " Open and close all the three plugins on the same time
-nmap <F8>  :TrinityToggleAll<CR>
+nnoremap <F8>  :TrinityToggleAll<CR>
 " Open and close the Source Explorer separately
-nmap <F9>  :TrinityToggleSourceExplorer<CR>
+nnoremap <F9>  :TrinityToggleSourceExplorer<CR>
 " Open and close the Taglist separately
-nmap <F10> :TrinityToggleTagList<CR>
+nnoremap <F10> :TrinityToggleTagList<CR>
 " Open and close the NERD Tree separately
-nmap <F11> :TrinityToggleNERDTree<CR>
+nnoremap <F11> :TrinityToggleNERDTree<CR>
 " }}} plugin Trinity
 
 " plugin taglist {{{
@@ -1451,7 +1451,7 @@ let g:SrcExpl_nextDefKey = "<F4>"
 " }}} plugin nerdtree
 
 " plugin tagbar {{{
-nmap <Leader>t :TagbarToggle<CR>
+nnoremap <Leader>t :TagbarToggle<CR>
 " }}} plugin tagbar
 
 " plugin syntastic {{{
@@ -1600,17 +1600,17 @@ let g:go_fmt_command = "gofmt"
 let g:go_disable_autoinstall = 1
 let g:go_snippet_engine = "neosnippet"
 
-au FileType go nmap <Leader>gi <Plug>(go-import)
-au FileType go nmap <Leader>gr <Plug>(go-run)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <leader>gb <Plug>(go-build)
-au FileType go nmap <leader>gt <Plug>(go-test)
-au FileType go nmap gd <Plug>(go-def)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gl :GoLint<CR>
+au FileType go nnoremap <Leader>gi <Plug>(go-import)
+au FileType go nnoremap <Leader>gr <Plug>(go-run)
+au FileType go nnoremap <Leader>gd <Plug>(go-doc)
+au FileType go nnoremap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nnoremap <leader>gb <Plug>(go-build)
+au FileType go nnoremap <leader>gt <Plug>(go-test)
+au FileType go nnoremap gd <Plug>(go-def)
+au FileType go nnoremap <Leader>ds <Plug>(go-def-split)
+au FileType go nnoremap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nnoremap <Leader>dt <Plug>(go-def-tab)
+au FileType go nnoremap <Leader>gl :GoLint<CR>
 au FileType go au BufWritePost *.go silent GoFmt
 " }}} plugin vim-go
 
@@ -1623,8 +1623,8 @@ autocmd FileType taskedit noremap <silent> <buffer> <CR> :call Toggle_task_statu
 " http://vim-users.jp/2011/08/hack225/
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 " カーソル下のURLをブラウザで開く
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
+nnoremap gx <Plug>(openbrowser-smart-search)
+vnoremap gx <Plug>(openbrowser-smart-search)
 " カーソル下のキーワードをググる
 nnoremap go :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
 vnoremap go :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
