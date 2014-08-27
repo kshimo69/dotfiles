@@ -1455,6 +1455,9 @@ let g:SrcExpl_nextDefKey = "<F4>"
 
 " plugin nerdtree {{{
 " map <F10> :NERDTreeToggle <CR>
+
+" ディレクトリに+記号をつけるとか
+let g:NERDTreeDirArrows = 0
 " }}} plugin nerdtree
 
 " plugin tagbar {{{
