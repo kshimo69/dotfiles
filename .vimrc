@@ -884,7 +884,7 @@ set grepprg=grep\ -rnIH\ --color\ --exclude=\.hg\ --exclude=\.git\ --exclude=\.s
 
 " IncludePATH {{{
 " PATHにインクルードディレクトリを設定する
-let $DEFAULT_INCLUDE_DIR = "/usr/include,/usr/local/include,/mnt/project/center/CTR_SDK/include,/mnt/project/center/CTR_NEX/include"
+let $DEFAULT_INCLUDE_DIR = "/usr/include,/usr/local/include,/mnt/CTR_SDK/include,/mnt/project/center/CTR_NEX/include"
 set path+=$DEFAULT_INCLUDE_DIR
 " }}} IncludePATH
 
@@ -1085,7 +1085,7 @@ if !(has("win32") || has("win95") || has("win64") || has("win16"))
   let g:marching_clang_command = "/usr/local/bin/clang"
   " インクルードディレクトリのパスを設定
   let g:marching_include_paths = [
-    \   "/usr/include,/usr/local/include,/mnt/project/center/CTR_SDK/include,/mnt/project/center/CTR_NEX/include"
+    \   "/usr/include,/usr/local/include,/mnt/CTR_SDK/include,/mnt/project/center/CTR_NEX/include"
     \]
 else
   " clang コマンドの設定
