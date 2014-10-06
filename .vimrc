@@ -129,6 +129,7 @@ else
   NeoBundle 'thinca/vim-openbuf'
   NeoBundle 'kshimo69/unite-vim_hacks'
   NeoBundle 'Shougo/vimfiler'
+  NeoBundle 't9md/vim-choosewin'
   NeoBundle 'kannokanno/unite-todo'
   NeoBundle 'osyo-manga/unite-quickrun_config'
   NeoBundle 'Shougo/neomru.vim'
@@ -1251,6 +1252,15 @@ nnoremap <Leader>f :VimFilerBufferDir<CR>
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_enable_auto_cd = 1
 " }}} plugin vimfiler
+
+" plugin choosewin {{{
+" invoke with '-'
+nmap - <Plug>(choosewin)
+" if you want to use overlay feature
+let g:choosewin_overlay_enable          = 1
+" overlay font broke on mutibyte buffer?
+let g:choosewin_overlay_clear_multibyte = 1
+" }}} plugin choosewin
 
 " plugin quickrun {{{
 let g:quickrun_config = {}
