@@ -708,6 +708,9 @@ autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
 " QuickFixおよびHelpでは q でバッファを閉じる
 autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 
+nnoremap <C-j> :<C-u>cnext<CR>
+nnoremap <C-k> :<C-u>cprevious<CR>
+
 " QuickFixのウインドウだけになったら閉じる
 augroup QfAutoCommands
   autocmd!
