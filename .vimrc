@@ -64,10 +64,11 @@ else
   if has('vim_starting')
     execute "set runtimepath+=" . s:neobundle_root
   endif
-  call neobundle#rc(s:bundle_root)
 
   " NeoBundle自身もNeoBundleで管理する
+  call neobundle#begin(s:bundle_root)
   NeoBundleFetch 'Shougo/neobundle.vim'
+  call neobundle#end()
 
   " 非同期通信を可能にする
   " 'build'が指定されているのでインストール時に自動的に
