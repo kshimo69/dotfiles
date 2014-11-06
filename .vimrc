@@ -447,6 +447,18 @@ au BufNewFile,BufRead * set iminsert=0
 " 全角スペースの表示
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 au BufNewFile,BufRead * match ZenkakuSpace /　/
+
+" diffのコマンド
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = ""
+  if &diffopt =~ "iwhite"
+    let opt = opt . "-b "
+  endif
+  silent execute "!git-diff-normal-format " . opt . v:fname_in . " " . v:fname_new . " > " . v:fname_out
+  redraw!
+endfunction
+
 " }}} 表示
 
 " 色、GUI {{{
