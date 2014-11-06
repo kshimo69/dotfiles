@@ -44,6 +44,8 @@
     newdate = git commit --amend --date="$(date -R)"  # 日時を現在時刻に
 #[merge]
 #    ff = false
+[diff]
+    algorithm = histogram
 [pager]
     log = diff-highlight | less
     show = diff-highlight | less
