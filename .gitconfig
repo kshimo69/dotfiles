@@ -41,8 +41,8 @@
     delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
     pull-dry-run = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
     fixup = commit --amend -C HEAD
-    chown = git commit --amend --reset-author  # authorを変える(と日時も変わる)
-    newdate = git commit --amend --date="$(date -R)"  # 日時を現在時刻に
+    chown = commit --amend --reset-author  # authorを変える(と日時も変わる)
+    newdate = !git commit --amend --date=\"$(date -R)\"  # 日時を現在時刻に
 #[merge]
 #    ff = false
 [diff]
