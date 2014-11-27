@@ -133,6 +133,7 @@ else
   NeoBundle 't9md/vim-choosewin'
   NeoBundle 'kannokanno/unite-todo'
   NeoBundle 'osyo-manga/unite-quickrun_config'
+  NeoBundle 'osyo-manga/unite-quickfix'
   NeoBundle 'Shougo/neomru.vim'
 
   " quickrun
@@ -1640,7 +1641,7 @@ endfunction
 " }}} plugin jedi
 
 " plugin pyflakes-pathgen {{{
-" let pyflakes_use_quickfix = 0
+let pyflakes_use_quickfix = 0
 " }}} plugin pyflakes-pathgen
 
 " plugin vim-go {{{
