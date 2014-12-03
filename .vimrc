@@ -124,6 +124,7 @@ else
   NeoBundle 'Shougo/unite-outline'
   NeoBundle 'Shougo/unite-build'
   NeoBundle 'tsukkee/unite-tag'
+  NeoBundle 'hewes/unite-gtags'
   NeoBundle 'Sixeight/unite-grep'
   NeoBundle 'basyura/unite-rails'
   NeoBundle 'thinca/vim-unite-history'
