@@ -800,8 +800,6 @@ endfunction
 " その表示の前に %N というところでタブ番号を表示させています
 set guitablabel=%N:\ %{GuiTabLabel()}
 
-set showtabline=2
-
 " http://d.hatena.ne.jp/thinca/20111204/1322932585
 " 各タブページのカレントバッファ名+αを表示
 " function! s:tabpage_label(n)
