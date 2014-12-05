@@ -533,6 +533,7 @@ augroup END
 syntax on
 
 autocmd ColorScheme * highlight Search term=reverse ctermfg=253 ctermbg=66 guifg=#FFFFFF guibg=#455354
+autocmd ColorScheme * highlight TabLineSel term=reverse ctermfg=255 ctermbg=33 guifg=#FFFFFF guibg=#333333
 
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
