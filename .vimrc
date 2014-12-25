@@ -619,13 +619,14 @@ nnoremap k gk
 " spell check {{{
 " http://qiita.com/crispy/items/9a49d7dc792740f062ab
 set spelllang=en,cjk
+set spellfile=$HOME/.vim/spell/default.add
 
 fun! s:SpellConf()
   redir! => syntax
   silent syntax
   redir END
 
-  set spell
+  " set spell
 
   if syntax =~? '/<comment\>'
     syntax spell default
@@ -642,6 +643,8 @@ augroup spell_check
   autocmd!
   autocmd BufReadPost,BufNewFile,Syntax * call s:SpellConf()
 augroup END
+
+nnoremap <silent> <Leader>s :setl spell!<CR>:setl spell?<CR>
 " }}} spell check
 
 " バッファ分割 {{{
