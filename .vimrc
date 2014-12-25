@@ -1347,6 +1347,13 @@ nnoremap <Leader>f :VimFilerBufferDir<CR>
 " autocmd MyAutoCmd BufEnter * if (winnr('$') == 1 && &filetype ==# 'vimfiler') | q | endif
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_enable_auto_cd = 1
+
+" VimFilerExplorerの幅を一時的に変える
+autocmd FileType vimfiler
+  \ nmap <buffer> <SID>(vimfiler_redraw_screen) <Plug>(vimfiler_redraw_screen)|
+  \ nnoremap <buffer><script> <C-W>> 30<C-W>><SID>(vimfiler_redraw_screen)|
+  \ nnoremap <buffer><script> <C-W>< 30<C-W><<SID>(vimfiler_redraw_screen)|
+  \ nnoremap <buffer><script> <C-W>\| <C-W>\|<SID>(vimfiler_redraw_screen)
 " }}} plugin vimfiler
 
 " plugin choosewin {{{
