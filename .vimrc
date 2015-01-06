@@ -373,7 +373,7 @@ set virtualedit+=block
 set hidden             " バッファを閉じる代わりに隠す（Undo履歴を残すため）
 set switchbuf=useopen  " 新しく開く代わりにすでに開いてあるバッファを開く
 set showmatch          " 対応する括弧などをハイライト表示する
-"set matchtime=3        " 対応括弧のハイライト表示を3秒にする
+set matchtime=2        " 対応括弧のハイライト表示を0.2秒にする
 
 " 対応括弧に'<'と'>'のペアを追加
 set matchpairs& matchpairs+=<:>
@@ -404,6 +404,7 @@ set autoread
 set list            " 不可視文字の可視化
 set number          " 行番号の表示
 set wrap            " 長いテキストの折り返し
+set display=lastline " 1行の文字数が多い場合も表示する
 set textwidth=0     " 自動的に改行が入るのを無効化
 " set colorcolumn=80  " その代わり80文字目にラインを入れる
 set modeline        " モードラインを表示
@@ -416,6 +417,9 @@ set foldmethod=indent  " fold with indent
 "set foldlevel=0  " all level folding
 "set foldlevel=99  " all level not folding when open buffer
 "set foldcolumn=4  " show folding line
+
+" 補完のポップアップメニューの高さ
+set pumheight=10
 
 " 新しいウィンドウを下に開く
 set splitbelow
