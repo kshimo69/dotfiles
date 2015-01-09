@@ -1470,6 +1470,10 @@ let g:yankring_history_file = '.yankring_history'
 nnoremap <silent> cy  ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 vnoremap <silent> cy  c<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+" Y でカーソル位置から行末までコピー
+function! YRRunAfterMaps()
+  nnoremap Y  :<C-U>YRYankCount 'y$'<CR>
+endfunction
 " }}} plugin yankring
 
 " plugin nerdcommenter {{{
