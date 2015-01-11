@@ -1600,18 +1600,13 @@ function! s:hooks.on_source(bundle)
   " 補完の最初の項目が選択された状態だと使いにくいためオフにする
   let g:jedi#popup_select_first = 0
   " goto
-  " let g:jedi#goto_command = "<leader>g"
   let g:jedi#goto_assignments_command = "<leader>g"
   " 定義元
-  " let g:jedi#get_definition_command = "<leader>d"
   let g:jedi#get_definitions_command = "<leader>d"
   " pydoc
-  " let g:jedi#pydoc = "K"
   let g:jedi#documentation_command = "K"
   " quickrunと被るため大文字に変更
   let g:jedi#rename_command = '<Leader>R'
-  " gundoと被るため大文字に変更
-  let g:jedi#goto_command = '<Leader>G'
 endfunction
 
 " neocomleteでpythonの補完はjediを使う
