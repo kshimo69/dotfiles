@@ -6,6 +6,7 @@
 *~
 .#*
 *.sw[po]
+.*.un~
 TAGS
 tags
 GPATH
