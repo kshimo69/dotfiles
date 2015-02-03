@@ -1285,6 +1285,9 @@ endfunction
 " }}} plugin unite
 
 " plugin vimfiler {{{
+" vimfilerをデフォルトのexplorerに
+let g:vimfiler_as_default_explorer = 1
+
 nnoremap <Leader>e :VimFilerExplorer<CR>
 " 現在開いているバッファのディレクトリを開く
 nnoremap <Leader>f :VimFilerBufferDir<CR>
