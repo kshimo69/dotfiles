@@ -985,7 +985,7 @@ set tags=./tags;
 
 " IncludePATH {{{
 " PATHにインクルードディレクトリを設定する
-let $DEFAULT_INCLUDE_DIR = "/usr/include,/usr/local/include,/mnt/CTR_SDK/include,/mnt/project/center/CTR_NEX/include"
+let $DEFAULT_INCLUDE_DIR = "/usr/include,/usr/local/include,/mnt/CTR_SDK/include,/mnt/CTR_NEX/include"
 set path+=$DEFAULT_INCLUDE_DIR
 " }}} IncludePATH
 
