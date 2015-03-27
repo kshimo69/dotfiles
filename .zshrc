@@ -31,6 +31,11 @@ fpath=($HOME/.zsh/functions/completion $fpath)
 autoload -U $HOME/.zsh/functions/completion/*(:t)
 autoload -U compinit
 compinit
+# 補完のルール
+# まずそのままマッチするのを探す
+# 小文字を大文字にして探す、-_.を*として探す
+# 大文字を小文字にして探すを追加 わざわざ大文字で入力したらそれを優先
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z} r:|[-_.]=**' '+m:{A-Z}={a-z}'
 generate-complete-function/ruby/optparse () {
     ruby -r $HOME/bin/zshcomplete $1 > $HOME/.zsh/completion/_`basename $1`
     reload-complete-functions
