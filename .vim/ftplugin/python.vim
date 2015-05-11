@@ -1,7 +1,7 @@
 " http://hashnote.net/2011/12/7/12/
 
 " PEP8 Indent rule
-setl tabstop=8
+setl tabstop=4
 setl softtabstop=4
 setl shiftwidth=4
 setl smarttab
@@ -52,8 +52,9 @@ function! GetGooglePythonIndent(lnum)
 
 endfunction
 
-let pyindent_nested_paren="&sw*2"
-let pyindent_open_paren="&sw*2"
+let pyindent_nested_paren="&sw"
+let pyindent_open_paren="&sw"
+let pyindent_continue="&sw"
 
 
 
