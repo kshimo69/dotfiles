@@ -293,6 +293,7 @@ else
 
   " Markdown
   NeoBundle 'plasticboy/vim-markdown'
+  NeoBundle 'kannokanno/previm'
 
   " Tasks
   NeoBundle 'samsonw/vim-task'
