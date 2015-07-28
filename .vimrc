@@ -353,8 +353,8 @@ let mapleader = " "
 
 " 英語キーボード用設定
 " ノーマルモードのコロンとセミコロンを入れ替え
-nnoremap ; :
-nnoremap : ;
+" nnoremap ; :
+" nnoremap : ;
 
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
