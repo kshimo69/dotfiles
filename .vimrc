@@ -212,6 +212,8 @@ else
     " \   "mac": ["pip install flake8", "npm -g install coffeelint"],
     " \   "unix": ["pip install flake8", "npm -g install coffeelint"],
     " \ }}
+  " vim 7.4のyamlシンタックスハイライトが遅いのでプラグインを入れる
+  NeoBundle 'stephpy/vim-yaml'
 
   " StatusLine
   NeoBundle 'bling/vim-airline'
