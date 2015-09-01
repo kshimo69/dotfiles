@@ -50,6 +50,7 @@ autoload -U add-zsh-hook
 
 alias ls='ls --color=auto'
 alias vi='vim'
+alias vim='vim -X'
 alias VIM='gvim'
 alias em='TERM=xterm-256color emacs -nw'
 alias gst='git st && git stash list'
