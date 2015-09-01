@@ -502,6 +502,8 @@ set foldmethod=indent " fold with indent
 "set foldlevel=0       " all level folding
 "set foldlevel=99      " all level not folding when open buffer
 "set foldcolumn=4      " show folding line
+set foldlevel=1
+set foldnestmax=2
 
 " 補完のポップアップメニューの高さ
 set pumheight=10
