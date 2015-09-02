@@ -48,70 +48,6 @@ reload-complete-functions() {
 }
 autoload -U add-zsh-hook
 
-alias ls='ls --color=auto'
-alias vi='vim'
-alias vim='vim -X'
-alias VIM='gvim'
-alias em='TERM=xterm-256color emacs -nw'
-alias gst='git st && git stash list'
-alias gch='git cherry -v'
-alias g='git'
-alias py='python'
-alias r='rails'
-alias pu='pushd'
-alias po='popd'
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
-alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
-alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
-alias fgrep='find . -type f -print0 | xargs -0 grep'
-alias ngrep='grep --color=never'
-alias now='date +%Y%m%d%H%M%S'
-function backup() {
-    if [ $# -lt 1 ]; then
-        echo "usage: backup <filename>"
-    else
-        cp -v $1{,.`now`}
-    fi
-}
-
-# clipboard
-if which pbcopy >/dev/null 2>&1 ; then
-    # Mac
-    COPY='pbcopy'
-elif which xsel >/dev/null 2>&1 ; then
-    # Linux
-    COPY='xsel --input --clipboard'
-elif which putclip >/dev/null 2>&1 ; then
-    # Cygwin
-    COPY='putclip'
-fi
-copy-prev-cmd-to-clipboard () {
-    tail -1 $HISTFILE | perl -e '<> =~  m/;(.+)\s?C?/; print $1;' | $COPY
-}
-zle -N copy-prev-cmd-to-clipboard
-bindkey '^x^p' copy-prev-cmd-to-clipboard
-alias -g C="|$COPY"
-
-if [ "`uname`" = "Darwin" ]; then
-    alias ls='ls -G'
-    alias emacs='open -a Emacs'
-    alias em='emacsclient -n'
-    alias vi='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-    alias vim='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-    alias VIM='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app/Contents/MacOS/MacVim'
-    # alias docker_remove_container="docker rm $(docker ps -a -q)"
-    # alias docker_remove_images="docker rmi $(docker images -a | awk '/^<none>/{print $3}')"
-elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
-    alias gvim='d:/vim/gvim.exe'
-fi
-if [ "${TERM}" = "eterm-color" ]; then
-    alias ls='ls -F'
-fi
-
-if [ -f ~/.passwd ]; then
-    . ~/.passwd
-fi
-
 export LANG="ja_JP.UTF-8"
 export GREP_COLOR="01;35"
 export GREP_OPTIONS=--color=auto
@@ -176,6 +112,70 @@ export LESSCHARSET="utf-8"
 #export GTAGSROOT=/usr/include
 #export GTAGDBPATH=~/.inctags
 export GTAGSLABEL=exuberant-ctags
+
+alias ls='ls --color=auto'
+alias vi='vim'
+alias vim='vim -X'
+alias VIM='gvim'
+alias em='TERM=xterm-256color emacs -nw'
+alias gst='git st && git stash list'
+alias gch='git cherry -v'
+alias g='git'
+alias py='python'
+alias r='rails'
+alias pu='pushd'
+alias po='popd'
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
+alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
+alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
+alias fgrep='find . -type f -print0 | xargs -0 grep'
+alias ngrep='grep --color=never'
+alias now='date +%Y%m%d%H%M%S'
+function backup() {
+    if [ $# -lt 1 ]; then
+        echo "usage: backup <filename>"
+    else
+        cp -v $1{,.`now`}
+    fi
+}
+
+# clipboard
+if which pbcopy >/dev/null 2>&1 ; then
+    # Mac
+    COPY='pbcopy'
+elif which xsel >/dev/null 2>&1 ; then
+    # Linux
+    COPY='xsel --input --clipboard'
+elif which putclip >/dev/null 2>&1 ; then
+    # Cygwin
+    COPY='putclip'
+fi
+copy-prev-cmd-to-clipboard () {
+    tail -1 $HISTFILE | perl -e '<> =~  m/;(.+)\s?C?/; print $1;' | $COPY
+}
+zle -N copy-prev-cmd-to-clipboard
+bindkey '^x^p' copy-prev-cmd-to-clipboard
+alias -g C="|$COPY"
+
+if [ "`uname`" = "Darwin" ]; then
+    alias ls='ls -G'
+    alias emacs='open -a Emacs'
+    alias em='emacsclient -n'
+    alias vi='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    alias vim='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    alias VIM='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app/Contents/MacOS/MacVim'
+    # alias docker_remove_container="docker rm $(docker ps -a -q)"
+    # alias docker_remove_images="docker rmi $(docker images -a | awk '/^<none>/{print $3}')"
+elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
+    alias gvim='d:/vim/gvim.exe'
+fi
+if [ "${TERM}" = "eterm-color" ]; then
+    alias ls='ls -F'
+fi
+
+if [ -f ~/.passwd ]; then
+    . ~/.passwd
+fi
 
 zstyle ':completion:*:sudo:*' command-path /opt/local/sbin /opt/local/bin \
                                 /usr/local/sbin /usr/local/bin /usr/sbin \
