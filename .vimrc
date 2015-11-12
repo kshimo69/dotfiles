@@ -1,4 +1,4 @@
-" vim:set foldmethod=marker foldlevel=0:
+" vim:set foldmethod=marker:
 
 " 基本はここの設定
 " http://lambdalisue.hatenablog.com/entry/2013/06/23/071344
@@ -500,10 +500,10 @@ set wildmode=longest:full,full
 set history=1000      " コマンドヒストリー1000件
 set foldmethod=indent " fold with indent
 "set foldlevel=0       " all level folding
-"set foldlevel=99      " all level not folding when open buffer
+set foldlevel=99      " all level not folding when open buffer
 "set foldcolumn=4      " show folding line
-set foldlevel=1
-set foldnestmax=2
+" set foldlevel=1
+" set foldnestmax=2
 
 " 補完のポップアップメニューの高さ
 set pumheight=10
