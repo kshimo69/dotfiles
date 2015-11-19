@@ -50,7 +50,6 @@ autoload -U add-zsh-hook
 
 export LANG="ja_JP.UTF-8"
 export GREP_COLOR="01;35"
-export GREP_OPTIONS=--color=auto
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export PERL5LIB=$HOME/local/lib/perl5:$HOME/local/lib/perl5/site_perl:$HOME/local/lib/perl:$HOME/local/share/perl
 export PERL_AUTOINSTALL="--defaultdeps"
@@ -128,6 +127,7 @@ alias po='popd'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
 alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
 alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
+alias grep='grep --color=auto'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
 alias now='date +%Y%m%d%H%M%S'
