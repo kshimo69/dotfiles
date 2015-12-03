@@ -1234,6 +1234,9 @@ imap <buffer> <C-x><C-x><C-o> <Plug>(marching_force_start_omni_complete)
 " http://d.hatena.ne.jp/Voluntas/20110823/1314031095
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
+" 大文字小文字区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
 " uniteのウインドウの高さ
 let g:unite_winheight=15
 " use vimfiler to open directory
