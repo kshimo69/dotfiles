@@ -708,7 +708,7 @@ nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
 " }}}
 
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! w !sudo tee > /dev/null %
 
 " 存在しないフォルダを自動で作る {{{
 " http://hashnote.net/2011/12/7/12/
