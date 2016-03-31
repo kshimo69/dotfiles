@@ -975,6 +975,38 @@ endfunction
 command! SyntaxInfo call s:get_syn_info()
 " }}} カーソルの下のシンタックスを調べる
 
+" Diff http://koturn.hatenablog.com/entry/2013/08/10/034242 {{{
+function! s:vimdiff_in_newtab(...)
+  if a:0 == 1
+    tabedit %:p
+    exec 'rightbelow vertical diffsplit ' . a:1
+  else
+    exec 'tabedit ' . a:1
+    for l:file in a:000[1 :]
+      exec 'rightbelow vertical diffsplit ' . l:file
+    endfor
+  endif
+endfunction
+command! -bar -nargs=+ -complete=file Diff  call s:vimdiff_in_newtab(<f-args>)
+" }}} Diff
+
+" Compare http://koturn.hatenablog.com/entry/2013/08/10/034242 {{{
+function! s:compare(...)
+  if a:0 == 1
+    tabedit %:p
+    exec 'rightbelow vnew ' . a:1
+  else
+    exec 'tabedit ' . a:1
+    setl scrollbind
+    for l:file in a:000[1 :]
+      exec 'rightbelow vnew ' . l:file
+      setl scrollbind
+    endfor
+  endif
+endfunction
+command! -bar -nargs=+ -complete=file Compare  call s:compare(<f-args>)
+" }}} Compare
+
 " ==== Programming ==== {{{
 
 " ChangeLog {{{
