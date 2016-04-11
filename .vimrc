@@ -1293,7 +1293,7 @@ nnoremap <silent> ,uc :<C-u>Unite bookmark -direction=botright -prompt-direction
 nnoremap <silent> ,ua :<C-u>UniteBookmarkAdd<CR>
 " 常用セット
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru file file/new -direction=botright -prompt-direction=top -auto-preview -toggle<CR>
-nnoremap <silent> ;;  :<C-u>Unite buffer file_mru file file/new -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
+nnoremap <silent> <Space>l  :<C-u>Unite buffer file_mru file file/new -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " 全部乗せ
 nnoremap <silent> ,uz :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file file/new -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " outline
@@ -1302,7 +1302,7 @@ nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=toplef
 " tab
 " nnoremap <silent> ,ut :<C-u>Unite tab -buffer-name=tab -direction=botright -auto-preview -auto-resize<CR>
 " tag
-nnoremap <silent> ,ut :<C-u>Unite tag -buffer-name=tag -direction=botright -prompt-direction=top -auto-preview -auto-resize<CR>
+nnoremap <silent> ,ut :<C-u>Unite -buffer-name=tag -direction=botright -prompt-direction=top -auto-preview -auto-resize tag:<C-r>=expand('<cword>')<CR><CR>
 " C-] の代わりに unite-tag を使う設定
 " autocmd BufEnter *
       " \   if empty(&buftype)
