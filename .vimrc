@@ -1305,9 +1305,14 @@ nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=toplef
 nnoremap <silent> ,ut :<C-u>Unite -buffer-name=tag -direction=botright -prompt-direction=top -auto-preview -auto-resize tag:<C-r>=expand('<cword>')<CR><CR>
 " C-] の代わりに unite-tag を使う設定
 " autocmd BufEnter *
-      " \   if empty(&buftype)
-      " \|    nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immidiately tag<CR>
-      " \|  endif
+" \   if empty(&buftype)
+" \|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
+" \|  endif
+" C-t で元に戻る
+" autocmd BufEnter *
+" \   if empty(&buftype)
+" \|      nnoremap <buffer> <C-t> :<C-u>Unite jump<CR>
+" \|  endif
 " window
 nnoremap <silent> ,uw :<C-u>Unite window -buffer-name=window -direction=botright -prompt-direction=top -auto-preview -auto-resize<CR>
 
