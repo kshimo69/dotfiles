@@ -110,7 +110,7 @@ export LESSCHARSET="utf-8"
 # % gtags ~/.inctags
 #export GTAGSROOT=/usr/include
 #export GTAGDBPATH=~/.inctags
-export GTAGSLABEL=exuberant-ctags
+# export GTAGSLABEL=exuberant-ctags
 
 alias ls='ls --color=auto'
 alias vi='vim'
