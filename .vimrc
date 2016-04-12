@@ -1020,6 +1020,10 @@ let g:changelog_dateformat = "%Y-%m-%d (%a)"
 set tags=./tags;
 " }}} Ctags
 
+" gtags {{{
+nnoremap <silent> ,t :<C-u>GtagsCursor<CR>
+" }}} Ctags
+
 " IncludePATH {{{
 " PATHにインクルードディレクトリを設定する
 let $DEFAULT_INCLUDE_DIR = "/usr/include,/usr/local/include,/mnt/CTR_SDK/include,/mnt/CTR_NEX/include"
