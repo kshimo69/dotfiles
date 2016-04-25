@@ -775,7 +775,6 @@ autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 " QuickFixの操作
 nnoremap <C-j> :<C-u>cnext<CR>
 nnoremap <C-k> :<C-u>cprevious<CR>
-nnoremap <C-q> :<C-u>cclose<CR>
 
 " QuickFixのウインドウだけになったら閉じる
 au MyAutoCmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
