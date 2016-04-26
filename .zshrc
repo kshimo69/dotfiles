@@ -58,7 +58,7 @@ export PERL_AUTOINSTALL="--defaultdeps"
 export PYTHONSTARTUP=$HOME/.pythonrc.py
 # export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export WORKON_HOME=$HOME/.virtualenv
-export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
+# export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
 export PIP_RESPECT_VIRTUALENV=true
 #export PIP_REQUIRE_VIRTUALENV=true
 # if virtualenvwrapper ver > 2.0
