@@ -159,6 +159,7 @@ else
     \ }}
   NeoBundle 'mattn/webapi-vim'
   NeoBundle 'airblade/vim-gitgutter'
+  NeoBundle 'cohama/agit.vim'
 
   " テキスト編集
   NeoBundle 'thinca/vim-template'
