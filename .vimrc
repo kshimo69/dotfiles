@@ -680,6 +680,9 @@ nnoremap <SID>(split-to-j) : <C-u>belowright split<CR>
 nnoremap <SID>(split-to-k) : <C-u>aboveleft split<CR>
 nnoremap <SID>(split-to-h) : <C-u>topleft vsplit<CR>
 nnoremap <SID>(split-to-l) : <C-u>botright vsplit<CR>
+
+" gitのコミットメッセージを書く時はspell check on
+au MyAutoCmd FileType gitcommit setlocal spell
 " }}} バッファ分割
 
 " Ctrl + hjkl でウィンドウ間を移動 {{{
@@ -706,6 +709,8 @@ nnoremap <silent> [toggle]l :setl list!<CR>:setl list?<CR>
 nnoremap <silent> [toggle]t :setl expandtab!<CR>:setl expandtab?<CR>
 nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
 " }}}
+
+runtime ftplugin/man.vim
 
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）
 cnoremap w!! w !sudo tee > /dev/null %
@@ -770,7 +775,7 @@ au MyAutoCmd QuickfixCmdPost make,*grep* cwindow
 "au MyAutoCmd QuickFixCmdPost [^l]* copen
 
 " QuickFixおよびHelpでは q でバッファを閉じる
-autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
+au MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 
 " QuickFixの操作
 nnoremap <C-j> :<C-u>cnext<CR>
@@ -1185,10 +1190,10 @@ inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+au MyAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+au MyAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+au MyAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+au MyAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " pythonの補完はjediを使う
 " au MyAutoCmd FileType python setlocal omnifunc=pythoncomplete#Complete
