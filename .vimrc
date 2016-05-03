@@ -159,6 +159,7 @@ else
     \ }}
   NeoBundle 'mattn/webapi-vim'
   NeoBundle 'airblade/vim-gitgutter'
+  NeoBundle 'cohama/agit.vim'
 
   " テキスト編集
   NeoBundle 'thinca/vim-template'
@@ -680,6 +681,9 @@ nnoremap <SID>(split-to-j) : <C-u>belowright split<CR>
 nnoremap <SID>(split-to-k) : <C-u>aboveleft split<CR>
 nnoremap <SID>(split-to-h) : <C-u>topleft vsplit<CR>
 nnoremap <SID>(split-to-l) : <C-u>botright vsplit<CR>
+
+" gitのコミットメッセージを書く時はspell check on
+au MyAutoCmd FileType gitcommit setlocal spell
 " }}} バッファ分割
 
 " Ctrl + hjkl でウィンドウ間を移動 {{{
@@ -707,8 +711,10 @@ nnoremap <silent> [toggle]t :setl expandtab!<CR>:setl expandtab?<CR>
 nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
 " }}}
 
+runtime ftplugin/man.vim
+
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! w !sudo tee > /dev/null %
 
 " 存在しないフォルダを自動で作る {{{
 " http://hashnote.net/2011/12/7/12/
@@ -770,7 +776,7 @@ au MyAutoCmd QuickfixCmdPost make,*grep* cwindow
 "au MyAutoCmd QuickFixCmdPost [^l]* copen
 
 " QuickFixおよびHelpでは q でバッファを閉じる
-autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
+au MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 
 " QuickFixの操作
 nnoremap <C-j> :<C-u>cnext<CR>
@@ -975,6 +981,38 @@ endfunction
 command! SyntaxInfo call s:get_syn_info()
 " }}} カーソルの下のシンタックスを調べる
 
+" Diff http://koturn.hatenablog.com/entry/2013/08/10/034242 {{{
+function! s:vimdiff_in_newtab(...)
+  if a:0 == 1
+    tabedit %:p
+    exec 'rightbelow vertical diffsplit ' . a:1
+  else
+    exec 'tabedit ' . a:1
+    for l:file in a:000[1 :]
+      exec 'rightbelow vertical diffsplit ' . l:file
+    endfor
+  endif
+endfunction
+command! -bar -nargs=+ -complete=file Diff  call s:vimdiff_in_newtab(<f-args>)
+" }}} Diff
+
+" Compare http://koturn.hatenablog.com/entry/2013/08/10/034242 {{{
+function! s:compare(...)
+  if a:0 == 1
+    tabedit %:p
+    exec 'rightbelow vnew ' . a:1
+  else
+    exec 'tabedit ' . a:1
+    setl scrollbind
+    for l:file in a:000[1 :]
+      exec 'rightbelow vnew ' . l:file
+      setl scrollbind
+    endfor
+  endif
+endfunction
+command! -bar -nargs=+ -complete=file Compare  call s:compare(<f-args>)
+" }}} Compare
+
 " ==== Programming ==== {{{
 
 " ChangeLog {{{
@@ -986,6 +1024,10 @@ let g:changelog_dateformat = "%Y-%m-%d (%a)"
 " Ctags {{{
 " タグファイルはカレントディレクトリから上向きに検索
 set tags=./tags;
+" }}} Ctags
+
+" gtags {{{
+nnoremap <silent> ,t :<C-u>GtagsCursor<CR>
 " }}} Ctags
 
 " IncludePATH {{{
@@ -1149,10 +1191,10 @@ inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+au MyAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+au MyAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+au MyAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+au MyAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " pythonの補完はjediを使う
 " au MyAutoCmd FileType python setlocal omnifunc=pythoncomplete#Complete
@@ -1234,6 +1276,9 @@ imap <buffer> <C-x><C-x><C-o> <Plug>(marching_force_start_omni_complete)
 " http://d.hatena.ne.jp/Voluntas/20110823/1314031095
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
+" 大文字小文字区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
 " uniteのウインドウの高さ
 let g:unite_winheight=15
 " use vimfiler to open directory
@@ -1258,7 +1303,7 @@ nnoremap <silent> ,uc :<C-u>Unite bookmark -direction=botright -prompt-direction
 nnoremap <silent> ,ua :<C-u>UniteBookmarkAdd<CR>
 " 常用セット
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru file file/new -direction=botright -prompt-direction=top -auto-preview -toggle<CR>
-nnoremap <silent> ;;  :<C-u>Unite buffer file_mru file file/new -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
+nnoremap <silent> <Space>l  :<C-u>Unite buffer file_mru file file/new -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " 全部乗せ
 nnoremap <silent> ,uz :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file file/new -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " outline
@@ -1267,14 +1312,32 @@ nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=toplef
 " tab
 " nnoremap <silent> ,ut :<C-u>Unite tab -buffer-name=tab -direction=botright -auto-preview -auto-resize<CR>
 " tag
-nnoremap <silent> ,ut :<C-u>Unite tag -buffer-name=tag -direction=botright -prompt-direction=top -auto-preview -auto-resize<CR>
+nnoremap <silent> ,ut :<C-u>Unite -buffer-name=tag -direction=botright -prompt-direction=top -auto-preview -auto-resize tag:<C-r>=expand('<cword>')<CR><CR>
 " C-] の代わりに unite-tag を使う設定
 " autocmd BufEnter *
-      " \   if empty(&buftype)
-      " \|    nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immidiately tag<CR>
-      " \|  endif
+" \   if empty(&buftype)
+" \|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
+" \|  endif
+" C-t で元に戻る
+" autocmd BufEnter *
+" \   if empty(&buftype)
+" \|      nnoremap <buffer> <C-t> :<C-u>Unite jump<CR>
+" \|  endif
 " window
 nnoremap <silent> ,uw :<C-u>Unite window -buffer-name=window -direction=botright -prompt-direction=top -auto-preview -auto-resize<CR>
+
+" grep
+" nnoremap <silent> ,g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ,g :<C-u>Unite grep -buffer-name=search-buffer<CR>
+" grep検索結果の再呼び出し
+nnoremap <silent> ,r :<C-u>UniteResume search-buffer<CR>
+" unite grepにagを使う
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
 " snippets
 imap <C-s> <Plug>(neocomplcache_start_unite_snippet)
 " unite-todo

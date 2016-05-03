@@ -23,7 +23,7 @@ setopt no_flow_control
 # % mkdir -p ~/.zsh/functions/completion
 # % touch ~/.zsh/functions/completion/dummy
 # % (mkdir ~/bin; cd ~/bin; wget http://www.rubyist.net/~rubikitch/archive/zshcomplete.txt; mv zshcomplete.txt zshcomplete.rb; chmod 755 zshcomplete.rb;
-if [ ! -f ~/.zsh/functions/completion/_dummy ]; then
+if [ ! -f ~/.zsh/functions/completion/dummy ]; then
     mkdir -p ~/.zsh/functions/completion
     touch ~/.zsh/functions/completion/dummy
 fi
@@ -50,7 +50,6 @@ autoload -U add-zsh-hook
 
 export LANG="ja_JP.UTF-8"
 export GREP_COLOR="01;35"
-export GREP_OPTIONS=--color=auto
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export PERL5LIB=$HOME/local/lib/perl5:$HOME/local/lib/perl5/site_perl:$HOME/local/lib/perl:$HOME/local/share/perl
 export PERL_AUTOINSTALL="--defaultdeps"
@@ -59,7 +58,7 @@ export PERL_AUTOINSTALL="--defaultdeps"
 export PYTHONSTARTUP=$HOME/.pythonrc.py
 # export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export WORKON_HOME=$HOME/.virtualenv
-export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
+# export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
 export PIP_RESPECT_VIRTUALENV=true
 #export PIP_REQUIRE_VIRTUALENV=true
 # if virtualenvwrapper ver > 2.0
@@ -111,7 +110,7 @@ export LESSCHARSET="utf-8"
 # % gtags ~/.inctags
 #export GTAGSROOT=/usr/include
 #export GTAGDBPATH=~/.inctags
-export GTAGSLABEL=exuberant-ctags
+# export GTAGSLABEL=exuberant-ctags
 
 alias ls='ls --color=auto'
 alias vi='vim'
@@ -128,6 +127,7 @@ alias po='popd'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
 alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
 alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
+alias grep='grep --color=auto'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
 alias now='date +%Y%m%d%H%M%S'

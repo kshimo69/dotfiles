@@ -1,4 +1,4 @@
-PATH=$HOME/.cask/bin:$HOME/.cabal/bin:$HOME/local/bin:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Developer/android-sdk-mac_x86/platform-tools:/usr/bin:/bin:/usr/sbin:/sbin:$PATH:$HOME/Library/Android/sdk/platform-tools
+PATH=$HOME/.cask/bin:$HOME/.cabal/bin:$HOME/local/bin:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/bin/packer:/usr/local/sbin:/Developer/android-sdk-mac_x86/platform-tools:/usr/bin:/bin:/usr/sbin:/sbin:$PATH:$HOME/Library/Android/sdk/platform-tools
 
 # go
 export GOROOT=/usr/local/go
@@ -23,15 +23,15 @@ export PATH
 export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
 # export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-export GTAGSLABEL=exuberant-ctags
+export GTAGSLABEL=default
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 # [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"  # pythonbrew
 
 # docker
 if [ "`uname`" = "Darwin" ]; then
     export DOCKER_HOST=tcp://192.168.59.103:2376
-else
-    export DOCKER_HOST=tcp://172.16.81.94:4243
+# else
+    # export DOCKER_HOST=tcp://172.16.81.94:4243
 fi
 
 true
