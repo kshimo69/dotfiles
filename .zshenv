@@ -1,4 +1,4 @@
-PATH=$HOME/.cask/bin:$HOME/.cabal/bin:$HOME/local/bin:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Developer/android-sdk-mac_x86/platform-tools:/usr/bin:/bin:/usr/sbin:/sbin:$PATH:/Applications/android-sdk-macosx/tools
+PATH=$HOME/.cask/bin:$HOME/.cabal/bin:$HOME/local/bin:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Developer/android-sdk-mac_x86/platform-tools:/usr/bin:/bin:/usr/sbin:/sbin:$PATH:$HOME/Library/Android/sdk/platform-tools
 
 # go
 export GOROOT=/usr/local/go
@@ -29,7 +29,7 @@ export GTAGSLABEL=exuberant-ctags
 
 # docker
 if [ "`uname`" = "Darwin" ]; then
-    export DOCKER_HOST=tcp://localhost:4243
+    export DOCKER_HOST=tcp://192.168.59.103:2376
 else
     export DOCKER_HOST=tcp://172.16.81.94:4243
 fi
