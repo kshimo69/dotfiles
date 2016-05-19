@@ -18,8 +18,7 @@
     cob = checkout -b
     ci = commit
     b = branch
-    st = status -sb
-    s = status -s
+    s = status -sb
     d = diff
     dc = diff --cached
     pr = pull --rebase
