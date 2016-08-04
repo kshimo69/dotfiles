@@ -387,6 +387,9 @@ function s() {
     $*
 }
 
+# https://github.com/papamitra/zsh-behind-window-notify.git
+# っていうのもあるみたい
+
 # http://d.hatena.ne.jp/umezo/20100508/1273332857
 local COMMAND=""
 local COMMAND_TIME=""
