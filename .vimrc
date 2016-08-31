@@ -781,6 +781,10 @@ au MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 " QuickFixの操作
 nnoremap <C-j> :<C-u>cnext<CR>
 nnoremap <C-k> :<C-u>cprevious<CR>
+" p でpreview
+au MyAutoCmd FileType qf nnoremap <buffer> p <CR>zz<C-w>p
+au MyAutoCmd FileType qf nmap <silent> <buffer> j <Down>
+au MyAutoCmd FileType qf nmap <silent> <buffer> k <Up>
 
 " QuickFixのウインドウだけになったら閉じる
 au MyAutoCmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
@@ -1028,7 +1032,7 @@ set tags=./tags;
 
 " gtags {{{
 nnoremap <silent> ,t :<C-u>GtagsCursor<CR>
-" }}} Ctags
+" }}} gtags
 
 " IncludePATH {{{
 " PATHにインクルードディレクトリを設定する
@@ -1351,6 +1355,9 @@ au MyAutoCmd FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_act
 " ウィンドウを縦に分割して開く
 au MyAutoCmd FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 au MyAutoCmd FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+" プレビュー
+au MyAutoCmd FileType unite nnoremap <silent> <buffer> <expr> <C-k> unite#do_action('preview')
+au MyAutoCmd FileType unite inoremap <silent> <buffer> <expr> <C-k> unite#do_action('preview')
 
 " http://ujihisa.blogspot.com/2010/12/investing-methods-of-object-on-unite.html
 " Unite evalruby
