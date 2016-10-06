@@ -1286,37 +1286,37 @@ let g:unite_enable_smart_case = 1
 " uniteのウインドウの高さ
 let g:unite_winheight=15
 " use vimfiler to open directory
-call unite#custom_default_action("source/bookmark/directory", "vimfiler")
-call unite#custom_default_action("directory", "vimfiler")
-call unite#custom_default_action("directory_mru", "vimfiler")
+" call unite#custom_default_action("source/bookmark/directory", "vimfiler")
+" call unite#custom_default_action("directory", "vimfiler")
+" call unite#custom_default_action("directory_mru", "vimfiler")
 "file_mruの表示フォーマットを指定。空にすると表示スピードが高速化される
 let g:unite_source_file_mru_filename_format = ''
 " カーソル行の色
 let g:unite_cursor_line_highlight="CursorLine"
 " バッファ一覧
-nnoremap <silent> ,ub :<C-u>Unite buffer -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer -prompt-direction=top -auto-resize -toggle<CR>
 " ファイル一覧
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
+nnoremap <silent> ,f :<C-u>UniteWithBufferDir -buffer-name=files file -prompt-direction=top -auto-resize -toggle<CR>
 " レジスタ一覧
-nnoremap <silent> ,ur :<C-u>Unite register -buffer-name=register -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
+nnoremap <silent> ,ur :<C-u>Unite register -buffer-name=register -prompt-direction=top -auto-resize -toggle<CR>
 " 最近使用したファイル一覧
-nnoremap <silent> ,um :<C-u>Unite file_mru -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
+nnoremap <silent> ,um :<C-u>Unite file_mru -prompt-direction=top -auto-resize -toggle<CR>
 " ブックマーク
-nnoremap <silent> ,uc :<C-u>Unite bookmark -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
+nnoremap <silent> ,uc :<C-u>Unite bookmark -prompt-direction=top -auto-resize -toggle<CR>
 " ブックマークに追加
 nnoremap <silent> ,ua :<C-u>UniteBookmarkAdd<CR>
 " 常用セット
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru file file/new -direction=botright -prompt-direction=top -auto-preview -toggle<CR>
-nnoremap <silent> <Space>l  :<C-u>Unite buffer file_mru file file/new -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru file file/new -prompt-direction=top -auto-preview -toggle<CR>
+nnoremap <silent> <Space>l  :<C-u>Unite buffer file_mru file file/new -prompt-direction=top -auto-resize -toggle<CR>
 " 全部乗せ
 nnoremap <silent> ,uz :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file file/new -direction=botright -prompt-direction=top -auto-resize -toggle<CR>
 " outline
 " nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=topleft -auto-preview -auto-resize<CR>
 nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=topleft -prompt-direction=top<CR>
 " tab
-" nnoremap <silent> ,ut :<C-u>Unite tab -buffer-name=tab -direction=botright -auto-preview -auto-resize<CR>
+" nnoremap <silent> ,ut :<C-u>Unite tab -buffer-name=tab -auto-preview -auto-resize<CR>
 " tag
-nnoremap <silent> ,ut :<C-u>Unite -buffer-name=tag -direction=botright -prompt-direction=top -auto-preview -auto-resize tag:<C-r>=expand('<cword>')<CR><CR>
+nnoremap <silent> ,ut :<C-u>Unite -buffer-name=tag -prompt-direction=top -auto-preview -auto-resize tag:<C-r>=expand('<cword>')<CR><CR>
 " C-] の代わりに unite-tag を使う設定
 " autocmd BufEnter *
 " \   if empty(&buftype)
@@ -1328,11 +1328,12 @@ nnoremap <silent> ,ut :<C-u>Unite -buffer-name=tag -direction=botright -prompt-d
 " \|      nnoremap <buffer> <C-t> :<C-u>Unite jump<CR>
 " \|  endif
 " window
-nnoremap <silent> ,uw :<C-u>Unite window -buffer-name=window -direction=botright -prompt-direction=top -auto-preview -auto-resize<CR>
+nnoremap <silent> ,uw :<C-u>Unite window -buffer-name=window -prompt-direction=top -auto-preview -auto-resize<CR>
 
 " grep
 " nnoremap <silent> ,g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> ,g :<C-u>Unite grep -buffer-name=search-buffer<CR>
+vnoremap ,g y:Unite grep::-Rn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 " grep検索結果の再呼び出し
 nnoremap <silent> ,r :<C-u>UniteResume search-buffer<CR>
 " unite grepにagを使う
@@ -1358,6 +1359,9 @@ au MyAutoCmd FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_act
 " プレビュー
 au MyAutoCmd FileType unite nnoremap <silent> <buffer> <expr> <C-k> unite#do_action('preview')
 au MyAutoCmd FileType unite inoremap <silent> <buffer> <expr> <C-k> unite#do_action('preview')
+" その場所で開く(ディレクトリ用)
+au MyAutoCmd FileType unite nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+au MyAutoCmd FileType unite inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 
 " http://ujihisa.blogspot.com/2010/12/investing-methods-of-object-on-unite.html
 " Unite evalruby
