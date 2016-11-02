@@ -168,6 +168,7 @@ else
   NeoBundle 'vim-scripts/YankRing.vim'
   NeoBundle 'kana/vim-smartchr'
   NeoBundle 'fuenor/qfixgrep.git'
+  " NeoBundle 'bronson/vim-trailing-whitespace'
   " いい感じにファイルを開くやつ
   " '<Plug>(altr-forward)'というマッピングが呼ばれるまでロードしない
   NeoBundleLazy 'kana/vim-altr', {
@@ -218,6 +219,8 @@ else
 
   " StatusLine
   NeoBundle 'bling/vim-airline'
+  " インデント表示
+  NeoBundle 'Yggdroot/indentLine'
 
   " カラー
   NeoBundle 'tomasr/molokai'
@@ -362,8 +365,8 @@ let mapleader = " "
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 
-" ESCを二回押すことでハイライトを消す
-nnoremap <silent><Esc><Esc> :nohlsearch<CR>
+" ESCを二回押すことでハイライトを切り替え
+nnoremap <silent><Esc><Esc> :nohlsearch!<CR>
 
 " カーソル下の単語を * で検索
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
@@ -606,7 +609,9 @@ au MyAutoCmd ColorScheme * hi TabLineSel term=reverse ctermfg=255 ctermbg=33 gui
 
 " GUIの色
 set background=dark
-colorscheme molokai
+if neobundle#is_installed('molokai')
+  colorscheme molokai
+endif
 
 " ターミナルの透過がそのまま見えるように
 hi Normal ctermbg=NONE
@@ -619,12 +624,12 @@ hi NonText ctermbg=NONE
 set title  " タイトルを表示
 set ruler  " カーソルの行列を表示
 set cursorline   " カーソル行の表示
-set cursorcolumn " カーソル列の表示
+" set cursorcolumn " カーソル列の表示
 " カレントバッファだけカーソルラインを表示する
 au MyAutoCmd WinLeave * set nocursorline
 au MyAutoCmd WinLeave * set nocursorcolumn
 au MyAutoCmd WinEnter,BufRead * set cursorline
-au MyAutoCmd WinEnter,BufRead * set cursorcolumn
+" au MyAutoCmd WinEnter,BufRead * set cursorcolumn
 "hi clear CursorLine
 hi CursorLine gui=underline term=underline cterm=underline
 hi Visual term=reverse cterm=reverse
