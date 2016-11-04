@@ -365,8 +365,9 @@ let mapleader = " "
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 
-" ESCを二回押すことでハイライトを切り替え
-nnoremap <silent><Esc><Esc> :nohlsearch!<CR>
+" ESCを二回押すことでハイライトを無効に
+nnoremap <silent><Esc><Esc> :nohlsearch<CR>
+" nnoremap <silent><Esc><Esc> :set hlsearch! hlsearch?<CR>
 
 " カーソル下の単語を * で検索
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
