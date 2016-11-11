@@ -1728,6 +1728,10 @@ let g:airline_symbols.linenr = ''
 
 " }}} plugin airline
 
+" plugin indentLine {{{
+let g:indentLine_enabled = 1
+" }}} plugin indentLine
+
 " plugin jedi {{{
 let s:hooks = neobundle#get_hooks("jedi-vim")
 function! s:hooks.on_source(bundle)
