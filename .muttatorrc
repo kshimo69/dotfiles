@@ -1,15 +1,21 @@
 set gui=nomenu
 
+" デフォルトのキーバインド
+"nnoremap <C-n> 次のフォルダ
+"nnoremap <C-p> 前のフォルダ
+"nnoremap <C-S-n> 次の未読フォルダ
+"nnoremap <C-S-p> 前の未読フォルダ
+"nnoremap n 次の未読メールにフォーカス
+"nnoremap m MESSAGE modeに入る
+"nnoremap * 同じ差出人の次のメッセージへ移動
+"nnoremap # 同じ差出人の前のメッセージへ移動
+"nnoremap <C-t> すべて既読
+
 " Shortcut
 nnoremap gi :goto 受信トレイ<CR>
 nnoremap gs :goto __☆__<CR>
 nnoremap gt :goto 送信済みトレイ<CR>
 nnoremap / <C-b>
-
-"nnoremap <C-S-n> <C-TAB>
-"nnoremap <C-S-p> <S-C-TAB>
-"nnoremap <C-n> <C-TAB>
-"nnoremap <C-p> <S-C-TAB>
 
 " Star & Archive
 nnoremap s is<ESC>
