@@ -1591,6 +1591,7 @@ let g:quickhl_manual_colors = [
 " }}} pluginvim-quickhl
 
 " plugin nerdcommenter {{{
+let g:NERDCreateDefaultMappings = 0
 let NERDSpaceDelims = 1
 let NERDDefaultNesting = 0
 " ,,でコメントをトグルする
@@ -1687,6 +1688,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': []}
+nnoremap <Leader>sc :SyntasticCheck<CR>
 " }}} plugin syntastic
 
 " plugin airline {{{
