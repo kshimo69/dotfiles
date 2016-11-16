@@ -1338,8 +1338,10 @@ nnoremap <silent> ,uw :<C-u>Unite window -buffer-name=window -prompt-direction=t
 
 " grep
 " nnoremap <silent> ,g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-nnoremap <silent> ,g :<C-u>Unite grep -buffer-name=search-buffer<CR>
-vnoremap ,g y:Unite grep::-Rn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
+nnoremap <silent> ,g :<C-u>UniteWithBufferDir grep -buffer-name=search-buffer<CR>
+nnoremap <silent> ,G :<C-u>Unite grep -buffer-name=search-buffer<CR>
+vnoremap ,g y:UniteWithBufferDir grep::-Rn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
+vnoremap ,G y:Unite grep::-Rn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 " grep検索結果の再呼び出し
 nnoremap <silent> ,r :<C-u>UniteResume search-buffer<CR>
 " unite grepにagを使う
