@@ -1610,7 +1610,7 @@ vmap ,, <Plug>NERDCommenterToggle
 " }}} plugin nerdcommenter
 
 " plugin Gundo {{{
-nnoremap <Leader>u :GundoToggle<CR>
+nnoremap U :GundoToggle<CR>
 " }}} plugin Gundo
 
 " plugin TaskList {{{
