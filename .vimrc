@@ -1355,8 +1355,11 @@ endif
 imap <C-s> <Plug>(neocomplcache_start_unite_snippet)
 " unite-todo
 let g:unite_todo_note_suffix = 'md'
+let g:unite_todo_data_directory = expand('~/.memo')
+let g:unite_todo_note_opener = 'split'
 nnoremap <silent> ,ui :<C-u>UniteTodoAddSimple -tag -memo<CR>
-nnoremap <silent> ,ul :<C-u>Unite todo:undone<CR>
+" nnoremap <silent> ,ul :<C-u>Unite todo:undone<CR>
+nnoremap <silent> ,ul :<C-u>Unite todo<CR>
 
 " ウィンドウを分割して開く
 au MyAutoCmd FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
