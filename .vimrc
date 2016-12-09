@@ -33,6 +33,14 @@ function! s:IncludePath(path)
 endfunction
 " }}}
 
+" パスワードとかローカルにあるファイルを読み込む
+" ~/.vimrc.localの中身はたとえばこんなの
+" let g:hoge_my_token = 'thisismytoken'
+" let g:hoge_my_secret = 'thisismysecret'
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
+
 " ~/.anyenv/envs/pyenv/shims を $PATH に追加する {{{
 " これを行わないとpythonが正しく検索されない
 call s:IncludePath(expand("$HOME/.anyenv/envs/pyenv/shims"))
