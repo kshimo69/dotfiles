@@ -33,6 +33,15 @@ function! s:IncludePath(path)
 endfunction
 " }}}
 
+" ~/.anyenv/envs/pyenv/shims を $PATH に追加する {{{
+" これを行わないとpythonが正しく検索されない
+call s:IncludePath(expand("$HOME/.anyenv/envs/pyenv/shims"))
+" }}}
+
+" OSのカレントディレクトリ を $PATH に追加する {{{
+call s:IncludePath(expand("."))
+" }}}
+
 " パスワードとかローカルにあるファイルを読み込む
 " ~/.vimrc.localの中身はたとえばこんなの
 " let g:hoge_my_token = 'thisismytoken'
@@ -40,11 +49,6 @@ endfunction
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
-
-" ~/.anyenv/envs/pyenv/shims を $PATH に追加する {{{
-" これを行わないとpythonが正しく検索されない
-call s:IncludePath(expand("$HOME/.anyenv/envs/pyenv/shims"))
-" }}}
 
 " plugin neobundle {{{
 " NeoBundle自体の設定 {{{
