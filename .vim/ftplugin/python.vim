@@ -13,6 +13,8 @@ setl cindent
 setl textwidth=0  "80文字で自動改行されるのを無効化
 " setl colorcolumn=80
 
+" setl commentstring=#%s
+
 " Folding
 " setl foldmethod=indent
 " setl foldlevel=99

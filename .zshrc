@@ -460,6 +460,11 @@ PROMPT='%{$reset_color%}%B%(?.%F{green}%n%f.%F{red}%n%f)%b%{$reset_color%}%{$fg[
 %#%{$reset_color%} '
 # RPROMPT="%1(v|[%F{green}%1v%f]|)"
 
+if [ -n "$OSDK_DIR" ]; then
+    PROMPT='%{$reset_color%}%B%(?.%F{green}%n%f.%F{red}%n%f)%b%{$reset_color%}%{$fg[yellow]%}@%{$reset_color%}%{$fg[red]%}OSDKBUILDER %{$reset_color%}[%{$fg[cyan]%}%~%{$reset_color%}]
+%#%{$reset_color%} '
+fi
+
 #http://d.hatena.ne.jp/hitode909/20100211/1265879271
 function u () {
     cd ./$(git rev-parse --show-cdup)

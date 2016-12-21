@@ -18,6 +18,10 @@ if [ -d $HOME/.anyenv ]; then
     done
 fi
 
+if [ -n "$OSDK_DIR" ]; then
+    PATH=${CURRENT_ENV}/bin:${CURRENT_ENV}/Scripts:${CURRENT_ENV}/lib/site-packages/RendezVous/bin/Debug:${CURRENT_ENV}/lib/site-packages/RendezVous/bin/Release:$OSDK_DIR/Build/Tools/CMake/Linux/bin_${BUILDER_ARCH}:$SWIG_PATH:$PATH
+fi
+
 typeset -U PATH
 export PATH
 export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH

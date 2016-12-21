@@ -226,6 +226,13 @@ else
     " \   "mac": ["pip install flake8", "npm -g install coffeelint"],
     " \   "unix": ["pip install flake8", "npm -g install coffeelint"],
     " \ }}
+  " NeoBundle "osyo-manga/vim-watchdogs", {
+    " \"build": {
+      " \"mac": ["pip install flake8"],
+      " \"cygwin": ["pip install flake8"],
+      " \"linux": ["pip install flake8"]},
+    " \"depends": ["Shougo/vimproc", "thinca/vim-quickrun", "dannyob/quickfixstatus",
+                  " \"osyo-manga/shabadou.vim", "cohama/vim-hier"]}
   " vim 7.4のyamlシンタックスハイライトが遅いのでプラグインを入れる
   NeoBundle 'stephpy/vim-yaml'
 
@@ -1618,6 +1625,7 @@ let g:quickhl_manual_colors = [
 " plugin nerdcommenter {{{
 let g:NERDCreateDefaultMappings = 0
 let NERDSpaceDelims = 1
+let NERDDefaultAlign = 'left'
 let NERDDefaultNesting = 0
 " ,,でコメントをトグルする
 nmap ,, <Plug>NERDCommenterToggle
@@ -1702,6 +1710,8 @@ nnoremap <Leader>t :TagbarToggle<CR>
 " }}} plugin tagbar
 
 " plugin syntastic {{{
+let g:syntastic_python_checkers = ["flake8"]
+let g:syntastic_python_flake8_args="--max-line-length=120 --ignore D400"
 let g:syntastic_enable_signs=1
 " let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list=0
@@ -1714,6 +1724,7 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': []}
 nnoremap <Leader>sc :SyntasticCheck<CR>
+nnoremap <Leader>sr :SyntasticReset<CR>
 " }}} plugin syntastic
 
 " plugin airline {{{
