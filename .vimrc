@@ -1341,7 +1341,7 @@ nnoremap <silent> ,uo :<C-u>Unite outline -buffer-name=outline -direction=toplef
 " tab
 " nnoremap <silent> ,ut :<C-u>Unite tab -buffer-name=tab -auto-preview -auto-resize<CR>
 " tag
-nnoremap <silent> ,ut :<C-u>Unite -buffer-name=tag -prompt-direction=top -auto-preview -auto-resize tag:<C-r>=expand('<cword>')<CR><CR>
+nnoremap <silent> ,ut :<C-u>Unite -buffer-name=tag -prompt-direction=top -auto-resize tag:<C-r>=expand('<cword>')<CR><CR>
 " C-] の代わりに unite-tag を使う設定
 " autocmd BufEnter *
 " \   if empty(&buftype)
@@ -1353,6 +1353,10 @@ nnoremap <silent> ,ut :<C-u>Unite -buffer-name=tag -prompt-direction=top -auto-p
 " \|      nnoremap <buffer> <C-t> :<C-u>Unite jump<CR>
 " \|  endif
 " window
+let g:unite_source_gtags_ref_option = "r"
+let g:unite_source_gtags_def_option = ""
+let g:unite_source_gtags_result_option = "ctags-x"
+nnoremap <silent> ,ug :<C-u>Unite gtags/context -buffer-name=gtags -prompt-direction=top -auto-resize<CR>
 nnoremap <silent> ,uw :<C-u>Unite window -buffer-name=window -prompt-direction=top -auto-preview -auto-resize<CR>
 
 " grep
