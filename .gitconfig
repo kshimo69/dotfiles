@@ -42,6 +42,7 @@
     fixup = commit --amend -C HEAD
     chown = commit --amend --reset-author  # authorを変える(と日時も変わる)
     newdate = !git commit --amend --date=\"$(date -R)\"  # 日時を現在時刻に
+    currentbranchname = branch --contains
     # 特定のファイルの特定のリビジョンの内容が見たい
     # git show HASH:path/to/file
 #[merge]
@@ -53,4 +54,4 @@
     show = diff-highlight | less
     diff = diff-highlight | less
 [http]
-	sslVerify = false
+    sslVerify = false
