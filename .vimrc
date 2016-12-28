@@ -260,10 +260,10 @@ else
   NeoBundleLazy 'davidhalter/jedi-vim', {
     \ "autoload": {
     \   "filetypes": ["python", "python3", "djangohtml"],
-    \ },
-    \ "build": {
-    \   "mac": "pip install jedi",
-    \   "unix": "pip install jedi",
+    \ }}
+  NeoBundleLazy 'hynek/vim-python-pep8-indent', {
+    \ "autoload": {
+    \   "filetypes": ["python", "python3", "djangohtml"]
     \ }}
   NeoBundleLazy 'python_match.vim', {
     \ "autoload": {

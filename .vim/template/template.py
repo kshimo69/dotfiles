@@ -6,7 +6,7 @@
 # Created:  <+DATE+>
 #
 
-from logging import getLogger,StreamHandler,DEBUG
+from logging import getLogger, StreamHandler, DEBUG
 logger = getLogger(__name__)
 handler = StreamHandler()
 handler.setLevel(DEBUG)
