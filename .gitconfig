@@ -1,10 +1,5 @@
-[user]
-    email = kshimo69@gmail.com
-    name = Kimihiko Shimomura
-[github]
-    user = kshimo69
-    token = 53a6a67aea7a0c6aac0ad1459915b506
-    oauth-token = 13b360ce1c6a3abc15bc77d48e0ffbd9051b95f9
+[include]
+    path = ~/.gitconfig.local
 [core]
     excludesfile = ~/.gitignore
     editor = vim -u NONE -i NONE -N -c 'syntax on'
@@ -18,7 +13,8 @@
     cob = checkout -b
     ci = commit
     b = branch
-    s = status -sb
+    st = status -sb
+    s = status -s
     d = diff
     dc = diff --cached
     pr = pull --rebase
