@@ -1,3 +1,4 @@
+# TODO http://qiita.com/kotashiratsuka/items/ae37757aa1d31d1d4f4d
 autoload -U colors
 colors
 setopt COMPLETE_IN_WORD
