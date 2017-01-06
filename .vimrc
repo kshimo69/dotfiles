@@ -1725,7 +1725,7 @@ let g:syntastic_check_on_wq = 0
                            " \ 'active_filetypes': ['python', 'cpp', 'ruby', 'javascript'],
                            " \ 'passive_filetypes': []}
 let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': [],
+                           \ 'active_filetypes': ['python'],
                            \ 'passive_filetypes': []}
 nnoremap <Leader>sc :SyntasticCheck<CR>
 nnoremap <Leader>sr :SyntasticReset<CR>
