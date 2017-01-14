@@ -32,10 +32,10 @@ export GTAGSLABEL=default
 # [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"  # pythonbrew
 
 # docker
-if [ "`uname`" = "Darwin" ]; then
-    export DOCKER_HOST=tcp://192.168.59.103:2376
+# if [ "`uname`" = "Darwin" ]; then
+    # export DOCKER_HOST=tcp://192.168.59.103:2376
 # else
     # export DOCKER_HOST=tcp://172.16.81.94:4243
-fi
+# fi
 
 true
