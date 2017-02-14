@@ -94,6 +94,7 @@ if [ "`uname`" = "Darwin" ]; then
     export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
     export SVN_EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
     export GIT_EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
+    export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 else
     export EDITOR=`which vim`
     export SVN_EDITOR=`which vim`
