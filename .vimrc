@@ -153,6 +153,7 @@ else
   NeoBundle 'kannokanno/unite-todo'
   NeoBundle 'osyo-manga/unite-quickrun_config'
   NeoBundle 'osyo-manga/unite-quickfix'
+  NeoBundle 'tacroe/unite-mark'
 
   " quickrun
   NeoBundle 'thinca/vim-quickrun'
@@ -1043,6 +1044,25 @@ endfunction
 command! -bar -nargs=+ -complete=file Compare  call s:compare(<f-args>)
 " }}} Compare
 
+" mark auto register http://qiita.com/syui/items/442fd0905a1f2005c10e {{{
+if !exists('g:markrement_char')
+    let g:markrement_char = [
+    \     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    \     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+    \ ]
+endif
+nnoremap <silent>m :<C-u>call <SID>AutoMarkrement()<CR>
+function! s:AutoMarkrement()
+    if !exists('b:markrement_pos')
+        let b:markrement_pos = 0
+    else
+        let b:markrement_pos = (b:markrement_pos + 1) % len(g:markrement_char)
+    endif
+    execute 'mark' g:markrement_char[b:markrement_pos]
+    echo 'marked' g:markrement_char[b:markrement_pos]
+endfunction
+" }}} mark auto register
+
 " ==== Programming ==== {{{
 
 " ChangeLog {{{
@@ -1384,6 +1404,9 @@ let g:unite_todo_note_opener = 'split'
 nnoremap <silent> ,ui :<C-u>UniteTodoAddSimple -tag -memo<CR>
 " nnoremap <silent> ,ul :<C-u>Unite todo:undone<CR>
 nnoremap <silent> ,ul :<C-u>Unite todo -auto-preview<CR>
+
+" mark
+nnoremap <silent> ,m :Unite mark<CR>
 
 " ウィンドウを分割して開く
 au MyAutoCmd FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
