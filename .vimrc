@@ -606,7 +606,7 @@ if has('gui_running')
     set guioptions+=a
     set imdisable
     set antialias
-    set guifont=Ricty\ Discord\ Regular\ for\ Powerline:h14
+    set guifont=Ricty\ Diminished\ Discord\ Regular\ for\ Powerline:h14
     set transparency=0
     set fuoptions=maxvert,maxhorz
     " http://code.google.com/p/macvim-kaoriya/wiki/Readme
