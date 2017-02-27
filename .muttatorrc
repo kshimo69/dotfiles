@@ -13,13 +13,14 @@ set gui=nomenu
 
 " Shortcut
 nnoremap gi :goto 受信トレイ<CR>
-nnoremap gs :goto __☆__<CR>
+nnoremap gs <C-b><M-b>status:Marked<CR><ESC>
 nnoremap gt :goto 送信済みトレイ<CR>
-nnoremap / <C-b>
+nnoremap / <C-b><M-b>
 
 " Star & Archive
-nnoremap s is<ESC>
-nnoremap a ia<ESC>
+nnoremap s ls<ESC>
+nnoremap e ia<ESC>
+nnoremap a <S-r>
 
 " Message Scroll
 nnoremap J 10<DOWN>
@@ -28,16 +29,18 @@ nnoremap K 10<UP>
 nnoremap <C-F> <NOP>
 nnoremap d <NOP>
 
-
 " 補完リストの選択をC-n, C-pで
-cmap <C-n> <TAB>
-cmap <C-p> <S-TAB>
+cnoremap <C-n> <TAB>
+cnoremap <C-p> <S-TAB>
 
+inoremap <C-s> status:Marked
 
-"""
 " ,r で .muttatorrc をリロード
-map ,r :source ~/.muttatorrc<CR>
+noremap ,r :source ~/.muttatorrc<CR>
 " Restart
-map ,,r :restart<CR>
+noremap ,,r :restart<CR>
+
+" IME disable
+style -nmae commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
 
 echo "###  Finish loading rc file.  ###"
