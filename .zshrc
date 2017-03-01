@@ -416,6 +416,19 @@ precmd () {
         fi
         COMMAND="0"
         COMMAND_TIME="0"
+    elif [ -x "`which terminal-notifier 2>/dev/null`" ]; then
+        if [ "$COMMAND_TIME" -ne "0" ] ; then
+            local d=`date +%s`
+            d=`expr $d - $COMMAND_TIME`
+            COMMAND="$COMMAND "
+            if [ "${${(s: :)COMMAND}[1]}" = "s" ]; then
+                terminal-notifier -title "${${(s: :)COMMAND}[2]} done." -message "${${(s: :)COMMAND}[2,-1]}" -sound default -activate com.googlecode.iterm2
+            elif [ "$d" -ge "$TIMEOUT" ] ; then
+                terminal-notifier -title "${${(s: :)COMMAND}[1]} done." -message "$COMMAND" -sound default -activate com.googlecode.iterm2
+            fi
+        fi
+        COMMAND="0"
+        COMMAND_TIME="0"
     elif [ -x "`which growlnotify 2>/dev/null`" ]; then
         if [ "$COMMAND_TIME" -ne "0" ] ; then
             local d=`date +%s`
