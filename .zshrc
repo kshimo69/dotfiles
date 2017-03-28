@@ -161,8 +161,8 @@ alias -g C="|$COPY"
 
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
-    alias emacs='open -a Emacs'
-    alias em='emacsclient -n'
+    # alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
+    alias em='emacsclient -n "$@"'
     alias vi='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias vim='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias VIM='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvim'
