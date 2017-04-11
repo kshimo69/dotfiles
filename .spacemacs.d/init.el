@@ -334,6 +334,11 @@ you should place your code here."
   ;; Ctrl-hをバックスペースに
   (global-set-key (kbd "C-h") 'delete-backward-char)
 
+  ;; commandキーをaltに、optionをsuperに
+  (setq mac-option-modifier 'super)
+  (setq mac-command-key-is-meta t)
+  (setq mac-command-modifier 'meta)
+
   ;; insert modeをjjで抜ける
   (define-key evil-insert-state-map (kbd "j j") 'evil-escape)
   (define-key evil-hybrid-state-map (kbd "j j") 'evil-escape)
