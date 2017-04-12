@@ -316,6 +316,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   ;; proxy configuration
+  ;; (setq url-proxy-services
+  ;;     '(("http" . "proxy.example.com:8080")
+  ;;       ("https" . "proxy.example.com:8080")
+  ;;       ("no_proxy" . "^\\(localhost\\|127\\.0\\.0\\.1\\|10.*\\)")))
   (setq proxy-config-file "~/.spacemacs.d/proxy-config.el")
   (cond
    ((file-exists-p proxy-config-file)
