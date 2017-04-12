@@ -365,7 +365,7 @@ you should place your code here."
   (display-time)
 
   ;; deft
-  (setq deft-directory "~/memo"
+  (setq deft-directory "~/org"
         deft-extensions '("org" "md" "txt")
         deft-use-filename-as-title t
         deft-text-mode 'org-mode
@@ -374,8 +374,8 @@ you should place your code here."
   ;; org-mode
   (with-eval-after-load 'org
     (setq org-directory "~/org/")
-    ;; (setq org-agenda-files '("~/org/"))
-    (setq org-agenda-files (list "~/org/agenda.org"))
+    (setq org-agenda-files '("~/org/"))
+    ;; (setq org-agenda-files (list "~/org/agenda.org"))
     (setq org-default-notes-file (concat org-directory "agenda.org"))
     (setq org-archive-location (concat "%s_archive_"
                                        (format-time-string "%Y" (current-time))
