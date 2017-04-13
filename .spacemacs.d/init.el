@@ -413,7 +413,7 @@ you should place your code here."
             ))
 
     ;; モードラインにorg-modeの時計を表示する
-    ;; (setq spaceline-org-clock-p t)
+    (setq spaceline-org-clock-p t)
 
     )
 
