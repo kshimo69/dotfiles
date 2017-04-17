@@ -365,7 +365,7 @@ you should place your code here."
   (display-time)
 
   ;; deft
-  (setq deft-directory "~/org"
+  (setq deft-directory "~/memo"
         deft-extensions '("org" "md" "txt")
         deft-use-filename-as-title t
         deft-text-mode 'org-mode
