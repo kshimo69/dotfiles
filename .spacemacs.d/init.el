@@ -417,6 +417,35 @@ you should place your code here."
 
     )
 
+  ;; eww
+  (with-eval-after-load 'eww
+    (define-key eww-mode-map "r" 'eww-reload)
+    (define-key eww-mode-map "c" 'eww-copy-page-url)
+    (define-key eww-mode-map "p" 'scroll-down)
+    (define-key eww-mode-map "n" 'scroll-up)
+
+    ;; 背景色を消す
+    (defvar eww-disable-colorize t)
+    (defun shr-colorize-region--disable (orig start end fg &optional bg &rest _)
+      (unless eww-disable-colorize
+        (funcall orig start end fg)))
+    (advice-add 'shr-colorize-region :around 'shr-colorize-region--disable)
+    (advice-add 'eww-colorize-region :around 'shr-colorize-region--disable)
+    (defun eww-disable-color ()
+      "eww で文字色を反映させない"
+      (interactive)
+      (setq-local eww-disable-colorize t)
+      (eww-reload))
+    (defun eww-enable-color ()
+      "eww で文字色を反映させる"
+      (interactive)
+      (setq-local eww-disable-colorize nil)
+      (eww-reload))
+
+    ;; デフォルト検索エンジンはgoogle
+    (setq eww-search-prefix "http://www.google.co.jp/search?q=")
+    )
+
   ;; Private settings
   ;; (setq private-settings-file "~/.spacemacs.d/private.el")
   ;; (cond
