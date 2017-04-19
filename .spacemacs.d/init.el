@@ -503,6 +503,7 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(c-basic-offset 4)
  '(evil-want-Y-yank-to-eol t)
  '(package-selected-packages
    (quote
