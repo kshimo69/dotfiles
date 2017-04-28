@@ -470,7 +470,46 @@ you should place your code here."
   ;;             (c-set-offset 'arglist-cont-nonempty' 4)
   ;;             (c-set-offset 'arglist-close' 0)
   ;;             (setq indent-tabs-mode t)
-  ;;             )
+  ;;             ))
+
+  (add-hook 'c++-mode-hook
+            (lambda ()
+              (c-set-style "bsd")
+              (setq indent-tabs-mode t)    ;インデントはタブ
+              (setq tab-width 4)           ;タブ幅は4
+              (setq c-auto-newline nil)    ;全自動インデントは無効
+              (c-toggle-hungry-state)      ;BSでいい感じに消してくれる
+              (setq c-basic-offset 4)      ;オフセットは4つ
+              ;; C-c C-sでインデントに効いてる変数を見つける
+              (c-set-offset 'innamespace 0)     ;namespace{}の中はインデントしない
+              (c-set-offset 'namespace-open 0)  ;namespaceの開き中括弧
+              (c-set-offset 'namespace-close 0) ;namespaceの閉じ中括弧
+              (c-set-offset 'defun-open 0)      ;関数定義開始の中括弧
+              (c-set-offset 'defun-close 0)     ;関数定義終了の中括弧
+              (c-set-offset 'defun-block-intro '+) ;関数内ブロック
+              (c-set-offset 'else-clause 0)       ;if-elseのelse
+              (c-set-offset 'extern-lang-open 0)  ;externの開始中括弧
+              (c-set-offset 'extern-lang-close 0) ;externの終了中括弧
+              (c-set-offset 'inextern-lang '+)    ;extern内の要素
+              (c-set-offset 'friend 0)       ;friend宣言
+              (c-set-offset 'inclass '+)     ;class定義内の要素
+              (c-set-offset 'inline-open 0)  ;class内のinline methodの開き中括弧
+              (c-set-offset 'inline-close 0) ;class内のinline methodの閉じ中括弧
+              (c-set-offset 'label 0)        ;ラベル
+              (c-set-offset 'member-init-intro '+) ;member初期化リストの1行目
+              (c-set-offset 'member-init-cont '+)  ;member初期化リストの2行目以降
+              (c-set-offset 'statement 0)          ;通常の文
+              (c-set-offset 'statement-block-intro '+) ;新規文ブロックの1行目
+              (c-set-offset 'statement-case-intro '+)  ;caseブロックの1行目
+              (c-set-offset 'statement-case-open 0)    ;case文の開き中括弧
+              (c-set-offset 'statement-cout '+) ;文の継続する行
+              (c-set-offset 'stream-op '+)      ;<<演算子が続く行の2行目以降
+              (c-set-offset 'string 0)          ;複数行に跨るliteralの内側
+              (c-set-offset 'substatement '+)   ;if,while,forとかの1行目
+              (c-set-offset 'substatement-open 0)  ;部分文の開き中括弧
+              (c-set-offset 'topmost-intro 0)      ;最上位の言語構成要素の1行目
+              (c-set-offset 'topmost-intro-cout 0) ;最上位の言語構成要素の2行目以降
+              ))
 
   ;; whitespaceの設定
   ;; (setq whitespace-style
@@ -529,7 +568,6 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(c-basic-offset 4)
  '(evil-want-Y-yank-to-eol t)
  '(org-agenda-time-grid
    (quote
