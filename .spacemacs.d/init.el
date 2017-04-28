@@ -494,6 +494,9 @@ you should place your code here."
     (setq default-input-method "japanese-skk")
     (require 'skk-study)
 
+    ;; 英字モードの時の色を通常時の色に
+    (setq skk-cursor-latin-color skk-cursor-default-color)
+
     ;; 辞書
     (setq skk-large-jisyo "~/.skk/SKK-JISYO.L")  ; 一応
   ;;   ;; use skkserve
