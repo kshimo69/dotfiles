@@ -475,7 +475,7 @@ you should place your code here."
   (add-hook 'c++-mode-hook
             (lambda ()
               (c-set-style "bsd")
-              (setq indent-tabs-mode t)    ;インデントはタブ
+              (setq indent-tabs-mode nil)  ;インデントはスペース
               (setq tab-width 4)           ;タブ幅は4
               (setq c-auto-newline nil)    ;全自動インデントは無効
               (c-toggle-hungry-state)      ;BSでいい感じに消してくれる
