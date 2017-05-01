@@ -538,10 +538,9 @@ you should place your code here."
 
     ;; 辞書
     (setq skk-large-jisyo "~/.skk/SKK-JISYO.L")  ; 一応
-  ;;   ;; use skkserve
-  ;;   (setq skk-server-host "localhost")
-  ;;   (setq skk-server-portnum 1178)
-
+    ;; use skkserve
+    ;; (setq skk-server-host "localhost")
+    ;; (setq skk-server-portnum 1178)
     (setq skk-share-private-jisyo t)  ; 複数 skk 辞書を共有
 
     ;; ノーマルステート時に状態遷移した時に、skkが起動している場合、自動的にアスキーモードにする
@@ -557,6 +556,17 @@ you should place your code here."
 
     ;; ";"をsticky shiftに用いることにする
     (setq skk-sticky-key ";")
+
+    ;; 候補表示
+    ;; (setq skk-show-inline t)   ; 変換候補の表示位置
+    ;; (setq skk-show-tooltip t) ; 変換候補の表示位置
+    ;; (setq skk-show-candidates-always-pop-to-buffer t) ; 変換候補の表示位置
+    ;; (setq skk-henkan-show-candidates-rows 2) ; 候補表示件数を2列に
+
+    ;; 動的候補表示
+    (setq skk-dcomp-activate t) ; 動的補完
+    (setq skk-dcomp-multiple-activate t) ; 動的補完の複数候補表示
+    (setq skk-dcomp-multiple-rows 10) ; 動的補完の候補表示件数
     )
 
   )
