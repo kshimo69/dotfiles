@@ -340,6 +340,12 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; Private settings
+  ;; (setq private-settings-file "~/.spacemacs.d/private.el")
+  ;; (cond
+  ;;  ((file-exists-p private-settings-file)
+  ;;   (load private-settings-file)))
+
   ;; Ctrl-hをバックスペースに
   (global-set-key (kbd "C-h") 'delete-backward-char)
 
@@ -354,11 +360,6 @@ you should place your code here."
   (key-chord-define evil-hybrid-state-map "jj" 'evil-escape)
   (key-chord-mode 1)
 
-  ;; デフォルトのインデントは4スペース
-  (setq-default tab-width 4
-                indent-tabs-mode nil
-                )
-
   ;; 右から左に読む言語に対応させないことで描画高速化
   (setq-default bidi-display-reordering nil)
 
@@ -370,6 +371,69 @@ you should place your code here."
         ;; '(24-hours ":" minutes " " month "/" day "(" dayname ")"))
         '(24-hours ":" minutes))
   (display-time)
+
+  ;; デフォルトのインデントは4スペース
+  (setq-default tab-width 4
+                indent-tabs-mode nil
+                )
+
+  ;; whitespaceの設定
+  (setq whitespace-style
+        '(
+          face           ; faceで可視化
+          trailing       ; 行末
+          tabs           ; タブ
+          ;; spaces         ; スペース
+          space-mark     ; 表示のマッピング
+          tab-mark
+          ))
+  (setq whitespace-display-mappings
+        '(
+          (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])
+          ))
+  (global-whitespace-mode t)
+
+  ;; skkの設定
+  (when (require 'skk nil t)
+    (global-set-key (kbd "C-x j") 'skk-auto-fill-mode)
+    (setq default-input-method "japanese-skk")
+    (require 'skk-study)
+
+    ;; 英字モードの時の色を通常時の色に
+    (setq skk-cursor-latin-color skk-cursor-default-color)
+
+    ;; 辞書
+    (setq skk-large-jisyo "~/.skk/SKK-JISYO.L")  ; 一応
+    ;; use skkserve
+    ;; (setq skk-server-host "localhost")
+    ;; (setq skk-server-portnum 1178)
+    (setq skk-share-private-jisyo t)  ; 複数 skk 辞書を共有
+
+    ;; ノーマルステート時に状態遷移した時に、skkが起動している場合、自動的にアスキーモードにする
+    (when (locate-library "skk")
+      (require 'skk)
+      (defun my-skk-control ()
+        (when skk-mode
+          (skk-latin-mode 1)))
+      (add-hook 'evil-normal-state-entry-hook 'my-skk-control))
+
+    ;; ミニバッファでは C-j を改行にしない
+    (define-key minibuffer-local-map (kbd "C-j") 'skk-kakutei)
+
+    ;; ";"をsticky shiftに用いることにする
+    (setq skk-sticky-key ";")
+
+    ;; 候補表示
+    ;; (setq skk-show-inline t)   ; 変換候補の表示位置
+    ;; (setq skk-show-tooltip t) ; 変換候補の表示位置
+    ;; (setq skk-show-candidates-always-pop-to-buffer t) ; 変換候補の表示位置
+    ;; (setq skk-henkan-show-candidates-rows 2) ; 候補表示件数を2列に
+
+    ;; 動的候補表示
+    (setq skk-dcomp-activate t) ; 動的補完
+    (setq skk-dcomp-multiple-activate t) ; 動的補完の複数候補表示
+    (setq skk-dcomp-multiple-rows 10) ; 動的補完の候補表示件数
+    )
 
   ;; deft
   (setq deft-directory "~/memo"
@@ -453,12 +517,6 @@ you should place your code here."
     (setq eww-search-prefix "http://www.google.co.jp/search?q=")
     )
 
-  ;; Private settings
-  ;; (setq private-settings-file "~/.spacemacs.d/private.el")
-  ;; (cond
-  ;;  ((file-exists-p private-settings-file)
-  ;;   (load private-settings-file)))
-
   ;; bind mode
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
@@ -511,65 +569,7 @@ you should place your code here."
               (c-set-offset 'topmost-intro-cout 0) ;最上位の言語構成要素の2行目以降
               ))
 
-  ;; whitespaceの設定
-  ;; (setq whitespace-style
-  ;;       '(
-  ;;         face           ; faceで可視化
-  ;;         trailing       ; 行末
-  ;;         tabs           ; タブ
-  ;;         ;; spaces         ; スペース
-  ;;         space-mark     ; 表示のマッピング
-  ;;         tab-mark
-  ;;         ))
-  ;; (setq whitespace-display-mappings
-  ;;       '(
-  ;;         (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])
-  ;;         ))
-  ;; (global-whitespace-mode t)
-
-  ;; skkの設定
-  (when (require 'skk nil t)
-    (global-set-key (kbd "C-x j") 'skk-auto-fill-mode)
-    (setq default-input-method "japanese-skk")
-    (require 'skk-study)
-
-    ;; 英字モードの時の色を通常時の色に
-    (setq skk-cursor-latin-color skk-cursor-default-color)
-
-    ;; 辞書
-    (setq skk-large-jisyo "~/.skk/SKK-JISYO.L")  ; 一応
-    ;; use skkserve
-    ;; (setq skk-server-host "localhost")
-    ;; (setq skk-server-portnum 1178)
-    (setq skk-share-private-jisyo t)  ; 複数 skk 辞書を共有
-
-    ;; ノーマルステート時に状態遷移した時に、skkが起動している場合、自動的にアスキーモードにする
-    (when (locate-library "skk")
-      (require 'skk)
-      (defun my-skk-control ()
-        (when skk-mode
-          (skk-latin-mode 1)))
-      (add-hook 'evil-normal-state-entry-hook 'my-skk-control))
-
-    ;; ミニバッファでは C-j を改行にしない
-    (define-key minibuffer-local-map (kbd "C-j") 'skk-kakutei)
-
-    ;; ";"をsticky shiftに用いることにする
-    (setq skk-sticky-key ";")
-
-    ;; 候補表示
-    ;; (setq skk-show-inline t)   ; 変換候補の表示位置
-    ;; (setq skk-show-tooltip t) ; 変換候補の表示位置
-    ;; (setq skk-show-candidates-always-pop-to-buffer t) ; 変換候補の表示位置
-    ;; (setq skk-henkan-show-candidates-rows 2) ; 候補表示件数を2列に
-
-    ;; 動的候補表示
-    (setq skk-dcomp-activate t) ; 動的補完
-    (setq skk-dcomp-multiple-activate t) ; 動的補完の複数候補表示
-    (setq skk-dcomp-multiple-rows 10) ; 動的補完の候補表示件数
-    )
-
-  )
+  )  ; dotspacemacs/user-config
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
