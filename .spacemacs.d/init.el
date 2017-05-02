@@ -366,6 +366,9 @@ you should place your code here."
   ;; 同じ内容を履歴に記録しないようにする
   (setq history-delete-duplicates t)
 
+  ;; powerline
+  (setq powerline-default-separator nil)
+
   ;; モードラインに時刻を表示する
   (setq display-time-string-forms
         ;; '(24-hours ":" minutes " " month "/" day "(" dayname ")"))
