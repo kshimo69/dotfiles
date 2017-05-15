@@ -165,7 +165,7 @@ if [ "`uname`" = "Darwin" ]; then
     alias em='emacsclient -n "$@"'
     alias vi='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias vim='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-    alias VIM='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvim'
+    alias VIM='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/bin/mvim'
     # alias docker_remove_container="docker rm $(docker ps -a -q)"
     # alias docker_remove_images="docker rmi $(docker images -a | awk '/^<none>/{print $3}')"
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
