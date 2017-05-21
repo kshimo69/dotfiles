@@ -1,0 +1,59 @@
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_i = 1
+hook_source = 'source ~/.config/nvim/plugins/deoplete.rc.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+depends = ['neosnippet-snippets']
+on_i = 1
+on_ft = ['snippet']
+hook_source = 'source ~/.config/nvim/plugins/neosnippet.rc.vim'
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+on_ft = 'python'
+hook_source = 'source ~/.config/nvim/plugins/deoplete-jedi.rc.vim'
+
+[[plugins]]
+repo = 'jmcantrell/vim-virtualenv'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+on_ft = 'python'
+hook_source = 'source ~/.config/nvim/plugins/jedi.rc.vim'
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+on_map = '<Plug>NERDCommenterToggle'
+hook_source = 'source ~/.config/nvim/plugins/nerdcommenter.rc.vim'
+
+[[plugins]]
+repo = 'glidenote/memolist.vim'
+on_func = ['MemoNew', 'MemoList', 'MemoGrep']
+hook_source = 'source ~/.config/nvim/plugins/memolist.rc.vim'
+
+[[plugins]]
+repo = 'gregsexton/gitv'
+depends = ['vim-fugitive']
+on_func = 'Gitv'
+hook_source = 'source ~/.config/nvim/plugins/gitv.rc.vim'
+
+[[plugins]]
+repo = 'vim-scripts/gtags.vim'
+on_func = 'GtagsCursor'
+hook_source = 'source ~/.config/nvim/plugins/gtags.rc.vim'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+on_func = ['TagbarToggle']
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'Shougo/vimfiler'
+depends = ['unite.vim']
+on_func = ['VimFilerTab', 'VimFiler', 'VimFilerExplorer', 'VimFilerBufferDir']
+hook_source = 'source ~/.config/nvim/plugins/vimfiler.rc.vim'

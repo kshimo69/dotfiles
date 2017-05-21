@@ -1,0 +1,55 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+hook_add = 'source ~/.config/nvim/plugins/echodoc.rc.vim'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+depends = ['tagbar', 'vim-fugitive']
+hook_add = 'source ~/.config/nvim/plugins/airline.rc.vim'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+depends = ['vim-airline-themes']
+hook_add = 'source ~/.config/nvim/plugins/airlinethemes.rc.vim'
+
+[[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+hook_add = 'source ~/.config/nvim/plugins/tagbar.rc.vim'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+hook_add = 'source ~/.config/nvim/plugins/quickrun.rc.vim'
+
+[[plugins]]
+repo = 'neomake/neomake'
+hook_add = 'source ~/.config/nvim/plugins/neomake.rc.vim'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = 'source ~/.config/nvim/plugins/indentline.rc.vim'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+hook_add = 'source ~/.config/nvim/plugins/openbrowser.rc.vim'
+
+[[plugins]]
+repo = 't9md/vim-quickhl'

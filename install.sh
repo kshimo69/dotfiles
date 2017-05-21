@@ -23,9 +23,14 @@ pyenv deactivate
 pyenv activate neovim3
 pip install neovim
 pyenv deactivate
+pip install flake8
 brew install neovim/neovim/neovim
 
 # dein.vim
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+mkdir -p ~/.cache
 sh ./installer.sh ~/.cache/dein
 rm -f install.sh
+
+# nvimでやること
+:UpdateRemotePlugins
