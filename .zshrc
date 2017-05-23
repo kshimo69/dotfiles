@@ -91,9 +91,9 @@ export PIP_RESPECT_VIRTUALENV=true
 #}
 
 if [ "`uname`" = "Darwin" ]; then
-    export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
-    export SVN_EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
-    export GIT_EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
+    export EDITOR="nvim"
+    export SVN_EDITOR="nvim"
+    export GIT_EDITOR="nvim"
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 else
     export EDITOR=`which vim`
@@ -133,6 +133,7 @@ alias grep='grep --color=auto'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
 alias now='date +%Y%m%d%H%M%S'
+alias ctags='`brew --prefix`/bin/ctags'
 function backup() {
     if [ $# -lt 1 ]; then
         echo "usage: backup <filename>"
@@ -163,8 +164,8 @@ if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
     # alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
     alias em='emacsclient -n "$@"'
-    alias vi='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-    alias vim='env LANG=ja_JP.UTF-8 TERM=xterm-256color /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    alias vi='nvim'
+    alias vim='nvim'
     alias VIM='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/bin/mvim'
     # alias docker_remove_container="docker rm $(docker ps -a -q)"
     # alias docker_remove_images="docker rmi $(docker images -a | awk '/^<none>/{print $3}')"

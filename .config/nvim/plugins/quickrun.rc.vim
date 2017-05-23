@@ -4,7 +4,7 @@ let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
 let g:quickrun_config['cpp/g++-preprocessor'] = {
   \   "exec"    : "%c %o %s:p",
   \   "command" : "g++",
-  \   "cmdopt"  : " -P -E -std=gnu++0x",
+  \   "cmdopt"  : " -P -E -std=c++11",
   \ }
 " RSpec
 let g:quickrun_config['ruby.rspec'] = {'command': 'spec'}

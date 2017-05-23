@@ -52,4 +52,5 @@ syntax enable
 runtime! options.rc.vim
 runtime! keymap.rc.vim
 
+" たぶんplugin onの後じゃないとダメ
 source ~/.config/nvim/plugins/quickhl.rc.vim

@@ -32,10 +32,6 @@ repo = 'tomasr/molokai'
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
-repo = 'majutsushi/tagbar'
-hook_add = 'source ~/.config/nvim/plugins/tagbar.rc.vim'
-
-[[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add = 'source ~/.config/nvim/plugins/quickrun.rc.vim'
 
