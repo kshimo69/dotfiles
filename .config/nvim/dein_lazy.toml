@@ -113,3 +113,7 @@ repo = 'Shougo/vimfiler'
 depends = ['unite.vim']
 on_func = ['VimFilerTab', 'VimFiler', 'VimFilerExplorer', 'VimFilerBufferDir']
 hook_source = 'source ~/.config/nvim/plugins/vimfiler.rc.vim'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+on_cmd = 'PrevimOpen'
