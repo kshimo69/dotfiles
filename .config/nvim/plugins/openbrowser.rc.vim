@@ -4,4 +4,4 @@ nnoremap gx <Plug>(openbrowser-smart-search)
 vnoremap gx <Plug>(openbrowser-smart-search)
 " カーソル下のキーワードをググる
 nnoremap go :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
-vnoremap go :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
+vnoremap go <Plug>(openbrowser-open)
