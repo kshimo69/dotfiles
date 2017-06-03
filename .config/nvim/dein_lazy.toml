@@ -135,3 +135,8 @@ on_cmd = 'PrevimOpen'
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
+
+[[plugins]]
+repo = 'Shougo/neoinclude.vim'
+depends = ['deoplete.nvim']
+on_ft = ['c', 'cpp']
