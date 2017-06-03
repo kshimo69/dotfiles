@@ -121,6 +121,8 @@ on_func = ['TagbarToggle']
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
+on_func = ['Unite']
+hook_source = 'source ~/.config/nvim/plugins/unite.rc.vim'
 
 [[plugins]]
 repo = 'Shougo/vimfiler'
