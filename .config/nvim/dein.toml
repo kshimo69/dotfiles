@@ -2,14 +2,8 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-
-[[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'Shougo/echodoc.vim'
