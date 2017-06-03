@@ -52,3 +52,10 @@ hook_add = 'source ~/.config/nvim/plugins/openbrowser.rc.vim'
 
 [[plugins]]
 repo = 't9md/vim-quickhl'
+
+[[plugins]]  # カーソル位置のコンテキストに合わせてftを切り替える
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]]  # カーソル位置のコンテキストのftを判定する
+repo = 'Shougo/context_filetype.vim'

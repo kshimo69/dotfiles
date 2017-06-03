@@ -121,3 +121,7 @@ hook_source = 'source ~/.config/nvim/plugins/vimfiler.rc.vim'
 [[plugins]]
 repo = 'kannokanno/previm'
 on_cmd = 'PrevimOpen'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
