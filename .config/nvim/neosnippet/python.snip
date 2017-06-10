@@ -1,0 +1,6 @@
+snippet     traceback
+abbr        import traceback..
+options     head
+	import traceback
+	for frame in traceback.format_stack():
+		print frame,
