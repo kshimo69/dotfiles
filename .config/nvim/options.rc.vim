@@ -133,13 +133,19 @@ hi NonText ctermbg=NONE
 
 set title  " タイトルを表示
 set ruler  " カーソルの行列を表示
-set cursorline   " カーソル行の表示
+" カーソルラインが遅いので無効に
+set nocursorline
+"set cursorline   " カーソル行の表示
 " カレントバッファだけカーソルラインを表示する
-au MyAutoCmd WinLeave * set nocursorline
-au MyAutoCmd WinLeave * set nocursorcolumn
-au MyAutoCmd WinEnter,BufRead * set cursorline
+"au MyAutoCmd WinLeave * set nocursorline
+"au MyAutoCmd WinLeave * set nocursorcolumn
+"au MyAutoCmd WinEnter,BufRead * set cursorline
 hi CursorLine gui=underline term=underline cterm=underline
 hi Visual term=reverse cterm=reverse
+
+" syntax highlightが重い時があるので調整
+set synmaxcol=300
+au MyAutoCmd BufRead *.log setl syntax=off
 
 " gitのコミットメッセージを書く時はspell check on
 au MyAutoCmd FileType gitcommit setlocal spell

@@ -33,6 +33,13 @@ nnoremap <silent> [toggle]s :setl spell!<CR>:setl spell?<CR>
 nnoremap <silent> [toggle]l :setl list!<CR>:setl list?<CR>
 nnoremap <silent> [toggle]t :setl expandtab!<CR>:setl expandtab?<CR>
 nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
+nnoremap <silent> [toggle]c :setl cursorline!<CR>:setl cursorline?<CR>
+nnoremap <silent> [toggle]h
+      \ : if exists("syntax_on") <Bar>
+      \   syntax off <Bar>
+      \ else <Bar>
+      \   syntax enable <Bar>
+      \ endif<CR>
 
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）
 cnoremap w!! w !sudo tee > /dev/null %
