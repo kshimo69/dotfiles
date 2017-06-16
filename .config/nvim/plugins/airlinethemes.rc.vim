@@ -1,1 +1,1 @@
-let g:airline_theme = 'dark'
+let g:airline_theme = 'iceberg'
