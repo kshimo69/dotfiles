@@ -121,7 +121,7 @@ set listchars=eol:$,tab:>-,trail:_
 " 日本語入力をリセットする
 au MyAutoCmd BufNewFile,BufRead * set iminsert=0
 
-colorscheme molokai
+colorscheme iceberg
 
 " 検索の色調整
 au MyAutoCmd ColorScheme * hi Search term=reverse ctermfg=253 ctermbg=66 guifg=#FFFFFF guibg=#455354

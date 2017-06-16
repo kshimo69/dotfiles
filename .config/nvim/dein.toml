@@ -20,7 +20,7 @@ depends = ['vim-airline-themes']
 hook_add = 'source ~/.config/nvim/plugins/airlinethemes.rc.vim'
 
 [[plugins]]
-repo = 'tomasr/molokai'
+repo = 'cocopon/iceberg.vim'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
