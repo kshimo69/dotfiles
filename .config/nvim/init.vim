@@ -53,4 +53,6 @@ runtime! options.rc.vim
 runtime! keymap.rc.vim
 
 " たぶんplugin onの後じゃないとダメ
+" <Leader>のremapをkeymap.rc.vimの先頭でやってるから
 source ~/.config/nvim/plugins/quickhl.rc.vim
+source ~/.config/nvim/plugins/neoterm.rc.vim

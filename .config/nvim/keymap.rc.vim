@@ -81,3 +81,6 @@ nnoremap <Leader>f :VimFilerBufferDir<CR>
 
 " terminal modeからcommand modeに
 tnoremap <silent> <ESC> <C-\><C-n>
+
+" quickrunのキーバインド変更
+nmap <silent> <Leader>rr <Plug>(quickrun)

@@ -33,6 +33,9 @@ repo = 'thinca/vim-quickrun'
 hook_add = 'source ~/.config/nvim/plugins/quickrun.rc.vim'
 
 [[plugins]]
+repo = 'kassio/neoterm'
+
+[[plugins]]
 repo = 'neomake/neomake'
 hook_add = 'source ~/.config/nvim/plugins/neomake.rc.vim'
 
