@@ -78,3 +78,6 @@ nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <Leader>e :VimFilerExplorer<CR>
 " 現在開いているバッファのディレクトリを開く
 nnoremap <Leader>f :VimFilerBufferDir<CR>
+
+" terminal modeからcommand modeに
+tnoremap <silent> <ESC> <C-\><C-n>
