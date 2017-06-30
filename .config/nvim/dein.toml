@@ -34,6 +34,7 @@ hook_add = 'source ~/.config/nvim/plugins/quickrun.rc.vim'
 
 [[plugins]]
 repo = 'kassio/neoterm'
+hook_add = 'source ~/.config/nvim/plugins/neoterm.rc.vim'
 
 [[plugins]]
 repo = 'neomake/neomake'
@@ -49,6 +50,7 @@ hook_add = 'source ~/.config/nvim/plugins/openbrowser.rc.vim'
 
 [[plugins]]
 repo = 't9md/vim-quickhl'
+hook_add = 'source ~/.config/nvim/plugins/quickhl.rc.vim'
 
 [[plugins]]  # カーソル位置のコンテキストに合わせてftを切り替える
 repo = 'osyo-manga/vim-precious'

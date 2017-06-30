@@ -79,8 +79,23 @@ nnoremap <Leader>e :VimFilerExplorer<CR>
 " 現在開いているバッファのディレクトリを開く
 nnoremap <Leader>f :VimFilerBufferDir<CR>
 
+" neoterm
+nnoremap <silent> <Leader>rc :TREPLSendFile<CR>
+nnoremap <silent> <Leader>rl :TREPLSendLine<CR>
+vnoremap <silent> <Leader>rl :TREPLSendSelection<CR>
+nnoremap <silent> vt :Ttoggle<CR>
+nnoremap <silent> vs :terminal<CR>
+nnoremap <silent> vc :Tclose<CR>
 " terminal modeからcommand modeに
 tnoremap <silent> <ESC> <C-\><C-n>
 
-" quickrunのキーバインド変更
+" quickrun
 nmap <silent> <Leader>rr <Plug>(quickrun)
+
+" quickhl
+nmap <Leader><Space> <Plug>(quickhl-manual-this)
+xmap <Leader><Space> <Plug>(quickhl-manual-this)
+nmap <Leader>M <Plug>(quickhl-manual-reset)
+xmap <Leader>M <Plug>(quickhl-manual-reset)
+nmap <Leader>j <Plug>(quickhl-cword-toggle)
+nmap <Leader>] <Plug>(quickhl-tag-toggle)
