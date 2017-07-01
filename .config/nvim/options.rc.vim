@@ -57,11 +57,8 @@ set nrformats-=octal  " 0で始まる数字を8進数として扱わない
 set nrformats+=hex    " 0xで始まる数字を16進数として扱う
 
 " 文字コードとか改行コードとか
-scriptencoding utf-8
 " 想定される改行の種類
 set ffs=unix,dos,mac
-" default encoding
-set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
 " '<'や'>'でインデントする際に'shiftwidth'の倍数に丸める
