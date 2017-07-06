@@ -142,3 +142,7 @@ on_ft = 'toml'
 repo = 'Shougo/neoinclude.vim'
 depends = ['deoplete.nvim']
 on_ft = ['c', 'cpp']
+
+[[plugins]]
+repo = 'pearofducks/ansible-vim'
+on_ft = 'ansible'
