@@ -84,11 +84,11 @@ set backspace=indent,eol,start
 
 " クリップボードをデフォルトのレジスタとして指定。後にYankRingを使うので
 " 'unnamedplus'が存在しているかどうかで設定を分ける必要がある
-if has('unnamedplus')
-  set clipboard& clipboard+=unnamedplus,unnamed
-else
-  set clipboard& clipboard+=unnamed
-endif
+"if has('unnamedplus')
+"  set clipboard& clipboard+=unnamedplus,unnamed
+"else
+"  set clipboard& clipboard+=unnamed
+"endif
 
 " undoファイルを使う
 let s:undo_dir = expand("$HOME/.config/nvim/undo")
