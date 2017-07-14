@@ -1,5 +1,6 @@
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
+let g:deoplete#auto_complete_delay = 0
 " TabComplete
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
   \ neosnippet#expandable_or_jumpable() ?
