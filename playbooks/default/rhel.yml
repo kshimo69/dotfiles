@@ -1,0 +1,160 @@
+---
+- hosts: localhost
+  gather_facts: no
+  become: no
+  vars:
+    locale: ja_JP.UTF-8
+    zone: Asia/Tokyo
+    zoneinfo_path: /usr/share/zoneinfo/Asia/Tokyo
+    python_version: 2.7.13
+    python3_version: 3.5.3
+    neovim_repository: https://github.com/neovim/neovim.git
+    neovim_version: v0.2.0
+    dein_installer: https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
+
+  tasks:
+    - name: Install basic packages
+      yum: name={{ item }} enablerepo=epel state=latest
+      become: yes
+      with_items:
+        - epel-release
+        - git
+        - zsh
+        - tmux
+
+    - name: Install build essentials
+      yum: name={{ item }} enablerepo=epel state=latest
+      become: yes
+      with_items:
+        - gcc
+        - gcc-c++
+        - patch
+        - readline-devel
+        - zlib-devel
+        - gmp
+        - gmp-devel
+        - tk-devel
+        - tcl-devel
+        - sqlite-devel
+        - bzip2-devel
+        - openssl-devel
+        - libxml2-devel
+        - libxslt-devel
+        - cmake
+        - libtool
+        - autoconf
+        - automake
+        - pkgconfig
+
+    - name: Setup anyenv
+      args:
+        # guard for only once.
+        creates: ~/.anyenv
+      shell: |
+        git clone https://github.com/riywo/anyenv ~/.anyenv
+        (
+          echo 'export PATH="$HOME/.anyenv/bin:$PATH"'
+          echo 'eval "$(anyenv init -)"'
+          echo 'for D in `ls $HOME/.anyenv/envs`'
+          echo 'do'
+          echo '  export PATH="$HOME/.anyenv/envs/$D/shims:$PATH" '
+          echo 'done'
+        ) >> ~/.bash_profile
+
+    - name: Install anyenv
+      git: repo=https://github.com/riywo/anyenv dest=~/.anyenv
+
+    - name: Install anyenv-update
+      git: repo=https://github.com/znz/anyenv-update.git dest=~/.anyenv/plugins/anyenv-update
+
+    - name: Install pyenv
+      args:
+        # guard for only once.
+        creates: ~/.anyenv/envs/pyenv
+      shell: |
+        anyenv install pyenv
+        (
+          echo 'eval "$(pyenv virtualenv-init -)"'
+          echo 'export PYENV_VIRTUALENV_DISABLE_PROMPT=1'
+        ) >> ~/.bash_profile
+
+    - name: Install pyenv-virtualenv
+      git: repo=https://github.com/yyuu/pyenv-virtualenv.git dest=~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
+
+    - name: Update all envs
+      changed_when: False
+      register: result
+      shell: anyenv update
+    - debug: var=result
+
+    - name: Install python {{ python_version }}
+      args:
+        # guard for only once.
+        creates: ~/.anyenv/envs/pyenv/versions/{{ python_version }}
+      shell: |
+        pyenv install {{ python_version }}
+        pyenv global {{ python_version }}
+
+    - name: Install python {{ python3_version }}
+      args:
+        # guard for only once.
+        creates: ~/.anyenv/envs/pyenv/versions/{{ python3_version }}
+      shell: pyenv install {{ python3_version }}
+
+    - name: Create python virtualenv for neovim2
+      args:
+        # guard for only once.
+        creates: ~/.anyenv/envs/pyenv/versions/neovim2
+      shell: pyenv virtualenv {{ python_version }} neovim2
+
+    - name: Install neovim2
+      changed_when: '"Requirement already up-to-date: neovim" not in result.stdout'
+      register: result
+      shell: |
+        bash -l -c 'pyenv activate neovim2; pip install -U neovim'
+    - debug: var=result
+
+    - name: Create python virtualenv for neovim3
+      args:
+        # guard for only once.
+        creates: ~/.anyenv/envs/pyenv/versions/neovim3
+      shell: pyenv virtualenv {{ python3_version }} neovim3
+
+    - name: Install neovim3
+      changed_when: '"Requirement already up-to-date: neovim" not in result.stdout'
+      register: result
+      shell: |
+        bash -l -c 'pyenv activate neovim3; pip install -U neovim'
+    - debug: var=result
+
+    - name: Install pip packages
+      pip: name={{ item }} state=latest
+      with_items:
+        - pip
+        - flake8
+        - ansible
+
+    - name: Check neovim already installed
+      register: which_nvim
+      failed_when: which_nvim.rc not in [0, 1]
+      changed_when: False
+      shell: which nvim
+
+    - name: Build and Install neovim
+      when: which_nvim.rc == 1
+      shell: |
+        git clone {{ neovim_repository }} /tmp/neovim
+        cd /tmp/neovim
+        git checkout {{ neovim_version }}
+        make >/dev/null
+        sudo make install
+
+    - name: Install dein
+      args:
+        # guard for only once.
+        creates: ~/.cache/dein/repos/github.com/Shougo/dein.vim
+      shell: |
+        mkdir -p ~/.cache
+        curl -fsSL {{ dein_installer }} > /tmp/install.sh
+        sh /tmp/install.sh ~/.cache/dein
+        rm -f /tmp/install.sh
