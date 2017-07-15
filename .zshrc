@@ -109,8 +109,8 @@ export LESSCHARSET="utf-8"
 # export GTAGSLABEL=exuberant-ctags
 
 alias ls='ls --color=auto'
-alias vi='vim'
-alias vim='vim -X'
+alias vi='nvim'
+alias vim='nvim'
 alias VIM='gvim'
 alias em='TERM=xterm-256color emacs -nw'
 alias gst='git st && git stash list'
@@ -158,8 +158,6 @@ if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
     # alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
     alias em='emacsclient -n "$@"'
-    alias vi='nvim'
-    alias vim='nvim'
     alias VIM='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/bin/mvim'
     # alias docker_remove_container="docker rm $(docker ps -a -q)"
     # alias docker_remove_images="docker rmi $(docker images -a | awk '/^<none>/{print $3}')"
