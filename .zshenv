@@ -10,7 +10,7 @@ PATH=$PATH:$HOME/go/bin
 # git clone https://github.com/riywo/anyenv ~/.anyenv
 if [ -d $HOME/.anyenv ]; then
     PATH=$HOME/.anyenv/bin:$PATH
-    eval "$(anyenv init -)"
+    eval "$(anyenv init - zsh)"
     # for tmux
     for D in `ls $HOME/.anyenv/envs`
     do
