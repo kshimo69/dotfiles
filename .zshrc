@@ -443,7 +443,7 @@ precmd () {
         fi
         COMMAND="0"
         COMMAND_TIME="0"
-    elif [ -n "$DISPLAY" -a -x "`which notify-send`" ]; then # for linux
+    elif [ -n "$DISPLAY" -a -x "`which notify-send 2>/dev/null`" ]; then # for linux
         if [ "$COMMAND_TIME" -ne "0" ] ; then
             local d=`date +%s`
             d=`expr $d - $COMMAND_TIME`
