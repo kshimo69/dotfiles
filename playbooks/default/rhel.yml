@@ -158,3 +158,16 @@
         curl -fsSL {{ dein_installer }} > /tmp/install.sh
         sh /tmp/install.sh ~/.cache/dein
         rm -f /tmp/install.sh
+
+    - name: Prepare conf
+      file: path=~/.config state=directory
+
+    - name: Lynk conf files
+      file:
+        src: ~/.dotfiles/{{ item }}
+        dest: ~/{{ item }}
+        state: link
+      with_items:
+        - .zshrc
+        - .zshenv
+        - .config/nvim
