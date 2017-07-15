@@ -90,16 +90,10 @@ export PIP_RESPECT_VIRTUALENV=true
 #    mkvirtualenv --distribute --python=$base_python $2
 #}
 
-if [ "`uname`" = "Darwin" ]; then
-    export EDITOR="nvim"
-    export SVN_EDITOR="nvim"
-    export GIT_EDITOR="nvim"
-    export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-else
-    export EDITOR=`which vim`
-    export SVN_EDITOR=`which vim`
-    export GIT_EDITOR=`which vim`
-fi
+export EDITOR="nvim"
+export SVN_EDITOR="nvim"
+export GIT_EDITOR="nvim"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export GISTY_DIR=$HOME/repos/gist
 # export GISTY_SSL_CA=$HOME/.rvm/usr/ssl/cert.pem
 #export GISTY_SSL_CA=/etc/ssl/certs/ca-certificates.crt
