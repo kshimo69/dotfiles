@@ -135,7 +135,6 @@
       with_items:
         - pip
         - flake8
-        - ansible
 
     - name: Check neovim already installed
       register: which_nvim

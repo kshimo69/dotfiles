@@ -30,7 +30,7 @@ install_requirement_packages_by_brew() {
 }
 
 install_requirement_packages_by_yum() {
-    sudo yum update -y
+    #sudo yum update -y
     sudo yum install -y epel-release
     sudo yum install -y git
     sudo yum install -y --enablerepo=epel ansible
