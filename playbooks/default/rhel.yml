@@ -151,12 +151,14 @@
         make >/dev/null
         sudo make install
 
+    - name: Prepare install dein
+      file: path=~/.cache state=directory
+
     - name: Install dein
       args:
         # guard for only once.
         creates: ~/.cache/dein/repos/github.com/Shougo/dein.vim
       shell: |
-        mkdir -p ~/.cache
         curl -fsSL {{ dein_installer }} > /tmp/install.sh
         sh /tmp/install.sh ~/.cache/dein
         rm -f /tmp/install.sh
