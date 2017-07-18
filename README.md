@@ -78,12 +78,11 @@ ansible-playbook ./playbooks/default/rhel.yml
 :call dein#update()
 ```
 
-Open .py file for load deoplete plugin.
-Use denite for load denite plugin.
-
 ```vim
 :UpdateRemotePlugins
 ```
+
+restart neovim
 
 - edit ~/.gitconfig.local
 

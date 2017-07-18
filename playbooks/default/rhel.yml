@@ -21,6 +21,7 @@
         - git
         - zsh
         - tmux
+        - the_silver_searcher
 
     - name: Install build essentials
       yum: name={{ item }} enablerepo=epel state=latest
