@@ -2,7 +2,6 @@
     path = ~/.gitconfig.local
 [core]
     excludesfile = ~/.gitignore
-    editor = vim -u NONE -i NONE -N -c 'syntax on'
     autocrlf = input
 [color]
     ui = auto
@@ -17,19 +16,16 @@
     s = status -s
     d = diff
     dc = diff --cached
-    pr = pull --rebase
     fo = fetch origin
-    ro = rebase origin
     po = pull origin
+    pr = pull --rebase
+    ro = rebase origin
     lg = log --graph --pretty='format:%C(yellow)%h%Creset %s %C(black bold)%an, %ar %ad%Cgreen%d%Creset'
     hist = log --pretty=format:'%C(bold blue)%h%C(reset) %ad %C(bold green)|%C(reset) %s %C(bold white)[%an]%C(reset)%C(bold yellow)%d%C(reset)' --graph
     tree = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
-    ; g = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
     g = log --pretty=format:'%C(bold blue)%h%C(reset) %ad %s %C(bold black)[%an]%C(reset)%C(bold yellow)%d%C(reset)' --graph
     rb = rebase
     mg = merge
-    ls = stash list
-    tp = commit -a -m '@@ignore add'
     newly = log HEAD@{1}..HEAD --reverse
     newlyp = log HEAD@{1}..HEAD -p --reverse
     info = remote show origin
@@ -41,8 +37,6 @@
     currentbranchname = symbolic-ref --short HEAD
     # 特定のファイルの特定のリビジョンの内容が見たい
     # git show HASH:path/to/file
-#[merge]
-#    ff = false
 [diff]
     algorithm = histogram
 [pager]

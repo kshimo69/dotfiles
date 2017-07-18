@@ -91,8 +91,8 @@ export PIP_RESPECT_VIRTUALENV=true
 #}
 
 export EDITOR="nvim"
-export SVN_EDITOR="nvim"
-export GIT_EDITOR="nvim"
+export SVN_EDITOR="nvim -u NONE -i NONE -N -c 'syntax on'"
+export GIT_EDITOR="nvim -u NONE -i NONE -N -c 'syntax on'"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export GISTY_DIR=$HOME/repos/gist
 # export GISTY_SSL_CA=$HOME/.rvm/usr/ssl/cert.pem
