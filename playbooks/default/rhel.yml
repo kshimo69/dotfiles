@@ -22,6 +22,8 @@
         - zsh
         - tmux
         - the_silver_searcher
+        - global-ctags
+        - global
 
     - name: Install build essentials
       yum: name={{ item }} enablerepo=epel state=latest
@@ -169,6 +171,16 @@
         dest: ~/{{ item }}
         state: link
       with_items:
-        - .zshrc
-        - .zshenv
+        - .ctags
+        - .config/htop
         - .config/nvim
+        - .flake8rc
+        - .gitconfig
+        - .gitignore
+        - .globalrc
+        - .pythonrc.py
+        - .snippets
+        - .tmux.xonf
+        - .zshenv
+        - .zshrc
+        - bin
