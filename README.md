@@ -72,6 +72,12 @@ ansible-playbook ./playbooks/default/rhel.yml
 
 ## After Install...
 
+- set default shell
+
+```bash
+chsh -s `which zsh`
+```
+
 - update neovim plugins
 
 ```vim
