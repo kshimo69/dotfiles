@@ -180,7 +180,7 @@
         - .globalrc
         - .pythonrc.py
         - .snippets
-        - .tmux.xonf
+        - .tmux.conf
         - .zshenv
         - .zshrc
         - bin
