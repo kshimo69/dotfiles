@@ -179,6 +179,8 @@
         git clone {{ tmux_repository }} /tmp/tmux
         cd /tmp/tmux
         git checkout {{ tmux_version }}
+        sh autogen.sh >/dev/null
+        ./configure >/dev/null
         make >/dev/null
         sudo make install
 
