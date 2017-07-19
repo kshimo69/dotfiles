@@ -11,6 +11,8 @@
     neovim_repository: https://github.com/neovim/neovim.git
     neovim_version: v0.2.0
     dein_installer: https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
+    tmux_repository: https://github.com/tmux/tmux.git
+    tmux_version: 2.3
 
   tasks:
     - name: Install basic packages
@@ -48,6 +50,8 @@
         - autoconf
         - automake
         - pkgconfig
+        - ncurses-devel
+        - libevent-devel
 
     - name: Setup anyenv
       args:
@@ -148,7 +152,7 @@
         git clone {{ neovim_repository }} /tmp/neovim
         cd /tmp/neovim
         git checkout {{ neovim_version }}
-        make >/dev/null
+        CMAKE_BUILD_TYPE=RelWithDebInfo make >/dev/null
         sudo make install
 
     - name: Prepare install dein
@@ -162,6 +166,22 @@
         curl -fsSL {{ dein_installer }} > /tmp/install.sh
         sh /tmp/install.sh ~/.cache/dein
         rm -f /tmp/install.sh
+
+    - name: Check tmux already installed
+      register: result
+      failed_when: '"tmux {{ tmux_version }}" not in result.stdout'
+      changed_when: False
+      shell: which tmux && tmux -V
+    - debug: var=result
+
+    - name: Build and Install tmux
+      when: '"tmux {{ tmux_version }}" not in result.stdout'
+      shell: |
+        git clone {{ tmux_repository }} /tmp/tmux
+        cd /tmp/tmux
+        git checkout {{ tmux_version }}
+        make >/dev/null
+        sudo make install
 
     - name: Prepare conf
       file: path=~/.config state=directory

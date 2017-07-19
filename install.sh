@@ -57,7 +57,6 @@ setup_for_mac() {
 setup_for_rhel() {
     install_requirement_packages_by_yum
     clone_dotfiles
-    # DEBUG
     do_ansible rhel
 }
 

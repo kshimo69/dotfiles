@@ -12,7 +12,8 @@ nnoremap <silent> ,o :<C-u>Denite outline -auto-resize<CR>
 " タグ
 nnoremap <silent> ,e :<C-u>Denite tag -auto-resize<CR>
 " grep
-nnoremap <silent> ,g :<C-u>DeniteCursorWord grep -buffer-name=search -no-empty -auto-resize<CR>
+"nnoremap <silent> ,g :<C-u>DeniteCursorWord grep -buffer-name=search -no-empty -auto-resize<CR>
+nnoremap <silent> ,g :<C-u>DeniteBufferDir grep -buffer-name=search -no-empty -auto-resize<CR>
 nnoremap <silent> ,G :<C-u>Denite grep -buffer-name=search -no-empty -auto-resize<CR>
 " resume
 nnoremap <silent> ,r :<C-u>Denite -resume -buffer-name=search<CR>
