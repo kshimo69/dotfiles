@@ -169,7 +169,6 @@
 
     - name: Check tmux already installed
       register: result
-      failed_when: '"tmux {{ tmux_version }}" not in result.stdout'
       changed_when: False
       shell: which tmux && tmux -V
     - debug: var=result
