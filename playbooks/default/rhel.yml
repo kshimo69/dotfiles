@@ -26,6 +26,7 @@
         - the_silver_searcher
         - global-ctags
         - global
+        - xsel
 
     - name: Install build essentials
       yum: name={{ item }} enablerepo=epel state=latest
