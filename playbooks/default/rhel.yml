@@ -168,13 +168,13 @@
         rm -f /tmp/install.sh
 
     - name: Check tmux already installed
-      register: result
+      register: tmux_installed
       changed_when: False
-      shell: which tmux && tmux -V
+      shell: which tmux && tmux -V | grep {{ tmux_version }}
     - debug: var=result
 
     - name: Build and Install tmux
-      when: '"tmux {{ tmux_version }}" not in result.stdout'
+      when: tmux_installed.rc == 1
       shell: |
         git clone {{ tmux_repository }} /tmp/tmux
         cd /tmp/tmux
