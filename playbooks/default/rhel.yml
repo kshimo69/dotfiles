@@ -169,6 +169,7 @@
 
     - name: Check tmux already installed
       register: tmux_installed
+      failed_when: tmux_installed.rc not in [0, 1]
       changed_when: False
       shell: which tmux && tmux -V | grep {{ tmux_version }}
     - debug: var=result
