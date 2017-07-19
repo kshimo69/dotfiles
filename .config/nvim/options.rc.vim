@@ -111,6 +111,8 @@ set diffopt+=vertical
 set t_vb=
 "set novisualbell
 set vb
+" true color
+set termguicolors
 
 " 不可視文字の表示
 set listchars=eol:$,tab:>-,trail:_

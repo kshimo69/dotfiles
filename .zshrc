@@ -50,6 +50,7 @@ reload-complete-functions() {
 autoload -U add-zsh-hook
 
 export LANG="ja_JP.UTF-8"
+export TERM="xterm-256color"
 export GREP_COLOR="01;35"
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export PERL5LIB=$HOME/local/lib/perl5:$HOME/local/lib/perl5/site_perl:$HOME/local/lib/perl:$HOME/local/share/perl
