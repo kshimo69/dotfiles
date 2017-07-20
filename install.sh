@@ -42,7 +42,7 @@ clone_dotfiles() {
 
 do_ansible() {
     pushd ${DIST_DIR}
-    ansible-playbook ./playbooks/default/${1}.yml -vvv
+    ansible-playbook ./playbooks/default/${1}.yml
     popd
 }
 
