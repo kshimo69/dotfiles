@@ -16,9 +16,9 @@ nnoremap <silent> ,e :<C-u>Denite tag -auto-resize<CR>
 nnoremap <silent> ,g :<C-u>DeniteBufferDir grep -buffer-name=search -no-empty -auto-resize<CR>
 nnoremap <silent> ,G :<C-u>Denite grep -buffer-name=search -no-empty -auto-resize<CR>
 " resume
-nnoremap <silent> ,r :<C-u>Denite -resume -buffer-name=search<CR>
+nnoremap <silent> ,r :<C-u>Denite -resume -buffer-name=search -auto-resize<CR>
 " memolist
 "nnoremap <Space>ml :<C-u>call denite#start([{'name': 'file_rec', 'args': [g:memolist_path]}])<CR>
 " gtags
 nnoremap <silent> ,t :<C-u>DeniteCursorWord gtags_context -buffer-name=gtags -no-empty -auto-resize<CR>
-nnoremap <silent> ,T :<C-u>Denite -resume -buffer-name=gtags<CR>
+nnoremap <silent> ,T :<C-u>Denite -resume -buffer-name=gtags -auto-resize<CR>
