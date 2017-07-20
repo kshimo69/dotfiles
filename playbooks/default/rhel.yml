@@ -140,6 +140,7 @@
       with_items:
         - pip
         - flake8
+        - awscli
 
     - name: Check neovim already installed
       register: which_nvim
