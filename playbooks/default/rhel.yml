@@ -26,6 +26,7 @@
         - the_silver_searcher
         - global-ctags
         - global
+        - xorg-x11-xauth
         - xsel
 
     - name: Install build essentials
