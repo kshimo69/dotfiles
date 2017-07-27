@@ -28,6 +28,7 @@
         - global
         - xorg-x11-xauth
         - xsel
+        - jq
 
     - name: Install build essentials
       yum: name={{ item }} enablerepo=epel state=latest
