@@ -31,6 +31,7 @@ nnoremap [toggle] <Nop>
 nmap T [toggle]
 nnoremap <silent> [toggle]s :setl spell!<CR>:setl spell?<CR>
 nnoremap <silent> [toggle]l :setl list!<CR>:setl list?<CR>
+nnoremap <silent> [toggle]n :setl nu!<CR>:setl nu?<CR>
 nnoremap <silent> [toggle]t :setl expandtab!<CR>:setl expandtab?<CR>
 nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
 nnoremap <silent> [toggle]c :setl cursorline!<CR>:setl cursorline?<CR>
