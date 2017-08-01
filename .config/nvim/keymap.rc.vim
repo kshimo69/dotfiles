@@ -87,7 +87,7 @@ nnoremap <silent> <Leader>rl :TREPLSendLine<CR>
 vnoremap <silent> <Leader>rl :TREPLSendSelection<CR>
 nnoremap <silent> vt :Ttoggle<CR>
 nnoremap <silent> vs :terminal<CR>
-nnoremap <silent> vc :Tclose<CR>
+nnoremap <silent> vc :Tclose!<CR>
 " terminal modeからcommand modeに
 tnoremap <silent> <ESC> <C-\><C-n>
 
