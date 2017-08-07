@@ -123,12 +123,15 @@ au MyAutoCmd BufNewFile,BufRead * set iminsert=0
 colorscheme iceberg
 
 " 検索の色調整
-au MyAutoCmd ColorScheme * hi Search term=reverse ctermfg=253 ctermbg=66 guifg=#FFFFFF guibg=#455354
-au MyAutoCmd ColorScheme * hi TabLineSel term=reverse ctermfg=255 ctermbg=33 guifg=#FFFFFF guibg=#333333
+"au MyAutoCmd ColorScheme * hi Search term=reverse ctermfg=253 ctermbg=66 guifg=#FFFFFF guibg=#455354
+"au MyAutoCmd ColorScheme * hi TabLineSel term=reverse ctermfg=255 ctermbg=33 guifg=#FFFFFF guibg=#333333
 
 " ターミナルの透過がそのまま見えるように
-hi Normal ctermbg=NONE
-hi NonText ctermbg=NONE
+au MyAutoCmd VimEnter,ColorScheme * hi Normal ctermbg=NONE guibg=NONE
+au MyAutoCmd VimEnter,ColorScheme * hi NonText ctermbg=NONE guibg=NONE
+au MyAutoCmd VimEnter,ColorScheme * hi LineNr ctermbg=NONE guibg=NONE
+au MyAutoCmd VimEnter,ColorScheme * hi Folded ctermbg=NONE guibg=NONE
+au MyAutoCmd VimEnter,ColorScheme * hi EndOfBuffer ctermbg=NONE guibg=NONE
 
 set title  " タイトルを表示
 set ruler  " カーソルの行列を表示
