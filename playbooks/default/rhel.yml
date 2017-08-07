@@ -55,6 +55,7 @@
         - pkgconfig
         - ncurses-devel
         - libevent-devel
+        - clang
 
     - name: Setup anyenv
       args:
