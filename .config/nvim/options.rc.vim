@@ -127,11 +127,11 @@ colorscheme iceberg
 "au MyAutoCmd ColorScheme * hi TabLineSel term=reverse ctermfg=255 ctermbg=33 guifg=#FFFFFF guibg=#333333
 
 " ターミナルの透過がそのまま見えるように
-au MyAutoCmd VimEnter,ColorScheme * hi Normal ctermbg=NONE guibg=NONE
-au MyAutoCmd VimEnter,ColorScheme * hi NonText ctermbg=NONE guibg=NONE
-au MyAutoCmd VimEnter,ColorScheme * hi LineNr ctermbg=NONE guibg=NONE
-au MyAutoCmd VimEnter,ColorScheme * hi Folded ctermbg=NONE guibg=NONE
-au MyAutoCmd VimEnter,ColorScheme * hi EndOfBuffer ctermbg=NONE guibg=NONE
+"au MyAutoCmd VimEnter,ColorScheme * hi Normal ctermbg=NONE guibg=NONE
+"au MyAutoCmd VimEnter,ColorScheme * hi NonText ctermbg=NONE guibg=NONE
+"au MyAutoCmd VimEnter,ColorScheme * hi LineNr ctermbg=NONE guibg=NONE
+"au MyAutoCmd VimEnter,ColorScheme * hi Folded ctermbg=NONE guibg=NONE
+"au MyAutoCmd VimEnter,ColorScheme * hi EndOfBuffer ctermbg=NONE guibg=NONE
 
 set title  " タイトルを表示
 set ruler  " カーソルの行列を表示
