@@ -63,6 +63,10 @@ export WORKON_HOME=$HOME/.virtualenv
 # export PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
 export PIP_RESPECT_VIRTUALENV=true
 #export PIP_REQUIRE_VIRTUALENV=true
+
+# itermplot
+export MPLBACKEND="module://itermplot"
+
 # if virtualenvwrapper ver > 2.0
 #if [ -x `which virtualenvwrapper.sh` ]; then
 #    . `which virtualenvwrapper.sh`
