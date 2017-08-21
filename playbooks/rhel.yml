@@ -190,8 +190,14 @@
         make >/dev/null
         sudo make install
 
+    - name: Prezto
+      git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto
+
     - name: Prepare conf
       file: path=~/.config state=directory
+
+    - name: create zsh directory
+      file: path=~/.zsh state=directory recurse=yes
 
     - name: Lynk conf files
       file:
@@ -209,6 +215,10 @@
         - .pythonrc.py
         - .snippets
         - .tmux.conf
+        - .zlogin
+        - .zlogout
         - .zshenv
         - .zshrc
+        - .zpreztorc
+        - .zprofile
         - bin
