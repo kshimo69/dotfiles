@@ -114,6 +114,12 @@ setopt share_history
 setopt hist_no_store
 setopt magic_equal_subst
 
+precmd () {
+    if [ "q$TMUX" != "q" ]; then
+        echo -ne "\ek$(basename $(pwd))\e\\"
+    fi
+}
+
 preexec () {
     if [ "q$TMUX" != "q" ]; then
         echo -ne "\ek($1)\e\\"
