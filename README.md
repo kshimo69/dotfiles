@@ -24,13 +24,13 @@ $ sudo yum install -y epel-release
 - Install git
 
 ```bash
-$ sudo yum install -y git
+$ sudo yum install -y --enablerepo=epel git
 ```
 
 - Install ansible
 
 ```bash
-$ sudo yum -y install ansible
+$ sudo yum install -y --enablerepo=epel ansible
 ```
 
 #### Mac
