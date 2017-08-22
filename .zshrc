@@ -13,7 +13,7 @@ fi
 # Customize to your needs...
 
 # history
-autoload history-search-end
+autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey '' history-beginning-search-backward-end
@@ -127,7 +127,7 @@ preexec () {
 }
 
 if [ -n "$OSDK_DIR" ]; then
-    PROMPT='%{$reset_color%}%B%(?.%F{green}%n%f.%F{red}%n%f)%b%{$reset_color%}%{$fg[yellow]%}@%{$reset_color%}%{$fg[red]%}OSDKBUILDER %{$reset_color%}[%{$fg[cyan]%}%~%{$reset_color%}]
+    PROMPT='%B%(?.%F{green}%n%f.%F{red}%n%f)%b%F{yellow}@%f%F{red}OSDKBUILDER%f [%F{cyan}%~%f]
 %#%{$reset_color%} '
 fi
 
