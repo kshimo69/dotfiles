@@ -84,10 +84,6 @@
         creates: ~/.anyenv/envs/pyenv
       shell: |
         anyenv install pyenv
-        (
-          echo 'eval "$(pyenv virtualenv-init -)"'
-          echo 'export PYENV_VIRTUALENV_DISABLE_PROMPT=1'
-        ) >> ~/.bash_profile
 
     - name: Install pyenv-virtualenv
       git: repo=https://github.com/yyuu/pyenv-virtualenv.git dest=~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
