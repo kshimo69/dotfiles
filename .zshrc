@@ -170,4 +170,7 @@ function peco-select-gitadd() {
 zle -N peco-select-gitadd
 bindkey "^g^a" peco-select-gitadd
 
+# anyenv
+[ -f $HOME/.anyenv/bin/anyenv ] && eval "$(anyenv init - zsh)"
+
 true

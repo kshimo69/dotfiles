@@ -20,9 +20,8 @@ PATH=$PATH:$HOME/go/bin
 
 # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
 # git clone https://github.com/riywo/anyenv ~/.anyenv
-if [ -d $HOME/.anyenv ]; then
+if [ -d $HOME/.anyenv/bin ]; then
     PATH=$HOME/.anyenv/bin:$PATH
-    eval "$(anyenv init - zsh)"
     # for tmux
     for D in `ls $HOME/.anyenv/envs`
     do
@@ -31,7 +30,8 @@ if [ -d $HOME/.anyenv ]; then
 fi
 
 if [ -n "$OSDK_DIR" ]; then
-    PATH=${CURRENT_ENV}/bin:${CURRENT_ENV}/Scripts:${CURRENT_ENV}/lib/site-packages/RendezVous/bin/Debug:${CURRENT_ENV}/lib/site-packages/RendezVous/bin/Release:$OSDK_DIR/Build/Tools/CMake/Linux/bin_${BUILDER_ARCH}:$SWIG_PATH:$PATH
+    PATH=${CURRENT_ENV}/bin:${CURRENT_ENV}/Scripts:${CURRENT_ENV}/lib/site-packages/RendezVous/bin/Debug:${CURRENT_ENV}/lib/site-packages/RendezVous/bin/Release:${OSDK_DIR}/Build/Tools/CMake/Linux/bin_${BUILDER_ARCH}:$SWIG_PATH:$PATH
+    alias python=${CURRENT_ENV}/bin/python
 fi
 
 typeset -U PATH
