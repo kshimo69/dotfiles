@@ -1,0 +1,7 @@
+pushd $OSDK_DIR/RendezVous/Unified/Tests; python test.py RendezVous_Jugem_Game_IntegrationTestCase --aa-user --pretests; popd
+pushd $OSDK_DIR/RendezVous/Unified/Tests; python test.py RendezVous_Jugem_Game_IntegrationTestCase --aa-user --posttests; popd
+pushd $OSDK_DIR/RendezVous/Unified/Tests; python test.py RendezVous_Jugem_Game_IntegrationTestCase --aa-user --tests; popd
+$OSDK_DIR/Build/Projects/Linux_x64/LinuxDebug/RendezVous_IntegrationTests --gtest_list_tests
+$OSDK_DIR/Build/Projects/Linux_x64/LinuxDebug/RendezVous_IntegrationTests --gtest_filter=
+USE_NINJA=ON ./CMakeGenerate_Linux_x64.csh -DUSE_PRINCIPALID_64BIT=ON
+./startenv.sh -a x64 zsh
