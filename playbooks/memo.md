@@ -1,0 +1,1 @@
+- playbookで使える変数は `ansible -m setup localhost` とかするとわかる
