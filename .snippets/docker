@@ -1,0 +1,7 @@
+docker images --filter "dangling=true"
+docker rmi $(docker images -f "dangling=true" -q)
+docker ps -af status=exited
+docker rm -v $(docker ps -aqf status=exited)
+docker volume ls -f dangling=true
+docker volume ls -qf dangling=true | xargs docker volume rm
+docker system prune
