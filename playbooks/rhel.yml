@@ -1,6 +1,7 @@
 ---
-- hosts: localhost
-  gather_facts: no
+- name: Setup Linux
+  hosts: localhost
+  #gather_facts: no
   become: no
   vars:
     locale: ja_JP.UTF-8
@@ -14,49 +15,10 @@
     tmux_repository: https://github.com/tmux/tmux.git
     tmux_version: 2.3
 
+  roles:
+    - { role: common }
+
   tasks:
-    - name: Install basic packages
-      yum: name={{ item }} enablerepo=epel state=latest
-      become: yes
-      with_items:
-        - epel-release
-        - git
-        - zsh
-        - tmux
-        - the_silver_searcher
-        - global-ctags
-        - global
-        - xorg-x11-xauth
-        - xsel
-        - jq
-
-    - name: Install build essentials
-      yum: name={{ item }} enablerepo=epel state=latest
-      become: yes
-      with_items:
-        - gcc
-        - gcc-c++
-        - patch
-        - readline-devel
-        - zlib-devel
-        - gmp
-        - gmp-devel
-        - tk-devel
-        - tcl-devel
-        - sqlite-devel
-        - bzip2-devel
-        - openssl-devel
-        - libxml2-devel
-        - libxslt-devel
-        - cmake
-        - libtool
-        - autoconf
-        - automake
-        - pkgconfig
-        - ncurses-devel
-        - libevent-devel
-        - clang
-
     - name: Setup anyenv
       args:
         # guard for only once.
