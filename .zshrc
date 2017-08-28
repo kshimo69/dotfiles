@@ -18,10 +18,16 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey '' history-beginning-search-backward-end
 bindkey '' history-beginning-search-forward-end
+bindkey '^U' backward-kill-line
 
 # cdr
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
+
+function auto_ls() {
+  ls
+}
+add-zsh-hook chpwd auto_ls
 
 # environment
 export LANG="ja_JP.UTF-8"
