@@ -130,6 +130,24 @@
         sh /tmp/install.sh ~/.cache/dein
         rm -f /tmp/install.sh
 
+    - name: Get latest peco version
+      changed_when: False
+      register: peco_latest_version
+      shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
+
+    - name: Download latest peco
+      register: download_peco
+      shell: curl -kL https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz -o /tmp/peco_linux_amd64.tar.gz
+
+    - name: Extract peco
+      when: download_peco.changed
+      unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
+
+    - name: Install /usr/local/bin/peco
+      become: true
+      when: download_peco.changed
+      copy: src=/tmp/peco_linux_amd64/peco dest=/usr/local/bin/ mode=0755
+
     - name: Check tmux already installed
       register: tmux_installed
       failed_when: tmux_installed.rc not in [0, 1]
