@@ -1,4 +1,7 @@
 ---
+tmux_repository: https://github.com/tmux/tmux.git
+tmux_version: 2.3
+
 basic_packages:
   - { name: epel-release }
   - { name: git }
