@@ -1,42 +1,12 @@
 ---
   - name: Install basic packages
-    yum: name={{ item }} enablerepo=epel state=latest
+    yum: name={{ item.name }} enablerepo=epel state=latest
     become: yes
     with_items:
-      - epel-release
-      - git
-      - zsh
-      - tmux
-      - the_silver_searcher
-      - global-ctags
-      - global
-      - xorg-x11-xauth
-      - xsel
-      - jq
+      - "{{ basic_packages }}"
 
   - name: Install build essentials
-    yum: name={{ item }} enablerepo=epel state=latest
+    yum: name={{ item.name }} enablerepo=epel state=latest
     become: yes
     with_items:
-      - gcc
-      - gcc-c++
-      - patch
-      - readline-devel
-      - zlib-devel
-      - gmp
-      - gmp-devel
-      - tk-devel
-      - tcl-devel
-      - sqlite-devel
-      - bzip2-devel
-      - openssl-devel
-      - libxml2-devel
-      - libxslt-devel
-      - cmake
-      - libtool
-      - autoconf
-      - automake
-      - pkgconfig
-      - ncurses-devel
-      - libevent-devel
-      - clang
+      - "{{ build_packages }}"
