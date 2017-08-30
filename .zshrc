@@ -160,10 +160,11 @@ function peco-select-history() {
     zle clear-screen
 }
 zle -N peco-select-history
-bindkey '^r' peco-select-history
+#bindkey '^r' peco-select-history
 
 function peco-select-gitadd() {
-    local SELECTED_FILE_TO_ADD="$(git status --porcelain | \
+    #local SELECTED_FILE_TO_ADD="$(git status --porcelain | \
+    local SELECTED_FILE_TO_ADD="$(git status -s | \
                                   peco --query "$LBUFFER" | \
                                   awk -F ' ' '{print $NF}')"
     if [ -n "$SELECTED_FILE_TO_ADD" ]; then
@@ -175,6 +176,16 @@ function peco-select-gitadd() {
 }
 zle -N peco-select-gitadd
 bindkey "^g^a" peco-select-gitadd
+
+# anyframe
+fpath=($HOME/.zsh/anyframe(N-/) $fpath)
+autoload -Uz anyframe-init
+anyframe-init
+bindkey '^x^b' anyframe-widget-cdr
+bindkey '^x^r' anyframe-widget-put-history
+bindkey '^g^b' anyframe-widget-insert-git-branch
+bindkey '^x^f' anyframe-widget-insert-filename
+bindkey '^x^a' anyframe-widget-select-widget
 
 # anyenv
 [ -f $HOME/.anyenv/bin/anyenv ] && eval "$(anyenv init - zsh)"

@@ -168,8 +168,11 @@
     - name: Prepare conf
       file: path=~/.config state=directory
 
-    - name: create zsh directory
+    - name: Create zsh directory
       file: path=~/.zsh state=directory recurse=yes
+
+    - name: Install anyframe
+      git: repo=https://github.com/mollifier/anyframe.git dest=~/.zsh/anyframe
 
     - name: Lynk conf files
       file:
