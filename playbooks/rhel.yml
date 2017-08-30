@@ -54,7 +54,6 @@
       changed_when: False
       register: result
       shell: anyenv update
-    - debug: var=result
 
     - name: Install python {{ python_version }}
       args:
@@ -81,7 +80,6 @@
       register: result
       shell: |
         bash -l -c 'pyenv activate neovim2; pip install -U neovim'
-    - debug: var=result
 
     - name: Create python virtualenv for neovim3
       args:
@@ -94,7 +92,6 @@
       register: result
       shell: |
         bash -l -c 'pyenv activate neovim3; pip install -U neovim'
-    - debug: var=result
 
     - name: Install pip packages
       pip: name={{ item }} state=latest
@@ -153,7 +150,6 @@
       failed_when: tmux_installed.rc not in [0, 1]
       changed_when: False
       shell: which tmux && tmux -V | grep {{ tmux_version }}
-    - debug: var=result
 
     - name: Build and Install tmux
       when: tmux_installed.rc == 1
