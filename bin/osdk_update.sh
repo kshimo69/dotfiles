@@ -9,3 +9,7 @@ if [ -d $OSDK_DIR/RendezVous/Services/Jugem/Plugin/Calico ]
 then
     pushd $OSDK_DIR/RendezVous/Services/Jugem/Plugin/Calico/; python setup.py install; popd
 fi
+if [ -d $OSDK_DIR/RendezVous/Services/Jugem/Plugin/IdConverter ]
+then
+    pushd $OSDK_DIR/RendezVous/Services/Jugem/Plugin/IdConverter/; python setup.py install; popd
+fi
