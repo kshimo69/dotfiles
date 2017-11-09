@@ -245,3 +245,6 @@ function! s:ChangeCurrentDir(directory, bang)
   endif
 endfunction
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
+
+" tagbarの色調整
+hi TagbarSignature ctermfg=Yellow
