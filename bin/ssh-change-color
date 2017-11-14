@@ -1,0 +1,31 @@
+#!/bin/bash
+set_color() {
+  local HEX_BG=$1
+
+  local BG_R=`echo $HEX_BG | sed 's/../0x&,/g' | awk -F "," '{printf("%d",$1 * 257)}'`
+  local BG_G=`echo $HEX_BG | sed 's/../0x&,/g' | awk -F "," '{printf("%d",$2 * 257)}'`
+  local BG_B=`echo $HEX_BG | sed 's/../0x&,/g' | awk -F "," '{printf("%d",$3 * 257)}'`
+
+  /usr/bin/osascript <<EOF
+tell application "iTerm"
+   tell current session of first window
+      set background color to {$BG_R, $BG_G, $BG_B}
+   end tell
+end tell
+EOF
+}
+
+# ホストごとに色を決める
+if [[ "$@" =~ ^l.* ]]; then
+   set_color 330000
+elif [[ "$@" =~ ^d.* ]]; then
+   set_color 333300
+elif [[ "$@" =~ ^t.* ]]; then
+   set_color 333300
+elif [[ "$@" =~ builder ]]; then
+   set_color 000033
+fi
+
+ssh $@
+
+set_color 000000
