@@ -4,3 +4,9 @@ options     head
 	import traceback
 	for frame in traceback.format_stack():
 		print frame,
+
+snippet     logging
+abbr        logging.getLogger().setLevel(logging.DEBUG)
+options     head
+	import logging
+	logging.getLogger().setLevel(logging.DEBUG)
