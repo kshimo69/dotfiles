@@ -6,7 +6,7 @@ nnoremap <silent> ,c :<C-u>Denite command<CR>
 nnoremap <silent> ,f :<C-u>DeniteBufferDir file<CR>
 " バッファ、ファイル一覧
 nnoremap <silent> <Space>l :<C-u>DeniteBufferDir buffer file_mru file_rec<CR>
-nnoremap <silent> <Space>L :<C-u>Denite buffer file_rec<CR>
+nnoremap <silent> <Space>L :<C-u>Denite file_rec<CR>
 " アウトライン
 nnoremap <silent> ,o :<C-u>Denite outline<CR>
 " タグ
