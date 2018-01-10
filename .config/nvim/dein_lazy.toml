@@ -49,6 +49,24 @@ call denite#custom#map(
   \)
 call denite#custom#map(
   \ 'insert',
+  \ '<C-a>',
+  \ '<denite:move_caret_to_head>',
+  \ 'noremap'
+  \)
+call denite#custom#map(
+  \ 'insert',
+  \ '<C-f>',
+  \ '<denite:scroll_page_forwards>',
+  \ 'noremap'
+  \)
+call denite#custom#map(
+  \ 'insert',
+  \ '<C-b>',
+  \ '<denite:scroll_page_backwards>',
+  \ 'noremap'
+  \)
+call denite#custom#map(
+  \ 'insert',
   \ 'jj',
   \ '<denite:leave_mode>',
   \ 'noremap'
