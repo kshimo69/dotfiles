@@ -101,3 +101,8 @@ nmap <Leader>M <Plug>(quickhl-manual-reset)
 xmap <Leader>M <Plug>(quickhl-manual-reset)
 nmap <Leader>j <Plug>(quickhl-cword-toggle)
 nmap <Leader>] <Plug>(quickhl-tag-toggle)
+
+" vim-operator-surround
+map <silent>sa <Plug>(operator-surround-append)
+map <silent>sd <Plug>(operator-surround-delete)
+map <silent>sr <Plug>(operator-surround-replace)

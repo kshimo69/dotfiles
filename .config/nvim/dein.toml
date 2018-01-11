@@ -59,3 +59,10 @@ hook_add = 'source ~/.config/nvim/plugins/vim-precious.rc.vim'
 
 [[plugins]]  # カーソル位置のコンテキストのftを判定する
 repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'rhysd/vim-operator-surround'
+depends = ['vim-operator-user']
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
