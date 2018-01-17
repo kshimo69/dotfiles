@@ -35,7 +35,9 @@
 
   - name: Download latest peco
     changed_when: False
-    shell: curl -kL https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz -o /tmp/peco_linux_amd64.tar.gz
+    get_url:
+      url: https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz
+      dest: /tmp/peco_linux_amd64.tar.gz
 
   - name: Extract peco
     unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
