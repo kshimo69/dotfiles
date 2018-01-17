@@ -13,6 +13,8 @@ This is my dotfiles repository
 
 ### How to install ansible
 
+require version 2.3.x
+
 #### Linux
 
 - Install EPEL
