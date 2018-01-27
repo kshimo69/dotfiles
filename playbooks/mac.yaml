@@ -18,4 +18,4 @@
   tasks:
     - name: execute test
       shell: |
-        ping -c localhost
+        ping -c 3 localhost
