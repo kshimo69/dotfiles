@@ -46,7 +46,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 export PIP_RESPECT_VIRTUALENV=true
 
 # itermplot
-export MPLBACKEND="module://itermplot"
+#export MPLBACKEND="module://itermplot"
 
 # gtags
 # % cd /usr/include
