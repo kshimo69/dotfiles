@@ -42,6 +42,7 @@ nnoremap <silent> [toggle]h
       \   syntax enable <Bar>
       \ endif<CR>
 nnoremap <expr> [toggle]a deoplete#toggle()
+nnoremap <silent> [toggle]i :IndentLinesToggle<CR>
 
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）
 cnoremap w!! w !sudo tee > /dev/null %
