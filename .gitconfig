@@ -47,3 +47,5 @@
     sslVerify = false
 [interactive]
     diffFilter = diff-highlight
+[credential]
+	helper = store
