@@ -24,11 +24,14 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'Shougo/neomru.vim'
 
 [[plugins]]
+repo = 'Shougo/neoyank.vim'
+
+[[plugins]]
 repo = 'ozelentok/denite-gtags'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-depends = ['neomru.vim', 'denite-gtags']
+depends = ['neomru.vim', 'denite-gtags', 'neoyank.vim']
 on_func = ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir']
 hook_add = 'source ~/.config/nvim/plugins/denite.rc.vim'
 hook_post_source = '''
