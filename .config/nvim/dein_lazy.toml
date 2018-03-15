@@ -172,3 +172,8 @@ on_ft = ['c', 'cpp']
 [[plugins]]
 repo = 'pearofducks/ansible-vim'
 on_ft = 'ansible'
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_cmd = 'Qfreplace'
+hook_source = 'source ~/.config/nvim/plugins/unite.rc.vim'
