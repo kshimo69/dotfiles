@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 pushd $OSDK_DIR/RendezVous/Core/setup/RendezVousServer; python setup.py install; popd
 pushd $OSDK_DIR/RendezVous/Core/setup/RendezVousSwig/; python setup.py install; popd
