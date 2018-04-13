@@ -9,7 +9,11 @@ set gui=nomenu
 "nnoremap m MESSAGE modeに入る
 "nnoremap * 同じ差出人の次のメッセージへ移動
 "nnoremap # 同じ差出人の前のメッセージへ移動
+"nnoremap T カレントフォルダの未読を既読にする
 "nnoremap <C-t> すべて既読
+
+" キーバインドについてはここが詳しい
+" http://d.hatena.ne.jp/caisui/20121218/1355754300
 
 " Shortcut
 nnoremap gi :goto 受信トレイ<CR>
