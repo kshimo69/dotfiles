@@ -5,6 +5,8 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+typeset -U PATH
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN || -z "${TMPDIR}" ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
@@ -20,7 +22,8 @@ PATH=$PATH:$HOME/go/bin
 
 # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
 # git clone https://github.com/riywo/anyenv ~/.anyenv
-if [ -d $HOME/.anyenv/bin ]; then
+if [ -d $HOME/.anyenv/bin ]
+then
     PATH=$HOME/.anyenv/bin:$PATH
     # for tmux
     for D in `ls $HOME/.anyenv/envs`
@@ -29,12 +32,11 @@ if [ -d $HOME/.anyenv/bin ]; then
     done
 fi
 
-if [ -n "$OSDK_DIR" ]; then
-    PATH=${CURRENT_ENV}/bin:${CURRENT_ENV}/Scripts:${CURRENT_ENV}/lib/site-packages/RendezVous/bin/Debug:${CURRENT_ENV}/lib/site-packages/RendezVous/bin/Release:${OSDK_DIR}/Build/Tools/CMake/Linux/bin_${BUILDER_ARCH}:$SWIG_PATH:$PATH
-    alias python=${CURRENT_ENV}/bin/python
+if [ -f $HOME/jack_knives/.nexenv.zsh ]
+then
+    source $HOME/jack_knives/.nexenv.zsh
 fi
 
-typeset -U PATH
 export PATH
 export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
