@@ -175,7 +175,7 @@ zle -N peco-select-history
 function peco-select-gitadd() {
     #local SELECTED_FILE_TO_ADD="$(git status --porcelain | \
     local SELECTED_FILE_TO_ADD="$(git status -s | \
-                                  $PERCOL --query "$LBUFFER" | \
+                                  peco --query "$LBUFFER" | \
                                   awk -F ' ' '{print $NF}')"
     if [ -n "$SELECTED_FILE_TO_ADD" ]; then
       BUFFER="git add $(echo "$SELECTED_FILE_TO_ADD" | tr '\n' ' ')"
