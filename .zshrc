@@ -65,6 +65,15 @@ alias py='python'
 alias r='rails'
 alias pu='pushd'
 alias po='popd'
+if which fzf >/dev/null 2>&1
+then
+    export PERCOL=fzf
+elif which peco >/dev/null 2>&1
+then
+    export PERCOL=peco
+else
+    export PERCOL=''
+fi
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
 alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
 alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
@@ -139,8 +148,8 @@ fi
 
 # peco
 function peco-snippets() {
-    BUFFER=$(cat ~/.snippets/* | grep -v "^#" | peco --query "$LBUFFER")
-    # BUFFER=$(cat ~/.snippets/* | grep -v "^#" | peco --query "$LBUFFER" | $COPY)
+    BUFFER=$(cat ~/.snippets/* | grep -v "^#" | $PERCOL --query "$LBUFFER")
+     #BUFFER=$(cat ~/.snippets/* | grep -v "^#" | $PERCOL --query "$LBUFFER" | $COPY)
     zle clear-screen
 }
 zle -N peco-snippets
@@ -155,7 +164,7 @@ function peco-select-history() {
     fi
     BUFFER=$(\history -n 1 | \
         eval $tac | \
-        peco --query "$LBUFFER")
+        $PERCOL --query "$LBUFFER")
     CURSOR=$#BUFFER
     zle clear-screen
 }
@@ -165,7 +174,7 @@ zle -N peco-select-history
 function peco-select-gitadd() {
     #local SELECTED_FILE_TO_ADD="$(git status --porcelain | \
     local SELECTED_FILE_TO_ADD="$(git status -s | \
-                                  peco --query "$LBUFFER" | \
+                                  $PERCOL --query "$LBUFFER" | \
                                   awk -F ' ' '{print $NF}')"
     if [ -n "$SELECTED_FILE_TO_ADD" ]; then
       BUFFER="git add $(echo "$SELECTED_FILE_TO_ADD" | tr '\n' ' ')"
