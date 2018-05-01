@@ -190,4 +190,8 @@ bindkey '^x^a' anyframe-widget-select-widget
 # anyenv
 [ -f $HOME/.anyenv/bin/anyenv ] && eval "$(anyenv init - zsh)"
 
+# fzf
+# https://github.com/junegunn/fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 true
