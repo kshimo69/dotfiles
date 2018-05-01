@@ -45,3 +45,6 @@
   - name: Install /usr/local/bin/peco
     become: true
     copy: src=/tmp/peco_linux_amd64/peco dest=/usr/local/bin/ mode=0755
+
+  - name: Install fzf
+    git: repo=https://github.com/junegunn/fzf.git dest=~/.fzf depth=1
