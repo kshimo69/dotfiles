@@ -32,6 +32,7 @@ add-zsh-hook chpwd auto_ls
 # environment
 export LANG="ja_JP.UTF-8"
 export TERM="xterm-256color"
+export GREP=ag
 export GREP_COLOR="01;35"
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
@@ -40,6 +41,15 @@ export EDITOR="nvim"
 export SVN_EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+if which fzf >/dev/null 2>&1
+then
+    export PERCOL=fzf
+elif which peco >/dev/null 2>&1
+then
+    export PERCOL=peco
+else
+    export PERCOL=''
+fi
 
 # python
 export PYTHONSTARTUP=$HOME/.pythonrc.py
@@ -65,15 +75,6 @@ alias py='python'
 alias r='rails'
 alias pu='pushd'
 alias po='popd'
-if which fzf >/dev/null 2>&1
-then
-    export PERCOL=fzf
-elif which peco >/dev/null 2>&1
-then
-    export PERCOL=peco
-else
-    export PERCOL=''
-fi
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
 alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
 alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
