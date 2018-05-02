@@ -150,12 +150,12 @@ hook_source = 'source ~/.config/nvim/plugins/deoplete-clang.rc.vim'
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'
 on_map = '<Plug>NERDCommenterToggle'
-hook_source = 'source ~/.config/nvim/plugins/nerdcommenter.rc.vim'
+hook_add = 'source ~/.config/nvim/plugins/nerdcommenter.rc.vim'
 
 [[plugins]]
 repo = 'glidenote/memolist.vim'
 on_func = ['MemoNew', 'MemoList', 'MemoGrep']
-hook_source = 'source ~/.config/nvim/plugins/memolist.rc.vim'
+hook_add = 'source ~/.config/nvim/plugins/memolist.rc.vim'
 
 [[plugins]]
 repo = 'gregsexton/gitv'
@@ -171,6 +171,7 @@ hook_source = 'source ~/.config/nvim/plugins/gtags.rc.vim'
 [[plugins]]
 repo = 'majutsushi/tagbar'
 on_func = ['TagbarToggle']
+hook_add = 'source ~/.config/nvim/plugins/tagbar.rc.vim'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -181,7 +182,7 @@ hook_source = 'source ~/.config/nvim/plugins/unite.rc.vim'
 repo = 'Shougo/vimfiler'
 depends = ['unite.vim']
 on_func = ['VimFilerTab', 'VimFiler', 'VimFilerExplorer', 'VimFilerBufferDir']
-hook_source = 'source ~/.config/nvim/plugins/vimfiler.rc.vim'
+hook_add = 'source ~/.config/nvim/plugins/vimfiler.rc.vim'
 
 [[plugins]]
 repo = 'kannokanno/previm'
@@ -199,3 +200,28 @@ on_ft = ['c', 'cpp']
 [[plugins]]
 repo = 'pearofducks/ansible-vim'
 on_ft = 'ansible'
+
+[[plugins]]
+repo = 'rhysd/vim-operator-surround'
+depends = ['vim-operator-user']
+on_map = '<Plug>'
+hook_add = 'source ~/.config/nvim/plugins/vim-operator-surround.rc.vim'
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_map = '<Plug>'
+on_cmd = 'OpenBrowserSearch'
+hook_add = 'source ~/.config/nvim/plugins/openbrowser.rc.vim'
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+on_map = '<Plug>'
+hook_add = 'source ~/.config/nvim/plugins/quickhl.rc.vim'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_map = '<Plug>'
+hook_add = 'source ~/.config/nvim/plugins/quickrun.rc.vim'

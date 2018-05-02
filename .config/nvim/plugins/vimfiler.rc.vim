@@ -15,3 +15,7 @@ au MyAutoCmd FileType vimfiler
 
 " .pycを表示しない
 let g:vimfiler_ignore_pattern = "\%(\.pyc$\)"
+
+nnoremap <Leader>e :VimFilerExplorer<CR>
+" 現在開いているバッファのディレクトリを開く
+nnoremap <Leader>f :VimFilerBufferDir<CR>

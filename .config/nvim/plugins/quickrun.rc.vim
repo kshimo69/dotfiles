@@ -29,3 +29,4 @@ let g:quickrun_config['go'] = {
   \ 'command': 'go',
   \ 'exec': ['%c run %s']
   \ }
+nmap <silent> <Leader>rr <Plug>(quickrun)

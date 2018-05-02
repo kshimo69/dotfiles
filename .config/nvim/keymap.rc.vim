@@ -1,6 +1,3 @@
-"<Leader>をスペースに
-let mapleader = " "
-
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 
@@ -63,47 +60,3 @@ nnoremap <silent> tc :<c-u>tablast <bar> tabnew<cr>
 nnoremap <silent> tx :<c-u>tabclose<cr>
 nnoremap <silent> to :<c-u>tabonly<cr>
 nnoremap <silent> ts :<c-u>tabs<cr>
-
-" nerdcommenter
-" ,,でコメントをトグルする
-nmap ,, <Plug>NERDCommenterToggle
-vmap ,, <Plug>NERDCommenterToggle
-
-" memolist
-nnoremap <Leader>mn  :MemoNew<CR>
-nnoremap <Leader>ml  :MemoList<CR>
-nnoremap <Leader>mg  :MemoGrep<CR>
-
-" tagbar
-nnoremap <Leader>t :TagbarToggle<CR>
-
-" vimfiler
-nnoremap <Leader>e :VimFilerExplorer<CR>
-" 現在開いているバッファのディレクトリを開く
-nnoremap <Leader>f :VimFilerBufferDir<CR>
-
-" neoterm
-nnoremap <silent> <Leader>rc :TREPLSendFile<CR>
-nnoremap <silent> <Leader>rl :TREPLSendLine<CR>
-vnoremap <silent> <Leader>rl :TREPLSendSelection<CR>
-nnoremap <silent> vt :Ttoggle<CR>
-nnoremap <silent> vs :terminal<CR>
-nnoremap <silent> vc :Tclose!<CR>
-" terminal modeからcommand modeに
-tnoremap <silent> <ESC> <C-\><C-n>
-
-" quickrun
-nmap <silent> <Leader>rr <Plug>(quickrun)
-
-" quickhl
-nmap <Leader><Space> <Plug>(quickhl-manual-this)
-xmap <Leader><Space> <Plug>(quickhl-manual-this)
-nmap <Leader>M <Plug>(quickhl-manual-reset)
-xmap <Leader>M <Plug>(quickhl-manual-reset)
-nmap <Leader>j <Plug>(quickhl-cword-toggle)
-nmap <Leader>] <Plug>(quickhl-tag-toggle)
-
-" vim-operator-surround
-map <silent>sa <Plug>(operator-surround-append)
-map <silent>sd <Plug>(operator-surround-delete)
-map <silent>sr <Plug>(operator-surround-replace)

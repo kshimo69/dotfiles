@@ -20,3 +20,9 @@ let g:quickhl_manual_colors = [
     \    'cterm=NONE gui=NONE ctermfg=Black guifg=Black ctermbg=LightGray    guibg=LightGray',
     \    'cterm=NONE gui=NONE ctermfg=White guifg=White ctermbg=DarkGray     guibg=DarkGray',
     \]
+nmap <Leader><Space> <Plug>(quickhl-manual-this)
+xmap <Leader><Space> <Plug>(quickhl-manual-this)
+nmap <Leader>M <Plug>(quickhl-manual-reset)
+xmap <Leader>M <Plug>(quickhl-manual-reset)
+nmap <Leader>j <Plug>(quickhl-cword-toggle)
+nmap <Leader>] <Plug>(quickhl-tag-toggle)

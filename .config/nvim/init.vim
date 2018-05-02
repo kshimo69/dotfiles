@@ -33,6 +33,10 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
+"<Leader>をスペースに
+"deinで読み込む設定に使うのでここで変更しておく
+let mapleader = " "
+
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
@@ -44,7 +48,7 @@ if dein#load_state(s:dein_dir)
   call dein#save_state()
 endif
 
-" もし、未インストールものものがあったらインストール
+" もし、未インストールのものがあったらインストール
 if dein#check_install()
   call dein#install()
 endif

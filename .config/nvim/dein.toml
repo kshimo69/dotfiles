@@ -29,10 +29,6 @@ repo = 'tpope/vim-fugitive'
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
-repo = 'thinca/vim-quickrun'
-hook_add = 'source ~/.config/nvim/plugins/quickrun.rc.vim'
-
-[[plugins]]
 repo = 'kassio/neoterm'
 hook_add = 'source ~/.config/nvim/plugins/neoterm.rc.vim'
 
@@ -44,14 +40,6 @@ hook_add = 'source ~/.config/nvim/plugins/neomake.rc.vim'
 repo = 'Yggdroot/indentLine'
 hook_add = 'source ~/.config/nvim/plugins/indentline.rc.vim'
 
-[[plugins]]
-repo = 'tyru/open-browser.vim'
-hook_add = 'source ~/.config/nvim/plugins/openbrowser.rc.vim'
-
-[[plugins]]
-repo = 't9md/vim-quickhl'
-hook_add = 'source ~/.config/nvim/plugins/quickhl.rc.vim'
-
 [[plugins]]  # カーソル位置のコンテキストに合わせてftを切り替える
 repo = 'osyo-manga/vim-precious'
 depends = ['context_filetype.vim']
@@ -59,10 +47,3 @@ hook_add = 'source ~/.config/nvim/plugins/vim-precious.rc.vim'
 
 [[plugins]]  # カーソル位置のコンテキストのftを判定する
 repo = 'Shougo/context_filetype.vim'
-
-[[plugins]]
-repo = 'rhysd/vim-operator-surround'
-depends = ['vim-operator-user']
-
-[[plugins]]
-repo = 'kana/vim-operator-user'
