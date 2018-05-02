@@ -33,8 +33,8 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
-"<Leader>をスペースに
-"deinで読み込む設定に使うのでここで変更しておく
+" <Leader>をスペースに
+" deinで読み込む設定に使うのでここで変更しておく
 let mapleader = " "
 
 if dein#load_state(s:dein_dir)
