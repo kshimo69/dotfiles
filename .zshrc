@@ -175,7 +175,7 @@ zle -N peco-select-history
 function peco-select-gitadd() {
     #local SELECTED_FILE_TO_ADD="$(git status --porcelain | \
     local SELECTED_FILE_TO_ADD="$(git status -s | \
-                                  peco --query "$LBUFFER" | \
+                                  $PERCOL --query "$LBUFFER" | \
                                   awk -F ' ' '{print $NF}')"
     if [ -n "$SELECTED_FILE_TO_ADD" ]; then
       BUFFER="git add $(echo "$SELECTED_FILE_TO_ADD" | tr '\n' ' ')"
@@ -202,6 +202,9 @@ bindkey '^x^a' anyframe-widget-select-widget
 
 # fzf
 # https://github.com/junegunn/fzf
+export FZF_TMUX=1
+export FZF_DEFAULT_OPTS='--reverse --ansi --select-1 --multi --extended --cycle'
+alias f="fzf-tmux -u $FZF_DEFAULT_OPTS"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 true
