@@ -1,8 +1,19 @@
 " デフォルトキーマップを使用しない
 let g:quickrun_no_default_key_mappings = 1
 
-let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
-"let g:quickrun_config = {}
+" デフォルト設定
+" 時刻を表示する
+" vimprocを使用する
+let g:quickrun_config = {
+      \ '_': {
+      \   'hook/time/enable': '1',
+      \   'runner': 'vimproc',
+      \ },
+      \}
+
+" QuickRun強制終了
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+
 " C++
 let g:quickrun_config['cpp/g++-preprocessor'] = {
   \   "exec"    : "%c %o %s:p",
