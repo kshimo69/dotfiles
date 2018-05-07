@@ -142,6 +142,11 @@ preexec () {
     fi
 }
 
+# neotermの時はVIMRUNTIMEがある
+if [ -n "$VIMRUNTIME" ]; then
+    PROMPT='[%F{cyan}%~%f]
+%#%{$reset_color%} '
+fi
 if [ -n "$OSDK_DIR" ]; then
     PROMPT='%B%(?.%F{green}%n%f.%F{red}%n%f)%b%F{yellow}@%f%F{red}OSDKBUILDER%f [%F{cyan}%~%f]
 %#%{$reset_color%} '
