@@ -1,7 +1,7 @@
 # name             lazyOff lazyOn timing
 # ----------------+-------+------+------
 # hook_add         o       o      プラグインが dein.vim によって追加されたとき
-# hook_source      x       x      プラグインが読み込まれる直前
+# hook_source      x       o      プラグインが読み込まれる直前
 # hook_post_source x       o      プラグインが読み込まれた直後
 # hook_post_update o       o      プラグインが更新された直後
 

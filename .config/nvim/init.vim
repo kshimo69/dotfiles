@@ -44,6 +44,10 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml('~/.config/nvim/dein.toml', {'lazy': 0})
   call dein#load_toml('~/.config/nvim/dein_lazy.toml', {'lazy': 1})
 
+  " 開発中のプラグインを入れてみる
+  let jack_plugin_dir = expand('$HOME/jack_knives/vim-plugin')
+  call dein#local(jack_plugin_dir)
+
   call dein#end()
   call dein#save_state()
 endif
@@ -58,3 +62,7 @@ syntax enable
 
 runtime! options.rc.vim
 runtime! keymap.rc.vim
+
+if filereadable(expand('$HOME/jack_knives/rc.vim'))
+  source $HOME/jack_knives/rc.vim
+endif
