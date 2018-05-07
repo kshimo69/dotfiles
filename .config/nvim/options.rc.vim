@@ -105,7 +105,7 @@ set splitbelow
 " 新しいウィンドウを右に開く
 set splitright
 " 画面は縦分割
-set diffopt+=vertical
+set diffopt+=filler,vertical
 
 " スクリーンベルを無効化
 set t_vb=
