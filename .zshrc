@@ -82,11 +82,11 @@ alias grep='grep --color=auto'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
 alias now='date +%Y%m%d%H%M%S'
-alias ctags='`brew --prefix`/bin/ctags'
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
     alias em='emacsclient -n "$@"'
     alias VIM='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/bin/mvim'
+    alias ctags='`brew --prefix`/bin/ctags'
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
     alias gvim='d:/vim/gvim.exe'
 fi
