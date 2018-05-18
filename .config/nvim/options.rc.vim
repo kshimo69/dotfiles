@@ -47,9 +47,13 @@ set wrapscan
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 
-" grepは再帰、行番号表示、バイナリファイルは見ない、ファイル名表示
-" .hgと.git、tagsは対象外
-set grepprg=grep\ -rnIH\ --color\ --exclude=\.hg\ --exclude=\.git\ --exclude=\.svn\ --exclude=tags\ --exclude=GTAGS
+if executable('ag')
+  set grepprg=ag\ -n\ -iS
+else
+  " grepは再帰、行番号表示、バイナリファイルは見ない、ファイル名表示
+  " .hgと.git、tagsは対象外
+  set grepprg=grep\ -rnIH\ --color\ --exclude=\.hg\ --exclude=\.git\ --exclude=\.svn\ --exclude=tags\ --exclude=GTAGS
+endif
 
 " CTRL-A, CTRL-Xで増減させる時の設定
 set nrformats&
