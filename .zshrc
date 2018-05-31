@@ -130,17 +130,19 @@ setopt share_history
 setopt hist_no_store
 setopt magic_equal_subst
 
-precmd () {
+function tmux_window_name_precmd () {
     if [ "q$TMUX" != "q" ]; then
         echo -ne "\ek$(basename $(pwd))\e\\"
     fi
 }
+add-zsh-hook precmd tmux_window_name_precmd
 
-preexec () {
+function tmux_window_name_preexec () {
     if [ "q$TMUX" != "q" ]; then
         echo -ne "\ek($1)\e\\"
     fi
 }
+add-zsh-hook preexec tmux_window_name_preexec
 
 # neotermの時はVIMRUNTIMEがある
 if [ -n "$VIMRUNTIME" ]; then
