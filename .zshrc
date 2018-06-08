@@ -97,6 +97,9 @@ fi
 if [ -f ~/.passwd ]; then
     . ~/.passwd
 fi
+if [ -f ~/.google_key ]; then
+    alias google_key="oathtool --totp --base32 `cat ~/.google_key`"
+fi
 
 # clipboard
 if which pbcopy >/dev/null 2>&1 ; then
