@@ -175,6 +175,9 @@ au MyAutoCmd QuickfixCmdPost make,*grep* cwindow
 " (l以外で始まる)QuickFixコマンドの実行が終わったらQuickFixウインドウを開く
 "au MyAutoCmd QuickFixCmdPost [^l]* copen
 
+" :makeしたらファイルを自動的に保存する
+set autowrite
+
 " QuickFixおよびHelpでは q でバッファを閉じる
 au MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 
