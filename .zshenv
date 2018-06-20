@@ -17,8 +17,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 PATH=$HOME/.cask/bin:$HOME/.cabal/bin:$HOME/local/bin:$HOME/bin:$HOME/jack_knives/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/bin/packer:/usr/local/sbin:/Developer/android-sdk-mac_x86/platform-tools:/usr/bin:/bin:/usr/sbin:/sbin:$PATH:$HOME/Library/Android/sdk/platform-tools
 
 # go
-export GOROOT=/usr/local/go
-PATH=$PATH:$GOROOT/bin
+#export GOROOT=/usr/local/go
+#PATH=$PATH:$GOROOT/bin
 export GOPATH=$HOME/go
 PATH=$PATH:$HOME/go/bin
 
