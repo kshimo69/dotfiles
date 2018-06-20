@@ -228,3 +228,13 @@ hook_add = 'source ~/.config/nvim/plugins/quickhl.rc.vim'
 repo = 'thinca/vim-quickrun'
 on_map = '<Plug>'
 hook_add = 'source ~/.config/nvim/plugins/quickrun.rc.vim'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+depends = ['deoplete.nvim']
+build = 'make'
+on_ft = 'go'
