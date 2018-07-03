@@ -7,7 +7,7 @@
     python_version: 2.7.13
     python3_version: 3.5.3
     neovim_repository: https://github.com/neovim/neovim.git
-    neovim_version: v0.2.0
+    neovim_version: v0.3.0
     dein_installer: https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
     tmux_repository: https://github.com/tmux/tmux.git
     tmux_version: 2.3
