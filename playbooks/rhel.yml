@@ -104,7 +104,7 @@
       register: which_nvim
       failed_when: which_nvim.rc not in [0, 1]
       changed_when: False
-      shell: which nvim
+      shell: which nvim && nvim --version | grep {{ neovim_version }}
 
     - name: Build and Install neovim
       when: which_nvim.rc == 1
