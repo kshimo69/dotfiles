@@ -47,3 +47,16 @@ hook_add = 'source ~/.config/nvim/plugins/vim-precious.rc.vim'
 
 [[plugins]]  # カーソル位置のコンテキストのftを判定する
 repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'tpope/vim-dispatch'
+
+[[plugins]]
+repo = 'aliev/vim-compiler-python'
+
+[[plugins]]
+repo = 'janko-m/vim-test'
+depends = ['vim-dispatch']
+hook_add = '''
+let g:test#strategy = 'dispatch'
+'''
