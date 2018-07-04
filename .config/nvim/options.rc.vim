@@ -48,7 +48,7 @@ cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 
 if executable('ag')
-  set grepprg=ag\ -n\ -iS
+  set grepprg=ag\ --nogroup\ --nocolor
 else
   " grepは再帰、行番号表示、バイナリファイルは見ない、ファイル名表示
   " .hgと.git、tagsは対象外
