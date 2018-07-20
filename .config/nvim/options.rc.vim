@@ -42,6 +42,8 @@ set incsearch
 set hlsearch
 " ファイル末尾までいったら最初から検索する
 set wrapscan
+" 文字列置換をインタラクティブに表示する
+set inccommand=split
 
 " バックスラッシュやクエスチョンを状況に合わせ自動的にエスケープ
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'

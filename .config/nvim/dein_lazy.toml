@@ -206,12 +206,15 @@ on_ft = 'ansible'
 
 [[plugins]]
 repo = 'rhysd/vim-operator-surround'
-depends = ['vim-operator-user']
+depends = ['vim-operator-user', 'vim-repeat']
 on_map = '<Plug>'
 hook_add = 'source ~/.config/nvim/plugins/vim-operator-surround.rc.vim'
 
 [[plugins]]
 repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
