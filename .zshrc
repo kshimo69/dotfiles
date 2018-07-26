@@ -140,6 +140,16 @@ function tmux_window_name_precmd () {
 }
 add-zsh-hook precmd tmux_window_name_precmd
 
+function tmux_command_exit_status_precmd () {
+    result=$?
+    if [ "q$TMUX" != "q" ]; then
+        if [ $result -ne 0 ]; then
+            echo -ne '\a'
+        fi
+    fi
+}
+add-zsh-hook precmd tmux_command_exit_status_precmd
+
 function tmux_window_name_preexec () {
     if [ "q$TMUX" != "q" ]; then
         echo -ne "\ek($1)\e\\"
