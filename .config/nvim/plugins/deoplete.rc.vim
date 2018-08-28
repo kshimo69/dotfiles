@@ -1,6 +1,7 @@
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_complete_delay = 0
+let g:deoplete#auto_refresh_delay = 100
 " TabComplete
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
   \ neosnippet#expandable_or_jumpable() ?
@@ -18,4 +19,6 @@ endfunction
 " <C-g>: undo completion
 inoremap <expr><C-g> deoplete#undo_completion()
 " close the preview window after completion is done
-au MyAutoCmd CompleteDone * pclose!
+"au MyAutoCmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" do not show preview window when completion
+"set completeopt-=preview
