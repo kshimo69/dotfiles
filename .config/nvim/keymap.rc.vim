@@ -60,3 +60,12 @@ nnoremap <silent> tc :<c-u>tablast <bar> tabnew<cr>
 nnoremap <silent> tx :<c-u>tabclose<cr>
 nnoremap <silent> to :<c-u>tabonly<cr>
 nnoremap <silent> ts :<c-u>tabs<cr>
+
+" コマンドラインモード
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
