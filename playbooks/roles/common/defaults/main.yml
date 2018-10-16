@@ -12,6 +12,7 @@ basic_packages:
   - { name: xorg-x11-xauth }
   - { name: xsel }
   - { name: jq }
+  - { name: rlwrap }
 
 build_packages:
   - { name: gcc }
