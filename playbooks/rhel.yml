@@ -14,6 +14,7 @@
     dein_installer: https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
     tmux_repository: https://github.com/tmux/tmux.git
     tmux_version: 2.3
+    go_version: 1.10.3
 
   roles:
     - { role: common }
@@ -49,10 +50,25 @@
     - name: Install pyenv-virtualenv
       git: repo=https://github.com/yyuu/pyenv-virtualenv.git dest=~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
 
+    - name: Install goenv
+      args:
+        # guard for only once.
+        creates: ~/.anyenv/envs/goenv
+      shell: |
+        /bin/bash -lc 'anyenv install goenv'
+
     - name: Update all envs
       changed_when: False
       register: result
       shell: /bin/bash -lc 'anyenv update'
+
+    - name: Install golang {{ go_version }}
+      args:
+        # guard for only once.
+        creates: ~/.anyenv/envs/goenv/versions/{{ go_version }}
+      shell: |
+        /bin/bash -lc "goenv install {{ go_version }}"
+        /bin/bash -lc "goenv global {{ go_version }}"
 
     - name: Install python {{ python_version }}
       args:
