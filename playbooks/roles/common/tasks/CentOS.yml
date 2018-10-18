@@ -27,6 +27,8 @@
       ./configure >/dev/null
       make >/dev/null
       sudo make install
+    args:
+      executable: /bin/bash
 
   - name: Get latest peco version
     changed_when: False

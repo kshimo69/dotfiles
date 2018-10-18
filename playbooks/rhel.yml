@@ -10,7 +10,7 @@
     python_version: 2.7.13
     python3_version: 3.5.3
     neovim_repository: https://github.com/neovim/neovim.git
-    neovim_version: v0.2.0
+    neovim_version: v0.3.1
     dein_installer: https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
     tmux_repository: https://github.com/tmux/tmux.git
     tmux_version: 2.3
@@ -24,7 +24,6 @@
         # guard for only once.
         creates: ~/.anyenv
       shell: |
-        git clone https://github.com/riywo/anyenv ~/.anyenv
         (
           echo 'export PATH="$HOME/.anyenv/bin:$PATH"'
           echo 'eval "$(anyenv init -)"'
@@ -45,7 +44,7 @@
         # guard for only once.
         creates: ~/.anyenv/envs/pyenv
       shell: |
-        anyenv install pyenv
+        /bin/bash -lc 'anyenv install pyenv'
 
     - name: Install pyenv-virtualenv
       git: repo=https://github.com/yyuu/pyenv-virtualenv.git dest=~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
@@ -53,27 +52,27 @@
     - name: Update all envs
       changed_when: False
       register: result
-      shell: anyenv update
+      shell: /bin/bash -lc 'anyenv update'
 
     - name: Install python {{ python_version }}
       args:
         # guard for only once.
         creates: ~/.anyenv/envs/pyenv/versions/{{ python_version }}
       shell: |
-        pyenv install {{ python_version }}
-        pyenv global {{ python_version }}
+        /bin/bash -lc "pyenv install {{ python_version }}"
+        /bin/bash -lc "pyenv global {{ python_version }}"
 
     - name: Install python {{ python3_version }}
       args:
         # guard for only once.
         creates: ~/.anyenv/envs/pyenv/versions/{{ python3_version }}
-      shell: pyenv install {{ python3_version }}
+      shell: /bin/bash -lc "pyenv install {{ python3_version }}"
 
     - name: Create python virtualenv for neovim2
       args:
         # guard for only once.
         creates: ~/.anyenv/envs/pyenv/versions/neovim2
-      shell: pyenv virtualenv {{ python_version }} neovim2
+      shell: /bin/bash -lc "pyenv virtualenv {{ python_version }} neovim2"
 
     - name: Install neovim2
       changed_when: '"Requirement already up-to-date: neovim" not in result.stdout'
@@ -85,7 +84,7 @@
       args:
         # guard for only once.
         creates: ~/.anyenv/envs/pyenv/versions/neovim3
-      shell: pyenv virtualenv {{ python3_version }} neovim3
+      shell: /bin/bash -lc "pyenv virtualenv {{ python3_version }} neovim3"
 
     - name: Install neovim3
       changed_when: '"Requirement already up-to-date: neovim" not in result.stdout'
@@ -94,16 +93,30 @@
         bash -l -c 'pyenv activate neovim3; pip install -U neovim'
 
     - name: Install pip packages
-      pip: name={{ item }} state=latest
-      with_items:
-        - pip
-        - flake8
-        - awscli
+      pip:
+        executable: ~/.anyenv/envs/pyenv/shims/pip
+        #name: "{{ pip_packages }}"
+        name: pip
+        state: latest
+
+    - name: Install flake8 packages
+      pip:
+        executable: ~/.anyenv/envs/pyenv/shims/pip
+        name: flake8
+        state: latest
+
+    - name: Install awscli packages
+      pip:
+        executable: ~/.anyenv/envs/pyenv/shims/pip
+        name: awscli
+        state: latest
 
     - name: Check neovim already installed
       register: which_nvim
       failed_when: which_nvim.rc not in [0, 1]
       changed_when: False
+      args:
+        executable: /bin/bash
       shell: which nvim && nvim --version | grep {{ neovim_version }}
 
     - name: Build and Install neovim
@@ -114,6 +127,8 @@
         git checkout {{ neovim_version }}
         CMAKE_BUILD_TYPE=RelWithDebInfo make >/dev/null
         sudo make install
+      args:
+        executable: /bin/bash
 
     - name: Prepare install dein
       file: path=~/.cache state=directory

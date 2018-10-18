@@ -37,3 +37,8 @@ build_packages:
   - { name: ncurses-devel }
   - { name: libevent-devel }
   - { name: clang }
+
+pip_packages:
+  - { name: pip }
+  - { name: flake8 }
+  - { name: awscli }
