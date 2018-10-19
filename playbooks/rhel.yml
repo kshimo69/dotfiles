@@ -67,28 +67,28 @@
         # guard for only once.
         creates: ~/.anyenv/envs/goenv/versions/{{ go_version }}
       shell: |
-        /bin/bash -lc "goenv install {{ go_version }}"
-        /bin/bash -lc "goenv global {{ go_version }}"
+        /bin/bash -lc "goenv install {{ go_version | quote }}"
+        /bin/bash -lc "goenv global {{ go_version | quote }}"
 
     - name: Install python {{ python_version }}
       args:
         # guard for only once.
         creates: ~/.anyenv/envs/pyenv/versions/{{ python_version }}
       shell: |
-        /bin/bash -lc "pyenv install {{ python_version }}"
-        /bin/bash -lc "pyenv global {{ python_version }}"
+        /bin/bash -lc "pyenv install {{ python_version | quote }}"
+        /bin/bash -lc "pyenv global {{ python_version | quote }}"
 
     - name: Install python {{ python3_version }}
       args:
         # guard for only once.
         creates: ~/.anyenv/envs/pyenv/versions/{{ python3_version }}
-      shell: /bin/bash -lc "pyenv install {{ python3_version }}"
+      shell: /bin/bash -lc "pyenv install {{ python3_version | quote }}"
 
     - name: Create python virtualenv for neovim2
       args:
         # guard for only once.
         creates: ~/.anyenv/envs/pyenv/versions/neovim2
-      shell: /bin/bash -lc "pyenv virtualenv {{ python_version }} neovim2"
+      shell: /bin/bash -lc "pyenv virtualenv {{ python_version | quote }} neovim2"
 
     - name: Install neovim2
       changed_when: '"Requirement already up-to-date: neovim" not in result.stdout'
@@ -100,7 +100,7 @@
       args:
         # guard for only once.
         creates: ~/.anyenv/envs/pyenv/versions/neovim3
-      shell: /bin/bash -lc "pyenv virtualenv {{ python3_version }} neovim3"
+      shell: /bin/bash -lc "pyenv virtualenv {{ python3_version | quote }} neovim3"
 
     - name: Install neovim3
       changed_when: '"Requirement already up-to-date: neovim" not in result.stdout'
@@ -133,14 +133,14 @@
       changed_when: False
       args:
         executable: /bin/bash
-      shell: which nvim && nvim --version | grep {{ neovim_version }}
+      shell: which nvim && nvim --version | grep {{ neovim_version | quote }}
 
     - name: Build and Install neovim
       when: which_nvim.rc == 1
       shell: |
-        git clone {{ neovim_repository }} /tmp/neovim
+        git clone {{ neovim_repository | quote }} /tmp/neovim
         cd /tmp/neovim
-        git checkout {{ neovim_version }}
+        git checkout {{ neovim_version | quote }}
         CMAKE_BUILD_TYPE=RelWithDebInfo make >/dev/null
         sudo make install
       args:
@@ -154,7 +154,7 @@
         # guard for only once.
         creates: ~/.cache/dein/repos/github.com/Shougo/dein.vim
       shell: |
-        curl -fsSL {{ dein_installer }} > /tmp/install.sh
+        curl -fsSL {{ dein_installer | quote }} > /tmp/install.sh
         sh /tmp/install.sh ~/.cache/dein
         rm -f /tmp/install.sh
 
