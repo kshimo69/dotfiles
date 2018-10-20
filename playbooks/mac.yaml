@@ -1,6 +1,7 @@
 ---
 - name: Setup Mac
   hosts: localhost
+  connection: local
   #gather_facts: no
   become: no
   vars:
@@ -14,6 +15,7 @@
 
   roles:
     - { role: common }
+    - { role: homebrew }
 
   tasks:
     - name: execute test

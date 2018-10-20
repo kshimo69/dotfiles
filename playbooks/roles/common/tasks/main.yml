@@ -1,3 +1,5 @@
 ---
-  - include: CentOS.yml
+  - include_tasks: CentOS.yml
     when: ansible_distribution == 'CentOS'
+    #when: ansible_os_family == 'Darwin'
+    #when: ansible_distribution == 'MacOSX'

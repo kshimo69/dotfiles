@@ -1,6 +1,7 @@
 ---
 - name: Setup Linux
   hosts: localhost
+  connection: local
   #gather_facts: no
   become: no
   vars:
