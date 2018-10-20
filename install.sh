@@ -25,8 +25,11 @@ install_homebrew() {
 }
 
 install_requirement_packages_by_brew() {
+    brew update
+    brew upgrade
     brew install git
     brew install ansible
+    brew cleanup
 }
 
 install_requirement_packages_by_yum() {
