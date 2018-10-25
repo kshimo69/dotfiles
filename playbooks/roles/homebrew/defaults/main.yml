@@ -12,3 +12,4 @@ homebrew_packages:
   #- { name: ghq, install_options: completions }
   - { name: git }
   - { name: ripgrep }
+  - { name: jq }

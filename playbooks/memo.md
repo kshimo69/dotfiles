@@ -1,1 +1,2 @@
 - playbookで使える変数は `ansible -m setup localhost` とかするとわかる
+- https://github.com/mas-cli/mas
