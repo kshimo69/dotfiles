@@ -1,4 +1,16 @@
 ---
+  - name: Add copr repository
+    become: yes
+    yum_repository:
+      name: copr
+      description: carlwgeorge-ripgrep
+      baseurl: https://copr-be.cloud.fedoraproject.org/results/carlwgeorge/ripgrep/epel-7-$basearch/
+      gpgkey: https://copr-be.cloud.fedoraproject.org/results/carlwgeorge/ripgrep/pubkey.gpg
+
+  - name: install ripgrep
+    yum: name=ripgrep enablerepo=copr state=latest
+    become: yes
+
   - name: Install basic packages
     yum: name={{ item.name }} enablerepo=epel state=latest
     become: yes
