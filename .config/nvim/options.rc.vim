@@ -50,7 +50,7 @@ cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --vimgrep
 else
   " grepは再帰、行番号表示、バイナリファイルは見ない、ファイル名表示
   " .hgと.git、tagsは対象外
