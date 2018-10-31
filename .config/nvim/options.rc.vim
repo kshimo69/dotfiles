@@ -49,8 +49,12 @@ set inccommand=split
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 
-if executable('ag')
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+elseif executable('ag')
   set grepprg=ag\ --vimgrep
+  set grepformat=%f:%l:%c:%m
 else
   " grepは再帰、行番号表示、バイナリファイルは見ない、ファイル名表示
   " .hgと.git、tagsは対象外
