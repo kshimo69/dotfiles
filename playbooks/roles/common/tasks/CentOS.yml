@@ -7,18 +7,20 @@
     baseurl: https://copr-be.cloud.fedoraproject.org/results/carlwgeorge/ripgrep/epel-7-$basearch/
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/carlwgeorge/ripgrep/pubkey.gpg
 
-- name: install ripgrep
-  yum: name=ripgrep enablerepo=copr state=latest
-  become: yes
-
 - name: Install basic packages
-  yum: name={{ item.name }} enablerepo=epel state=latest
+  yum:
+    name: {{ item.name }}
+    enablerepo: "epel,copr"
+    state: latest
   become: yes
   with_items:
     - "{{ basic_packages }}"
 
 - name: Install build essentials
-  yum: name={{ item.name }} enablerepo=epel state=latest
+  yum:
+    name: {{ item.name }}
+    enablerepo: epel
+    state: latest
   become: yes
   with_items:
     - "{{ build_packages }}"

@@ -29,6 +29,7 @@ basic_packages:
   - { name: epel-release }
   - { name: git }
   - { name: zsh }
+  - { name: ripgrep }
   - { name: the_silver_searcher }
   - { name: global-ctags }
   - { name: global }
