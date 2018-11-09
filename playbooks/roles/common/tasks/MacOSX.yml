@@ -76,3 +76,9 @@
     key: app_to_run
     type: string
     value: ""
+
+- name: Cleanup brew
+  shell: brew cleanup -s
+  register: brew_cleanup_result
+  failed_when: brew_cleanup_result.rc not in [0, 1]
+  changed_when: brew_cleanup_result.rc not in [0]

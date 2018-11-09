@@ -3,8 +3,8 @@ tmux_repository: https://github.com/tmux/tmux.git
 tmux_version: 2.3
 
 homebrew_taps:
-  - { tap: caskroom/cask }
-  - { tap: caskroom/fonts }
+  - { tap: homebrew/cask }
+  - { tap: homebrew/cask-fonts }
   - { tap: sanemat/font }
 
 homebrew_cask_packages:
