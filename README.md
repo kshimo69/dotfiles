@@ -67,7 +67,7 @@ $ curl -LSfs https://raw.githubusercontent.com/kshimo69/dotfiles/master/install.
 
 ```bash
 * Mac
-ansible-playbook ./playbooks/mac.yml
+ansible-playbook ./playbooks/local.yml
 * RedHat Linux (Amazon Linux)
 ansible-playbook ./playbooks/rhel.yml
 ```

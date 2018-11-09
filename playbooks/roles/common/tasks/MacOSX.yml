@@ -1,0 +1,78 @@
+---
+- name: Update homebrew
+  homebrew:
+    update_homebrew: yes
+    upgrade_all: yes
+
+- name: Update homebrew cask
+  homebrew_cask:
+    update_homebrew: yes
+    upgrade_all: yes
+
+- name: Add homebrew taps
+  homebrew_tap:
+    name: "{{ item.tap }}"
+    state: present
+  with_items:
+    - "{{ homebrew_taps }}"
+
+- name: Install homebrew cask packages
+  homebrew_cask:
+    name: "{{ item.name }}"
+    state: present
+  with_items:
+    - "{{ homebrew_cask_packages }}"
+
+- name: Install homebrew packages
+  homebrew:
+    name: "{{ item.name }}"
+    install_options: "{{ item.install_options | default(omit) }}"
+    state: "{{ item.state | default('latest') }}"
+  with_items:
+    - "{{ homebrew_packages }}"
+
+# iterm2
+- name: Copy iterm2 background image
+  copy:
+    src: iterm2_back.png
+    dest: "{{ ansible_user_dir }}/Pictures/iterm2_back.png"
+
+- name: Convert iterm2 config
+  template:
+    src: com.googlecode.iterm2.plist.xml
+    dest: /tmp/com.googlecode.iterm2.plist.xml
+
+- name: Restore iterm2 config
+  shell: |
+    cp "{{ ansible_user_dir }}/Library/Preferences/com.googlecode.iterm2.plist" /tmp/com.googlecode.iterm2.plist
+    plutil -convert binary1 -o "{{ ansible_user_dir }}/Library/Preferences/com.googlecode.iterm2.plist" /tmp/com.googlecode.iterm2.plist.xml
+    diff -q /tmp/com.googlecode.iterm2.plist "{{ ansible_user_dir }}/Library/Preferences/com.googlecode.iterm2.plist"
+  register: restore_iterm2_config_result
+  failed_when: restore_iterm2_config_result.rc not in [0, 1, 2]
+  changed_when: restore_iterm2_config_result.rc not in [0]
+
+#- name: debug
+#  debug:
+#    var: restore_iterm2_config_result
+
+# font
+- name: Clone RictyDiminished-for-Powerline
+  git:
+    repo: https://github.com/mzyy94/RictyDiminished-for-Powerline.git
+    dest: /tmp/ricty-powerline
+  notify: "Install ricty powerline"
+
+- name: Brew install ricty
+  homebrew:
+    name: ricty
+    install_options: [with-powerline]
+    state: latest
+  notify: "Install ricty"
+
+# xquartz
+- name: Disable xterm
+  osx_defaults:
+    domain: org.macosforge.xquartz.X11
+    key: app_to_run
+    type: string
+    value: ""

@@ -2,6 +2,29 @@
 tmux_repository: https://github.com/tmux/tmux.git
 tmux_version: 2.3
 
+homebrew_taps:
+  - { tap: caskroom/cask }
+  - { tap: caskroom/fonts }
+  - { tap: sanemat/font }
+
+homebrew_cask_packages:
+  - { name: xquartz }
+  - { name: font-ricty-diminished }
+  #- { name: font-source-code-pro-for-powerline }
+  #- { name: iterm2 }
+  #- { name: google-japanese-ime }
+
+homebrew_packages:
+  - { name: autoconf }
+  - { name: automake }
+  - { name: pkg-config }
+  - { name: fontforge }
+  #- { name: ricty, install_options: [with-powerline] }
+  - { name: git }
+  - { name: zsh }
+  - { name: ripgrep }
+  - { name: jq }
+
 basic_packages:
   - { name: epel-release }
   - { name: git }

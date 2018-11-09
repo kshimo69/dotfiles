@@ -1,0 +1,10 @@
+---
+- name: Install ricty powerline
+  shell: |
+    cp -f /tmp/ricty-powerline/powerline-fontpatched/Ricty*.ttf ~/Library/Fonts/
+    fc-cache -vf
+
+- name: Install ricty
+  shell: |
+    cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
+    fc-cache -vf

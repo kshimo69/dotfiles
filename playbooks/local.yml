@@ -1,0 +1,11 @@
+---
+- name: local develop environment
+  hosts: 'local'
+  #gather_facts: no
+  become: no
+  environment:
+    HOMEBREW_CASK_OPTS: "--appdir=/Applications"
+  vars:
+    HOME: "{{ lookup('env', 'HOME') }}"
+  roles:
+    - { role: common, tags: [ common ] }
