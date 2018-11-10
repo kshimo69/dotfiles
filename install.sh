@@ -54,7 +54,7 @@ setup_for_mac() {
     install_homebrew
     install_requirement_packages_by_brew
     clone_dotfiles
-    do_ansible mac
+    do_ansible local
 }
 
 setup_for_rhel() {
