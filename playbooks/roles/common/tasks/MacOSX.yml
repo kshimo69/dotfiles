@@ -20,6 +20,8 @@
   homebrew_cask:
     name: "{{ item.name }}"
     state: present
+    accept_external_apps: yes
+    #greedy: yes
   with_items:
     - "{{ homebrew_cask_packages }}"
 
