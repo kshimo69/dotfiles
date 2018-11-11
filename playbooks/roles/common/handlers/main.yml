@@ -8,3 +8,7 @@
   shell: |
     cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
     fc-cache -vf
+
+- name: Install fzf
+  shell: |
+    $(brew --prefix)/opt/fzf/install

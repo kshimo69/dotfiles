@@ -79,6 +79,12 @@
     type: string
     value: ""
 
+- name: Brew install fzf
+  homebrew:
+    name: fzf
+    state: latest
+  notify: "Install fzf"
+
 - name: Cleanup brew
   shell: brew cleanup -s
   register: brew_cleanup_result
