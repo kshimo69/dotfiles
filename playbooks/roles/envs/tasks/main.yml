@@ -1,0 +1,69 @@
+---
+- name: Install anyenv
+  git:
+    repo: https://github.com/riywo/anyenv
+    dest: ~/.anyenv
+
+- name: Setup anyenv
+  blockinfile:
+    create: yes
+    path: ~/.bash_profile
+    marker: "# {mark} ANSIBLE MANAGED BLOCK anyenv"
+    block: |
+      export PATH="$HOME/.anyenv/bin:$PATH"
+      eval "$(anyenv init -)"
+      for D in `ls $HOME/.anyenv/envs`
+      do
+        export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
+      done
+
+- name: Install anyenv-update
+  git:
+    repo: https://github.com/znz/anyenv-update.git
+    dest: ~/.anyenv/plugins/anyenv-update
+
+- name: Update envs
+  shell: bash -lc 'anyenv update'
+  register: anyenv_update_result
+  failed_when: anyenv_update_result.rc not in [0, 1]
+  changed_when: anyenv_update_result.rc not in [0]
+
+- name: Install pyenv
+  args:
+    # guard for only once.
+    creates: ~/.anyenv/envs/pyenv
+  shell: bash -lc 'anyenv install pyenv'
+
+- name: Install pyenv-virtualenv
+  git:
+    repo: https://github.com/yyuu/pyenv-virtualenv.git
+    dest: ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
+
+- name: Install python {{ python2_version }}
+  args:
+    # guard for only once.
+    creates: ~/.anyenv/envs/pyenv/versions/{{ python2_version }}
+  shell: |
+    bash -lc "pyenv install {{ python2_version | quote }}"
+    bash -lc "pyenv global {{ python2_version | quote }}"
+
+- name: Install python {{ python3_version }}
+  args:
+    # guard for only once.
+    creates: ~/.anyenv/envs/pyenv/versions/{{ python3_version }}
+  shell: |
+    bash -lc "pyenv install {{ python3_version | quote }}"
+
+- name: Install goenv
+  args:
+    # guard for only once.
+    creates: ~/.anyenv/envs/goenv
+  shell: bash -lc 'anyenv install goenv'
+
+- name: Install golang {{ go_version }}
+  args:
+    # guard for only once.
+    creates: ~/.anyenv/envs/goenv/versions/{{ go_version }}
+  shell: |
+    bash -lc "goenv install {{ go_version | quote }}"
+    bash -lc "goenv global {{ go_version | quote }}"

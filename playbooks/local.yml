@@ -9,3 +9,4 @@
     HOME: "{{ lookup('env', 'HOME') }}"
   roles:
     - { role: common, tags: [ common ] }
+    - { role: envs, tags: [ envs ] }
