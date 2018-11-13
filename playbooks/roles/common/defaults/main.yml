@@ -12,7 +12,10 @@ homebrew_cask_packages:
   - { name: font-ricty-diminished }
   #- { name: font-source-code-pro-for-powerline }
   - { name: iterm2 }
-  #- { name: google-japanese-ime }
+  - { name: google-japanese-ime }
+  - { name: karabiner-elements }
+  - { name: docker }
+  #- { name: visual-code-studio }
 
 homebrew_packages:
   - { name: autoconf }
@@ -24,6 +27,15 @@ homebrew_packages:
   - { name: zsh }
   - { name: ripgrep }
   - { name: jq }
+  - { name: ghq }
+  - { name: wget }
+  - { name: curl }
+  - { name: ctags }
+  - { name: tmux }
+  - { name: packer }
+  - { name: docker-completion }
+  - { name: docker-compose-completion }
+  - { name: plantuml }
 
 basic_packages:
   - { name: epel-release }
