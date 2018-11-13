@@ -51,7 +51,7 @@
     diff -q /tmp/com.googlecode.iterm2.plist "{{ ansible_user_dir }}/Library/Preferences/com.googlecode.iterm2.plist"
   register: restore_iterm2_config_result
   failed_when: restore_iterm2_config_result.rc not in [0, 1, 2]
-  changed_when: restore_iterm2_config_result.rc not in [0]
+  changed_when: restore_iterm2_config_result.rc != 0
 
 #- name: debug
 #  debug:
@@ -89,4 +89,4 @@
   shell: brew cleanup -s
   register: brew_cleanup_result
   failed_when: brew_cleanup_result.rc not in [0, 1]
-  changed_when: brew_cleanup_result.rc not in [0]
+  changed_when: brew_cleanup_result.rc != 0
