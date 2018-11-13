@@ -48,13 +48,13 @@
     bash -lc "pyenv global {{ python2_version | quote }}"
 
 - name: Check already install neovim2
-  shell: bash -lc "pyenv versions | grep neovim2"
+  shell: bash -lc "pyenv versions | grep -q neovim2"
   register: neovim2_installed
   failed_when: neovim2_installed.rc not in [0, 1]
   changed_when: neovim2_installed.rc != 0
 
 - name: Check neovim2 version
-  shell: bash -lc "pyenv versions | grep {{ python2_version | quote }}/envs/neovim2"
+  shell: bash -lc "pyenv versions | grep -q {{ python2_version | quote }}/envs/neovim2"
   register: neovim2_version
   failed_when: neovim2_version.rc not in [0, 1]
   changed_when: neovim2_version.rc != 0
@@ -82,13 +82,13 @@
     bash -lc "pyenv install {{ python3_version | quote }}"
 
 - name: Check already install neovim3
-  shell: bash -lc "pyenv versions | grep neovim3"
+  shell: bash -lc "pyenv versions | grep -q neovim3"
   register: neovim3_installed
   failed_when: neovim3_installed.rc not in [0, 1]
   changed_when: neovim3_installed.rc != 0
 
 - name: Check neovim3 version
-  shell: bash -lc "pyenv versions | grep {{ python3_version | quote }}/envs/neovim3"
+  shell: bash -lc "pyenv versions | grep -q {{ python3_version | quote }}/envs/neovim3"
   register: neovim3_version
   failed_when: neovim3_version.rc not in [0, 1]
   changed_when: neovim3_version.rc != 0
