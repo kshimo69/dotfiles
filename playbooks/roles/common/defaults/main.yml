@@ -16,6 +16,7 @@ homebrew_cask_packages:
   - { name: karabiner-elements }
   - { name: docker }
   #- { name: visual-code-studio }
+  #- { name: google-cloud-sdk }
 
 homebrew_packages:
   - { name: autoconf }
