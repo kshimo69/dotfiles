@@ -7,6 +7,7 @@
     HOMEBREW_CASK_OPTS: "--appdir=/Applications"
   vars:
     HOME: "{{ lookup('env', 'HOME') }}"
+    CACHE: "{{ HOME }}/.cache/ansible"
   roles:
     - { role: common, tags: [ common ] }
     - { role: envs, tags: [ envs ] }

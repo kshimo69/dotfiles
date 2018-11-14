@@ -61,7 +61,7 @@
 - name: Clone RictyDiminished-for-Powerline
   git:
     repo: https://github.com/mzyy94/RictyDiminished-for-Powerline.git
-    dest: ~/.ansible/ricty-powerline
+    dest: "{{ CACHE }}/ricty-powerline"
   notify: "Install ricty powerline"
 
 - name: Brew install ricty

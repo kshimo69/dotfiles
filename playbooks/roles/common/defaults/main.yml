@@ -15,8 +15,11 @@ homebrew_cask_packages:
   - { name: google-japanese-ime }
   - { name: karabiner-elements }
   - { name: docker }
+  #- { name: google-chrome }
   #- { name: visual-code-studio }
   #- { name: google-cloud-sdk }
+  #- { name: virtualbox }
+  #- { name: virtualbox-extension-pack }
 
 homebrew_packages:
   - { name: autoconf }
