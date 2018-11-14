@@ -9,5 +9,6 @@
     HOME: "{{ lookup('env', 'HOME') }}"
     CACHE: "{{ HOME }}/.cache/ansible"
   roles:
+    - { role: base, tags: [ base ] }
     - { role: common, tags: [ common ] }
     - { role: envs, tags: [ envs ] }
