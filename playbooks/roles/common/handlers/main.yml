@@ -1,7 +1,7 @@
 ---
 - name: Install ricty powerline
   shell: |
-    cp -f /tmp/ricty-powerline/powerline-fontpatched/Ricty*.ttf ~/Library/Fonts/
+    cp -f ~/.ansible/ricty-powerline/powerline-fontpatched/Ricty*.ttf ~/Library/Fonts/
     fc-cache -vf
 
 - name: Install ricty
