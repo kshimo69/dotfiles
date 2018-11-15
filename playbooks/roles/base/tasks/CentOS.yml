@@ -1,0 +1,29 @@
+---
+- name: Install Development Tools
+  yum:
+    name: "@Development tools"
+    state: present
+  become: yes
+
+- name: Install Dependencies
+  yum:
+    name: [ curl, file, git ]
+    enablerepo: epel
+    state: latest
+  become: yes
+
+- name: Install Linuxbrew
+  git:
+    repo: https://github.com/Linuxbrew/brew.git
+    dest: ~/.linuxbrew
+
+- name: Setup Linuxbrew
+  blockinfile:
+    create: yes
+    path: ~/.bash_profile
+    marker: "# {mark} ANSIBLE MANAGED BLOCK linuxbrew"
+    block: |
+      PATH="$HOME/.linuxbrew/bin:$PATH"
+      export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+      export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
+      #export LD_LIBRARY_PATH="$(brew --prefix)/lib:$LD_LIBRARY_PATH"

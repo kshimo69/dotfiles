@@ -14,7 +14,15 @@ fi
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
-PATH=$HOME/.cask/bin:$HOME/.cabal/bin:$HOME/local/bin:$HOME/bin:$HOME/jack_knives/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/bin/packer:/usr/local/sbin:/Developer/android-sdk-mac_x86/platform-tools:/usr/bin:/bin:/usr/sbin:/sbin:$PATH:$HOME/Library/Android/sdk/platform-tools
+PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
+PATH=/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+PATH=/Developer/android-sdk-mac_x86/platform-tools:$PATH
+PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
+PATH=$HOME/jack_knives/bin:$PATH
+PATH=$HOME/bin:$PATH
+PATH=$HOME/local/bin:$PATH
+PATH=$HOME/.cabal/bin:$PATH
+PATH=$HOME/.cask/bin:$PATH
 
 # go
 #export GOROOT=/usr/local/go
@@ -39,7 +47,10 @@ then
     source $HOME/jack_knives/.nexenv.zsh
 fi
 
+PATH=$HOME/.linuxbrew/bin:$PATH
+
 export PATH
-export MANPATH=$HOME/local/share/man:/opt/local/man:$MANPATH
+export MANPATH=$(brew --prefix)/share/man:$HOME/local/share/man:/opt/local/man:$MANPATH
+export INFOPATH=$(brew --prefix)/share/info:$HOME/local/share/info:/opt/local/info:$INFOPATH
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 export GTAGSLABEL=default
