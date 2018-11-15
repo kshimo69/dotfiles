@@ -40,6 +40,9 @@ homebrew_packages:
   - { name: docker-completion }
   - { name: docker-compose-completion }
   - { name: plantuml }
+  - { name: libffi }
+  - { name: readline }
+  - { name: sqlite }
 
 basic_packages:
   - { name: epel-release }
@@ -77,6 +80,7 @@ build_packages:
   - { name: ncurses-devel }
   - { name: libevent-devel }
   - { name: clang }
+  - { name: libffi-devel }
 
 pip_packages:
   - { name: pip }
