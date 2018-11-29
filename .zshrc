@@ -33,7 +33,9 @@ add-zsh-hook chpwd auto_ls
 export LANG="ja_JP.UTF-8"
 export TERM="xterm-256color"
 export GREP=ag
+#export GREP_COLOR="43;30"
 export GREP_COLOR="01;35"
+export GREP_COLORS="mt=$GREP_COLOR"
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case -R'
 export LESSCHARSET="utf-8"
