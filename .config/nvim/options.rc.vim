@@ -143,6 +143,24 @@ colorscheme iceberg
 "au MyAutoCmd VimEnter,ColorScheme * hi Folded ctermbg=NONE guibg=NONE
 "au MyAutoCmd VimEnter,ColorScheme * hi EndOfBuffer ctermbg=NONE guibg=NONE
 
+" アクティブウィンドウを目立たせる
+" https://medium.com/@caleb89taylor/customizing-individual-neovim-windows-4a08f2d02b4e
+if exists('+winhighlight')
+  hi ActiveWindow guibg=#161821
+  hi InactiveWindow guibg=NONE
+  hi ActiveTerminal guibg=#333333
+
+  au MyAutoCmd WinEnter * call Handle_Win_Enter()
+
+  function! Handle_Win_Enter()
+    if &buftype ==# 'terminal'
+      setlocal winhighlight=Normal:ActiveTerminal
+    else
+      setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+    endif
+  endfunction
+endif
+
 set title  " タイトルを表示
 set ruler  " カーソルの行列を表示
 " カーソルラインが遅いので無効に
