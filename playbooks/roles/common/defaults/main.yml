@@ -99,6 +99,136 @@ osx_defaults:
     type: bool
     value: false
 
+  # トラックパッド
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: Clicking
+    type: int
+    value: 1
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: DragLock
+    type: int
+    value: 0
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: Dragging
+    type: int
+    value: 0
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadCornerSecondaryClick
+    type: int
+    value: 0
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadFiveFingerPinchGesture
+    type: int
+    value: 2
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadFourFingerHorizSwipeGesture
+    type: int
+    value: 2
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadFourFingerPinchGesture
+    type: int
+    value: 2
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadFourFingerVertSwipeGesture
+    type: int
+    value: 2
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadHandResting
+    type: int
+    value: 1
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadHorizScroll
+    type: int
+    value: 1
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadMomentumScroll
+    type: int
+    value: 1
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadPinch
+    type: int
+    value: 1
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadRightClick
+    type: int
+    value: 1
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadRotate
+    type: int
+    value: 1
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadScroll
+    type: int
+    value: 1
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadThreeFingerDrag
+    type: int
+    value: 0
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadThreeFingerHorizSwipeGesture
+    type: int
+    value: 2
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadThreeFingerTapGesture
+    type: int
+    value: 0
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadThreeFingerVertSwipeGesture
+    type: int
+    value: 2
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadTwoFingerDoubleTapGesture
+    type: int
+    value: 1
+
+  - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadTwoFingerFromRightEdgeSwipeGesture
+    type: int
+    value: 3
+
+  # Dockの位置
+  - domain: com.apple.dock
+    key: orientation
+    type: string
+    value: "bottom"
+
+  # Dockを自動的に隠す
+  - domain: com.apple.dock
+    key: autohide
+    type: bool
+    value: false
+
+  # Dockのズーム
+  - domain: com.apple.dock
+    key: magnification
+    type: bool
+    value: true
+
+  # Dockのアイコンサイズ
+  - domain: com.apple.dock
+    key: tilesize
+    type: float
+    value: 27
+
   # すべての拡張子のファイルを表示
   - domain: NSGlobalDomain
     key: AppleShowAllExtensions
