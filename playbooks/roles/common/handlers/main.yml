@@ -12,3 +12,11 @@
 - name: Install fzf
   shell: |
     $(brew --prefix)/opt/fzf/install
+
+- name: Restart Dock
+  shell: |
+    killall Dock
+
+- name: Restart Finder
+  shell: |
+    killall Finder

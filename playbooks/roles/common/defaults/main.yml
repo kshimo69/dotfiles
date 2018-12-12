@@ -31,7 +31,7 @@ homebrew_packages:
   - { name: zsh }
   - { name: ripgrep }
   - { name: jq }
-  - { name: ghq }
+  - { name: ghq, install_options: completions }
   - { name: wget }
   - { name: curl }
   - { name: ctags }
@@ -86,3 +86,49 @@ pip_packages:
   - { name: pip }
   - { name: flake8 }
   - { name: awscli }
+
+osx_defaults:
+  - domain: org.macosforge.xquartz.X11
+    key: app_to_run
+    type: string
+    value: ""
+
+  # 自動大文字の無効化
+  - domain: NSGlobalDomain
+    key: NSAutomaticCapitalizationEnabled
+    type: bool
+    value: false
+
+  # すべての拡張子のファイルを表示
+  - domain: NSGlobalDomain
+    key: AppleShowAllExtensions
+    type: bool
+    value: true
+    notify: "Restart Finder"
+
+  # 隠しファイルを表示する
+  - domain: com.apple.finder
+    key: AppleShowAllFiles
+    type: bool
+    value: true
+    notify: "Restart Finder"
+
+  # パスバーを表示
+  - domain: com.apple.finder
+    key: ShowPathBar
+    type: bool
+    value: true
+    notify: "Restart Finder"
+
+  # .DS_Storeを作らない
+  - domain: com.apple.finder
+    key: DSDontWriteNetworkStores
+    type: bool
+    value: true
+    notify: "Restart Finder"
+
+  - domain: com.apple.finder
+    key: DSDontWriteUSBStores
+    type: bool
+    value: true
+    notify: "Restart Finder"

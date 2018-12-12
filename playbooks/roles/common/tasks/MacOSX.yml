@@ -2,12 +2,6 @@
 - name: Update homebrew
   homebrew:
     update_homebrew: yes
-    upgrade_all: yes
-
-- name: Update homebrew cask
-  homebrew_cask:
-    update_homebrew: yes
-    upgrade_all: yes
 
 - name: Add homebrew taps
   homebrew_tap:
@@ -32,6 +26,15 @@
     state: "{{ item.state | default('latest') }}"
   with_items:
     - "{{ homebrew_packages }}"
+
+- name: Upgrade homebrew
+  homebrew:
+    upgrade_all: yes
+
+- name: Upgrade homebrew cask
+  homebrew_cask:
+    update_homebrew: yes
+    upgrade_all: yes
 
 # iterm2
 - name: Copy iterm2 background image
@@ -71,14 +74,6 @@
     state: latest
   notify: "Install ricty"
 
-# xquartz
-- name: Disable xterm
-  osx_defaults:
-    domain: org.macosforge.xquartz.X11
-    key: app_to_run
-    type: string
-    value: ""
-
 - name: Brew install fzf
   homebrew:
     name: fzf
@@ -90,3 +85,14 @@
   register: brew_cleanup_result
   failed_when: brew_cleanup_result.rc not in [0, 1]
   changed_when: brew_cleanup_result.rc != 0
+
+- name: Setup OS X defaults
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  notify: "{{ item.notify | default(omit) }}"
+  with_items:
+    - "{{ osx_defaults }}"
