@@ -1,2 +1,10 @@
 - playbookで使える変数は `ansible -m setup localhost` とかするとわかる
+- モジュールを直接実行する `ansible localhost -m command -a ps`
 - https://github.com/mas-cli/mas
+- ディストリビューション名とか
+    - "ansible_distribution": "CentOS"
+    - "ansible_distribution_major_version": "7"
+    - "ansible_os_family": "RedHat"
+    - "ansible_distribution": "MacOSX"
+    - "ansible_distribution_version": "10.12.6"
+    - "ansible_os_family": "Darwin"
