@@ -179,6 +179,7 @@
       with_items:
         - .ctags
         - .config/htop
+        - .config/karabiner
         - .config/nvim
         - .flake8rc
         - .gitconfig
