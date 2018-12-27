@@ -1,4 +1,5 @@
 let g:neoterm_size = 15
+let g:neoterm_default_mod = 'botright'
 let g:neoterm_autoscroll = 1
 nnoremap <silent> <Leader>rc :TREPLSendFile<CR>
 nnoremap <silent> <Leader>rl :TREPLSendLine<CR>
