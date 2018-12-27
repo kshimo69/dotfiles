@@ -137,24 +137,24 @@ colorscheme iceberg
 "au MyAutoCmd ColorScheme * hi TabLineSel term=reverse ctermfg=255 ctermbg=33 guifg=#FFFFFF guibg=#333333
 
 " ターミナルの透過がそのまま見えるように
-"au MyAutoCmd VimEnter,ColorScheme * hi Normal ctermbg=NONE guibg=NONE
-"au MyAutoCmd VimEnter,ColorScheme * hi NonText ctermbg=NONE guibg=NONE
-"au MyAutoCmd VimEnter,ColorScheme * hi LineNr ctermbg=NONE guibg=NONE
-"au MyAutoCmd VimEnter,ColorScheme * hi Folded ctermbg=NONE guibg=NONE
-"au MyAutoCmd VimEnter,ColorScheme * hi EndOfBuffer ctermbg=NONE guibg=NONE
+au MyAutoCmd VimEnter,ColorScheme * hi Normal ctermbg=NONE guibg=NONE
+au MyAutoCmd VimEnter,ColorScheme * hi NonText ctermbg=NONE guibg=NONE
+au MyAutoCmd VimEnter,ColorScheme * hi LineNr ctermbg=NONE guibg=NONE
+au MyAutoCmd VimEnter,ColorScheme * hi Folded ctermbg=NONE guibg=NONE
+au MyAutoCmd VimEnter,ColorScheme * hi EndOfBuffer ctermbg=NONE guibg=NONE
 
 " アクティブウィンドウを目立たせる
 " https://medium.com/@caleb89taylor/customizing-individual-neovim-windows-4a08f2d02b4e
 if exists('+winhighlight')
   hi ActiveWindow guibg=#161821
   hi InactiveWindow guibg=NONE
-  hi ActiveTerminal guibg=#333333
+  hi ActiveTerminal guibg=#161821
 
   au MyAutoCmd WinEnter * call Handle_Win_Enter()
 
   function! Handle_Win_Enter()
     if &buftype ==# 'terminal'
-      setlocal winhighlight=Normal:ActiveTerminal
+      setlocal winhighlight=Normal:ActiveTerminal,NormalNC:InactiveWindow
     else
       setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
     endif
