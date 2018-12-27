@@ -150,7 +150,7 @@ if exists('+winhighlight')
   hi InactiveWindow guibg=NONE
   hi ActiveTerminal guibg=#161821
 
-  au MyAutoCmd WinEnter * call Handle_Win_Enter()
+  au MyAutoCmd WinEnter,BufRead * call Handle_Win_Enter()
 
   function! Handle_Win_Enter()
     if &buftype ==# 'terminal'
