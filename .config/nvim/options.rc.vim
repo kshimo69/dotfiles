@@ -139,7 +139,7 @@ colorscheme iceberg
 " ターミナルの透過がそのまま見えるように
 au MyAutoCmd VimEnter,ColorScheme * hi Normal ctermbg=NONE guibg=NONE
 au MyAutoCmd VimEnter,ColorScheme * hi NonText ctermbg=NONE guibg=NONE
-au MyAutoCmd VimEnter,ColorScheme * hi LineNr ctermbg=NONE guibg=NONE
+"au MyAutoCmd VimEnter,ColorScheme * hi LineNr ctermbg=NONE guibg=NONE
 au MyAutoCmd VimEnter,ColorScheme * hi Folded ctermbg=NONE guibg=NONE
 au MyAutoCmd VimEnter,ColorScheme * hi EndOfBuffer ctermbg=NONE guibg=NONE
 
