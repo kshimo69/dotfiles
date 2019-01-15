@@ -20,6 +20,7 @@ homebrew_cask_packages:
   #- { name: google-cloud-sdk }
   #- { name: virtualbox }
   #- { name: virtualbox-extension-pack }
+  - { name: slack }
 
 homebrew_packages:
   - { name: autoconf }
