@@ -134,6 +134,7 @@ setopt hist_ignore_space
 setopt share_history
 setopt hist_no_store
 setopt magic_equal_subst
+setopt CLOBBER
 
 function tmux_window_name_precmd () {
     if [ "q$TMUX" != "q" ]; then
