@@ -230,4 +230,10 @@ export FZF_DEFAULT_OPTS='--reverse --ansi --select-1 --multi --extended --cycle'
 alias f="fzf-tmux -u $FZF_DEFAULT_OPTS"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# The next line updates PATH for the Google Cloud SDK.
+[ -f $HOME/.google-cloud-sdk/path.zsh.inc ] && source $HOME/.google-cloud-sdk/path.zsh.inc
+
+# The next line enables shell command completion for gcloud.
+[ -f $HOME/.google-cloud-sdk/completion.zsh.inc ] && source $HOME/.google-cloud-sdk/completion.zsh.inc
+
 true
