@@ -217,12 +217,6 @@ repo = 'kana/vim-operator-user'
 repo = 'tpope/vim-repeat'
 
 [[plugins]]
-repo = 'tyru/open-browser.vim'
-on_map = '<Plug>'
-on_cmd = 'OpenBrowserSearch'
-hook_add = 'source ~/.config/nvim/plugins/openbrowser.rc.vim'
-
-[[plugins]]
 repo = 't9md/vim-quickhl'
 on_map = '<Plug>'
 hook_add = 'source ~/.config/nvim/plugins/quickhl.rc.vim'

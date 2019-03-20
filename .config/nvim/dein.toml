@@ -60,3 +60,7 @@ depends = ['vim-dispatch']
 hook_add = '''
 let g:test#strategy = 'dispatch'
 '''
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+hook_add = 'source ~/.config/nvim/plugins/openbrowser.rc.vim'
