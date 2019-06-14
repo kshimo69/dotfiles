@@ -44,6 +44,7 @@ homebrew_packages:
   - { name: libffi }
   - { name: readline }
   - { name: sqlite }
+  - { name: gettext }
 
 basic_packages:
   - { name: epel-release }
