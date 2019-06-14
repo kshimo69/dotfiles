@@ -215,6 +215,7 @@ bindkey "^g^a" peco-select-gitadd
 fpath=($HOME/.zsh/anyframe(N-/) $fpath)
 autoload -Uz anyframe-init
 anyframe-init
+zstyle ":anyframe:selector:" use $PERCOL
 bindkey '^x^b' anyframe-widget-cdr
 bindkey '^x^r' anyframe-widget-put-history
 bindkey '^g^b' anyframe-widget-insert-git-branch
