@@ -45,6 +45,7 @@ homebrew_packages:
   - { name: readline }
   - { name: sqlite }
   - { name: gettext }
+  - { name: gnupg }
 
 basic_packages:
   - { name: epel-release }
