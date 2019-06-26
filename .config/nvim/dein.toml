@@ -69,3 +69,7 @@ merged = 0
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = ['fzf']
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+hook_add = 'source ~/.config/nvim/plugins/openbrowser.rc.vim'

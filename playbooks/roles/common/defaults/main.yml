@@ -48,6 +48,8 @@ homebrew_packages:
   #- { name: plantuml }
   - { name: libffi }
   - { name: sqlite }
+  - { name: gettext }
+  - { name: gnupg }
 
 basic_packages:
   - { name: epel-release }

@@ -277,5 +277,11 @@ function! s:ChangeCurrentDir(directory, bang)
 endfunction
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
 
+" 編集前のファイルとのdiff
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+    \ | wincmd p | diffthis
+endif
+
 " tagbarの色調整
 hi TagbarSignature ctermfg=Yellow
