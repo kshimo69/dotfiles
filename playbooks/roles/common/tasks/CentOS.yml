@@ -1,20 +1,20 @@
 ---
-- name: Add copr repository
-  become: yes
-  yum_repository:
-    name: copr
-    description: carlwgeorge-ripgrep
-    baseurl: https://copr-be.cloud.fedoraproject.org/results/carlwgeorge/ripgrep/epel-7-$basearch/
-    gpgkey: https://copr-be.cloud.fedoraproject.org/results/carlwgeorge/ripgrep/pubkey.gpg
+#- name: Add copr repository
+#  become: yes
+#  yum_repository:
+#    name: copr
+#    description: carlwgeorge-ripgrep
+#    baseurl: https://copr-be.cloud.fedoraproject.org/results/carlwgeorge/ripgrep/epel-7-$basearch/
+#    gpgkey: https://copr-be.cloud.fedoraproject.org/results/carlwgeorge/ripgrep/pubkey.gpg
 
-- name: Install basic packages
-  yum:
-    name: "{{ item.name }}"
-    enablerepo: "epel,copr"
-    state: latest
-  become: yes
-  with_items:
-    - "{{ basic_packages }}"
+#- name: Install basic packages
+#  yum:
+#    name: "{{ item.name }}"
+#    enablerepo: "epel,copr"
+#    state: latest
+#  become: yes
+#  with_items:
+#    - "{{ basic_packages }}"
 
 - name: Install build essentials
   yum:
@@ -25,49 +25,73 @@
   with_items:
     - "{{ build_packages }}"
 
-- name: Check tmux already installed
-  register: tmux_installed
-  failed_when: tmux_installed.rc not in [0, 1]
-  changed_when: False
-  shell: which tmux && tmux -V | grep {{ tmux_version | quote }}
+#- name: Check tmux already installed
+#  register: tmux_installed
+#  failed_when: tmux_installed.rc not in [0, 1]
+#  changed_when: False
+#  shell: which tmux && tmux -V | grep {{ tmux_version | quote }}
 
-- name: Build and Install tmux
-  when: tmux_installed.rc == 1
-  shell: |
-    git clone {{ tmux_repository | quote }} {{ CACHE | quote }}/tmux
-    cd {{ CACHE | quote }}/tmux
-    git checkout {{ tmux_version | quote }}
-    sh autogen.sh >/dev/null
-    ./configure >/dev/null
-    make >/dev/null
-    sudo make install
-  args:
-    executable: /bin/bash
+#- name: Build and Install tmux
+#  when: tmux_installed.rc == 1
+#  shell: |
+#    git clone {{ tmux_repository | quote }} {{ CACHE | quote }}/tmux
+#    cd {{ CACHE | quote }}/tmux
+#    git checkout {{ tmux_version | quote }}
+#    sh autogen.sh >/dev/null
+#    ./configure >/dev/null
+#    make >/dev/null
+#    sudo make install
+#  args:
+#    executable: /bin/bash
 
-- name: Get latest peco version
-  changed_when: False
-  register: peco_latest_version
-  shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
+#- name: Get latest peco version
+#  changed_when: False
+#  register: peco_latest_version
+#  shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
 
-- name: Download latest peco
-  changed_when: False
-  get_url:
-    url: https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz
-    dest: /tmp/peco_linux_amd64.tar.gz
+#- name: Download latest peco
+#  changed_when: False
+#  get_url:
+#    url: https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout | quote }}/peco_linux_amd64.tar.gz
+#    dest: /tmp/peco_linux_amd64.tar.gz
 
-- name: Extract peco
-  unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
+#- name: Extract peco
+#  unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
 
-- name: Install /usr/local/bin/peco
-  become: true
-  copy: src=/tmp/peco_linux_amd64/peco dest=/usr/local/bin/ mode=0755
+#- name: Install /usr/local/bin/peco
+#  become: true
+#  copy: src=/tmp/peco_linux_amd64/peco dest=/usr/local/bin/ mode=0755
 
-- name: clone fzf
-  git: repo=https://github.com/junegunn/fzf.git dest=~/.fzf depth=1
-  register: fzf
+#- name: clone fzf
+#  git: repo=https://github.com/junegunn/fzf.git dest=~/.fzf depth=1
+#  register: fzf
 
-- name: install fzf
-  when: fzf.changed
-  shell: ~/.fzf/install
-  args:
-    executable: /bin/bash
+#- name: install fzf
+#  when: fzf.changed
+#  shell: ~/.fzf/install
+#  args:
+#    executable: /bin/bash
+
+- name: Install homebrew packages
+  homebrew:
+    name: "{{ item.name }}"
+    install_options: "{{ item.install_options | default(omit) }}"
+    state: "{{ item.state | default('latest') }}"
+  with_items:
+    - "{{ homebrew_packages }}"
+
+- name: Upgrade homebrew
+  homebrew:
+    upgrade_all: yes
+
+- name: Brew install fzf
+  homebrew:
+    name: fzf
+    state: latest
+  notify: "Install fzf"
+
+- name: Cleanup brew
+  shell: brew cleanup -s
+  register: brew_cleanup_result
+  failed_when: brew_cleanup_result.rc not in [0, 1]
+  changed_when: brew_cleanup_result.rc != 0

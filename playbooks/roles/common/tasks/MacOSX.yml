@@ -1,8 +1,4 @@
 ---
-- name: Update homebrew
-  homebrew:
-    update_homebrew: yes
-
 - name: Add homebrew taps
   homebrew_tap:
     name: "{{ item.tap }}"
@@ -73,6 +69,18 @@
     install_options: [with-powerline]
     state: latest
   notify: "Install ricty"
+
+# linuxでエラーになるので
+- name: Brew install ripgrep
+  homebrew:
+    name: ripgrep
+    state: latest
+
+# linuxでエラーになるので
+- name: Brew install plantuml
+  homebrew:
+    name: plantuml
+    state: latest
 
 - name: Brew install fzf
   homebrew:

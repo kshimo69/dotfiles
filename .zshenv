@@ -47,10 +47,13 @@ then
     source $HOME/jack_knives/.nexenv.zsh
 fi
 
-PATH=$HOME/.linuxbrew/bin:$PATH
+if which brew >/dev/null 2>&1
+then
+    eval $(brew shellenv)
+fi
 
 export PATH
-export MANPATH=$(brew --prefix)/share/man:$HOME/local/share/man:/opt/local/man:$MANPATH
-export INFOPATH=$(brew --prefix)/share/info:$HOME/local/share/info:/opt/local/info:$INFOPATH
+#export MANPATH=$(brew --prefix)/share/man:$HOME/local/share/man:/opt/local/man:$MANPATH
+#export INFOPATH=$(brew --prefix)/share/info:$HOME/local/share/info:/opt/local/info:$INFOPATH
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 export GTAGSLABEL=default

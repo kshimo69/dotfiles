@@ -12,10 +12,21 @@
     state: latest
   become: yes
 
+- name: Create Linuxbrew bin directory
+  file:
+    path: ~/.linuxbrew/bin
+    recurse: yes
+
 - name: Install Linuxbrew
   git:
-    repo: https://github.com/Linuxbrew/brew.git
-    dest: ~/.linuxbrew
+    repo: https://github.com/Homebrew/brew.git
+    dest: ~/.linuxbrew/Homebrew
+
+- name: Link Linuxbrew
+  file:
+    path: ~/.linuxbrew/bin/brew
+    src: ../Homebrew/bin/brew
+    state: link
 
 - name: Setup Linuxbrew
   blockinfile:
@@ -23,7 +34,5 @@
     path: ~/.bash_profile
     marker: "# {mark} ANSIBLE MANAGED BLOCK linuxbrew"
     block: |
-      PATH="$HOME/.linuxbrew/bin:$PATH"
-      export MANPATH="$(brew --prefix)/share/man:$MANPATH"
-      export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
+      eval $(~/.linuxbrew/bin/brew shellenv)
       #export LD_LIBRARY_PATH="$(brew --prefix)/lib:$LD_LIBRARY_PATH"

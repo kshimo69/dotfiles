@@ -23,6 +23,9 @@ homebrew_cask_packages:
   - { name: slack }
 
 homebrew_packages:
+  - { name: readline }
+  #- { name: openssl, state: linked, install_options: [force, with-openssl] }
+  - { name: openssl, install_options: [force, with-openssl] }
   - { name: autoconf }
   - { name: automake }
   - { name: pkg-config }
@@ -30,9 +33,11 @@ homebrew_packages:
   #- { name: ricty, install_options: [with-powerline] }
   - { name: git }
   - { name: zsh }
-  - { name: ripgrep }
+  #- { name: rust }
+  #- { name: ripgrep }
+  - { name: global }
   - { name: jq }
-  - { name: ghq, install_options: completions }
+  - { name: ghq }
   - { name: wget }
   - { name: curl }
   - { name: ctags }
@@ -40,25 +45,25 @@ homebrew_packages:
   - { name: packer }
   - { name: docker-completion }
   - { name: docker-compose-completion }
-  - { name: plantuml }
+  #- { name: plantuml }
   - { name: libffi }
-  - { name: readline }
   - { name: sqlite }
 
 basic_packages:
   - { name: epel-release }
-  - { name: git }
-  - { name: zsh }
+  #- { name: git }
+  #- { name: zsh }
   - { name: ripgrep }
-  - { name: the_silver_searcher }
-  - { name: global-ctags }
-  - { name: global }
-  - { name: xorg-x11-xauth }
-  - { name: xsel }
-  - { name: jq }
-  - { name: rlwrap }
+  #- { name: the_silver_searcher }
+  #- { name: global-ctags }
+  #- { name: global }
+  #- { name: xorg-x11-xauth }
+  #- { name: xsel }
+  #- { name: jq }
+  #- { name: rlwrap }
 
 build_packages:
+  - { name: epel-release }
   - { name: gcc }
   - { name: gcc-c++ }
   - { name: patch }

@@ -148,3 +148,8 @@ Host *.example.com
     ProxyCommand ssh -q ssh-proxy nc %h %p
     StrictHostKeyChecking no
 ```
+
+- edit ~/.subversion/servers
+
+Set proxy config.
+Some brew package use subversion.
