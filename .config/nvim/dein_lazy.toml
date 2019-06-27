@@ -241,3 +241,9 @@ repo = 'zchee/deoplete-go'
 depends = ['deoplete.nvim']
 build = 'make'
 on_ft = 'go'
+
+[[plugins]]
+repo = 'justinhoward/fzf-neoyank'
+depends = ['neoyank.vim', 'fzf.vim']
+on_func = ['FZFNeoyank', 'FZFNeoyankSelection']
+hook_add = 'source ~/.config/nvim/plugins/fzf-neoyank.rc.vim'
