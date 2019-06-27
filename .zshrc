@@ -84,7 +84,7 @@ alias grep='grep --color=auto'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
 alias now='date +%Y%m%d%H%M%S'
-alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin/:/usr/sbin:/sbin brew"
+alias brew="PATH=$HOMEBREW_PREFIX/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin/:/usr/sbin:/sbin brew"
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
     alias em='emacsclient -n "$@"'
@@ -228,9 +228,13 @@ bindkey '^x^a' anyframe-widget-select-widget
 # fzf
 # https://github.com/junegunn/fzf
 export FZF_TMUX=1
-export FZF_DEFAULT_OPTS='--reverse --ansi --select-1 --multi --extended --cycle'
+export FZF_DEFAULT_OPTS='--reverse --border --ansi --select-1 --multi --extended --cycle'
+export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+export FZF_CTRL_T_OPTS='--preview "$HOMEBREW_PREFIX/bin/bat --color=always --style=header,grid --line-range :100 {}"'
 alias f="fzf-tmux -u $FZF_DEFAULT_OPTS"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias gcd='ghq look `ghq list |fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*"`'
 
 # The next line updates PATH for the Google Cloud SDK.
 [ -f $HOME/.google-cloud-sdk/path.zsh.inc ] && source $HOME/.google-cloud-sdk/path.zsh.inc

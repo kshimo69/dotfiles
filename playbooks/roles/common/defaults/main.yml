@@ -50,6 +50,7 @@ homebrew_packages:
   - { name: sqlite }
   - { name: gettext }
   - { name: gnupg }
+  - { name: bat }
 
 basic_packages:
   - { name: epel-release }

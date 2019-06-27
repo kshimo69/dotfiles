@@ -1,0 +1,45 @@
+let g:fzf_action = {
+  \ 'ctrl-o': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_buffers_jump = 1
+"let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+let g:fzf_tags_command = 'ctags -R'
+
+" Filesでプレビューを表示する
+"command! -bang -nargs=? -complete=dir Files
+"  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>,
+  \                    <bang>0 ? fzf#vim#with_preview()
+  \                            : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                    <bang>0)
+
+" Agで?を押すとプレビュー
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+" Rgで?を押すとプレビュー
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+function! FzfOmniFiles()
+  let is_git = system('git status')
+  if v:shell_error
+    :Files
+  else
+    :GitFiles
+  endif
+endfunction
+
+"nnoremap <C-b> :Buffers<CR>
+nnoremap <C-g> :Rg<Space>
+nnoremap <C-p> :call FzfOmniFiles()<CR>
