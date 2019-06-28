@@ -12,21 +12,15 @@
     state: latest
   become: yes
 
-- name: Create Linuxbrew bin directory
-  file:
-    path: ~/.linuxbrew/bin
-    recurse: yes
+- name: Check linuxbrew already installed
+  register: linuxbrew_installed
+  failed_when: linuxbrew_installed.rc not in [0, 1]
+  changed_when: False
+  shell: test -x /home/linuxbrew/.linuxbrew/bin/brew
 
 - name: Install Linuxbrew
-  git:
-    repo: https://github.com/Homebrew/brew.git
-    dest: ~/.linuxbrew/Homebrew
-
-- name: Link Linuxbrew
-  file:
-    path: ~/.linuxbrew/bin/brew
-    src: ../Homebrew/bin/brew
-    state: link
+  when: linuxbrew_installed.rc == 1
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 
 - name: Setup Linuxbrew
   blockinfile:
@@ -34,5 +28,5 @@
     path: ~/.bash_profile
     marker: "# {mark} ANSIBLE MANAGED BLOCK linuxbrew"
     block: |
-      eval $(~/.linuxbrew/bin/brew shellenv)
+      eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
       #export LD_LIBRARY_PATH="$(brew --prefix)/lib:$LD_LIBRARY_PATH"

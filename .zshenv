@@ -51,6 +51,7 @@ if which brew >/dev/null 2>&1
 then
     eval $(brew shellenv)
 fi
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 export PATH
 #export MANPATH=$(brew --prefix)/share/man:$HOME/local/share/man:/opt/local/man:$MANPATH
