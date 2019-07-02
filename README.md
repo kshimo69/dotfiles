@@ -61,13 +61,8 @@ $ curl -LSfs https://raw.githubusercontent.com/kshimo69/dotfiles/master/install.
 
 - Update
 
-* Mac
 ```bash
 $ ansible-playbook ./playbooks/local.yml
-```
-* RedHat Linux (Amazon Linux)
-```bash
-$ ansible-playbook ./playbooks/rhel.yml
 ```
 
 - Execute specific roles

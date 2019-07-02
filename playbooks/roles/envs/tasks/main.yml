@@ -1,8 +1,22 @@
 ---
+- name: Create .config directory
+  file:
+    path: ~/.config
+    state: directory
+
 - name: Install anyenv
   git:
-    repo: https://github.com/riywo/anyenv
+    repo: https://github.com/anyenv/anyenv
     dest: ~/.anyenv
+
+- name: Init anyenv
+  args:
+    # guard for only once.
+    creates: ~/.config/anyenv/anyenv-install
+  shell: ~/.anyenv/bin/anyenv install --force-init
+  register: anyenv_init_result
+  failed_when: anyenv_init_result.rc not in [0, 1]
+  changed_when: anyenv_init_result.rc != 0
 
 - name: Setup anyenv
   blockinfile:
@@ -129,3 +143,63 @@
   shell: |
     bash -lc "goenv install {{ go_version | quote }}"
     bash -lc "goenv global {{ go_version | quote }}"
+
+- name: Install neovim
+  homebrew:
+    name: neovim
+    state: latest
+
+- name: Create .cache directory
+  file:
+    path: ~/.cache
+    state: directory
+
+- name: Install dein
+  args:
+    # guard for only once.
+    creates: ~/.cache/dein/repos/github.com/Shougo/dein.vim
+  shell: |
+    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/install.sh
+    sh /tmp/install.sh ~/.cache/dein
+    rm -f /tmp/install.sh
+
+- name: Install Prezto
+  git:
+    repo: https://github.com/sorin-ionescu/prezto.git
+    dest: ~/.zprezto
+
+- name: Create .zsh directory
+  file:
+    path: ~/.zsh
+    state: directory
+    recurse: yes
+
+- name: Install anyframe
+  git:
+    repo: https://github.com/mollifier/anyframe.git
+    dest: ~/.zsh/anyframe
+
+- name: Lynk config files
+  file:
+    src: ~/.dotfiles/{{ item }}
+    dest: ~/{{ item }}
+    state: link
+  with_items:
+    - .ctags
+    - .config/htop
+    - .config/karabiner
+    - .config/nvim
+    - .flake8rc
+    - .gitconfig
+    - .gitignore
+    - .globalrc
+    - .pythonrc.py
+    - .snippets
+    - .tmux.conf
+    - .zlogin
+    - .zlogout
+    - .zshenv
+    - .zshrc
+    - .zpreztorc
+    - .zprofile
+    - bin

@@ -45,7 +45,7 @@ clone_dotfiles() {
 
 do_ansible() {
     pushd ${DIST_DIR}
-    ansible-playbook ./playbooks/${1}.yml
+    ansible-playbook ./playbooks/local.yml
     popd
 }
 
@@ -54,13 +54,13 @@ setup_for_mac() {
     install_homebrew
     install_requirement_packages_by_brew
     clone_dotfiles
-    do_ansible local
+    do_ansible
 }
 
 setup_for_rhel() {
     install_requirement_packages_by_yum
     clone_dotfiles
-    do_ansible rhel
+    do_ansible
 }
 
 # require setup
