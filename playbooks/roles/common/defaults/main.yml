@@ -1,7 +1,4 @@
 ---
-tmux_repository: https://github.com/tmux/tmux.git
-tmux_version: 2.3
-
 homebrew_taps:
   - { tap: homebrew/cask }
   - { tap: homebrew/cask-fonts }
@@ -24,17 +21,15 @@ homebrew_cask_packages:
 
 homebrew_packages:
   - { name: readline }
-  #- { name: openssl, state: linked, install_options: [force, with-openssl] }
   - { name: openssl, install_options: [force, with-openssl] }
   - { name: autoconf }
   - { name: automake }
   - { name: pkg-config }
   - { name: fontforge }
-  #- { name: ricty, install_options: [with-powerline] }
   - { name: git }
   - { name: zsh }
-  #- { name: rust }
-  #- { name: ripgrep }
+  - { name: the_silver_searcher }
+  - { name: ripgrep }
   - { name: global }
   - { name: jq }
   - { name: ghq }
@@ -45,56 +40,11 @@ homebrew_packages:
   - { name: packer }
   - { name: docker-completion }
   - { name: docker-compose-completion }
-  #- { name: plantuml }
   - { name: libffi }
   - { name: sqlite }
   - { name: gettext }
   - { name: gnupg }
   - { name: bat }
-
-basic_packages:
-  - { name: epel-release }
-  #- { name: git }
-  #- { name: zsh }
-  - { name: ripgrep }
-  #- { name: the_silver_searcher }
-  #- { name: global-ctags }
-  #- { name: global }
-  #- { name: xorg-x11-xauth }
-  #- { name: xsel }
-  #- { name: jq }
-  #- { name: rlwrap }
-
-build_packages:
-  - { name: epel-release }
-  - { name: gcc }
-  - { name: gcc-c++ }
-  - { name: patch }
-  - { name: readline-devel }
-  - { name: zlib-devel }
-  - { name: gmp }
-  - { name: gmp-devel }
-  - { name: tk-devel }
-  - { name: tcl-devel }
-  - { name: sqlite-devel }
-  - { name: bzip2-devel }
-  - { name: openssl-devel }
-  - { name: libxml2-devel }
-  - { name: libxslt-devel }
-  - { name: cmake }
-  - { name: libtool }
-  - { name: autoconf }
-  - { name: automake }
-  - { name: pkgconfig }
-  - { name: ncurses-devel }
-  - { name: libevent-devel }
-  - { name: clang }
-  - { name: libffi-devel }
-
-pip_packages:
-  - { name: pip }
-  - { name: flake8 }
-  - { name: awscli }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11

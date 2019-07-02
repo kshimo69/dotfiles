@@ -23,6 +23,36 @@
   with_items:
     - "{{ homebrew_packages }}"
 
+#- name: debug
+#  debug:
+#    var: restore_iterm2_config_result
+
+# font
+- name: Clone RictyDiminished-for-Powerline
+  git:
+    repo: https://github.com/mzyy94/RictyDiminished-for-Powerline.git
+    dest: "{{ CACHE }}/ricty-powerline"
+  notify: "Install ricty powerline"
+
+- name: Brew install ricty
+  homebrew:
+    name: ricty
+    install_options: [with-powerline]
+    state: latest
+  notify: "Install ricty"
+
+# linuxでエラーになるので
+- name: Brew install plantuml
+  homebrew:
+    name: plantuml
+    state: latest
+
+- name: Brew install fzf
+  homebrew:
+    name: fzf
+    state: latest
+  notify: "Install fzf"
+
 - name: Upgrade homebrew
   homebrew:
     upgrade_all: yes
@@ -31,6 +61,12 @@
   homebrew_cask:
     update_homebrew: yes
     upgrade_all: yes
+
+- name: Cleanup brew
+  shell: brew cleanup -s
+  register: brew_cleanup_result
+  failed_when: brew_cleanup_result.rc not in [0, 1]
+  changed_when: brew_cleanup_result.rc != 0
 
 # iterm2
 - name: Copy iterm2 background image
@@ -51,48 +87,6 @@
   register: restore_iterm2_config_result
   failed_when: restore_iterm2_config_result.rc not in [0, 1, 2]
   changed_when: restore_iterm2_config_result.rc != 0
-
-#- name: debug
-#  debug:
-#    var: restore_iterm2_config_result
-
-# font
-- name: Clone RictyDiminished-for-Powerline
-  git:
-    repo: https://github.com/mzyy94/RictyDiminished-for-Powerline.git
-    dest: "{{ CACHE }}/ricty-powerline"
-  notify: "Install ricty powerline"
-
-- name: Brew install ricty
-  homebrew:
-    name: ricty
-    install_options: [with-powerline]
-    state: latest
-  notify: "Install ricty"
-
-# linuxでエラーになるので
-- name: Brew install ripgrep
-  homebrew:
-    name: ripgrep
-    state: latest
-
-# linuxでエラーになるので
-- name: Brew install plantuml
-  homebrew:
-    name: plantuml
-    state: latest
-
-- name: Brew install fzf
-  homebrew:
-    name: fzf
-    state: latest
-  notify: "Install fzf"
-
-- name: Cleanup brew
-  shell: brew cleanup -s
-  register: brew_cleanup_result
-  failed_when: brew_cleanup_result.rc not in [0, 1]
-  changed_when: brew_cleanup_result.rc != 0
 
 - name: Setup OS X defaults
   osx_defaults:

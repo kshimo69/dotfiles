@@ -30,3 +30,12 @@
     block: |
       eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
       #export LD_LIBRARY_PATH="$(brew --prefix)/lib:$LD_LIBRARY_PATH"
+
+- name: Install build essentials
+  yum:
+    name: "{{ item.name }}"
+    enablerepo: epel
+    state: latest
+  become: yes
+  with_items:
+    - "{{ build_packages }}"

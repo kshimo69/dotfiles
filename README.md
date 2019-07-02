@@ -11,11 +11,7 @@ This is my dotfiles repository
 
 - [ansible](http://www.ansible.com/home)
 
-### How to install ansible
-
-require version 2.3.x
-
-#### Linux
+### Linux
 
 - Install EPEL
 
@@ -35,7 +31,7 @@ $ sudo yum install -y --enablerepo=epel git
 $ sudo yum install -y --enablerepo=epel ansible
 ```
 
-#### Mac
+### Mac
 
 - Install Xcode
 
@@ -65,11 +61,19 @@ $ curl -LSfs https://raw.githubusercontent.com/kshimo69/dotfiles/master/install.
 
 - Update
 
-```bash
 * Mac
-ansible-playbook ./playbooks/local.yml
+```bash
+$ ansible-playbook ./playbooks/local.yml
+```
 * RedHat Linux (Amazon Linux)
-ansible-playbook ./playbooks/rhel.yml
+```bash
+$ ansible-playbook ./playbooks/rhel.yml
+```
+
+- Execute specific roles
+
+```bash
+$ ansible-playbook ./playbooks/local.yml --tags "common"
 ```
 
 ## After Install...

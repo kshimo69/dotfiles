@@ -1,0 +1,26 @@
+---
+build_packages:
+  - { name: epel-release }
+  - { name: gcc }
+  - { name: gcc-c++ }
+  - { name: patch }
+  - { name: readline-devel }
+  - { name: zlib-devel }
+  - { name: gmp }
+  - { name: gmp-devel }
+  - { name: tk-devel }
+  - { name: tcl-devel }
+  - { name: sqlite-devel }
+  - { name: bzip2-devel }
+  - { name: openssl-devel }
+  - { name: libxml2-devel }
+  - { name: libxslt-devel }
+  - { name: cmake }
+  - { name: libtool }
+  - { name: autoconf }
+  - { name: automake }
+  - { name: pkgconfig }
+  - { name: ncurses-devel }
+  - { name: libevent-devel }
+  - { name: clang }
+  - { name: libffi-devel }
