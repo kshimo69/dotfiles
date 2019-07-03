@@ -7,15 +7,19 @@
 
 - name: Install Dependencies
   yum:
-    name: [ curl, file, git ]
+    name: {{ item }}
     enablerepo: epel
     state: latest
   become: yes
+  with_items:
+    - curl
+    - file
+    - git
 
 - name: Check linuxbrew already installed
   register: linuxbrew_installed
   failed_when: linuxbrew_installed.rc not in [0, 1]
-  changed_when: False
+  changed_when: anyenv_init_result.rc != 0
   shell: test -x /home/linuxbrew/.linuxbrew/bin/brew
 
 - name: Install Linuxbrew

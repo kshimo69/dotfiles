@@ -22,5 +22,4 @@ build_packages:
   - { name: pkgconfig }
   - { name: ncurses-devel }
   - { name: libevent-devel }
-  - { name: clang }
   - { name: libffi-devel }

@@ -144,11 +144,6 @@
     bash -lc "goenv install {{ go_version | quote }}"
     bash -lc "goenv global {{ go_version | quote }}"
 
-- name: Install neovim
-  homebrew:
-    name: neovim
-    state: latest
-
 - name: Create .cache directory
   file:
     path: ~/.cache
@@ -158,10 +153,7 @@
   args:
     # guard for only once.
     creates: ~/.cache/dein/repos/github.com/Shougo/dein.vim
-  shell: |
-    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/install.sh
-    sh /tmp/install.sh ~/.cache/dein
-    rm -f /tmp/install.sh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh)" ~/.cache/dein
 
 - name: Install Prezto
   git:

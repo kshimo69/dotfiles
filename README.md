@@ -62,13 +62,13 @@ $ curl -LSfs https://raw.githubusercontent.com/kshimo69/dotfiles/master/install.
 - Update
 
 ```bash
-$ ansible-playbook ./playbooks/local.yml
+$ ansible-playbook --force-handlers ./playbooks/local.yml
 ```
 
 - Execute specific roles
 
 ```bash
-$ ansible-playbook ./playbooks/local.yml --tags "common"
+$ ansible-playbook --force-handlers ./playbooks/local.yml --tags "common"
 ```
 
 ## After Install...

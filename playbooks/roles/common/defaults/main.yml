@@ -45,6 +45,7 @@ homebrew_packages:
   - { name: gettext }
   - { name: gnupg }
   - { name: bat }
+  - { name: neovim }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11

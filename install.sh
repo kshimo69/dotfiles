@@ -45,7 +45,7 @@ clone_dotfiles() {
 
 do_ansible() {
     pushd ${DIST_DIR}
-    ansible-playbook ./playbooks/local.yml
+    ansible-playbook --force-handlers ./playbooks/local.yml
     popd
 }
 
