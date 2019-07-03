@@ -20,7 +20,6 @@ homebrew_cask_packages:
   - { name: slack }
 
 homebrew_packages:
-  - { name: ansible }
   - { name: readline }
   - { name: openssl, install_options: [force, with-openssl] }
   - { name: autoconf }
