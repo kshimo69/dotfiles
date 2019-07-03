@@ -7,7 +7,7 @@
 
 - name: Install Dependencies
   yum:
-    name: {{ item }}
+    name: "{{ item }}"
     enablerepo: epel
     state: latest
   become: yes
@@ -19,11 +19,11 @@
 - name: Check linuxbrew already installed
   register: linuxbrew_installed
   failed_when: linuxbrew_installed.rc not in [0, 1]
-  changed_when: anyenv_init_result.rc != 0
+  changed_when: linuxbrew_installed.rc != 0
   shell: test -x /home/linuxbrew/.linuxbrew/bin/brew
 
 - name: Install Linuxbrew
-  when: linuxbrew_installed.rc == 1
+  when: linuxbrew_installed.changed == True
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 
 - name: Setup Linuxbrew

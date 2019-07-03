@@ -153,7 +153,10 @@
   args:
     # guard for only once.
     creates: ~/.cache/dein/repos/github.com/Shougo/dein.vim
-  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh)" ~/.cache/dein
+  shell: |
+    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/install.sh
+    sh /tmp/install.sh ~/.cache/dein
+    rm -f /tmp/install.sh
 
 - name: Install Prezto
   git:
