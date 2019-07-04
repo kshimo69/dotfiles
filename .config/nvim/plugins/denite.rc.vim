@@ -1,12 +1,12 @@
 " バッファ一覧
-nnoremap <silent> ,b :<C-u>Denite buffer file_mru<CR>
+nnoremap <silent> ,b :<C-u>Denite buffer file/old<CR>
 " コマンド一覧
 nnoremap <silent> ,c :<C-u>Denite command<CR>
 " ファイル一覧
 nnoremap <silent> ,f :<C-u>DeniteBufferDir file<CR>
 " バッファ、ファイル一覧
-nnoremap <silent> <Space>l :<C-u>DeniteBufferDir buffer file_mru file_rec<CR>
-nnoremap <silent> <Space>L :<C-u>Denite file_rec<CR>
+nnoremap <silent> <Space>l :<C-u>DeniteBufferDir buffer file/old file/rec<CR>
+nnoremap <silent> <Space>L :<C-u>Denite file/rec<CR>
 " アウトライン
 nnoremap <silent> ,o :<C-u>Denite outline<CR>
 " タグ
@@ -20,7 +20,7 @@ nnoremap <silent> ,r :<C-u>Denite -resume -buffer-name=search<CR>
 nnoremap <silent> ,n :<C-u>Denite -resume -buffer-name=search -select=+1 -immediately<CR>
 nnoremap <silent> ,p :<C-u>Denite -resume -buffer-name=search -select=-1 -immediately<CR>
 " memolist
-"nnoremap <Space>ml :<C-u>call denite#start([{'name': 'file_rec', 'args': [g:memolist_path]}])<CR>
+"nnoremap <Space>ml :<C-u>call denite#start([{'name': 'file/rec', 'args': [g:memolist_path]}])<CR>
 " gtags
 nnoremap <silent> ,t :<C-u>DeniteCursorWord gtags_context -buffer-name=gtags -no-empty<CR>
 nnoremap <silent> ,T :<C-u>Denite -resume -buffer-name=gtags<CR>
