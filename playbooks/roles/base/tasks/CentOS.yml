@@ -7,14 +7,10 @@
 
 - name: Install Dependencies
   yum:
-    name: "{{ item }}"
+    name: [ curl, file, git ]
     enablerepo: epel
     state: latest
   become: yes
-  with_items:
-    - curl
-    - file
-    - git
 
 - name: Check linuxbrew already installed
   register: linuxbrew_installed
