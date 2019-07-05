@@ -1,4 +1,9 @@
 ---
+- name: Upgrade homebrew
+  homebrew:
+    path: /home/linuxbrew/.linuxbrew/bin
+    upgrade_all: yes
+
 - name: Install homebrew packages
   homebrew:
     path: /home/linuxbrew/.linuxbrew/bin
@@ -18,11 +23,6 @@
 - name: Install fzf
   when: install_fzf_result.changed == True
   shell: /home/linuxbrew/.linuxbrew/opt/fzf/install
-
-- name: Upgrade homebrew
-  homebrew:
-    path: /home/linuxbrew/.linuxbrew/bin
-    upgrade_all: yes
 
 - name: Cleanup brew
   shell: /home/linuxbrew/.linuxbrew/bin/brew cleanup -s

@@ -6,7 +6,7 @@ homebrew_taps:
 
 homebrew_cask_packages:
   - { name: xquartz }
-  - { name: font-ricty-diminished }
+  #- { name: font-ricty-diminished }
   #- { name: font-source-code-pro-for-powerline }
   - { name: iterm2 }
   - { name: google-japanese-ime }

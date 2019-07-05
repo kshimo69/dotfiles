@@ -6,6 +6,15 @@
   with_items:
     - "{{ homebrew_taps }}"
 
+- name: Upgrade homebrew
+  homebrew:
+    upgrade_all: yes
+
+- name: Upgrade homebrew cask
+  homebrew_cask:
+    update_homebrew: yes
+    upgrade_all: yes
+
 - name: Install homebrew cask packages
   homebrew_cask:
     name: "{{ item.name }}"
@@ -52,15 +61,6 @@
     name: fzf
     state: latest
   notify: "Install fzf"
-
-- name: Upgrade homebrew
-  homebrew:
-    upgrade_all: yes
-
-- name: Upgrade homebrew cask
-  homebrew_cask:
-    update_homebrew: yes
-    upgrade_all: yes
 
 - name: Cleanup brew
   shell: brew cleanup -s
