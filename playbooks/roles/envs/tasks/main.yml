@@ -176,25 +176,25 @@
 
 - name: Lynk config files
   file:
-    src: ~/.dotfiles/{{ item }}
-    dest: ~/{{ item }}
+    src: ~/.dotfiles/{{ item.s }}
+    dest: ~/{{ item.d }}
     state: link
   with_items:
-    - .ctags
-    - .config/htop
-    - .config/karabiner
-    - .config/nvim
-    - .flake8rc
-    - .gitconfig
-    - .gitignore
-    - .globalrc
-    - .pythonrc.py
-    - .snippets
-    - .tmux.conf
-    - .zlogin
-    - .zlogout
-    - .zshenv
-    - .zshrc
-    - .zpreztorc
-    - .zprofile
-    - bin
+    - { s: ctags, d: .ctags }
+    - { s: config/htop, d: .config/htop }
+    - { s: config/karabiner, d: .config/karabiner }
+    - { s: config/nvim, d: .config/nvim }
+    - { s: flake8rc, d: .flake8rc }
+    - { s: gitconfig, d: .gitconfig }
+    - { s: gitignore, d: .gitignore }
+    - { s: globalrc, d: .globalrc }
+    - { s: pythonrc.py, d: .pythonrc.py }
+    - { s: snippets, d: .snippets }
+    - { s: tmux.conf, d: .tmux.conf }
+    - { s: zlogin, d: .zlogin }
+    - { s: zlogout, d: .zlogout }
+    - { s: zshenv, d: .zshenv }
+    - { s: zshrc, d: .zshrc }
+    - { s: zpreztorc, d: .zpreztorc }
+    - { s: zprofile, d: .zprofile }
+    - { s: bin, d: bin }
