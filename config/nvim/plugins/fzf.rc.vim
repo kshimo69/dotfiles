@@ -2,19 +2,14 @@ let g:fzf_action = {
   \ 'ctrl-o': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
-let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'up': '~20%' }
 let g:fzf_buffers_jump = 1
 "let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 let g:fzf_tags_command = 'ctags -R'
 
 " Filesでプレビューを表示する
-"command! -bang -nargs=? -complete=dir Files
-"  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>,
-  \                    <bang>0 ? fzf#vim#with_preview()
-  \                            : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                    <bang>0)
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " Agで?を押すとプレビュー
 command! -bang -nargs=* Ag
@@ -43,3 +38,9 @@ endfunction
 "nnoremap <C-b> :Buffers<CR>
 nnoremap <C-g> :Rg<Space>
 nnoremap <C-p> :call FzfOmniFiles()<CR>
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fg :GFiles?<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>fm :Marks<CR>
+nnoremap <Leader>fh :History<CR>
+nnoremap <Leader>fc :Command<CR>

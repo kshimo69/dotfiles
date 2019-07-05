@@ -25,4 +25,4 @@ nnoremap <silent> ,p :<C-u>Denite -resume -buffer-name=search -select=-1 -immedi
 nnoremap <silent> ,t :<C-u>DeniteCursorWord gtags_context -buffer-name=gtags -no-empty<CR>
 nnoremap <silent> ,T :<C-u>Denite -resume -buffer-name=gtags<CR>
 " ヤンク履歴
-nnoremap <silent> <C-p> :<C-u>Denite neoyank<CR>
+nnoremap <silent> ,y :<C-u>Denite neoyank<CR>
