@@ -225,6 +225,12 @@ bindkey '^x^a' anyframe-widget-select-widget
 # anyenv
 [ -f $HOME/.anyenv/bin/anyenv ] && eval "$(anyenv init - zsh)"
 
+# direnv
+if which direnv >/dev/null 2>&1
+then
+    eval "$(direnv hook zsh)"
+fi
+
 # fzf
 # https://github.com/junegunn/fzf
 export FZF_TMUX=1
