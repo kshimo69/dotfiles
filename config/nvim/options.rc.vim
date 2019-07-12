@@ -32,6 +32,9 @@ set nowritebackup
 set nobackup
 set noswapfile
 
+" CursorHoldの反映を早くする
+set updatetime=100
+
 " 大文字小文字を区別しない
 set ignorecase
 " 検索文字に大文字がある場合は大文字小文字を区別
