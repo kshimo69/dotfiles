@@ -85,6 +85,7 @@ alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
 alias now='date +%Y%m%d%H%M%S'
 alias brew="PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin/:/usr/sbin:/sbin brew"
+alias tmux='tmux -u'
 if [ "`uname`" = "Darwin" ]; then
     alias ls='ls -G'
     alias em='emacsclient -n "$@"'
