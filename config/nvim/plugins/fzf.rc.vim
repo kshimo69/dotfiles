@@ -2,7 +2,7 @@ let g:fzf_action = {
   \ 'ctrl-o': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
-let g:fzf_layout = { 'up': '~20%' }
+let g:fzf_layout = { 'down': '~20%' }
 let g:fzf_buffers_jump = 1
 "let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 let g:fzf_tags_command = 'ctags -R'
