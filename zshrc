@@ -240,7 +240,7 @@ export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_OPTS='--preview "$HOMEBREW_PREFIX/bin/bat --color=always --style=header,grid --line-range :100 {}"'
 alias f="fzf-tmux -d $FZF_DEFAULT_OPTS"
 # fzfの結果を上に表示する
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #__fzfcmd_complete() {
 #  [ -n "$TMUX_PANE" ] && [ "${FZF_TMUX:-0}" != 0 ] && [ ${LINES:-40} -gt 15 ] &&
 #    echo "fzf-tmux -u${FZF_TMUX_HEIGHT:-40%}" || echo "fzf"
