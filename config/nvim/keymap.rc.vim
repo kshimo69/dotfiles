@@ -14,7 +14,7 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-nnoremap G Gzz
+"nnoremap G Gzz
 
 " Yでカーソル位置から行末までコピー
 nnoremap Y y$

@@ -78,13 +78,14 @@ set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,
 set shiftround
 " 補完時に大文字小文字を区別しない
 set infercase
-"set virtualedit=all    " カーソルを文字が存在しない部分でも動けるようにする
+" カーソルを文字が存在しない部分でも動けるようにする
+"set virtualedit=all
 set virtualedit&
 set virtualedit+=block
 " バッファを閉じる代わりに隠す（Undo履歴を残すため）
 set hidden
 " 新しく開く代わりにすでに開いてあるバッファを開く
-set switchbuf=useopen  " 新しく開く代わりにすでに開いてあるバッファを開く
+set switchbuf=useopen
 " 対応する括弧などをハイライト表示する
 set showmatch
 " 対応括弧のハイライト表示を0.2秒にする
@@ -168,7 +169,8 @@ set title  " タイトルを表示
 set ruler  " カーソルの行列を表示
 " カーソルラインが遅いので無効に
 set nocursorline
-"set cursorline   " カーソル行の表示
+" カーソル行の表示
+"set cursorline
 " カレントバッファだけカーソルラインを表示する
 "au MyAutoCmd WinLeave * set nocursorline
 "au MyAutoCmd WinLeave * set nocursorcolumn
