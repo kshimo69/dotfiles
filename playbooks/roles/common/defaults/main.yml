@@ -47,6 +47,7 @@ homebrew_packages:
   - { name: bat }
   - { name: neovim }
   - { name: direnv }
+  - { name: expect }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11

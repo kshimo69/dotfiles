@@ -198,7 +198,6 @@ zle -N peco-select-history
 #bindkey '^r' peco-select-history
 
 function peco-select-gitadd() {
-    #local SELECTED_FILE_TO_ADD="$(git status --porcelain | \
     local SELECTED_FILE_TO_ADD="$(git status -s | \
                                   $PERCOL --query "$LBUFFER" | \
                                   awk -F ' ' '{print $NF}')"
@@ -250,6 +249,14 @@ alias f="fzf-tmux -d $FZF_DEFAULT_OPTS"
 #    echo "fzf-tmux -u${FZF_TMUX_HEIGHT:-40%}" || echo "fzf"
 #}
 
+function ga() {
+    local selected
+    selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk -F ' ' '{print $NF}')
+    if [[ -n "$selected" ]]; then
+        git add $(echo "$selected" | tr '\n' ' ')
+        echo git add $(echo "$selected" | tr '\n' ' ')
+    fi
+}
 alias gcd='ghq look `ghq list |fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*"`'
 
 # The next line updates PATH for the Google Cloud SDK.
