@@ -184,6 +184,7 @@
     - { s: config/htop, d: .config/htop }
     - { s: config/karabiner, d: .config/karabiner }
     - { s: config/nvim, d: .config/nvim }
+    - { s: config/alacritty, d: .config/alacritty }
     - { s: flake8rc, d: .flake8rc }
     - { s: gitconfig, d: .gitconfig }
     - { s: gitignore, d: .gitignore }
