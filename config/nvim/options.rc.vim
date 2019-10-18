@@ -152,6 +152,7 @@ au MyAutoCmd VimEnter,ColorScheme * hi EndOfBuffer ctermbg=NONE guibg=NONE
 if exists('+winhighlight')
   hi ActiveWindow guibg=#161821
   hi InactiveWindow guibg=NONE
+  "hi InactiveWindow guibg=#191c2c
   hi ActiveTerminal guibg=#161821
 
   au MyAutoCmd WinEnter,BufRead * call Handle_Win_Enter()
