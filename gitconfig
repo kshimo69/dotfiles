@@ -50,3 +50,5 @@
     diffFilter = diff-highlight
 [credential]
 	helper = store
+[ghq]
+	root = ~/work/src

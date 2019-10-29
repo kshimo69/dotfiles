@@ -172,6 +172,12 @@ if [ -n "$OSDK_DIR" ]; then
 %#%{$reset_color%} '
 fi
 
+# hook関数precmd実行
+__call_precmds() {
+    type precmd > /dev/null 2>&1 && precmd
+    for __pre_func in $precmd_functions; do $__pre_func; done
+}
+
 # peco
 function peco-snippets() {
     BUFFER=$(cat ~/.snippets/* | grep -v "^#" | $PERCOL --query "$LBUFFER")
@@ -257,7 +263,14 @@ function ga() {
         echo git add $(echo "$selected" | tr '\n' ' ')
     fi
 }
-alias gcd='ghq look `ghq list |fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*"`'
+function ghq-fzf() {
+    repo=`ghq list |fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*"`
+    [[ ! -z ${repo} ]] && builtin cd $(ghq root)/${repo}
+    __call_precmds
+    zle reset-prompt
+}
+zle -N ghq-fzf
+bindkey "^]" ghq-fzf
 
 # The next line updates PATH for the Google Cloud SDK.
 [ -f $HOME/.google-cloud-sdk/path.zsh.inc ] && source $HOME/.google-cloud-sdk/path.zsh.inc

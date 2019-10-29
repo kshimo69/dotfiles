@@ -27,8 +27,8 @@ PATH=$HOME/.cask/bin:$PATH
 # go
 #export GOROOT=/usr/local/go
 #PATH=$PATH:$GOROOT/bin
-export GOPATH=$HOME/go
-PATH=$PATH:$HOME/go/bin
+export GOPATH=$HOME/work
+PATH=$PATH:$HOME/work/bin
 
 # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
 # git clone https://github.com/riywo/anyenv ~/.anyenv
