@@ -203,9 +203,6 @@ hook_add = 'source ~/.config/nvim/plugins/vim-operator-surround.rc.vim'
 repo = 'kana/vim-operator-user'
 
 [[plugins]]
-repo = 'tpope/vim-repeat'
-
-[[plugins]]
 repo = 't9md/vim-quickhl'
 on_map = '<Plug>'
 hook_add = 'source ~/.config/nvim/plugins/quickhl.rc.vim'

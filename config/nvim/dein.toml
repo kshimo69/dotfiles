@@ -73,3 +73,10 @@ hook_add = 'source ~/.config/nvim/plugins/fzf.rc.vim'
 [[plugins]]
 repo = 'tyru/open-browser.vim'
 hook_add = 'source ~/.config/nvim/plugins/openbrowser.rc.vim'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+hook_add = 'source ~/.config/nvim/plugins/vim-easymotion.rc.vim'
