@@ -98,3 +98,13 @@
   notify: "{{ item.notify | default(omit) }}"
   with_items:
     - "{{ osx_defaults }}"
+
+- name: Delete ApplePressAndHoldEnabled for vscode
+  osx_defaults:
+    key: "ApplePressAndHoldEnabled"
+    state: absent
+
+- name: Lynk vscode setting
+  file:
+    stc: ~/.dotfiles/vscode/settings.json
+    dest: ~/Library/ApplicationSupport/Code/User/settings.json

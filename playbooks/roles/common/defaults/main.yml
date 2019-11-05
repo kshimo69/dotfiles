@@ -13,7 +13,7 @@ homebrew_cask_packages:
   - { name: karabiner-elements }
   - { name: docker }
   #- { name: google-chrome }
-  #- { name: visual-code-studio }
+  - { name: visual-studio-code }
   #- { name: google-cloud-sdk }
   #- { name: virtualbox }
   #- { name: virtualbox-extension-pack }
