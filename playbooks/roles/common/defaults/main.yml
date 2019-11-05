@@ -227,3 +227,14 @@ osx_defaults:
     type: bool
     value: true
     notify: "Restart Finder"
+
+  # vscode
+  - domain: com.microsoft.VSCode
+    key: ApplePressAndHoldEnabled
+    type: bool
+    value: false
+
+  - domain: com.microsoft.VSCodeInsiders
+    key: ApplePressAndHoldEnabled
+    type: bool
+    value: false
