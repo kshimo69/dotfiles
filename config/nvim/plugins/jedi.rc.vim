@@ -14,6 +14,7 @@ let g:jedi#get_command = "<leader>d"
 " pydoc
 let g:jedi#documentation_command = "K"
 " quickrunと被るため大文字に変更
-let g:jedi#rename_command = '<Leader>R'
+let g:jedi#rename_command = "<Leader>R"
 " Show usages of a name.
-let g:jedi#usages_command = '<Leader>n'
+let g:jedi#usages_command = "<Leader>n"
+let g:jedi#goto_stubs_command = ""
