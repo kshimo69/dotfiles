@@ -169,11 +169,6 @@
     state: directory
     recurse: yes
 
-- name: Install anyframe
-  git:
-    repo: https://github.com/mollifier/anyframe.git
-    dest: ~/.zsh/anyframe
-
 - name: Create work/src directory
   file:
     path: ~/work/src

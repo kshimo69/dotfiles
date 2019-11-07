@@ -25,7 +25,7 @@ autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
 function auto_ls() {
-  ls
+    ls
 }
 add-zsh-hook chpwd auto_ls
 
@@ -33,7 +33,6 @@ add-zsh-hook chpwd auto_ls
 export LANG="ja_JP.UTF-8"
 export TERM="xterm-256color"
 export GREP=rg
-#export GREP_COLOR="43;30"
 export GREP_COLOR="01;35"
 export GREP_COLORS="mt=$GREP_COLOR"
 export LSCOLORS=gxfxcxdxbxegedabagacad
@@ -217,17 +216,6 @@ function peco-select-gitadd() {
 zle -N peco-select-gitadd
 bindkey "^g^a" peco-select-gitadd
 
-# anyframe
-fpath=($HOME/.zsh/anyframe(N-/) $fpath)
-autoload -Uz anyframe-init
-anyframe-init
-zstyle ":anyframe:selector:" use $PERCOL
-bindkey '^x^b' anyframe-widget-cdr
-bindkey '^x^r' anyframe-widget-put-history
-bindkey '^g^b' anyframe-widget-insert-git-branch
-bindkey '^x^f' anyframe-widget-insert-filename
-bindkey '^x^a' anyframe-widget-select-widget
-
 # anyenv
 [ -f $HOME/.anyenv/bin/anyenv ] && eval "$(anyenv init - zsh)"
 
@@ -257,28 +245,31 @@ alias f="fzf-tmux -d $FZF_DEFAULT_OPTS"
 
 function ga() {
     local selected
-    selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk -F ' ' '{print $NF}')
+    selected=$(unbuffer git status -s | f -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk -F ' ' '{print $NF}')
     if [[ -n "$selected" ]]; then
         git add $(echo "$selected" | tr '\n' ' ')
         echo git add $(echo "$selected" | tr '\n' ' ')
     fi
 }
+
 function ghq-fzf() {
-    repo=`ghq list |fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*"`
+    repo=`ghq list | f --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*"`
     [[ ! -z ${repo} ]] && builtin cd $(ghq root)/${repo}
     __call_precmds
     zle reset-prompt
 }
 zle -N ghq-fzf
 bindkey "^]" ghq-fzf
+
 function fd() {
     local dir
-    #dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
-    dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m) && cd "$dir"
+    #dir=$(find ${1:-.} -type d 2> /dev/null | f +m) && cd "$dir"
+    dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | f +m) && cd "$dir"
 }
+
 function gh() {
     local h
-    h=$(git log --pretty=oneline $* | fzf +m | awk '{print $1}')
+    h=$(git log --pretty=oneline $* | f +m | awk '{print $1}')
     if zle; then
         LBUFFER+="$h"
         CURSOR=$#LBUFFER
@@ -289,6 +280,32 @@ function gh() {
 }
 zle -N gh
 bindkey '^g^h' gh
+
+function gb() {
+    local branch
+    branch=$(git --no-pager branch -vv | f +m | sed "s/\* *//" | awk '{print $1}' | sed "s/.* //")
+    if zle; then
+        LBUFFER+="$branch"
+        CURSOR=$#LBUFFER
+        zle -R -c
+    else
+        print -z -f '%s' "$branch"
+    fi
+}
+zle -N gb
+bindkey '^g^b' gb
+
+function gba() {
+    local branch
+    branch=$(git --no-pager branch --all -vv | f +m | sed "s/\* *//" | awk '{print $1}' | sed "s/.* //")
+    if zle; then
+        LBUFFER+="$branch"
+        CURSOR=$#LBUFFER
+        zle -R -c
+    else
+        print -z -f '%s' "$branch"
+    fi
+}
 
 # The next line updates PATH for the Google Cloud SDK.
 [ -f $HOME/.google-cloud-sdk/path.zsh.inc ] && source $HOME/.google-cloud-sdk/path.zsh.inc
