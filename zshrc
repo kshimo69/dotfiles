@@ -32,7 +32,7 @@ add-zsh-hook chpwd auto_ls
 # environment
 export LANG="ja_JP.UTF-8"
 export TERM="xterm-256color"
-export GREP=ag
+export GREP=rg
 #export GREP_COLOR="43;30"
 export GREP_COLOR="01;35"
 export GREP_COLORS="mt=$GREP_COLOR"
@@ -181,7 +181,7 @@ __call_precmds() {
 # peco
 function peco-snippets() {
     BUFFER=$(cat ~/.snippets/* | grep -v "^#" | $PERCOL --query "$LBUFFER")
-     #BUFFER=$(cat ~/.snippets/* | grep -v "^#" | $PERCOL --query "$LBUFFER" | $COPY)
+    #BUFFER=$(cat ~/.snippets/* | grep -v "^#" | $PERCOL --query "$LBUFFER" | $COPY)
     zle clear-screen
 }
 zle -N peco-snippets
@@ -271,6 +271,24 @@ function ghq-fzf() {
 }
 zle -N ghq-fzf
 bindkey "^]" ghq-fzf
+function fd() {
+    local dir
+    #dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+    dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m) && cd "$dir"
+}
+function gh() {
+    local h
+    h=$(git log --pretty=oneline $* | fzf +m | awk '{print $1}')
+    if zle; then
+        LBUFFER+="$h"
+        CURSOR=$#LBUFFER
+        zle -R -c
+    else
+        print -z -f '%s' "$h"
+    fi
+}
+zle -N gh
+bindkey '^g^h' gh
 
 # The next line updates PATH for the Google Cloud SDK.
 [ -f $HOME/.google-cloud-sdk/path.zsh.inc ] && source $HOME/.google-cloud-sdk/path.zsh.inc
