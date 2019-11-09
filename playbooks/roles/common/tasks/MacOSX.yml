@@ -106,5 +106,5 @@
 
 - name: Lynk vscode setting
   file:
-    stc: ~/.dotfiles/vscode/settings.json
+    src: ~/.dotfiles/vscode/settings.json
     dest: ~/Library/ApplicationSupport/Code/User/settings.json
