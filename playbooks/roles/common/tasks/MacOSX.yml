@@ -104,6 +104,12 @@
     key: "ApplePressAndHoldEnabled"
     state: absent
 
+- name: Create vscode setting directory
+  file:
+    path: ~/Library/ApplicationSupport/Code/User
+    state: directory
+    recurse: yes
+
 - name: Lynk vscode setting
   file:
     src: ~/.dotfiles/vscode/settings.json
