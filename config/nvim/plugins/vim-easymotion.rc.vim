@@ -10,6 +10,8 @@ let g:EasyMotion_smartcase = 1
 map f <Plug>(easymotion-bd-fl)
 map t <Plug>(easymotion-bd-tl)
 
+map <Leader>w <Plug>(easymotion-bd-w)
+
 let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTASDGZXCVBJF'
 " Show target key with upper case to improve readability
 let g:EasyMotion_use_upper = 1
