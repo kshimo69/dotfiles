@@ -47,6 +47,7 @@ cnoremap w!! w !sudo tee > /dev/null %
 " QuickFixの操作
 nnoremap <C-j> :<C-u>cnext<CR>
 nnoremap <C-k> :<C-u>cprevious<CR>
+nnoremap <C-q> :<C-u>cclose<CR>
 
 " タブ
 nnoremap <silent> tt :<c-u>VimFilerTab<cr>
