@@ -80,3 +80,6 @@ repo = 'tpope/vim-repeat'
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 hook_add = 'source ~/.config/nvim/plugins/vim-easymotion.rc.vim'
+
+[[plugins]]
+repo = 'AndrewRadev/splitjoin.vim'
