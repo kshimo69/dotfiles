@@ -214,6 +214,8 @@ hook_add = 'source ~/.config/nvim/plugins/quickrun.rc.vim'
 
 [[plugins]]
 repo = 'fatih/vim-go'
+# fnでPrintlnを出したいので先にneosnippetが読まれるように
+depends = ['neosnippet']
 on_ft = 'go'
 hook_add = 'source ~/.config/nvim/plugins/vim-go.rc.vim'
 
