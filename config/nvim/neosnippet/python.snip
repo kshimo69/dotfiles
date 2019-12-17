@@ -1,18 +1,18 @@
 snippet     traceback
 abbr        import traceback..
 options     head
-    import traceback
-    for frame in traceback.format_stack():
-        print frame,
+	import traceback
+	for frame in traceback.format_stack():
+		print frame,$0
 
 snippet     logging
 abbr        logging.getLogger().setLevel(logging.DEBUG)
 options     head
-    import logging
-    logging.getLogger().setLevel(logging.DEBUG)
+	import logging
+	logging.getLogger().setLevel(logging.DEBUG)$0
 
 snippet     trace
 abbr        import ipdb
 options     head
-    import ipdb
-    ipdb.set_trace()
+	import ipdb
+	ipdb.set_trace()$0
