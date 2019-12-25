@@ -155,6 +155,13 @@ if exists('+winhighlight')
   "hi InactiveWindow guibg=#191c2c
   hi ActiveTerminal guibg=#161821
 
+  " neovim自体にフォーカスした時
+  "au MyAutoCmd FocusGained * call Handle_Win_Enter()
+
+  " neovim自体のフォーカスがはずれた時
+  "au MyAutoCmd FocusLost * hi Normal guibg=NONE
+  "au MyAutoCmd FocusLost * hi NormalNC guibg=NONE
+
   au MyAutoCmd WinEnter,BufRead * call Handle_Win_Enter()
 
   function! Handle_Win_Enter()
@@ -164,6 +171,7 @@ if exists('+winhighlight')
       setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
     endif
   endfunction
+
 endif
 
 set title  " タイトルを表示
