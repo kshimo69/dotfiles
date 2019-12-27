@@ -140,39 +140,25 @@ colorscheme iceberg
 "au MyAutoCmd ColorScheme * hi Search term=reverse ctermfg=253 ctermbg=66 guifg=#FFFFFF guibg=#455354
 "au MyAutoCmd ColorScheme * hi TabLineSel term=reverse ctermfg=255 ctermbg=33 guifg=#FFFFFF guibg=#333333
 
-" ターミナルの透過がそのまま見えるように
-au MyAutoCmd VimEnter,ColorScheme * hi Normal ctermbg=NONE guibg=NONE
-au MyAutoCmd VimEnter,ColorScheme * hi NonText ctermbg=NONE guibg=NONE
-"au MyAutoCmd VimEnter,ColorScheme * hi LineNr ctermbg=NONE guibg=NONE
-au MyAutoCmd VimEnter,ColorScheme * hi Folded ctermbg=NONE guibg=NONE
-au MyAutoCmd VimEnter,ColorScheme * hi EndOfBuffer ctermbg=NONE guibg=NONE
+" フォーカスしてないときの背景色
+let g:InactiveBackGround = 'ctermbg=235 guibg=#1e2132'
 
-" アクティブウィンドウを目立たせる
-" https://medium.com/@caleb89taylor/customizing-individual-neovim-windows-4a08f2d02b4e
-if exists('+winhighlight')
-  hi ActiveWindow guibg=#161821
-  hi InactiveWindow guibg=NONE
-  "hi InactiveWindow guibg=#191c2c
-  hi ActiveTerminal guibg=#161821
+" Neovim内でフォーカスしていないペインの背景色設定
+execute ('hi NormalNC '.g:InactiveBackGround)
+execute ('hi NontextNC '.g:InactiveBackGround)
+execute ('hi SpecialkeyNC '.g:InactiveBackGround)
+execute ('hi EndOfBufferNC '.g:InactiveBackGround)
 
-  " neovim自体にフォーカスした時
-  "au MyAutoCmd FocusGained * call Handle_Win_Enter()
-
-  " neovim自体のフォーカスがはずれた時
-  "au MyAutoCmd FocusLost * hi Normal guibg=NONE
-  "au MyAutoCmd FocusLost * hi NormalNC guibg=NONE
-
-  au MyAutoCmd WinEnter,BufRead * call Handle_Win_Enter()
-
-  function! Handle_Win_Enter()
-    if &buftype ==# 'terminal'
-      setlocal winhighlight=Normal:ActiveTerminal,NormalNC:InactiveWindow
-    else
-      setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
-    endif
-  endfunction
-
-endif
+" フォーカスした時(colorscheme準拠に切替)
+au MyAutoCmd FocusGained * hi Normal ctermbg=234 guibg=#161821
+au MyAutoCmd FocusGained * hi NonText ctermbg=234 guibg=#161821
+au MyAutoCmd FocusGained * hi SpecialKey ctermbg=234 guibg=#161821
+au MyAutoCmd FocusGained * hi EndOfBuffer ctermbg=234 guibg=#161821
+" フォーカスを外した時（フォーカスしていない時の背景色に切替)
+au MyAutoCmd FocusLost * execute('hi Normal '.g:InactiveBackGround)
+au MyAutoCmd FocusLost * execute('hi NonText '.g:InactiveBackGround)
+au MyAutoCmd FocusLost * execute('hi SpecialKey '.g:InactiveBackGround)
+au MyAutoCmd FocusLost * execute('hi EndOfBuffer '.g:InactiveBackGround)
 
 set title  " タイトルを表示
 set ruler  " カーソルの行列を表示
