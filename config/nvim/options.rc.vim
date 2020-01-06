@@ -153,7 +153,7 @@ execute ('hi EndOfBufferNC '.g:InactiveBackGround)
 au MyAutoCmd FocusGained * hi Normal ctermbg=234 guibg=#161821
 au MyAutoCmd FocusGained * hi NonText ctermbg=234 guibg=#161821
 au MyAutoCmd FocusGained * hi SpecialKey ctermbg=234 guibg=#161821
-au MyAutoCmd FocusGained * hi EndOfBuffer ctermbg=234 guibg=#161821
+au MyAutoCmd FocusGained * hi EndOfBuffer ctermbg=NONE guibg=NONE
 " フォーカスを外した時（フォーカスしていない時の背景色に切替)
 au MyAutoCmd FocusLost * execute('hi Normal '.g:InactiveBackGround)
 au MyAutoCmd FocusLost * execute('hi NonText '.g:InactiveBackGround)
