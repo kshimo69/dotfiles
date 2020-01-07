@@ -168,6 +168,9 @@ colors:
     background: '0x161821'
     foreground: '0xd2d4de'
 
+  cursor:
+    cursor: '0xc0ca8e'
+
   # Normal colors
   normal:
     black:   '0x161821'
