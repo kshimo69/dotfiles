@@ -114,3 +114,8 @@
   file:
     src: ~/.dotfiles/vscode/settings.json
     dest: ~/Library/ApplicationSupport/Code/User/settings.json
+
+- name: Lynk vscode keybinding
+  file:
+    src: ~/.dotfiles/vscode/keybindings.json
+    dest: ~/Library/ApplicationSupport/Code/User/keybindings.json

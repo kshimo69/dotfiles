@@ -1,0 +1,15 @@
+// Place your key bindings in this file to override the defaults
+[
+    // エディタグループもエディタも存在しない場合にインスタンスが閉じられるのを防止
+    {
+        "key": "cmd+w",
+        "command": "-workbench.action.closeWindow",
+        "when": "!editorIsOpen && !multipleEditorGroups"
+    },
+    // エディタグループが構成されている場合は、アクティブなグループを閉じるのを防止
+    {
+        "key": "cmd+w",
+        "command": "-workbench.action.closeGroup",
+        "when": "activeEditorGroupEmpty && multipleEditorGroups"
+    }
+]
