@@ -35,5 +35,14 @@
     },
     "editor.fontFamily": "cica, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 14,
-    "editor.lineHeight": 14
+    "editor.lineHeight": 14,
+    // スニペットを候補の上部に表示する
+    "editor.snippetSuggestions": "top",
+    // プレフィックスが一致する場合はスニペットを挿入する
+    "editor.tabCompletion": true,
+    "editor.minimap.showSlider": "always",
+    "editor.minimap.renderCharacters": false,
+    "files.eol": "\n",
+    "files.autoGuessEncoding": true,
+    "workbench.colorTheme": "Dracula"
 }

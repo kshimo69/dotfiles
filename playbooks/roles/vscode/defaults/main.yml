@@ -1,3 +1,9 @@
 ---
 extensions:
+  - { name: auchenberg.vscode-browser-preview }
+  - { name: dracula-theme.theme-dracula }
+  - { name: formulahendry.code-runner }
+  - { name: humao.rest-client }
+  - { name: ryu1kn.edit-with-shell }
+  - { name: sgryjp.japanese-word-handler }
   - { name: vscodevim.vim }
