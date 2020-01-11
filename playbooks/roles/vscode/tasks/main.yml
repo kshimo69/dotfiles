@@ -1,4 +1,22 @@
 ---
+- name: Create vscode setting directory
+  file:
+    path: ~/Library/ApplicationSupport/Code/User
+    state: directory
+    recurse: yes
+
+- name: Lynk vscode setting
+  file:
+    src: ~/.dotfiles/vscode/settings.json
+    dest: ~/Library/ApplicationSupport/Code/User/settings.json
+    state: link
+
+- name: Lynk vscode keybinding
+  file:
+    src: ~/.dotfiles/vscode/keybindings.json
+    dest: ~/Library/ApplicationSupport/Code/User/keybindings.json
+    state: link
+
 - name: Install extensions
   shell: |
     bash -lc "code --install-extension {{ item.name | quote }}"
