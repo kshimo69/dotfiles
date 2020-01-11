@@ -1,0 +1,3 @@
+---
+extensions:
+  - { name: vscodevim.vim }

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if which code >/dev/null 2>&1
+then
+    code --list-extensions
+else
+    echo 'code command not found.'
+fi

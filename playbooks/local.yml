@@ -12,3 +12,4 @@
     - { role: base, tags: [ base ] }
     - { role: common, tags: [ common ] }
     - { role: envs, tags: [ envs ] }
+    - { role: vscode, tags: [ never, vscode ] }

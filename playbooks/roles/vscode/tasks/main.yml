@@ -1,0 +1,6 @@
+---
+- name: Install extensions
+  shell: |
+    bash -lc "code --install-extension {{ item.name | quote }}"
+  with_items:
+    - "{{ extensions }}"
