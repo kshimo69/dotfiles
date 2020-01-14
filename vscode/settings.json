@@ -44,5 +44,8 @@
     "editor.minimap.renderCharacters": false,
     "files.eol": "\n",
     "files.autoGuessEncoding": true,
-    "workbench.colorTheme": "Dracula"
+    "workbench.colorTheme": "Dracula",
+    "browser-preview.startUrl": "https://www.google.com",
+    "gitlens.currentLine.enabled": false,
+    "files.insertFinalNewline": true
 }
