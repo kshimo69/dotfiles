@@ -38,6 +38,11 @@
 ;; 文字コードを指定して再読み込み
 ;; C-x RET rの後、ミニバッファの質問に変更したい文字コードを入力する。
 ;; M-x revert-buffer-with-coding-systemと同じ
+;;
+;; 変数の意味を調べる
+;; M-x apropos-variable
+;; 変数の値を調べる
+;; M-x describe-variable
 
 ;; 常時デバッグ状態
 (setq debug-on-error t)
@@ -45,20 +50,24 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
-;; Mac用設定
-(setq ns-command-modifier (quote meta))
-(setq ns-alternate-modifier (quote super))
-(setq grep-find-use-xargs 'bsd)
-(setq browse-url-generic-program "open")
+(when (memq window-system '(mac ns))
+  ;; Mac用設定
+  (setq ns-command-modifier (quote meta))
+  (setq ns-alternate-modifier (quote super))
+  (setq grep-find-use-xargs 'bsd)
+  (setq browse-url-generic-program "open")
 
-;; Ctrl/Cmd/Optionがシステムに渡されるのを防ぐ
-(setq mac-pass-control-to-system nil)
-(setq mac-pass-command-to-system nil)
-(setq mac-pass-option-to-system nil)
+  ;; Ctrl/Cmd/Optionがシステムに渡されるのを防ぐ
+  (setq mac-pass-control-to-system nil)
+  (setq mac-pass-command-to-system nil)
+  (setq mac-pass-option-to-system nil)
+)
 
 (require 'package)
 (setq package-enable-at-startup nil)
+;;(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
