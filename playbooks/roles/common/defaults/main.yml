@@ -20,6 +20,7 @@ homebrew_cask_packages:
   - { name: slack }
   - { name: font-cica }
   - { name: alacritty }
+  - { name: emacs }
 
 homebrew_packages:
   - { name: readline }
