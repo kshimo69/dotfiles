@@ -67,7 +67,7 @@
 (setq package-enable-at-startup nil)
 ;;(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -91,3 +91,12 @@
   (setq use-package-compute-statistics t)
   (setq use-package-always-ensure t)
   (require 'use-package))
+
+(use-package dracula-theme
+  :init
+  (load-theme 'dracula t)
+  )
+
+(use-package org
+  :pin "org"
+  )
