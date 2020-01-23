@@ -47,22 +47,133 @@
 ;; 常時デバッグ状態
 (setq debug-on-error t)
 
+;; custom.elを分離
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
+;; 文字コード
+(set-language-environment  'utf-8)
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8-unix)
+
+;; user設定
+(setq user-full-name "Kimihiko Shimomura")
+(setq user-mail-address "kshimo69@gmail.com")
+
+;; スタートアップ時のメッセージを抑制
+(setq inhibit-startup-message t)
+
+;; scratch のメッセージを空にする
+(setq initial-scratch-message nil)
+
+;; Mac用設定
 (when (memq window-system '(mac ns))
-  ;; Mac用設定
-  (setq ns-command-modifier (quote meta))
-  (setq ns-alternate-modifier (quote super))
   (setq grep-find-use-xargs 'bsd)
   (setq browse-url-generic-program "open")
-
+  (setq ns-command-modifier (quote meta))
+  (setq ns-alternate-modifier (quote super))
   ;; Ctrl/Cmd/Optionがシステムに渡されるのを防ぐ
   (setq mac-pass-control-to-system nil)
   (setq mac-pass-command-to-system nil)
   (setq mac-pass-option-to-system nil)
-)
+  )
 
+;; メニューバー、ツールバー、スクロールバー非表示
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+;; ヴィジブルベルを抑制
+(setq visible-bell nil)
+
+;; ビープ音を抑制
+(setq ring-bell-function '(lambda ()))
+
+;; 行数、列数を表示
+(line-number-mode t)
+(column-number-mode t)
+
+;; %の代わりに全体の行数を表示する
+(setcar mode-line-position
+	'(:eval (format "%d" (count-lines (point-max) (point-min)))))
+
+;; 時刻を表示
+(setq display-time-string-forms
+      '(24-hours ":" minutes))
+(display-time)
+
+;; 曜日表示は英語
+(setq system-time-locale "C")
+
+;; 行番号を表示
+(global-linum-mode t)
+
+;; ファイルを編集した場合コピーにてバックアップする
+;; inode 番号を変更しない
+;;(setq backup-by-copying t)
+;; バックアップファイルの保存位置指定
+;; !path!to!file-name~ で保存される
+;;(setq backup-directory-alist
+;;      '(
+;;        ("." . "~/.emacs.d/var/backup")
+;;        ))
+;; バックアップファイルリストの保存位置変更
+;;(setq auto-save-list-file-prefix "~/.emacs.d/var/auto-save-list/.saves-")
+
+;; TABはスペース4個ぶんを基本
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+
+;; スクロール時のカーソル位置の維持
+;;(setq scroll-preserve-screen-position t)
+
+;; スクロール行数（一行ごとのスクロール）
+;;(setq vertical-centering-font-regexp ".*")
+;;(setq scroll-conservatively 35)
+;;(setq scroll-margin 0)
+;;(setq scroll-step 1)
+
+;; 画面スクロール時の重複行数
+;;(setq next-screen-context-lines 1)
+
+;; シンボリックファイルを開く時にいちいち聞かない
+(setq vc-follow-symlinks t)
+
+;; yes or no を y or n に
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; default to unified diffs
+(setq diff-switches "-u")
+
+;; 行末の空白をめだたせる M-x delete-trailing-whitespaceで削除出来る
+(when (boundp 'show-trailing-whitespace) (setq-default show-trailing-whitespace t))
+
+;; ファイルの最後には \n
+(setq require-final-newline t)
+
+;; BSで選択範囲を消す
+(delete-selection-mode 1)
+
+;; C-u C-SPC C-SPC... でカーソル位置を辿る
+(setq set-mark-command-repeat-pop t)
+
+;; カーソル位置のファイル名、URLで開く
+(ffap-bindings)
+
+;;;
+;;; key-bind
+;;;
+
+;; C-hをバックスペースに
+(global-set-key (kbd "C-h") 'delete-backward-char)
+;; mini-bufferとかどこでも効くように
+;; (keyboard-translate ?\C-h ?\C-?)
+
+;; C-h に割り当てられている関数 help-command を C-x C-h に割り当てる
+(global-set-key (kbd "C-x C-h") 'help-command)
+(global-set-key (kbd "<f1>") 'help-for-help)
+
+;; packageの設定
 (require 'package)
 (setq package-enable-at-startup nil)
 ;;(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
@@ -70,19 +181,12 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
+;; use-packageインストール
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'use-package))
-
-;(eval-when-compile
-;  (setq use-package-always-defer t)
-;  (setq use-package-enable-imenu-support t)
-;  (setq use-package-minimum-reported-time 0)
-;  (setq use-package-verbose t)
-;  (setq use-package-compute-statistics t)
-;  (require 'use-package)
-;  (setq use-package-always-ensure t))
-
+  (package-install 'use-package)
+  )
+;; use-package設定
 (progn ; `use-package'
   (setq use-package-always-defer t)
   (setq use-package-enable-imenu-support t)
@@ -90,13 +194,38 @@
   (setq use-package-verbose t)
   (setq use-package-compute-statistics t)
   (setq use-package-always-ensure t)
-  (require 'use-package))
+  (require 'use-package)
+  )
 
+;; テーマ
 (use-package dracula-theme
   :init
   (load-theme 'dracula t)
   )
 
+;; org-mode
 (use-package org
   :pin "org"
   )
+
+;; server
+(use-package server
+  :config
+  (unless (server-running-p)
+    (server-start))
+  )
+
+;; ファイル名の1階層上を表示する
+(use-package uniquify
+  :ensure nil
+  :init
+  (progn
+    (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+    ;; *で囲まれたバッファ名は対象外
+    (setq uniquify-ignore-buffers-re "*[^*]+*")
+    )
+  )
+
+(use-package paren
+  :config
+  (show-paren-mode +1))
