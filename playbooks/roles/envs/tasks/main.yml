@@ -181,6 +181,12 @@
     state: directory
     recurse: yes
 
+- name: Create .emacs.d directory
+  file:
+    path: ~/.emacs.d/var/backup
+    state: directory
+    recurse: yes
+
 - name: Lynk config files
   file:
     src: ~/.dotfiles/{{ item.s }}
@@ -192,6 +198,8 @@
     - { s: config/karabiner, d: .config/karabiner }
     - { s: config/nvim, d: .config/nvim }
     - { s: config/alacritty, d: .config/alacritty }
+    - { s: emacs.d/init.el, d: .emacs.d/init.el }
+    - { s: emacs.d/custom.el, d: .emacs.d/custom.el }
     - { s: flake8rc, d: .flake8rc }
     - { s: gitconfig, d: .gitconfig }
     - { s: gitignore, d: .gitignore }

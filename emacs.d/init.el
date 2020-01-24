@@ -79,7 +79,7 @@
   )
 
 ;; メニューバー、ツールバー、スクロールバー非表示
-(menu-bar-mode -1)
+(menu-bar-mode +1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
@@ -110,15 +110,15 @@
 
 ;; ファイルを編集した場合コピーにてバックアップする
 ;; inode 番号を変更しない
-;;(setq backup-by-copying t)
+(setq backup-by-copying t)
 ;; バックアップファイルの保存位置指定
 ;; !path!to!file-name~ で保存される
-;;(setq backup-directory-alist
-;;      '(
-;;        ("." . "~/.emacs.d/var/backup")
-;;        ))
+(setq backup-directory-alist
+      '(
+        ("." . "~/.emacs.d/var/backup")
+        ))
 ;; バックアップファイルリストの保存位置変更
-;;(setq auto-save-list-file-prefix "~/.emacs.d/var/auto-save-list/.saves-")
+(setq auto-save-list-file-prefix "~/.emacs.d/var/auto-save-list/.saves-")
 
 ;; TABはスペース4個ぶんを基本
 (setq-default tab-width 4)
@@ -173,6 +173,26 @@
 (global-set-key (kbd "C-x C-h") 'help-command)
 (global-set-key (kbd "<f1>") 'help-for-help)
 
+;; Scroll buffer without moving the cursor
+(global-set-key (kbd "M-p") '(lambda () (interactive) (scroll-down 1)))
+(global-set-key (kbd "M-n") '(lambda () (interactive) (scroll-up 1)))
+
+;; 略語展開、補完を行うコマンドをまとめる
+(setq hippie-expand-try-functions-list
+      '(try-complete-file-name-partially   ;ファイル名の一部
+        try-complete-file-name             ;ファイル名全体
+        ;; try-expand-all-addrevs             ;静的略語展開
+        try-expand-dabbrev                 ;動的略語展開(カレントバッファ)
+        try-expand-dabbrev-all-buffers     ;動的略語展開(全バッファ)
+        try-expand-dabbrev-from-kill       ;動的略語展開(キルリング)
+        try-complete-lisp-symbol-partially ;Lispシンボルの一部
+        try-complete-lisp-symbol           ;Lispシンボル全体
+        ))
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+;; スクリプトを実行する
+(global-set-key (kbd "C-c p") 'executable-interpret)
+
 ;; packageの設定
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -181,14 +201,13 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
-;; use-packageインストール
+;; use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package)
   )
-;; use-package設定
 (progn ; `use-package'
-  (setq use-package-always-defer t)
+  ;;(setq use-package-always-defer t)
   (setq use-package-enable-imenu-support t)
   (setq use-package-minimum-reported-time 0)
   (setq use-package-verbose t)
@@ -196,6 +215,14 @@
   (setq use-package-always-ensure t)
   (require 'use-package)
   )
+(use-package diminish)
+(use-package bind-key
+  :ensure nil)
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
 
 ;; テーマ
 (use-package dracula-theme
@@ -226,6 +253,14 @@
     )
   )
 
+;; magit
+(use-package magit)
+
 (use-package paren
   :config
   (show-paren-mode +1))
+
+;; font
+(set-face-attribute 'default nil
+                    :family "Cica"
+                    :height 140)
