@@ -51,10 +51,6 @@
 (when (locate-library "passwd")
   (require 'passwd))
 
-;; custom.elを分離
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
-
 ;; packageの設定
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -62,6 +58,10 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
+
+;; custom.elを分離
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
 
 ;; use-package
 (unless (package-installed-p 'use-package)
