@@ -259,6 +259,15 @@
     )
   )
 
+(use-package popwin
+  :init
+  (setq popwin:popup-window-position 'bottom)
+  (setq popwin:special-display-config
+        '(("*Warnings*" :regexp t)))
+  :config
+  (popwin-mode +1)
+  )
+
 ;; magit
 (use-package magit)
 (use-package gist
@@ -313,7 +322,6 @@
 
 ;; Emacsを終了してもファイルを編集してた位置やminibuffer への入力内容を覚えておく
 (use-package session
-  ;;:init
   :hook (after-init . session-initialize)
   :config
   (setq session-save-file (expand-file-name "~/.emacs.d/var/session"))
@@ -334,41 +342,23 @@
 ;; savehistのファイルに保存する履歴からfile-name-historyをのぞく
 (setq savehist-ignored-variables '(file-name-history))
 
-;; ファイル内のカーソル位置を記録する
-(use-package saveplace
-  :config
-  (setq-default save-place t)
-  (setq save-place-file "~/.emacs.d/var/emacs-places")
-  )
-
 ;; ログの記録行数を減らす
 (setq message-log-max 10000)
 
 ;; *scratch* バッファを消さないように
-(defun my-make-scratch (&optional arg)
-  (interactive)
-  (progn
-    ;; "*scratch*" を作成して buffer-list に放り込む
-    (set-buffer (get-buffer-create "*scratch*"))
-    (funcall initial-major-mode)
-    (erase-buffer)
-    (when (and initial-scratch-message (not inhibit-startup-message))
-      (insert initial-scratch-message))
-    (or arg (progn (setq arg 0)
-                   (switch-to-buffer "*scratch*")))
-    (cond ((= arg 0) (message "*scratch* is cleared up."))
-          ((= arg 1) (message "another *scratch* is created")))))
-(add-hook 'kill-buffer-query-functions
-          ;; *scratch* バッファで kill-buffer したら内容を消去するだけにする
-          (lambda ()
-            (if (string= "*scratch*" (buffer-name))
-                (progn (my-make-scratch 0) nil)
-              t)))
-(add-hook 'after-save-hook
-          ;; *scratch* バッファの内容を保存したら *scratch* バッファを新しく作る
-          (lambda ()
-            (unless (member (get-buffer "*scratch*") (buffer-list))
-              (my-make-scratch 1))))
+(with-current-buffer "*scratch*"
+  (emacs-lock-mode 'kill))
+(with-current-buffer "*Messages*"
+  (emacs-lock-mode 'kill))
+(use-package auto-save-buffers-enhanced
+  :init
+  (auto-save-buffers-enhanced t)
+  :config
+  (setq auto-save-buffers-enhanced-interval 3600)
+  (setq auto-save-buffers-enhanced-exclude-regexps '(".+"))
+  (setq auto-save-buffers-enhanced-save-scratch-buffer-to-file-p t)
+  (setq auto-save-buffers-enhanced-file-related-with-scratch-buffer (expand-file-name "~/.emacs.d/var/scratch-backup.el"))
+  )
 
 ;;;
 ;;; key-bind
@@ -377,7 +367,7 @@
 ;; Mac用設定
 (when (memq window-system '(mac ns))
   (setq grep-find-use-xargs 'bsd)
-  ;; (setq browse-url-generic-program "open")
+  (setq browse-url-generic-program "open")
   (setq ns-command-modifier (quote meta))
   (setq ns-alternate-modifier (quote super))
   ;; Ctrl/Cmd/Optionがシステムに渡されるのを防ぐ
