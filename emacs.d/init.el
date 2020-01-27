@@ -277,7 +277,6 @@
 (use-package git-gutter-fringe+
   :config
   (global-git-gutter+-mode t)
-  (setq git-gutter-fr+-side 'right-fringe)
   )
 
 (use-package paren
