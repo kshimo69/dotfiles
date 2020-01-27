@@ -234,6 +234,7 @@
   ;;   '(bar xah-fly-keys matches buffer-info remote-host buffer-position parrot selection-info)
   ;;   '(misc-info persp-name lsp github debug minor-modes input-method major-mode process vcs checker)
   ;;   )
+  ;; (setq doom-modeline-minor-modes t)
   )
 
 ;; org-mode
