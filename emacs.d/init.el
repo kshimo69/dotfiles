@@ -78,8 +78,7 @@
   (require 'use-package)
   )
 (use-package diminish)
-(use-package bind-key
-  :ensure nil)
+(use-package bind-key)
 (use-package auto-package-update
   :config
   (setq auto-package-update-delete-old-versions t)
@@ -203,10 +202,38 @@
 (put 'set-goal-column 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
+;; テーマ用フォント
+(use-package all-the-icons)
+;; M-x all-the-icons-install-fonts
+
 ;; テーマ
-(use-package dracula-theme
-  :init
-  (load-theme 'dracula t)
+(use-package doom-themes
+  :custom
+  (doom-themes-enable-italic t)
+  (doom-themes-enable-bold t)
+  :custom-face
+  (doom-modeline-bar ((t (:background "#6272a4"))))
+  :config
+  (load-theme 'doom-dracula t)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config)
+  )
+(use-package doom-modeline
+  :custom
+  (doom-modeline-buffer-file-name-style 'truncate-with-project)
+  (doom-modeline-icon t)
+  ;; (doom-modeline-major-mode-icon nil)
+  ;; (doom-modeline-minor-modes nil)
+  :hook
+  (after-init . doom-modeline-mode)
+  ;; :config
+  ;; (line-number-mode 0)
+  ;; (column-number-mode 0)
+  ;; (doom-modeline-def-modeline 'main
+  ;;   ;; '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches buffer-info remote-host buffer-position parrot selection-info)
+  ;;   '(bar xah-fly-keys matches buffer-info remote-host buffer-position parrot selection-info)
+  ;;   '(misc-info persp-name lsp github debug minor-modes input-method major-mode process vcs checker)
+  ;;   )
   )
 
 ;; org-mode
@@ -286,9 +313,7 @@
 
 ;; Emacsを終了してもファイルを編集してた位置やminibuffer への入力内容を覚えておく
 (use-package session
-  :ensure nil
   ;;:init
-  ;;(add-hook 'after-init-hook 'session-initialize)
   :hook (after-init . session-initialize)
   :config
   (setq session-save-file (expand-file-name "~/.emacs.d/var/session"))
@@ -352,7 +377,7 @@
 ;; Mac用設定
 (when (memq window-system '(mac ns))
   (setq grep-find-use-xargs 'bsd)
-  (setq browse-url-generic-program "open")
+  ;; (setq browse-url-generic-program "open")
   (setq ns-command-modifier (quote meta))
   (setq ns-alternate-modifier (quote super))
   ;; Ctrl/Cmd/Optionがシステムに渡されるのを防ぐ
