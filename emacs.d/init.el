@@ -274,6 +274,11 @@
   :config
   (setq gist-view-gist t)
   )
+(use-package git-gutter-fringe+
+  :config
+  (global-git-gutter+-mode t)
+  (setq git-gutter-fr+-side 'right-fringe)
+  )
 
 (use-package paren
   :config
@@ -358,6 +363,11 @@
   (setq auto-save-buffers-enhanced-exclude-regexps '(".+"))
   (setq auto-save-buffers-enhanced-save-scratch-buffer-to-file-p t)
   (setq auto-save-buffers-enhanced-file-related-with-scratch-buffer (expand-file-name "~/.emacs.d/var/scratch-backup.el"))
+  )
+
+(use-package yaml-mode
+  :mode ("\\.yml\\'"
+         "\\.yaml\\'")
   )
 
 ;;;
