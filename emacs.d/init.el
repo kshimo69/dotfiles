@@ -239,9 +239,91 @@
 
 (global-hl-line-mode +1)
 
+;; magit
+(use-package magit)
+(use-package gist
+  :config
+  (setq gist-view-gist t)
+  )
+(use-package git-gutter-fringe+
+  :config
+  (global-git-gutter+-mode t)
+  )
+
 ;; org-mode
 (use-package org
-  :pin "org")
+  :pin "org"
+  :defer t
+  :mode (("\\.org\\'" . org-mode))
+  :hook (org-mode-hook . git-gutter+-disabled-modes)
+  :config
+  (setq org-directory "~/org/"
+        org-default-notes-file (concat org-directory "agenda.org")
+        org-agenda-files '("~/org/agenda.org"
+                           ;; "~/org/code-reading.org"
+                           ;; "~/org/mobileorg.org"
+                           )
+        org-log-done 'time
+        org-startup-truncated nil
+        org-use-speed-commands t
+        org-enforce-todo-dependencies t
+        org-return-follows-link t
+        org-agenda-start-with-clockreport-mode t
+        org-src-fontify-natively t)
+  (setq org-agenda-custom-commands
+        '(("x" "Unscheduled TODO" tags-todo "-SCHEDULED=>\"<now>\"" nil)))
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "WAIT(w)" "CALENDAR(c)"
+                    "SOMEDAY(s)" "REFERENCE(r)" "PROJECT(p)"
+                    "|" "DONE(d!)")
+          (sequence "NEW(n)" "ASSIGNED(a!)" "|" "FIXED(f!)")
+          ))
+  (setq org-capture-templates
+        '(("n" "Note" entry (file+headline nil "Note")
+           "** %?\n   Added: %T\n   %i\n")
+          ("t" "Todo" entry (file+headline nil "Tasks")
+           "** TODO %?\n   Added: %T\n   %a\n   %i\n")
+          ("b" "Bug" entry (file+headline nil "Tasks")
+           "** NEW %?   :bug:\n   Added: %T\n   %a\n   %i\n")
+          ("i" "Idea" entry (file+headline nil "New Ideas")
+           "** SOMEDAY %?\n   Added: %T\n   %i\n")
+          ("d" "Daily review" entry (file+headline nil "Tasks")
+           "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/org/daily_review.txt]")
+          ("w" "Weekly review" entry (file+headline nil "Tasks")
+           "** TODO Weekly Review %T[/] :review:\n%?%[~/org/weekly_review.txt]")
+          ("j" "Journal" entry (function org-journal-find-location)
+           "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
+          ))
+  :bind
+  (("C-c a" . org-agenda)
+   ("C-c c" . org-capture)
+   ("C-c l" . org-store-link))
+  (:map org-mode-map
+        ("C-c C-p" . outline-previous-visible-heading)
+        ("C-c C-n" . outline-next-visible-heading))
+  )
+;; (use-package org-pomodoro
+;;     :after org-agenda
+;;     :custom
+;;     (org-pomodoro-ask-upon-killing t)
+;;     (org-pomodoro-format "%s")
+;;     (org-pomodoro-short-break-format "%s")
+;;     (org-pomodoro-long-break-format  "%s")
+;;     :custom-face
+;;     (org-pomodoro-mode-line ((t (:foreground "#ff5555"))))
+;;     (org-pomodoro-mode-line-break   ((t (:foreground "#50fa7b"))))
+;;     :hook
+;;     (org-pomodoro-started . (lambda () (notifications-notify
+;;                                                :title "org-pomodoro"
+;;                            :body "Let's focus for 25 minutes!"
+;;                            :app-icon "~/.emacs.d/img/001-food-and-restaurant.png")))
+;;     (org-pomodoro-finished . (lambda () (notifications-notify
+;;                                                :title "org-pomodoro"
+;;                            :body "Well done! Take a break."
+;;                            :app-icon "~/.emacs.d/img/004-beer.png")))
+;;     :config
+;;     :bind (:map org-agenda-mode-map
+;;                 ("p" . org-pomodoro)))
 
 ;; server
 (use-package server
@@ -264,7 +346,11 @@
   :init
   (setq popwin:popup-window-position 'bottom)
   (setq popwin:special-display-config
-        '(("*Warnings*" :regexp t)))
+        '(
+          ("*Warnings*" :regexp t)
+          ("*Org Agenda*")
+          )
+        )
   :config
   (popwin-mode +1)
   )
@@ -282,17 +368,6 @@
     (add-hook 'popwin:after-popup-hook
               (lambda () (setq neo-persist-show t))))
   :bind (("C-x C-t" . neotree-toggle))
-  )
-
-;; magit
-(use-package magit)
-(use-package gist
-  :config
-  (setq gist-view-gist t)
-  )
-(use-package git-gutter-fringe+
-  :config
-  (global-git-gutter+-mode t)
   )
 
 (use-package paren
