@@ -295,8 +295,10 @@
    ("C-c o"   . helm-occur)
    :map helm-map
    ("C-h" . delete-backward-char)
+   ("C-w" . backward-kill-word)
    :map helm-find-files-map
    ("C-h" . delete-backward-char)
+   ("C-w" . backward-kill-word)
    ("TAB" . helm-execute-persistent-action)
    :map helm-read-file-map
    ("TAB" . helm-execute-persistent-action))
