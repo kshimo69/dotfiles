@@ -48,6 +48,7 @@
 (setq debug-on-error t)
 
 ;; local設定があったら読む
+;; proxy設定とかあったら先に読みたいのでここ
 (when (locate-library "passwd")
   (require 'passwd))
 
@@ -60,14 +61,14 @@
 (package-initialize)
 
 ;; custom.elを分離
+;; load-pathが通ってから読むのでここ
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
 ;; use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'use-package)
-  )
+  (package-install 'use-package))
 (progn ; `use-package'
   ;;(setq use-package-always-defer t)
   (setq use-package-enable-imenu-support t)
@@ -75,8 +76,7 @@
   (setq use-package-verbose t)
   (setq use-package-compute-statistics t)
   (setq use-package-always-ensure t)
-  (require 'use-package)
-  )
+  (require 'use-package))
 (use-package diminish)
 (use-package bind-key)
 (use-package auto-package-update
@@ -237,19 +237,17 @@
   ;; (setq doom-modeline-minor-modes t)
   )
 
-(global-hl-line-mode t)
+(global-hl-line-mode +1)
 
 ;; org-mode
 (use-package org
-  :pin "org"
-  )
+  :pin "org")
 
 ;; server
 (use-package server
   :config
   (unless (server-running-p)
-    (server-start))
-  )
+    (server-start)))
 
 ;; ファイル名の1階層上を表示する
 (use-package uniquify
@@ -269,6 +267,21 @@
         '(("*Warnings*" :regexp t)))
   :config
   (popwin-mode +1)
+  )
+
+(use-package neotree
+  :config
+  (setq neo-show-hidden-files t)
+  (setq neo-persist-show t)
+  ;; (setq neo-keymap-style 'concise)
+  (setq neo-smart-open t)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  (when neo-persist-show
+    (add-hook 'popwin:before-popup-hook
+              (lambda () (setq neo-persist-show nil)))
+    (add-hook 'popwin:after-popup-hook
+              (lambda () (setq neo-persist-show t))))
+  :bind (("C-x C-t" . neotree-toggle))
   )
 
 ;; magit
@@ -311,6 +324,15 @@
   )
 
 (use-package company
+  :bind
+  (:map company-active-map
+        ("C-n" . company-select-next)
+        ("C-p" . company-select-previous)
+        ("TAB" . company-complete-selection)
+        ("C-s" . company-filter-candidates))
+  (:map company-search-map
+        ("C-n" . company-select-next)
+        ("C-p" . company-select-previous))
   :config
   (global-company-mode)
   (setq company-idle-delay 0)
@@ -323,6 +345,9 @@
   (setq x-select-enable-primary t)
   (setq mouse-drag-copy-region t)
   )
+(use-package company-quickhelp
+  :config
+  (company-quickhelp-mode))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
