@@ -237,6 +237,8 @@
   ;; (setq doom-modeline-minor-modes t)
   )
 
+(global-hl-line-mode t)
+
 ;; org-mode
 (use-package org
   :pin "org"
@@ -282,7 +284,9 @@
 
 (use-package paren
   :config
-  (show-paren-mode +1))
+  (show-paren-mode +1)
+  (setq show-paren-style 'mixed)
+  )
 
 (use-package helm
   ;; :init
