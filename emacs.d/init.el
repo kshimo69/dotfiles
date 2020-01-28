@@ -279,17 +279,26 @@
           (sequence "NEW(n)" "ASSIGNED(a!)" "|" "FIXED(f!)")
           ))
   (setq org-capture-templates
-        '(("n" "Note" entry (file+headline nil "Note")
+        '(("n" "Note" entry
+           (file+headline org-default-notes-file "Note")
            "** %?\n   Added: %T\n   %i\n")
-          ("t" "Todo" entry (file+headline nil "Tasks")
+          ("t" "Todo" entry
+           (file+headline org-default-notes-file "Tasks")
            "** TODO %?\n   Added: %T\n   %a\n   %i\n")
-          ("b" "Bug" entry (file+headline nil "Tasks")
+          ;; ("t" "Todo" entry
+          ;;  (file+headline (lambda () (concat (file-name-directory buffer-file-name) "agenda.org")) "Tasks")
+          ;;  "** TODO %?\n   Added: %T\n   %a\n   %i\n")
+          ("b" "Bug" entry
+           (file+headline org-default-notes-file "Tasks")
            "** NEW %?   :bug:\n   Added: %T\n   %a\n   %i\n")
-          ("i" "Idea" entry (file+headline nil "New Ideas")
+          ("i" "Idea" entry
+           (file+headline org-default-notes-file "New Ideas")
            "** SOMEDAY %?\n   Added: %T\n   %i\n")
-          ("d" "Daily review" entry (file+headline nil "Tasks")
+          ("d" "Daily review" entry
+           (file+headline org-default-notes-file "Tasks")
            "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/org/daily_review.txt]")
-          ("w" "Weekly review" entry (file+headline nil "Tasks")
+          ("w" "Weekly review" entry
+           (file+headline org-default-notes-file "Tasks")
            "** TODO Weekly Review %T[/] :review:\n%?%[~/org/weekly_review.txt]")
           ("j" "Journal" entry (function org-journal-find-location)
            "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
