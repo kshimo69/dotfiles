@@ -278,10 +278,18 @@
                     "|" "DONE(d!)")
           (sequence "NEW(n)" "ASSIGNED(a!)" "|" "FIXED(f!)")
           ))
+  (use-package org-journal
+    :commands (org-journal-new-entry)
+    :custom
+    (org-journal-dir "~/org/journal")
+    (org-journal-date-format "%A, %d %B %Y"))
+  (defun org-journal-find-location ()
+    (org-journal-new-entry t)
+    (goto-char (point-min)))
   (setq org-capture-templates
         '(("n" "Note" entry
            (file+headline org-default-notes-file "Note")
-           "** %?\n   Added: %T\n   %i\n")
+           "** %?\n   Added: %T\n   %a\   %i\n")
           ("t" "Todo" entry
            (file+headline org-default-notes-file "Tasks")
            "** TODO %?\n   Added: %T\n   %a\n   %i\n")
@@ -293,7 +301,7 @@
            "** NEW %?   :bug:\n   Added: %T\n   %a\n   %i\n")
           ("i" "Idea" entry
            (file+headline org-default-notes-file "New Ideas")
-           "** SOMEDAY %?\n   Added: %T\n   %i\n")
+           "** SOMEDAY %?\n   Added: %T\n   %a\   %i\n")
           ("d" "Daily review" entry
            (file+headline org-default-notes-file "Tasks")
            "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/org/daily_review.txt]")

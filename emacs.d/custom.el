@@ -7,7 +7,7 @@
  '(doom-themes-enable-italic t)
  '(package-selected-packages
    (quote
-    (company-quickhelp neotree helm yaml-mode git-gutter-fringe+ popwin auto-save-buffers-enhanced doom-themes doom-modeline all-the-icons amx which-key exec-path-from-shell gist ripgrep company session magit diminish auto-package-update uniquify org use-package)))
+    (org-journal company-quickhelp neotree helm yaml-mode git-gutter-fringe+ popwin auto-save-buffers-enhanced doom-themes doom-modeline all-the-icons amx which-key exec-path-from-shell gist ripgrep company session magit diminish auto-package-update uniquify org use-package)))
  '(session-use-package t nil (session)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
