@@ -366,6 +366,7 @@
         '(
           ("*Warnings*" :regexp t)
           ("*Org Agenda*")
+          ("*Help*")
           )
         )
   :config
@@ -437,9 +438,6 @@
   (setq x-select-enable-primary t)
   (setq mouse-drag-copy-region t)
   )
-(use-package company-quickhelp
-  :config
-  (company-quickhelp-mode))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
