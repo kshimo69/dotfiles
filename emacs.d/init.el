@@ -88,120 +88,71 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-;;;
-;;; general
-;;;
+(progn ; `startup'
+  (setq user-full-name "Kimihiko Shimomura")
+  (setq user-mail-address "kshimo69@gmail.com")
+  (setq inhibit-startup-message t)
+  (setq initial-scratch-message nil)
+  (fset 'yes-or-no-p 'y-or-n-p))
 
-;; user設定
-(setq user-full-name "Kimihiko Shimomura")
-(setq user-mail-address "kshimo69@gmail.com")
+(progn ; `font'
+  (set-language-environment  'utf-8)
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-face-attribute 'default nil
+                      :family "Cica"
+                      :height 140))
 
-;; 文字コード
-(set-language-environment  'utf-8)
-(prefer-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
+(progn ; `files'
+  (setq-default tab-width 4)
+  (setq-default indent-tabs-mode nil)
+  (setq confirm-kill-emacs 'y-or-n-p)
+  (put 'set-goal-column 'disabled nil)
+  (put 'narrow-to-region 'disabled nil)
+  (setq vc-follow-symlinks t)
+  (setq diff-switches "-u")
+  (setq require-final-newline t)
+  (delete-selection-mode t)
+  ;; C-u C-SPC C-SPC... でカーソル位置を辿る
+  (setq set-mark-command-repeat-pop t)
+  ;; カーソル位置のファイル名、URLで開く
+  (ffap-bindings)
+  ;; 行末の空白をめだたせる M-x delete-trailing-whitespaceで削除出来る
+  (when (boundp 'show-trailing-whitespace) (setq-default show-trailing-whitespace t))
+  ;;(setq make-backup-files nil)
+  ;; ファイルを編集した場合コピーにてバックアップする
+  ;; inode 番号を変更しない
+  (setq backup-by-copying t)
+  ;; バックアップファイルの保存位置指定
+  ;; !path!to!file-name~ で保存される
+  (setq backup-directory-alist
+        '(
+          ("." . "~/.emacs.d/var/backup")
+          ))
+  ;; バックアップファイルリストの保存位置変更
+  (setq auto-save-list-file-prefix "~/.emacs.d/var/auto-save-list/.saves-"))
 
-;; font
-(set-face-attribute 'default nil
-                    :family "Cica"
-                    :height 140)
-
-;; スタートアップ時のメッセージを抑制
-(setq inhibit-startup-message t)
-
-;; scratch のメッセージを空にする
-(setq initial-scratch-message nil)
-
-;; メニューバー、ツールバー、スクロールバー非表示
-(menu-bar-mode +1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-
-;; ヴィジブルベルを抑制
-(setq visible-bell nil)
-
-;; ビープ音を抑制
-(setq ring-bell-function '(lambda ()))
-
-;; 行数、列数を表示
-(line-number-mode t)
-(column-number-mode t)
-
-;; %の代わりに全体の行数を表示する
-(setcar mode-line-position
-	'(:eval (format "%d" (count-lines (point-max) (point-min)))))
-
-;; 時刻を表示
-(setq display-time-string-forms
-      ;; '(24-hours ":" minutes " " month "/" day "(" dayname ")"))
-      '(24-hours ":" minutes))
-(display-time)
-
-;; 曜日表示は英語
-(setq system-time-locale "C")
-
-;; 行番号を表示
-(global-linum-mode t)
-
-;; ファイルを編集した場合コピーにてバックアップする
-;; inode 番号を変更しない
-(setq backup-by-copying t)
-;; バックアップファイルの保存位置指定
-;; !path!to!file-name~ で保存される
-(setq backup-directory-alist
-      '(
-        ("." . "~/.emacs.d/var/backup")
-        ))
-;; バックアップファイルリストの保存位置変更
-(setq auto-save-list-file-prefix "~/.emacs.d/var/auto-save-list/.saves-")
-
-;; TABはスペース4個ぶんを基本
-(setq-default tab-width 4)
-(setq-default indent-tabs-mode nil)
-
-;; スクロール時のカーソル位置の維持
-;;(setq scroll-preserve-screen-position t)
-
-;; スクロール行数（一行ごとのスクロール）
-;;(setq vertical-centering-font-regexp ".*")
-;;(setq scroll-conservatively 35)
-;;(setq scroll-margin 0)
-;;(setq scroll-step 1)
-
-;; 画面スクロール時の重複行数
-;;(setq next-screen-context-lines 1)
-
-;; シンボリックファイルを開く時にいちいち聞かない
-(setq vc-follow-symlinks t)
-
-;; yes or no を y or n に
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; default to unified diffs
-(setq diff-switches "-u")
-
-;; 行末の空白をめだたせる M-x delete-trailing-whitespaceで削除出来る
-(when (boundp 'show-trailing-whitespace) (setq-default show-trailing-whitespace t))
-
-;; ファイルの最後には \n
-(setq require-final-newline t)
-
-;; BSで選択範囲を消す
-(delete-selection-mode 1)
-
-;; C-u C-SPC C-SPC... でカーソル位置を辿る
-(setq set-mark-command-repeat-pop t)
-
-;; カーソル位置のファイル名、URLで開く
-(ffap-bindings)
-
-;; 終了時に聞く
-(setq confirm-kill-emacs 'y-or-n-p)
-
-(put 'set-goal-column 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
+(progn ; `window'
+  (menu-bar-mode +1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (setq visible-bell nil)
+  (setq ring-bell-function '(lambda ()))
+  (global-linum-mode t)
+  (line-number-mode t)
+  (column-number-mode t)
+  ;; %の代わりに全体の行数を表示する
+  (setcar mode-line-position
+          '(:eval (format "%d" (count-lines (point-max) (point-min)))))
+  ;; 時刻を表示
+  (setq display-time-string-forms
+        ;; '(24-hours ":" minutes " " month "/" day "(" dayname ")"))
+        '(24-hours ":" minutes))
+  (display-time)
+  ;; 曜日表示は英語
+  (setq system-time-locale "C"))
 
 ;; テーマ用フォント
 (use-package all-the-icons)
