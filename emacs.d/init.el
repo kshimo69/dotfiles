@@ -135,6 +135,7 @@
 
 ;; 時刻を表示
 (setq display-time-string-forms
+      ;; '(24-hours ":" minutes " " month "/" day "(" dayname ")"))
       '(24-hours ":" minutes))
 (display-time)
 
