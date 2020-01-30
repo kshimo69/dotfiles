@@ -47,6 +47,9 @@
 ;; 常時デバッグ状態
 (setq debug-on-error t)
 
+;; Always load newest byte code
+(setq load-prefer-newer t)
+
 ;; local設定があったら読む
 ;; proxy設定とかあったら先に読みたいのでここ
 (when (locate-library "passwd")
@@ -88,9 +91,6 @@
 ;;;
 ;;; general
 ;;;
-
-;; Always load newest byte code
-(setq load-prefer-newer t)
 
 ;; user設定
 (setq user-full-name "Kimihiko Shimomura")
