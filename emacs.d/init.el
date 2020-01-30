@@ -418,6 +418,7 @@
   )
 
 (use-package company
+  :defer nil
   :bind
   (:map company-active-map
         ("C-n" . company-select-next)
@@ -466,6 +467,8 @@
 ;; kill-ringに同じ内容の文字列を入れない
 (defadvice kill-new (before ys:no-kill-new-duplicates activate)
   (setq kill-ring (delete (ad-get-arg 0) kill-ring)))
+
+(setq history-delete-duplicates t)
 
 ;; Emacsを終了してもファイルを編集してた位置やminibuffer への入力内容を覚えておく
 (use-package session
