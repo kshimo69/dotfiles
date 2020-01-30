@@ -205,12 +205,21 @@
   (global-git-gutter+-mode t)
   )
 
+(use-package alert)
+
 ;; org-mode
 (use-package org
   :pin "org"
   :defer t
   :mode (("\\.org\\'" . org-mode))
   :hook (org-mode-hook . git-gutter+-disabled-modes)
+  :bind
+  (("C-c a" . org-agenda)
+   ("C-c c" . org-capture)
+   ("C-c l" . org-store-link))
+  (:map org-mode-map
+        ("C-c C-p" . outline-previous-visible-heading)
+        ("C-c C-n" . outline-next-visible-heading))
   :config
   (setq org-directory "~/org/"
         org-default-notes-file (concat org-directory "agenda.org")
@@ -264,19 +273,13 @@
           ("j" "Journal" entry (function org-journal-find-location)
            "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
           ))
+  (setq org-agenda-current-time-string "← now")
   (setq org-agenda-time-grid
         (quote
          ((daily today remove-match)
-          (800 1000 1200 1400 1600 1800 2000 2200)
-          "......" "----------------"
+          (800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100 2200)
+          "-" "────────────────"
           )))
-  :bind
-  (("C-c a" . org-agenda)
-   ("C-c c" . org-capture)
-   ("C-c l" . org-store-link))
-  (:map org-mode-map
-        ("C-c C-p" . outline-previous-visible-heading)
-        ("C-c C-n" . outline-next-visible-heading))
   )
 ;; (use-package org-pomodoro
 ;;     :after org-agenda
