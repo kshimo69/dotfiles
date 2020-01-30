@@ -465,6 +465,11 @@
   (setq auto-save-buffers-enhanced-file-related-with-scratch-buffer (expand-file-name "~/.emacs.d/var/scratch-backup.el"))
   )
 
+(use-package open-junk-file
+  :commands (open-junk-file)
+  :config
+  (setq open-junk-file-format "~/junk/%Y%m%d-%H%M%S."))
+
 (use-package yaml-mode
   :mode ("\\.yml\\'"
          "\\.yaml\\'")
