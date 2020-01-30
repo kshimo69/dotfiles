@@ -274,9 +274,7 @@
   (setq org-agenda-custom-commands
         '(("x" "Unscheduled TODO" tags-todo "-SCHEDULED=>\"<now>\"" nil)))
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAIT(w)" "CALENDAR(c)"
-                    "SOMEDAY(s)" "REFERENCE(r)" "PROJECT(p)"
-                    "|" "DONE(d!)")
+        '((sequence "TODO(t)" "WAIT(w)" "SOMEDAY(s)" "|" "DONE(d!)" "CANCEL(c!)")
           (sequence "NEW(n)" "ASSIGNED(a!)" "|" "FIXED(f!)")
           ))
   (use-package org-journal
@@ -312,6 +310,12 @@
           ("j" "Journal" entry (function org-journal-find-location)
            "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
           ))
+  (setq org-agenda-time-grid
+        (quote
+         ((daily today remove-match)
+          (800 1000 1200 1400 1600 1800 2000 2200)
+          "......" "----------------"
+          )))
   :bind
   (("C-c a" . org-agenda)
    ("C-c c" . org-capture)
