@@ -154,6 +154,9 @@
   ;; 曜日表示は英語
   (setq system-time-locale "C"))
 
+(progn ; `browser'
+  (setq eww-search-prefix "https://www.google.co.jp/search?btnI&q="))
+
 ;; テーマ用フォント
 (use-package all-the-icons)
 ;; M-x all-the-icons-install-fonts
