@@ -31,7 +31,7 @@
     "terminal.integrated.fontFamily": "cica",
     "terminal.integrated.fontSize": 15,
     "yaml.schemas": {
-        "file:///Users/shimomura_kimihiko/.vscode/extensions/atlassian.atlascode-2.3.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///${env:HOME}/.vscode/extensions/atlassian.atlascode-2.3.2/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "editor.fontFamily": "cica, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 14,
