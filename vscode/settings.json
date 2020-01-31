@@ -31,7 +31,7 @@
     "terminal.integrated.fontFamily": "cica",
     "terminal.integrated.fontSize": 15,
     "yaml.schemas": {
-        "file:///Users/shimomura_kimihiko/.vscode/extensions/atlassian.atlascode-2.2.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///Users/shimomura_kimihiko/.vscode/extensions/atlassian.atlascode-2.3.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "editor.fontFamily": "cica, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 14,
@@ -39,7 +39,7 @@
     // スニペットを候補の上部に表示する
     "editor.snippetSuggestions": "top",
     // プレフィックスが一致する場合はスニペットを挿入する
-    "editor.tabCompletion": true,
+    "editor.tabCompletion": "on",
     "editor.minimap.showSlider": "always",
     "editor.minimap.renderCharacters": false,
     "files.eol": "\n",
