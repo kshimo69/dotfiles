@@ -405,7 +405,9 @@
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :config
-  ;; (add-to-list 'exec-path-from-shell-variables "NODE_PATH")
+  (add-to-list 'exec-path-from-shell-variables "http_proxy")
+  (add-to-list 'exec-path-from-shell-variables "https_proxy")
+  (add-to-list 'exec-path-from-shell-variables "no_proxy")
   (exec-path-from-shell-initialize)
   )
 
