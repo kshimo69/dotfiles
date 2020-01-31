@@ -140,7 +140,7 @@
   (scroll-bar-mode -1)
   (setq visible-bell nil)
   (setq ring-bell-function '(lambda ()))
-  (global-linum-mode t)
+  (global-linum-mode -1)
   (line-number-mode t)
   (column-number-mode t)
   ;; %の代わりに全体の行数を表示する
