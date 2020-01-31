@@ -141,7 +141,7 @@ colorscheme iceberg
 "au MyAutoCmd ColorScheme * hi TabLineSel term=reverse ctermfg=255 ctermbg=33 guifg=#FFFFFF guibg=#333333
 
 " フォーカスしてないときの背景色
-let g:InactiveBackGround = 'ctermbg=235 guibg=#161821'
+let g:InactiveBackGround = 'ctermbg=235 guibg=#1e2132'
 
 " Neovim内でフォーカスしていないペインの背景色設定
 execute ('hi NormalNC '.g:InactiveBackGround)
@@ -150,9 +150,9 @@ execute ('hi SpecialkeyNC '.g:InactiveBackGround)
 execute ('hi EndOfBufferNC '.g:InactiveBackGround)
 
 " フォーカスした時(colorscheme準拠に切替)
-au MyAutoCmd FocusGained * hi Normal ctermbg=234 guibg=#1e2132
-au MyAutoCmd FocusGained * hi NonText ctermbg=234 guibg=#1e2132
-au MyAutoCmd FocusGained * hi SpecialKey ctermbg=234 guibg=#1e2132
+au MyAutoCmd FocusGained * hi Normal ctermbg=234 guibg=#161821
+au MyAutoCmd FocusGained * hi NonText ctermbg=234 guibg=#161821
+au MyAutoCmd FocusGained * hi SpecialKey ctermbg=234 guibg=#161821
 au MyAutoCmd FocusGained * hi EndOfBuffer ctermbg=NONE guibg=NONE
 " フォーカスを外した時（フォーカスしていない時の背景色に切替)
 au MyAutoCmd FocusLost * execute('hi Normal '.g:InactiveBackGround)
