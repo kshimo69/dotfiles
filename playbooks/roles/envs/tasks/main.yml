@@ -53,6 +53,11 @@
     repo: https://github.com/yyuu/pyenv-virtualenv.git
     dest: ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
 
+- name: Install pyenv-which-ext
+  git:
+    repo: https://github.com/pyenv/pyenv-which-ext.git
+    dest: ~/.anyenv/envs/pyenv/plugins/pyenv-which-ext.git
+
 - name: Install python {{ python2_version }}
   args:
     # guard for only once.
