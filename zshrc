@@ -90,6 +90,7 @@ if [ "`uname`" = "Darwin" ]; then
     alias em='emacsclient -n "$@"'
     alias VIM='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/bin/mvim'
     alias ctags='`brew --prefix`/bin/ctags'
+    alias goland='open /Applications/GoLand.app'
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
     alias gvim='d:/vim/gvim.exe'
 fi
