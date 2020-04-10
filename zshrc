@@ -156,6 +156,10 @@ function tmux_command_exit_status_precmd () {
 add-zsh-hook precmd tmux_command_exit_status_precmd
 
 function tmux_window_name_preexec () {
+    # なぜかGoLandの統合Shellで$TMUXが見えてて余分にechoされてしまう対応
+    if [ -n $TERMINAL_EMULATOR ]; then
+        return 0
+    fi
     if [ "q$TMUX" != "q" ]; then
         echo -ne "\ek$1\e\\"
     fi
@@ -164,6 +168,12 @@ add-zsh-hook preexec tmux_window_name_preexec
 
 # neotermの時はVIMRUNTIMEがある
 if [ -n "$VIMRUNTIME" ]; then
+    PROMPT='[%F{cyan}%~%f]
+%#%{$reset_color%} '
+fi
+# GoLand
+# TERMINAL_EMULATOR=JetBrains-JediTerm
+if [ -n "$TERMINAL_EMULATOR" ]; then
     PROMPT='[%F{cyan}%~%f]
 %#%{$reset_color%} '
 fi
