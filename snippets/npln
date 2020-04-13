@@ -1,0 +1,11 @@
+./bin/npln generator service  # proto/COMPONENT/VERSION/RPC.proto # npln
+make proto  # npln
+go test  # ./pkg/service/COMPONENT/VERSION/  # npln
+make build  # npln
+make docker-compose-up  # npln
+make server-setup  # npln
+make server-reset  # npln
+make db-setup  # npln
+./bin/npln server start  # npln
+./bin/npln token evans -p 30051  # --package nn.npln.COMPONENT.VERSION --service RPC proto/COMPONENT/VERSION/RPC.proto
+go run scripts/add-license/add-license.go add  # pkg/service/COMPONENT/VERSION/RPC.go # npln
