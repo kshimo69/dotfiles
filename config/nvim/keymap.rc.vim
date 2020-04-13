@@ -19,6 +19,9 @@ nnoremap g# g#zz
 " Yでカーソル位置から行末までコピー
 nnoremap Y y$
 
+" vvで行末まで選択
+vnoremap v ^$h
+
 " j, k による移動を見た目の行に
 nnoremap j gj
 nnoremap k gk
