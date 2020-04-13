@@ -1,0 +1,18 @@
+set number
+set ambiwidth=double
+set textwidth=0
+set showcmd
+set wildmenu
+set wildchar=<tab>
+set wildmode=longest:full,full
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set wrapscan
+set clipboard=unnamed,unnamedplus
+
+source ~/.config/nvim/keymap.rc.vim
+
+nnoremap ,f :action SearchEverywhere<CR>
+nnoremap ,g :action FindInPath<CR>

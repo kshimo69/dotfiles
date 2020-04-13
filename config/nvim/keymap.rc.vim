@@ -1,8 +1,11 @@
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 
+" Insertモードを抜けたら日本語入力OFF
+inoremap <silent> <ESC> <ESC>:set iminsert=2<CR>
+
 " ESCを二回押すことでハイライトを無効に
-nnoremap <silent><Esc><Esc> :nohlsearch<CR>
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
 " カーソル下のキーワードでヘルプ
 nnoremap <C-h> :<C-u>help<Space><C-r><C-w><Enter>

@@ -209,6 +209,7 @@
     - { s: gitconfig, d: .gitconfig }
     - { s: gitignore, d: .gitignore }
     - { s: globalrc, d: .globalrc }
+    - { s: ideavimrc, d: .ideavimrc }
     - { s: pythonrc.py, d: .pythonrc.py }
     - { s: snippets, d: .snippets }
     - { s: tmux.conf, d: .tmux.conf }
