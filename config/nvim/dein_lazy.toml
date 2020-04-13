@@ -231,3 +231,7 @@ repo = 'justinhoward/fzf-neoyank'
 depends = ['neoyank.vim', 'fzf.vim']
 on_func = ['FZFNeoyank', 'FZFNeoyankSelection']
 hook_add = 'source ~/.config/nvim/plugins/fzf-neoyank.rc.vim'
+
+[[plugins]]
+repo = 'uarun/vim-protobuf'
+on_ft = 'proto'
