@@ -43,3 +43,6 @@ au MyAutoCmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edi
 au MyAutoCmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 au MyAutoCmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 au MyAutoCmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+" importしていないパッケージも補完する
+let g:go_gocode_unimported_packages = 1
