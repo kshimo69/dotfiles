@@ -24,7 +24,7 @@ let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 
 " 保存時にチェック(GoLint, GoVet, GoErrCheck)
-"let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave = 1
 " 構文チェックだけにする
 "let g:go_metalinter_autosave_enabled = ['vet']
 
