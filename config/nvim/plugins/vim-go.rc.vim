@@ -69,8 +69,8 @@ if executable('gopls')
         \ })
     autocmd FileType go setlocal omnifunc=lsp#complete
     "autocmd FileType go nmap <Leader>d <plug>(lsp-peek-definition)
-    autocmd FileType go nmap <Leader>d :split \| :LspDefinition<CR>
-    autocmd FileType go nmap <Leader>D :vsplit \| :LspDefinition<CR>
+    autocmd FileType go nmap <Leader>d <plug>(lsp-definition)
+    autocmd FileType go nmap <Leader>D :split \| :LspDefinition<CR>
     autocmd FileType go nmap <Leader>i <plug>(lsp-peek-implementation)
   augroup END
 endif
