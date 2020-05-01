@@ -4,7 +4,6 @@ au MyAutoCmd FileType go nmap <Leader>D <Plug>(go-def-vertical)
 au MyAutoCmd FileType go nmap <Leader>t <Plug>(go-test)
 au MyAutoCmd FileType go nmap <Leader>u <Plug>(go-test-func)
 au MyAutoCmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-au MyAutoCmd FileType go nmap <Leader>p <Plug>(go-def-pop)
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -33,10 +32,10 @@ let g:go_term_mode = 'split'
 let g:go_term_height = 20
 
 " ハイライト
-"let g:go_highlight_types = 1
-"let g:go_highlight_fields = 1
-"let g:go_highlight_functions = 1
-"let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
 
 " 代替ファイルをどう開くか
 au MyAutoCmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
@@ -47,30 +46,4 @@ au MyAutoCmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'ta
 " importしていないパッケージも補完する
 let g:go_gocode_unimported_packages = 1
 
-" go-mod用
-let g:go_def_mode = 'godef'
-
-if executable('gopls')
-  augroup LspGo
-    au!
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'go-lang',
-        \ 'cmd': {server_info->['gopls']},
-        \ 'whitelist': ['go'],
-        \ 'workspace_config': {'gopls': {
-        \     'staticcheck': v:true,
-        \     'completeUnimported': v:true,
-        \     'caseSensitiveCompletion': v:true,
-        \     'usePlaceholders': v:true,
-        \     'completionDocumentation': v:true,
-        \     'watchFileChanges': v:true,
-        \     'hoverKind': 'SingleLine',
-        \   }},
-        \ })
-    autocmd FileType go setlocal omnifunc=lsp#complete
-    "autocmd FileType go nmap <Leader>d <plug>(lsp-peek-definition)
-    autocmd FileType go nmap <Leader>d <plug>(lsp-definition)
-    autocmd FileType go nmap <Leader>D :split \| :LspDefinition<CR>
-    autocmd FileType go nmap <Leader>i <plug>(lsp-peek-implementation)
-  augroup END
-endif
+let g:go_def_mode = 'gopls'

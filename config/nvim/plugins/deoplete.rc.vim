@@ -1,8 +1,10 @@
 let g:deoplete#enable_at_startup = 1
+set completeopt+=noselect
 call deoplete#custom#option({
 \ 'smart_case': v:true,
 \ 'auto_complete_delay': 0,
 \ 'auto_refresh_delay': 20,
+\ 'omni_patterns': { 'go': '[^. *\t]\.\w*' },
 \ })
 " TabComplete
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
