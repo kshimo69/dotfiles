@@ -46,3 +46,6 @@ au MyAutoCmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'ta
 
 " importしていないパッケージも補完する
 let g:go_gocode_unimported_packages = 1
+
+" go-mod用
+let g:go_def_mode = 'godef'

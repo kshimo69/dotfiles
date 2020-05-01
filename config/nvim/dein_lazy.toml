@@ -220,7 +220,7 @@ on_ft = 'go'
 hook_add = 'source ~/.config/nvim/plugins/vim-go.rc.vim'
 
 [[plugins]]
-repo = 'zchee/deoplete-go'
+repo = 'deoplete-plugins/deoplete-go'
 depends = ['deoplete.nvim']
 build = 'make'
 on_ft = 'go'
