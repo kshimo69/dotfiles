@@ -26,3 +26,5 @@ nnoremap <silent> ,t :<C-u>DeniteCursorWord gtags_context -buffer-name=gtags -no
 nnoremap <silent> ,T :<C-u>Denite -resume -buffer-name=gtags<CR>
 " ヤンク履歴
 nnoremap <silent> ,y :<C-u>Denite neoyank<CR>
+" :Decls(vim-go)
+nnoremap <silent> ,d :<C-u>Denite decls<CR>

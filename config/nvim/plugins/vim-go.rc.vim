@@ -1,6 +1,7 @@
 au MyAutoCmd FileType go nmap <Leader>r <Plug>(go-run)
 au MyAutoCmd FileType go nmap <Leader>d <Plug>(go-def-split)
 au MyAutoCmd FileType go nmap <Leader>D <Plug>(go-def-vertical)
+au MyAutoCmd FileType go nmap <Leader>g <Plug>(go-decls-dir)
 au MyAutoCmd FileType go nmap <Leader>t <Plug>(go-test)
 au MyAutoCmd FileType go nmap <Leader>u <Plug>(go-test-func)
 au MyAutoCmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
