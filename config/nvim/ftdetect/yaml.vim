@@ -1,1 +1,1 @@
-:au BufRead,BufNewFile *.yml,*.yaml set ft=ansible
+:au BufRead,BufNewFile *.yml,*.yaml set ft=yaml.ansible
