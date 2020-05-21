@@ -235,3 +235,8 @@ hook_add = 'source ~/.config/nvim/plugins/fzf-neoyank.rc.vim'
 [[plugins]]
 repo = 'uarun/vim-protobuf'
 on_ft = 'proto'
+
+[[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+depends = ['deoplete']
+on_map = '<Plug>'

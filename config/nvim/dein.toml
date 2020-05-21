@@ -83,3 +83,15 @@ hook_add = 'source ~/.config/nvim/plugins/vim-easymotion.rc.vim'
 
 [[plugins]]
 repo = 'AndrewRadev/splitjoin.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
