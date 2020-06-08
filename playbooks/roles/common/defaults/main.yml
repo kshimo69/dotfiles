@@ -53,6 +53,7 @@ homebrew_packages:
   - { name: direnv }
   - { name: expect }
   - { name: unar }
+  - { name: python-yq }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11
