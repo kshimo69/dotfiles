@@ -1,0 +1,31 @@
+---
+- name: Upgrade homebrew
+  homebrew:
+    path: /home/linuxbrew/.linuxbrew/bin
+    upgrade_all: yes
+
+- name: Install homebrew packages
+  homebrew:
+    path: /home/linuxbrew/.linuxbrew/bin
+    name: "{{ item.name }}"
+    install_options: "{{ item.install_options | default(omit) }}"
+    state: "{{ item.state | default('latest') }}"
+  with_items:
+    - "{{ homebrew_packages }}"
+
+- name: Brew install fzf
+  homebrew:
+    path: /home/linuxbrew/.linuxbrew/bin
+    name: fzf
+    state: latest
+  register: install_fzf_result
+
+- name: Install fzf
+  when: install_fzf_result.changed == True
+  shell: /home/linuxbrew/.linuxbrew/opt/fzf/install
+
+- name: Cleanup brew
+  shell: /home/linuxbrew/.linuxbrew/bin/brew cleanup -s
+  register: brew_cleanup_result
+  failed_when: brew_cleanup_result.rc not in [0, 1]
+  changed_when: brew_cleanup_result.rc != 0

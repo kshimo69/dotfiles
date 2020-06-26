@@ -1,0 +1,33 @@
+---
+- name: Install Development Tools
+  apt:
+    name: build-essential
+    state: latest
+  become: yes
+
+- name: Check linuxbrew already installed
+  register: linuxbrew_installed
+  failed_when: linuxbrew_installed.rc not in [0, 1]
+  changed_when: linuxbrew_installed.rc != 0
+  shell: test -x /home/linuxbrew/.linuxbrew/bin/brew
+
+- name: Install Linuxbrew
+  when: linuxbrew_installed.changed == True
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
+- name: Setup Linuxbrew
+  blockinfile:
+    create: yes
+    path: ~/.bash_profile
+    marker: "# {mark} ANSIBLE MANAGED BLOCK linuxbrew"
+    block: |
+      eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+      #export LD_LIBRARY_PATH="$(brew --prefix)/lib:$LD_LIBRARY_PATH"
+
+- name: Install build essentials
+  apt:
+    name: "{{ item.name }}"
+    state: latest
+  become: yes
+  with_items:
+    - "{{ build_libs }}"

@@ -39,6 +39,11 @@ install_requirement_packages_by_yum() {
     sudo yum install -y --enablerepo=epel ansible
 }
 
+install_requirement_packages_by_apt() {
+    sudo apt update
+    sudo apt install -y ansible
+}
+
 clone_dotfiles() {
     git clone ${REPO} ${DIST_DIR}
 }
@@ -63,6 +68,12 @@ setup_for_rhel() {
     do_ansible
 }
 
+setup_for_ubuntu() {
+    install_requirement_packages_by_apt
+    clone_dotfiles
+    do_ansible
+}
+
 # require setup
 if [ "${SYS_NAME}" == "Darwin" ]
 then
@@ -71,11 +82,15 @@ then
     exit 0
 elif [ "${SYS_NAME}" == "Linux" ]
 then
-    which yum
-    if [ $? -eq 0 ]
+    if which yum >/dev/null
     then
         echo "Platform: Linux(yum)"
         setup_for_rhel
+        exit 0
+    elif which apt >/dev/null
+    then
+        echo "Platform: Linux(apt)"
+        setup_for_ubuntu
         exit 0
     else
         echo "This linux envitonment is not supported."
