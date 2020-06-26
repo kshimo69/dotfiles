@@ -24,7 +24,8 @@ homebrew_cask_packages:
 
 homebrew_packages:
   - { name: readline }
-  - { name: openssl, install_options: [force, with-openssl] }
+  #- { name: openssl, install_options: [force, with-openssl] }
+  - { name: openssl, install_options: [force] }
   - { name: autoconf }
   - { name: automake }
   - { name: pkg-config }
@@ -51,7 +52,7 @@ homebrew_packages:
   - { name: neovim }
   - { name: direnv }
   - { name: expect }
-  - { name: unar }
+  #- { name: unar }  # mac only?
   - { name: python-yq }
 
 osx_defaults:
