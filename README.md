@@ -6,30 +6,11 @@ This is my dotfiles repository
 
 - Mac OSX
 - RHEL (CentOS, Amazon Linux)
+- Ubuntu
 
 ## Prerequisite
 
 - [ansible](http://www.ansible.com/home)
-
-### Linux
-
-- Install EPEL
-
-```bash
-$ sudo yum install -y epel-release
-```
-
-- Install git
-
-```bash
-$ sudo yum install -y --enablerepo=epel git
-```
-
-- Install ansible
-
-```bash
-$ sudo yum install -y --enablerepo=epel ansible
-```
 
 ### Mac
 
@@ -49,6 +30,35 @@ $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/maste
 
 ```bash
 $ brew install ansible
+```
+
+### RHEL
+
+- Install EPEL
+
+```bash
+$ sudo yum install -y epel-release
+```
+
+- Install git
+
+```bash
+$ sudo yum install -y --enablerepo=epel git
+```
+
+- Install ansible
+
+```bash
+$ sudo yum install -y --enablerepo=epel ansible
+```
+
+### Ubuntu
+
+- Install ansible
+
+```bash
+$ sudo apt update
+$ sudo apt install ansible
 ```
 
 ## How to use

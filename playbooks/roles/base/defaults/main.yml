@@ -23,3 +23,5 @@ build_packages:
   - { name: ncurses-devel }
   - { name: libevent-devel }
   - { name: libffi-devel }
+build_libs:
+  - { name: lib64readline-dev }

@@ -32,7 +32,6 @@ homebrew_packages:
   - { name: git }
   - { name: git-lfs }
   - { name: zsh }
-  - { name: the_silver_searcher }
   - { name: ripgrep }
   - { name: global }
   - { name: jq }
