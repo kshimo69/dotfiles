@@ -24,6 +24,8 @@ build_packages:
   - { name: libevent-devel }
   - { name: libffi-devel }
 build_libs:
+  - { name: gcc }
+  - { name: g++ }
   - { name: libreadline-dev }
   - { name: libbz2-dev }
   - { name: libsqlite3-dev }
