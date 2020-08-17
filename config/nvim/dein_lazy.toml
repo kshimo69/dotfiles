@@ -6,21 +6,6 @@
 # hook_post_update o       o      プラグインが更新された直後
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-on_i = 1
-hook_source = 'source ~/.config/nvim/plugins/deoplete.rc.vim'
-
-[[plugins]]
-repo = 'Shougo/neosnippet'
-depends = ['neosnippet-snippets']
-on_i = 1
-on_ft = ['snippet']
-hook_source = 'source ~/.config/nvim/plugins/neosnippet.rc.vim'
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
 repo = 'Shougo/neoyank.vim'
 
 [[plugins]]
@@ -115,12 +100,6 @@ call denite#custom#action('file', 'qfreplace', function('MyDeniteReplace'))
 '''
 
 [[plugins]]
-repo = 'zchee/deoplete-jedi'
-depends = ['deoplete.nvim']
-on_ft = 'python'
-hook_source = 'source ~/.config/nvim/plugins/deoplete-jedi.rc.vim'
-
-[[plugins]]
 repo = 'jmcantrell/vim-virtualenv'
 on_ft = 'python'
 
@@ -132,12 +111,6 @@ hook_source = 'source ~/.config/nvim/plugins/jedi.rc.vim'
 [[plugins]]
 repo = 'hynek/vim-python-pep8-indent'
 on_ft = 'python'
-
-[[plugins]]
-repo = 'zchee/deoplete-clang'
-depends = ['deoplete.nvim']
-on_ft = ['c', 'cpp', 'cmake']
-hook_source = 'source ~/.config/nvim/plugins/deoplete-clang.rc.vim'
 
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'
@@ -185,11 +158,6 @@ repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 [[plugins]]
-repo = 'Shougo/neoinclude.vim'
-depends = ['deoplete.nvim']
-on_ft = ['c', 'cpp']
-
-[[plugins]]
 repo = 'pearofducks/ansible-vim'
 on_ft = 'ansible'
 
@@ -213,20 +181,6 @@ on_map = '<Plug>'
 hook_add = 'source ~/.config/nvim/plugins/quickrun.rc.vim'
 
 [[plugins]]
-repo = 'fatih/vim-go'
-# fnでPrintlnを出したいので先にneosnippetが読まれるように
-depends = ['neosnippet']
-on_ft = 'go'
-hook_add = 'source ~/.config/nvim/plugins/vim-go.rc.vim'
-
-[[plugins]]
-repo = 'deoplete-plugins/deoplete-go'
-depends = ['deoplete.nvim']
-build = 'make'
-on_ft = 'go'
-hook_source = 'source ~/.config/nvim/plugins/deoplete-go.rc.vim'
-
-[[plugins]]
 repo = 'justinhoward/fzf-neoyank'
 depends = ['neoyank.vim', 'fzf.vim']
 on_func = ['FZFNeoyank', 'FZFNeoyankSelection']
@@ -237,6 +191,5 @@ repo = 'uarun/vim-protobuf'
 on_ft = 'proto'
 
 [[plugins]]
-repo = 'lighttiger2505/deoplete-vim-lsp'
-depends = ['deoplete']
-on_map = '<Plug>'
+repo = 'mattn/vim-goimports'
+on_ft = 'go'

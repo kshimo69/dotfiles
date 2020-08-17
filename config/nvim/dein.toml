@@ -33,10 +33,6 @@ repo = 'kassio/neoterm'
 hook_add = 'source ~/.config/nvim/plugins/neoterm.rc.vim'
 
 [[plugins]]
-repo = 'neomake/neomake'
-hook_add = 'source ~/.config/nvim/plugins/neomake.rc.vim'
-
-[[plugins]]
 repo = 'Yggdroot/indentLine'
 hook_add = 'source ~/.config/nvim/plugins/indentline.rc.vim'
 
@@ -57,9 +53,7 @@ repo = 'aliev/vim-compiler-python'
 [[plugins]]
 repo = 'janko-m/vim-test'
 depends = ['vim-dispatch']
-hook_add = '''
-let g:test#strategy = 'dispatch'
-'''
+hook_add = 'source ~/.config/nvim/plugins/vim-test.rc.vim'
 
 [[plugins]]
 repo = 'junegunn/fzf'
@@ -85,13 +79,42 @@ hook_add = 'source ~/.config/nvim/plugins/vim-easymotion.rc.vim'
 repo = 'AndrewRadev/splitjoin.vim'
 
 [[plugins]]
+repo = 'leafgarland/typescript-vim'
+
+[[plugins]]
 repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+hook_add = 'source ~/.config/nvim/plugins/asyncomplete.rc.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
 repo = 'prabirshrestha/vim-lsp'
+hook_add = 'source ~/.config/nvim/plugins/vim-lsp.rc.vim'
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
+hook_add = 'source ~/.config/nvim/plugins/vim-lsp-settings.rc.vim'
 
 [[plugins]]
-repo = 'leafgarland/typescript-vim'
+repo = 'SirVer/ultisnips'
+hook_add = 'source ~/.config/nvim/plugins/ultisnips.rc.vim'
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+
+[[plugins]]
+repo = 'thomasfaingnaert/vim-lsp-snippets'
+
+[[plugins]]
+repo = 'thomasfaingnaert/vim-lsp-ultisnips'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+hook_add = 'source ~/.config/nvim/plugins/vim-vsnip.rc.vim'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
