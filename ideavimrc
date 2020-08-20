@@ -1,7 +1,10 @@
+let mapleader=" "
+
 set number
 set ambiwidth=double
 set textwidth=0
 set showcmd
+set showmode
 set wildmenu
 set wildchar=<tab>
 set wildmode=longest:full,full
@@ -12,7 +15,30 @@ set hlsearch
 set wrapscan
 set clipboard=unnamed,unnamedplus
 
+" plugins
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set textobj-entire
+set ReplaceWithRegister
+
+set ideajoin
+
 source ~/.config/nvim/keymap.rc.vim
 
+nnoremap <C-o> :<C-u>action Back<CR>
+nnoremap <C-i> :<C-u>action Forward<CR>
+nnoremap <C-S-o> <C-o>
+nnoremap <C-S-i> <C-i>
+nnoremap [m :<C-u>action MethodUp<CR>
+nnoremap ]m :<C-u>action MethodDown<CR>
+nnoremap [c :<C-u>action VcsShowPrevChangeMarker<CR>
+nnoremap ]c :<C-u>action VcsShowNextChangeMarker<CR>
+nnoremap [e :<C-u>action GotoPreviousError<CR>
+nnoremap ]e :<C-u>action GotoNextError<CR>
 nnoremap ,f :action SearchEverywhere<CR>
 nnoremap ,g :action FindInPath<CR>
+map <leader>f <Plug>(easymotion-s)
+map <leader>e <Plug>(easymotion-f)
