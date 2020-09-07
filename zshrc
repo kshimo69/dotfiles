@@ -61,6 +61,9 @@ export PIP_RESPECT_VIRTUALENV=true
 # % export GTAGDBPATH=~/.inctags
 # % export GTAGSLABEL=exuberant-ctags
 
+# docker
+COMPOSE_DOCKER_CLI_BUILD=1
+
 alias ls='ls --color=auto'
 alias vi='nvim'
 alias vim='nvim'
