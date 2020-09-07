@@ -1,49 +1,49 @@
 [include]
-    path = ~/.gitconfig.local
+	path = ~/.gitconfig.local
 [core]
-    excludesfile = ~/.gitignore
-    autocrlf = input
-    symlinks = true
+	excludesfile = ~/.gitignore
+	autocrlf = input
+	symlinks = true
 [color]
-    ui = auto
+	ui = auto
 [log]
-    date = iso
+	date = iso
 [alias]
-    co = checkout
-    cob = checkout -b
-    ci = commit
-    b = branch
-    st = status -sb
-    s = status -s
-    d = diff
-    dc = diff --cached
-    fo = fetch origin
-    po = pull origin
-    pr = pull --rebase
-    ro = rebase origin
-    g = log --pretty=format:'%C(bold blue)%h%C(reset) %ad %s %C(bold black)[%an]%C(reset)%C(bold yellow)%d%C(reset)' --graph
-    newly = log HEAD@{1}..HEAD --reverse
-    info = remote show origin
-    delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
-    pull-dry-run = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
-    fixup = commit --amend -C HEAD
-    chown = commit --amend --reset-author  # authorを変える(と日時も変わる)
-    newdate = !git commit --amend --date=\"$(date -R)\"  # 日時を現在時刻に
-    currentbranchname = symbolic-ref --short HEAD
-    # 特定のファイルの特定のリビジョンの内容が見たい
-    # git show HASH:path/to/file
-    unstage = reset HEAD
+	co = checkout
+	cob = checkout -b
+	ci = commit
+	b = branch
+	st = status -sb
+	s = status -s
+	d = diff
+	dc = diff --cached
+	fo = fetch origin
+	po = pull origin
+	pr = pull --rebase
+	ro = rebase origin
+	g = log --pretty=format:'%C(bold blue)%h%C(reset) %ad %s %C(bold black)[%an]%C(reset)%C(bold yellow)%d%C(reset)' --graph
+	newly = log HEAD@{1}..HEAD --reverse
+	info = remote show origin
+	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+	pull-dry-run = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
+	fixup = commit --amend -C HEAD
+	chown = commit --amend --reset-author  # authorを変える(と日時も変わる)
+	newdate = !git commit --amend --date=\"$(date -R)\"  # 日時を現在時刻に
+	currentbranchname = symbolic-ref --short HEAD
+	# 特定のファイルの特定のリビジョンの内容が見たい
+	# git show HASH:path/to/file
+	unstage = reset HEAD
 [diff]
-    algorithm = histogram
+	algorithm = histogram
 [pager]
-    log = diff-highlight | less
-    show = diff-highlight | less
-    diff = diff-highlight | less
-    branch = false
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+	branch = false
 [http]
-    sslVerify = false
+	sslVerify = false
 [interactive]
-    diffFilter = diff-highlight
+	diffFilter = diff-highlight
 [credential]
 	helper = store
 [ghq]
