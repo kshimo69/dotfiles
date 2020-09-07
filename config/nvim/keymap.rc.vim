@@ -2,7 +2,9 @@
 inoremap jj <Esc>
 
 " Insertモードを抜けたら日本語入力OFF
-inoremap <silent> <ESC> <ESC>:set iminsert=2<CR>
+if has('gui_running')
+  inoremap <silent> <ESC> <ESC>:set iminsert=2<CR>
+endif
 
 " ESCを二回押すことでハイライトを無効に
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
