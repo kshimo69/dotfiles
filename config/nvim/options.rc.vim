@@ -1,5 +1,5 @@
 " 行番号の表示
-set number
+"set number
 " 長いテキストの折り返し
 set wrap
 set ambiwidth=double

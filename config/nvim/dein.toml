@@ -85,19 +85,19 @@ repo = 'leafgarland/typescript-vim'
 repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
-repo = 'prabirshrestha/asyncomplete.vim'
-hook_add = 'source ~/.config/nvim/plugins/asyncomplete.rc.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
-
-[[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 hook_add = 'source ~/.config/nvim/plugins/vim-lsp.rc.vim'
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
 hook_add = 'source ~/.config/nvim/plugins/vim-lsp-settings.rc.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+hook_add = 'source ~/.config/nvim/plugins/asyncomplete.rc.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
 repo = 'SirVer/ultisnips'
@@ -107,17 +107,25 @@ hook_add = 'source ~/.config/nvim/plugins/ultisnips.rc.vim'
 repo = 'honza/vim-snippets'
 
 [[plugins]]
-repo = 'thomasfaingnaert/vim-lsp-snippets'
+repo = 'prabirshrestha/asyncomplete-ultisnips.vim'
+hook_add = 'source ~/.config/nvim/plugins/asyncomplete-ultisnips.rc.vim'
 
 [[plugins]]
-repo = 'thomasfaingnaert/vim-lsp-ultisnips'
+repo = 'yami-beta/asyncomplete-omni.vim'
+hook_add = 'source ~/.config/nvim/plugins/asyncomplete-omni.rc.vim'
 
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip'
-hook_add = 'source ~/.config/nvim/plugins/vim-vsnip.rc.vim'
+#[[plugins]]
+#repo = 'thomasfaingnaert/vim-lsp-snippets'
 
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip-integ'
+#[[plugins]]
+#repo = 'thomasfaingnaert/vim-lsp-ultisnips'
+
+#[[plugins]]
+#repo = 'hrsh7th/vim-vsnip'
+#hook_add = 'source ~/.config/nvim/plugins/vim-vsnip.rc.vim'
+
+#[[plugins]]
+#repo = 'hrsh7th/vim-vsnip-integ'
 
 [[plugins]]
 repo = 'Shougo/defx.nvim'

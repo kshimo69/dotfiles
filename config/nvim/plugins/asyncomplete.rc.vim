@@ -1,4 +1,4 @@
-" let g:asyncomplete_auto_popup = 1
+"let g:asyncomplete_auto_popup = 0
 " let g:asyncomplete_auto_completeopt = 0
 let g:asyncomplete_popup_delay = 200
 
@@ -16,3 +16,6 @@ inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 set completeopt+=menuone
+"set completeopt+=menuone,noinsert,noselect,preview
+
+"autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
