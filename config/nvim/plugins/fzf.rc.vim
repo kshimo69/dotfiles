@@ -30,7 +30,7 @@ command! -bang -nargs=* Ag
 " Rgで?を押すとプレビュー
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading --color=always --hidden --smart-case '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
@@ -47,6 +47,7 @@ endfunction
 "nnoremap <C-b> :Buffers<CR>
 nnoremap <C-g> :Rg<Space>
 nnoremap <C-p> :call FzfOmniFiles()<CR>
+nnoremap <C-l> :Lines<CR>
 nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>fg :GFiles?<CR>
 nnoremap <Leader>fb :Buffers<CR>

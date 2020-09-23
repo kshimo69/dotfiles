@@ -118,3 +118,7 @@ hook_add = 'source ~/.config/nvim/plugins/vim-vsnip.rc.vim'
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip-integ'
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+hook_add = 'source ~/.config/nvim/plugins/defx.rc.vim'
