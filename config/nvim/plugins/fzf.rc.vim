@@ -54,3 +54,16 @@ nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>fm :Marks<CR>
 nnoremap <Leader>fh :History<CR>
 nnoremap <Leader>fc :Command<CR>
+
+vnoremap <C-g> :call SearchVisualSelectionWithRg()<CR>
+function! SearchVisualSelectionWithRg() range
+  let old_reg = getreg('"')
+  let old_regtype = getregtype('"')
+  let old_clipboard = &clipboard
+  set clipboard&
+  normal! ""gvy
+  let selection = getreg('"')
+  call setreg('"', old_reg, old_regtype)
+  let &clipboard = old_clipboard
+  execute 'Rg' selection
+endfunction
