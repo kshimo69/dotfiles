@@ -58,8 +58,11 @@ if dein#check_install()
 endif
 
 " 消したものがあったらクリーン
-call map(dein#check_clean(), "delete(v:val, 'rf')")
-call dein#recache_runtimepath()
+command! CleanupDein call s:CleanupDein()
+function! s:CleanupDein()
+  call map(dein#check_clean(), "delete(v:val, 'rf')")
+  call dein#recache_runtimepath()
+endfunction
 
 filetype plugin indent on
 syntax enable

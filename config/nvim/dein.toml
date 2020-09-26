@@ -111,8 +111,16 @@ repo = 'prabirshrestha/asyncomplete-ultisnips.vim'
 hook_add = 'source ~/.config/nvim/plugins/asyncomplete-ultisnips.rc.vim'
 
 [[plugins]]
-repo = 'yami-beta/asyncomplete-omni.vim'
-hook_add = 'source ~/.config/nvim/plugins/asyncomplete-omni.rc.vim'
+repo = 'prabirshrestha/asyncomplete-buffer.vim'
+hook_add = 'source ~/.config/nvim/plugins/asyncomplete-buffer.rc.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-file.vim'
+hook_add = 'source ~/.config/nvim/plugins/asyncomplete-file.rc.vim'
+
+#[[plugins]]
+#repo = 'yami-beta/asyncomplete-omni.vim'
+#hook_add = 'source ~/.config/nvim/plugins/asyncomplete-omni.rc.vim'
 
 #[[plugins]]
 #repo = 'thomasfaingnaert/vim-lsp-snippets'
