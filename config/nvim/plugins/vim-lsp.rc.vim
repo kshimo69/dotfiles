@@ -5,8 +5,10 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <C-]> <plug>(lsp-definition)
   nmap <buffer> <f2> <plug>(lsp-rename)
   nmap <buffer> <Leader>d <plug>(lsp-type-definition)
+  nmap <buffer> <Leader>a <plug>(lsp-peek-type-definition)
   nmap <buffer> <Leader>r <plug>(lsp-references)
   nmap <buffer> <Leader>i <plug>(lsp-implementation)
+  nmap <buffer> gh <plug>(lsp-hover)
   inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 endfunction
 
