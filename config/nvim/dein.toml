@@ -128,12 +128,12 @@ hook_add = 'source ~/.config/nvim/plugins/asyncomplete-file.rc.vim'
 #[[plugins]]
 #repo = 'thomasfaingnaert/vim-lsp-ultisnips'
 
-#[[plugins]]
-#repo = 'hrsh7th/vim-vsnip'
-#hook_add = 'source ~/.config/nvim/plugins/vim-vsnip.rc.vim'
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+hook_add = 'source ~/.config/nvim/plugins/vim-vsnip.rc.vim'
 
-#[[plugins]]
-#repo = 'hrsh7th/vim-vsnip-integ'
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
 
 [[plugins]]
 repo = 'Shougo/defx.nvim'

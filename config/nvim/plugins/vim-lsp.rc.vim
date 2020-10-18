@@ -27,3 +27,6 @@ let g:lsp_highlight_references_enabled = 1
 
 " go
 let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
+
+" typescript
+let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server']
