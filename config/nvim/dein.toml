@@ -138,3 +138,6 @@ repo = 'hrsh7th/vim-vsnip-integ'
 [[plugins]]
 repo = 'Shougo/defx.nvim'
 hook_add = 'source ~/.config/nvim/plugins/defx.rc.vim'
+
+[[plugins]]
+repo = 'herringtondarkholme/yats.vim'
