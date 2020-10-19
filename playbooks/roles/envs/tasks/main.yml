@@ -220,3 +220,4 @@
     - { s: zpreztorc, d: .zpreztorc }
     - { s: zprofile, d: .zprofile }
     - { s: bin, d: bin }
+    - { s: vsnip, d: .vsnip }
