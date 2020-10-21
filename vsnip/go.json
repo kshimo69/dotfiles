@@ -115,7 +115,7 @@
 			"body": "fmt.Printf(\"$1\", ${2:var})",
 			"description": "Snippet for fmt.Printf()"
 		},
-		"fmt.Printf": {
+		"fmt.Printf variable content": {
 			"prefix": "fff",
 			"body": "fmt.Printf(\"${1:var}: %#+v\\\\n\", ${1:var})",
 			"description": "Snippet for fmt.Printf()"
