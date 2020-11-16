@@ -21,6 +21,7 @@ homebrew_cask_packages:
   - { name: font-cica }
   - { name: alacritty }
   - { name: emacs }
+  - { name: font-hackgen }
 
 homebrew_packages:
   - { name: readline }
