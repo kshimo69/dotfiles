@@ -91,6 +91,8 @@ if [ "`uname`" = "Darwin" ]; then
     alias goland='open /Applications/GoLand.app'
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
     alias gvim='d:/vim/gvim.exe'
+elif uname -a | grep -q microsoft; then
+    alias open='powershell.exe /c start'
 fi
 if [ "${TERM}" = "eterm-color" ]; then
     alias ls='ls -F'
