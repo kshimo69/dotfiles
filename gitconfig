@@ -4,6 +4,8 @@
 	excludesfile = ~/.gitignore
 	autocrlf = input
 	symlinks = true
+	preloadindex = true
+	fscache = true
 [color]
 	ui = auto
 [log]
