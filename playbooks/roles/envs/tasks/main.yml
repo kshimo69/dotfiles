@@ -203,6 +203,7 @@
     - { s: config/karabiner, d: .config/karabiner }
     - { s: config/nvim, d: .config/nvim }
     - { s: config/alacritty, d: .config/alacritty }
+    - { s: direnvrc, d: .direnvrc }
     - { s: emacs.d/init.el, d: .emacs.d/init.el }
     - { s: emacs.d/custom.el, d: .emacs.d/custom.el }
     - { s: flake8rc, d: .flake8rc }
