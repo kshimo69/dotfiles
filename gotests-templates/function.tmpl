@@ -36,7 +36,7 @@ func {{.TestName}}(t *testing.T) {
 			{{Want .}} {{.Type}}
 		{{- end}}
 		{{- if .ReturnsError}}
-			wantErr error
+			wantErr assert.ErrorAssertionFunc
 		{{- end}}
 	}{
 		// TODO: Add test cases.
@@ -59,21 +59,7 @@ func {{.TestName}}(t *testing.T) {
 			{{- end}}
 			{{template "results" $f}} {{template "call" $f}}
 			{{- if .ReturnsError}}
-				if err != nil && tt.wantErr == nil {
-					assert.Fail(t, fmt.Sprintf(
-						"Error not expected but got one:\n"+
-							"error: %q", err),
-					)
-					{{- if .TestResults}}
-						{{if .Subtests }}return{{else}}continue{{end}}
-					{{- end}}
-				}
-				if tt.wantErr != nil {
-					assert.EqualError(t, err, tt.wantErr.Error())
-					{{- if .TestResults}}
-						{{if .Subtests }}return{{else}}continue{{end}}
-					{{- end}}
-				}
+				tt.wantErr(t, err)
 			{{- end}}
 			{{- range .TestResults}}
 				assert.Equal(t, tt.{{Want .}}, {{Got .}})
