@@ -16,3 +16,4 @@ GTAGS
 .envrc
 *.code-workspace
 .direnv
+mytools
