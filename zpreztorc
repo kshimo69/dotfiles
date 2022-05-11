@@ -36,7 +36,9 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'prompt' \
   'git' \
-  'python'
+  'python' \
+  'syntax-highlighting' \
+  'autosuggestions'
 
 #
 # Autosuggestions
