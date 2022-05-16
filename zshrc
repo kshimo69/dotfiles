@@ -324,6 +324,18 @@ function gba() {
     fi
 }
 
+function kx() {
+    local context
+    context=$(kubectl config get-contexts | f +m | sed "s/\* *//" | awk '{print $1}' | sed "s/.* //")
+    if zle; then
+        LBUFFER+="kubectl config use-contex $context"
+        CURSOR=$#LBUFFER
+        zle -R -c
+    else
+        print -z -f "kubectl config use-contex $context"
+    fi
+}
+
 # The next line updates PATH for the Google Cloud SDK.
 [ -f $HOME/.google-cloud-sdk/path.zsh.inc ] && source $HOME/.google-cloud-sdk/path.zsh.inc
 
