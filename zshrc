@@ -96,7 +96,7 @@ if [ "`uname`" = "Darwin" ]; then
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
     alias gvim='d:/vim/gvim.exe'
 elif uname -a | grep -q microsoft; then
-    alias open='powershell.exe /c start'
+    alias open='/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe /c start'
     alias code="'/mnt/c/Users/${USER}/AppData/Local/Programs/Microsoft VS Code/bin/code'"
 fi
 if [ "${TERM}" = "eterm-color" ]; then

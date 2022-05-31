@@ -23,6 +23,7 @@ PATH=$HOME/bin:$PATH
 PATH=$HOME/local/bin:$PATH
 PATH=$HOME/.cabal/bin:$PATH
 PATH=$HOME/.cask/bin:$PATH
+PATH=$PATH:/mnt/c/Windows/System32
 
 # go
 export GOENV_DISABLE_GOPATH=1
