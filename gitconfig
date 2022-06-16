@@ -58,4 +58,4 @@
 [pull]
 	rebase = false
 [submodule]
-	recurse = true
+	recurse = false
