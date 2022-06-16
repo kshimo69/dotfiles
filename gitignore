@@ -17,3 +17,6 @@ GTAGS
 *.code-workspace
 .direnv
 mytools
+.vscode/configurationCache.log
+.vscode/dryrun.log
+.vscode/targets.log
