@@ -35,6 +35,7 @@
 	# 特定のファイルの特定のリビジョンの内容が見たい
 	# git show HASH:path/to/file
 	unstage = reset HEAD
+    pick = cherry-pick -x
 [diff]
 	algorithm = histogram
 [pager]
