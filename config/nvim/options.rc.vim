@@ -47,6 +47,8 @@ set hlsearch
 set wrapscan
 " 文字列置換をインタラクティブに表示する
 set inccommand=split
+" マウス無効
+set mouse=
 
 " バックスラッシュやクエスチョンを状況に合わせ自動的にエスケープ
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
