@@ -181,6 +181,7 @@ au MyAutoCmd BufRead *.log setl syntax=off
 
 " gitのコミットメッセージを書く時はspell check on
 au MyAutoCmd FileType gitcommit setlocal spell
+au MyAutoCmd FileType gitcommit setlocal textwidth=0
 
 " Remember cursor potition
 au MyAutoCmd BufReadPost *
