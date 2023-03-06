@@ -1,6 +1,10 @@
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 
+" Insertモードで矢印で移動した時にUndo blockを途切れさせない
+inoremap <Left> <C-G>U<Left>
+inoremap <Right> <C-G>U<Right>
+
 " Insertモードを抜けたら日本語入力OFF
 if has('gui_running')
   inoremap <silent> <ESC> <ESC>:set iminsert=2<CR>
