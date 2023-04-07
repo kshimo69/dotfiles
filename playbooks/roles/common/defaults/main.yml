@@ -22,6 +22,7 @@ homebrew_cask_packages:
   - { name: alacritty }
   - { name: emacs }
   - { name: font-hackgen }
+  - { name: font-hackgen-nerd }
 
 homebrew_packages:
   - { name: readline }
@@ -30,7 +31,7 @@ homebrew_packages:
   - { name: autoconf }
   - { name: automake }
   - { name: pkg-config }
-  - { name: fontforge }
+  #- { name: fontforge }
   - { name: git }
   - { name: git-lfs }
   - { name: zsh }
@@ -40,7 +41,7 @@ homebrew_packages:
   - { name: ghq }
   - { name: wget }
   - { name: curl }
-  - { name: ctags }
+  #- { name: ctags }
   - { name: tmux }
   - { name: packer }
   - { name: docker-completion }

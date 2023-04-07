@@ -168,6 +168,11 @@
     repo: https://github.com/sorin-ionescu/prezto.git
     dest: ~/.zprezto
 
+- name: Install Prezto Contrib
+  git:
+    repo: https://github.com/belak/prezto-contrib
+    dest: ~/.zprezto/contrib
+
 - name: Create .zsh directory
   file:
     path: ~/.zsh
@@ -220,5 +225,6 @@
     - { s: zshrc, d: .zshrc }
     - { s: zpreztorc, d: .zpreztorc }
     - { s: zprofile, d: .zprofile }
+    - { s: spaceship.zsh, d: .spaceship.zsh }
     - { s: bin, d: bin }
     - { s: vsnip, d: .vsnip }

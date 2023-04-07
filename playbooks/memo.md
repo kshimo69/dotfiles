@@ -8,3 +8,8 @@
     - "ansible_distribution": "MacOSX"
     - "ansible_distribution_version": "10.12.6"
     - "ansible_os_family": "Darwin"
+- Linuxbrewでglicつきのgccがインストールされると厄介
+  - `brew info gcc | grep "with: --without-glibc"` となっていない場合、以下のように入れ直す
+  - `brew uninstall gcc glibc`
+  - `brew cleanup`
+  - `brew install gcc --without-glibc`

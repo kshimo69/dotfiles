@@ -20,7 +20,7 @@
 
 - name: Install Linuxbrew
   when: linuxbrew_installed.changed == True
-  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 - name: Setup Linuxbrew
   blockinfile:
