@@ -58,74 +58,39 @@
     repo: https://github.com/pyenv/pyenv-which-ext.git
     dest: ~/.anyenv/envs/pyenv/plugins/pyenv-which-ext.git
 
-- name: Install python {{ python2_version }}
+- name: Install python {{ python_version }}
   args:
     # guard for only once.
-    creates: ~/.anyenv/envs/pyenv/versions/{{ python2_version }}
+    creates: ~/.anyenv/envs/pyenv/versions/{{ python_version }}
   shell: |
-    bash -lc "pyenv install {{ python2_version | quote }}"
-    bash -lc "pyenv global {{ python2_version | quote }}"
+    bash -lc "pyenv install {{ python_version | quote }}"
 
-- name: Check already install neovim2
-  shell: bash -lc "pyenv versions | grep -q neovim2"
-  register: neovim2_installed
-  failed_when: neovim2_installed.rc not in [0, 1]
-  changed_when: neovim2_installed.rc != 0
+- name: Check already install neovim
+  shell: bash -lc "pyenv versions | grep -q neovim"
+  register: neovim_installed
+  failed_when: neovim_installed.rc not in [0, 1]
+  changed_when: neovim_installed.rc != 0
 
-- name: Check neovim2 version
-  shell: bash -lc "pyenv versions | grep -q {{ python2_version | quote }}/envs/neovim2"
-  register: neovim2_version
-  failed_when: neovim2_version.rc not in [0, 1]
-  changed_when: neovim2_version.rc != 0
+- name: Check neovim version
+  shell: bash -lc "pyenv versions | grep -q {{ python_version | quote }}/envs/neovim"
+  register: neovim_version
+  failed_when: neovim_version.rc not in [0, 1]
+  changed_when: neovim_version.rc != 0
 
-- name: Uninstall old neovim2
-  when: neovim2_installed.changed == False and neovim2_version.changed == True
-  shell: bash -lc "pyenv uninstall -f neovim2"
+- name: Uninstall old neovim
+  when: neovim_installed.changed == False and neovim_version.changed == True
+  shell: bash -lc "pyenv uninstall -f neovim"
 
-- name: Create python virtualenv for neovim2
+- name: Create python virtualenv for neovim
   args:
     # guard for only once.
-    creates: ~/.anyenv/envs/pyenv/versions/neovim2
-  shell: bash -lc "pyenv virtualenv {{ python2_version | quote }} neovim2"
+    creates: ~/.anyenv/envs/pyenv/versions/neovim
+  shell: bash -lc "pyenv virtualenv {{ python_version | quote }} neovim"
 
-- name: Install neovim2
-  changed_when: '"Requirement already up-to-date: neovim" not in neovim2_install_result.stdout'
-  register: neovim2_install_result
-  shell: bash -lc 'pyenv activate neovim2; pip install -U neovim'
-
-- name: Install python {{ python3_version }}
-  args:
-    # guard for only once.
-    creates: ~/.anyenv/envs/pyenv/versions/{{ python3_version }}
-  shell: |
-    bash -lc "pyenv install {{ python3_version | quote }}"
-
-- name: Check already install neovim3
-  shell: bash -lc "pyenv versions | grep -q neovim3"
-  register: neovim3_installed
-  failed_when: neovim3_installed.rc not in [0, 1]
-  changed_when: neovim3_installed.rc != 0
-
-- name: Check neovim3 version
-  shell: bash -lc "pyenv versions | grep -q {{ python3_version | quote }}/envs/neovim3"
-  register: neovim3_version
-  failed_when: neovim3_version.rc not in [0, 1]
-  changed_when: neovim3_version.rc != 0
-
-- name: Uninstall old neovim3
-  when: neovim3_installed.changed == False and neovim3_version.changed == True
-  shell: bash -lc "pyenv uninstall -f neovim3"
-
-- name: Create python virtualenv for neovim3
-  args:
-    # guard for only once.
-    creates: ~/.anyenv/envs/pyenv/versions/neovim3
-  shell: bash -lc "pyenv virtualenv {{ python3_version | quote }} neovim3"
-
-- name: Install neovim3
-  changed_when: '"Requirement already up-to-date: neovim" not in neovim3_install_result.stdout'
-  register: neovim3_install_result
-  shell: bash -lc 'pyenv activate neovim3; pip install -U neovim'
+- name: Install neovim
+  changed_when: '"Requirement already up-to-date: neovim" not in neovim_install_result.stdout'
+  register: neovim_install_result
+  shell: bash -lc 'pyenv activate neovim; pip install -U neovim'
 
 - name: Install pip packages
   pip:
