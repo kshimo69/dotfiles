@@ -17,6 +17,7 @@ homebrew_cask_packages:
 homebrew_packages:
   - { name: readline }
   - { name: openssl, install_options: [force] }
+  - { name: bzip2 }
   - { name: autoconf }
   - { name: automake }
   - { name: pkg-config }
@@ -33,7 +34,11 @@ homebrew_packages:
   - { name: packer }
   - { name: docker-completion }
   - { name: libffi }
+  - { name: libxml2 }
+  - { name: libxmlsec1 }
   - { name: sqlite }
+  - { name: xz }
+  - { name: zlib }
   - { name: gettext }
   - { name: gnupg }
   - { name: bat }
