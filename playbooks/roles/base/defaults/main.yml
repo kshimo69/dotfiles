@@ -30,6 +30,7 @@ build_libs:
   - { name: libbz2-dev }
   - { name: libsqlite3-dev }
   - { name: libssl-dev }
+  - { name: zlib1g }
   - { name: zlib1g-dev }
   - { name: llvm }
   - { name: libncurses5-dev }
