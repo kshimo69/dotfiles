@@ -27,17 +27,17 @@ build_libs:
   - { name: gcc }
   - { name: g++ }
   - { name: libreadline-dev }
-  - { name: libbz2-dev }
-  - { name: libsqlite3-dev }
-  - { name: libssl-dev }
-  - { name: zlib1g-dev }
-  - { name: wget }
-  - { name: curl }
-  - { name: llvm }
-  - { name: libncurses5-dev }
-  - { name: libncursesw5-dev }
-  - { name: xz-utils }
-  - { name: tk-dev }
-  - { name: libffi-dev }
-  - { name: liblzma-dev }
-  - { name: python-openssl }
+  # - { name: libbz2-dev }
+  # - { name: libsqlite3-dev }
+  # - { name: libssl-dev }
+  # - { name: zlib1g-dev }
+  # - { name: wget }
+  # - { name: curl }
+  # - { name: llvm }
+  # - { name: libncurses5-dev }
+  # - { name: libncursesw5-dev }
+  # - { name: xz-utils }
+  # - { name: tk-dev }
+  # - { name: libffi-dev }
+  # - { name: liblzma-dev }
+  # - { name: python-openssl }
