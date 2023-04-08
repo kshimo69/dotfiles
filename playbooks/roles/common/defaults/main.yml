@@ -5,33 +5,21 @@ homebrew_taps:
   - { tap: sanemat/font }
 
 homebrew_cask_packages:
-  - { name: xquartz }
-  #- { name: font-ricty-diminished }
-  #- { name: font-source-code-pro-for-powerline }
-  - { name: iterm2 }
   - { name: google-japanese-ime }
   - { name: karabiner-elements }
-  - { name: docker }
-  #- { name: google-chrome }
   - { name: visual-studio-code }
-  #- { name: google-cloud-sdk }
-  #- { name: virtualbox }
-  #- { name: virtualbox-extension-pack }
   - { name: slack }
   - { name: font-cica }
   - { name: alacritty }
-  - { name: emacs }
   - { name: font-hackgen }
   - { name: font-hackgen-nerd }
 
 homebrew_packages:
   - { name: readline }
-  #- { name: openssl, install_options: [force, with-openssl] }
   - { name: openssl, install_options: [force] }
   - { name: autoconf }
   - { name: automake }
   - { name: pkg-config }
-  #- { name: fontforge }
   - { name: git }
   - { name: git-lfs }
   - { name: zsh }
@@ -41,11 +29,9 @@ homebrew_packages:
   - { name: ghq }
   - { name: wget }
   - { name: curl }
-  #- { name: ctags }
   - { name: tmux }
   - { name: packer }
   - { name: docker-completion }
-  - { name: docker-compose-completion }
   - { name: libffi }
   - { name: sqlite }
   - { name: gettext }
@@ -54,8 +40,7 @@ homebrew_packages:
   - { name: neovim }
   - { name: direnv }
   - { name: expect }
-  #- { name: unar }  # mac only?
-  - { name: python-yq }
+  - { name: yq }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11
