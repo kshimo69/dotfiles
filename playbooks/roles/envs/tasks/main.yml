@@ -94,7 +94,7 @@
 
 - name: Install pip packages
   pip:
-    executable: ~/.anyenv/envs/pyenv/shims/pip
+    executable: ~/.anyenv/envs/pyenv/versions/{{ python_version | quote }}/bin/pip
     name: "{{ item.name }}"
     state: latest
   with_items:
