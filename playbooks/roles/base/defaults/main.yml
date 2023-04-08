@@ -40,4 +40,5 @@ build_libs:
   - { name: libxmlsec1-dev }
   - { name: libffi-dev }
   - { name: liblzma-dev }
-  # - { name: python-openssl }
+  - { name: libedit-dev }
+  - { name: python3-openssl }
