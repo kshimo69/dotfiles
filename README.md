@@ -54,11 +54,16 @@ $ sudo yum install -y --enablerepo=epel ansible
 
 ### Ubuntu
 
-- Install ansible
+- Install [homebrew](https://brew.sh/)
 
 ```bash
-$ sudo apt update
-$ sudo apt install ansible
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+- Install [ansible](http://www.ansible.com/home)
+
+```bash
+$ brew install ansible
 ```
 
 ## How to use
