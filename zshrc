@@ -26,6 +26,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 # environment
 export LANG="ja_JP.UTF-8"
+export TZ='Asia/Tokyo'
 export TERM="xterm-256color"
 export GREP=rg
 export GREP_COLOR="01;35"
