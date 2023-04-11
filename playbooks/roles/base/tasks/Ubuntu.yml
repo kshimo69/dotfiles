@@ -24,6 +24,13 @@
       eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
       #export LD_LIBRARY_PATH="$(brew --prefix)/lib:$LD_LIBRARY_PATH"
 
+- name: Install gcc without glibc
+  homebrew:
+    path: /home/linuxbrew/.linuxbrew/bin
+    name: gcc
+    install_options: without-glibc
+    state: latest
+
 - name: Install build essentials
   apt:
     name: "{{ item.name }}"
