@@ -36,20 +36,6 @@
 #  debug:
 #    var: restore_iterm2_config_result
 
-# font
-- name: Clone RictyDiminished-for-Powerline
-  git:
-    repo: https://github.com/mzyy94/RictyDiminished-for-Powerline.git
-    dest: "{{ CACHE }}/ricty-powerline"
-  notify: "Install ricty powerline"
-
-- name: Brew install ricty
-  homebrew:
-    name: ricty
-    install_options: [with-powerline]
-    state: latest
-  notify: "Install ricty"
-
 # linuxでエラーになるので
 - name: Brew install plantuml
   homebrew:
