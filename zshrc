@@ -338,7 +338,7 @@ function kx() {
 }
 
 # spaceship
-[ -f $HOME/.spaceship.zsh ] && source $HOME/.spaceship.zsh
+#[ -f $HOME/.spaceship.zsh ] && source $HOME/.spaceship.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
 [ -f $HOME/.google-cloud-sdk/path.zsh.inc ] && source $HOME/.google-cloud-sdk/path.zsh.inc
