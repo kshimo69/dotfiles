@@ -46,6 +46,7 @@ homebrew_packages:
   - { name: direnv }
   - { name: expect }
   - { name: yq }
+  - { name: autossh }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11
