@@ -115,6 +115,10 @@ fi
 if which pbcopy >/dev/null 2>&1 ; then
     # Mac
     COPY='pbcopy'
+elif which clip.exe >/dev/null 2>&1 ; then
+    COPY='clip.exe'
+    alias pbcopy='clip.exe'
+    alias pbpaste='powershell.exe -Command Get-Clipboard'
 elif which xsel >/dev/null 2>&1 ; then
     # Linux
     COPY='xsel --input --clipboard'
