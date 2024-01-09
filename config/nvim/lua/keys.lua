@@ -6,7 +6,7 @@ local keymap = vim.api.nvim_set_keymap
 keymap('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
- 
+
 -- 入力モード中に素早くjjと入力した場合はESCとみなす
 keymap('i', 'jj', '<Esc>', opts)
 
