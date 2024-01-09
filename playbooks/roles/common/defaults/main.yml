@@ -31,7 +31,6 @@ homebrew_packages:
   - { name: wget }
   - { name: curl }
   - { name: tmux }
-  - { name: packer }
   - { name: docker-completion }
   - { name: libffi }
   - { name: libxml2 }
