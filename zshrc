@@ -249,7 +249,7 @@ fi
 # fzf
 # https://github.com/junegunn/fzf
 export FZF_TMUX=0
-export FZF_DEFAULT_OPTS='--border --ansi --select-1 --multi --extended --cycle'
+export FZF_DEFAULT_OPTS='--reverse --border --ansi --select-1 --multi --extended --cycle'
 export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_OPTS='--preview "$HOMEBREW_PREFIX/bin/bat --color=always --style=header,grid --line-range :100 {}"'
 #alias f="fzf-tmux -d $FZF_DEFAULT_OPTS"
