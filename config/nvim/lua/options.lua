@@ -214,9 +214,12 @@ au MyAutoCmd BufWinEnter *
 ]]
 
 -- make, grep などのコマンド後に自動的にQuickFixを開く
-vim.cmd[[
-au MyAutoCmd QuickfixCmdPost make,*grep* cwindow
-]]
+vim.api.nvim_create_autocmd({ 'QuickfixCmdPost' }, {
+  pattern = 'make,*grep*',
+  group = 'MyAutoCmd',
+  command = 'cwindow',
+})
+
 -- (l以外で始まる)QuickFixコマンドの実行が終わったらQuickFixウインドウを開く
 --au MyAutoCmd QuickFixCmdPost [^l]* copen
 
@@ -298,21 +301,11 @@ set tags=./tags;
 ]]
 
 -- 開いているファイルのディレクトリに移動
-vim.cmd[[
-command! -nargs=? -complete=dir -bang CD call s:ChangeCurrentDir('<args>', '<bang>')
-function! s:ChangeCurrentDir(directory, bang)
-  if a:directory == ''
-    lcd %:p:h
-  else
-    execute 'lcd' . a:directory
-  endif
-
-  if a:bang == ''
-    pwd
-  endif
-endfunction
-nnoremap <silent> <Space>cd :<C-u>CD<CR>
-]]
+function ChangeCurrentDir()
+  vim.cmd('lcd %:p:h')
+  vim.cmd('pwd')
+end
+vim.api.nvim_set_keymap('n', '<Space>cd', ':lua ChangeCurrentDir()<CR>', { noremap = true, silent = true })
 
 -- 編集前のファイルとのdiff
 vim.cmd[[
@@ -328,22 +321,19 @@ hi TagbarSignature ctermfg=Yellow
 ]]
 
 -- mark
-vim.cmd[[
-if !exists('g:markrement_char')
-  let g:markrement_char = [
-  \   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-  \   'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-  \ ]
-endif
-"nnoremap <silent>m :<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap <silent>m :<C-u>call s:AutoMarkrement()<CR>
-function! s:AutoMarkrement()
-  if !exists('b:markrement_pos')
-    let b:markrement_pos = 0
+if not vim.g.markrement_char then
+  vim.g.markrement_char = {
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+  }
+end
+function AutoMarkrement()
+  if not vim.b.markrement_pos then
+    vim.b.markrement_pos = 1
   else
-    let b:markrement_pos = (b:markrement_pos + 1) % len(g:markrement_char)
-  endif
-  execute 'mark' g:markrement_char[b:markrement_pos]
-  echo 'marked' g:markrement_char[b:markrement_pos]
-endfunction
-]]
+    vim.b.markrement_pos = (vim.b.markrement_pos % #vim.g.markrement_char) + 1
+  end
+  vim.cmd('normal! m' .. vim.g.markrement_char[vim.b.markrement_pos])
+  print('marked ' .. vim.g.markrement_char[vim.b.markrement_pos])
+end
+vim.api.nvim_set_keymap('n', 'm', ':lua AutoMarkrement()<CR>', { noremap = true, silent = true })
