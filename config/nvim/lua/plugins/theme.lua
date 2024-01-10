@@ -1,7 +1,8 @@
 return {
   {
     'cocopon/iceberg.vim',
-    event = "VimEnter",
+    --event = "VimEnter",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       vim.cmd.colorscheme "iceberg"
       vim.cmd[[
