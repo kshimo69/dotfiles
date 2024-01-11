@@ -29,7 +29,6 @@ return {
         'json',
         'jsonc',
         'jsonnet',
-        'lua',
         'make',
         'markdown',
         'markdown_inline',
