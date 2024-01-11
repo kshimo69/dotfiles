@@ -1,6 +1,6 @@
 return {
   'numToStr/Comment.nvim',
-  lazy = false,
+  event = "VeryLazy",
   config = function()
     require('Comment').setup()
     vim.keymap.set('n', ',,', '<Plug>(comment_toggle_linewise_current)', { desc = 'Comment toggle current line' })
