@@ -69,7 +69,7 @@ return {
     vim.keymap.set('n', '<C-g>', ':LiveGrepGitRoot<cr>', { desc = 'search by [G]rep on Git Root' })
     vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'search current [W]ord' })
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'search [H]elp' })
-    vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+    vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'find existing [B]uffers' })
     vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'search [R]esume' })
   end
 }
