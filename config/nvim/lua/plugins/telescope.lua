@@ -56,6 +56,15 @@ return {
     end
     vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
+    local function grep_string_git_root()
+      local git_root = find_git_root()
+      if git_root then
+        builtin.grep_string {
+          search_dirs = { git_root },
+        }
+      end
+    end
+
     local function telescope_live_grep_open_files()
       builtin.live_grep {
         grep_open_files = true,
@@ -63,13 +72,23 @@ return {
       }
     end
 
+    -- File
     vim.keymap.set('n', '<leader>f/', telescope_live_grep_open_files, { desc = 'search [/] in Open Files' })
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'search [F]iles' })
-    vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'search by [G]rep' })
-    vim.keymap.set('n', '<C-g>', ':LiveGrepGitRoot<cr>', { desc = 'search by [G]rep on Git Root' })
-    vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'search current [W]ord' })
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'search [H]elp' })
+    vim.keymap.set('n', '<leader>fg', live_grep_git_root, { desc = 'search by [G]rep on Git Root' })
+    vim.keymap.set('n', '<C-g>', live_grep_git_root, { desc = 'search by [G]rep on Git Root' })
+    vim.keymap.set('n', '<leader>fw', grep_string_git_root, { desc = 'search current [W]ord on Git Root' })
+    -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'search [H]elp' })
+
+    -- Vim
+    vim.keymap.set('n', '<leader>fh', builtin.oldfiles, { desc = 'search file [H]istory' })
     vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'find existing [B]uffers' })
+    vim.keymap.set('n', '<leader>fy', builtin.registers, { desc = 'search [Y]ank list' })
+    vim.keymap.set('n', '<leader>fq', builtin.quickfixhistory, { desc = 'search [Q]uickfix history' })
     vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'search [R]esume' })
+    vim.keymap.set('n', '<leader>fm', builtin.marks, { desc = 'search [M]arks' })
+    vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = 'search [C]ommands' })
+
+    -- LSP
   end
 }
