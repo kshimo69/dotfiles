@@ -45,7 +45,7 @@ vim.o.wrapscan = true
 -- Decrease update time
 vim.o.updatetime = 100
 vim.o.timeout = true
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 500
 
 -- Set completeopt to have a better completion experience
 --vim.o.completeopt = 'menuone,noselect'
@@ -56,7 +56,7 @@ vim.o.t_vb = ''
 vim.o.vb = true
 
 -- 長いテキストの折り返し
-vim.o.wrap = true
+vim.o.wrap = false
 vim.o.ambiwidth = 'double'
 -- 1行の文字数が多い場合も表示する
 vim.o.display = 'lastline'
@@ -173,7 +173,7 @@ vim.o.title = true
 vim.o.ruler = true
 
 -- カーソル行の表示
---set cursorline
+vim.o.cursorline = true
 -- カレントバッファだけカーソルラインを表示する
 --au MyAutoCmd WinLeave * set nocursorline
 --au MyAutoCmd WinLeave * set nocursorcolumn
@@ -183,7 +183,7 @@ hi CursorLine gui=underline term=underline cterm=underline
 hi Visual term=reverse cterm=reverse
 ]]
 -- カーソルラインが遅いので無効に
-vim.o.nocursorline = true
+-- vim.o.nocursorline = true
 
 -- syntax highlightが重い時があるので調整
 vim.o.synmaxcol = 300

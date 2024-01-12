@@ -63,9 +63,9 @@ keymap('n', '[toggle]h', ':if exists("syntax_on") <Bar> syntax off <Bar> else <B
 keymap('c', 'w!!', 'w !sudo tee > /dev/null %', opts)
 
 -- QuickFixの操作
-keymap('n', '<C-j>', ':<C-u>cnext<CR>', opts)
-keymap('n', '<C-k>', ':<C-u>cprevious<CR>', opts)
-keymap('n', '<C-q>', ':<C-u>cclose<CR>', opts)
+-- keymap('n', '<C-j>', ':<C-u>cnext<CR>', opts)
+-- keymap('n', '<C-k>', ':<C-u>cprevious<CR>', opts)
+-- keymap('n', '<C-q>', ':<C-u>cclose<CR>', opts)
 
 -- タブ
 --keymap('n', 'tt', ':<c-u>VimFilerTab<cr>', opts)
