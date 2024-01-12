@@ -1,8 +1,9 @@
 return {
   'nvim-lualine/lualine.nvim',
-  event = "VimEnter",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     'nvim-tree/nvim-web-devicons',
+    'cocopon/iceberg.vim',
   },
   config = function()
     require('lualine').setup {
