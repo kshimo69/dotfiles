@@ -9,9 +9,72 @@ return {
 
     -- Adds LSP completion capabilities
     'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
 
     -- Adds a number of user-friendly snippets
     'rafamadriz/friendly-snippets',
   },
+  config = function()
+    local cmp = require('cmp')
+    local luasnip = require 'luasnip'
+    require('luasnip.loaders.from_vscode').lazy_load()
+    luasnip.config.setup {}
+    cmp.setup({
+      enabled = true,
+      completion = {
+        completeopt = 'menu,menuone,noinsert',
+      },
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
+      },
+      mapping = cmp.mapping.preset.insert({
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete {},
+        ['<CR>'] = cmp.mapping.confirm {
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        },
+      }),
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
+      sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'buffer' },
+        { name = 'path' },
+      }),
+      experimental = {
+        ghost_text = true,
+      },
+    })
+
+    vim.cmd[[
+    highlight LspReferenceText  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=orange
+    highlight LspReferenceRead  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=orange
+    highlight LspReferenceWrite cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=orange
+    augroup lsp_document_highlight
+      autocmd!
+      autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
+    augroup END
+    ]]
+    -- vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+    --   pattern = '*',
+    --   group = 'MyAutoCmd',
+    --   command = 'lua vim.lsp.buf.document_highlight()',
+    -- })
+    -- vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+    --   pattern = '*',
+    --   group = 'MyAutoCmd',
+    --   command = 'lua vim.lsp.buf.clear_references()',
+    -- })
+  end,
 }
