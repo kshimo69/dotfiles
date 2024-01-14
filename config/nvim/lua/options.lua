@@ -337,3 +337,13 @@ function AutoMarkrement()
   print('marked ' .. vim.g.markrement_char[vim.b.markrement_pos])
 end
 vim.api.nvim_set_keymap('n', 'm', ':lua AutoMarkrement()<CR>', { noremap = true, silent = true })
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = 'MyAutoCmd',
+  pattern = '*',
+})
