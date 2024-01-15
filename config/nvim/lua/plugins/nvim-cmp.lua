@@ -33,6 +33,8 @@ return {
       mapping = cmp.mapping.preset.insert({
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete {},
@@ -74,7 +76,7 @@ return {
       },
     })
 
-    vim.cmd[[
+    vim.cmd [[
     highlight LspReferenceText  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=orange
     highlight LspReferenceRead  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=orange
     highlight LspReferenceWrite cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=orange
