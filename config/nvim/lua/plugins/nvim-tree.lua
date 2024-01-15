@@ -7,6 +7,7 @@ return {
   },
   config = function()
     vim.keymap.set('n', '<leader>ee', function() vim.cmd("NvimTreeFindFile") end)
+    vim.keymap.set('n', '<C-E>', function() vim.cmd("NvimTreeFindFile") end)
     require("nvim-tree").setup {}
   end,
 }
