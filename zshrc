@@ -324,11 +324,11 @@ function kx() {
     local context
     context=$(kubectl config get-contexts | f +m | sed "s/\* *//" | awk '{print $1}' | sed "s/.* //")
     if zle; then
-        LBUFFER+="kubectl config use-contex $context"
+        LBUFFER+="kubectl config use-context $context"
         CURSOR=$#LBUFFER
         zle -R -c
     else
-        print -z -f "kubectl config use-contex $context"
+        print -z -f "kubectl config use-context $context"
     fi
 }
 
