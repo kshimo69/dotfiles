@@ -17,11 +17,11 @@ return {
         })
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-        mason_lspconfig.setup_handlers({function(server_name)
-            require('lspconfig')[server_name].setup {
-              capabilities = capabilities,
-            }
-          end,
+        mason_lspconfig.setup_handlers({ function(server_name)
+          require('lspconfig')[server_name].setup {
+            capabilities = capabilities,
+          }
+        end,
         })
       end,
     },
@@ -52,7 +52,7 @@ return {
   config = function()
     -- keyboard shortcut
     vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
-    vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+    -- vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
     vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
     vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.definition()<CR>')
     vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
