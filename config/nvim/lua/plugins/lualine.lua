@@ -8,9 +8,11 @@ return {
   config = function()
     require('lualine').setup {
       options = {
-        theme = 'iceberg',
+        theme = 'dracula',
+        component_separators = '|',
+        section_separators = '',
         disabled_filetypes = {
-          statusline = { 'NvimTree'},
+          statusline = { 'NvimTree' },
         }
       },
     }

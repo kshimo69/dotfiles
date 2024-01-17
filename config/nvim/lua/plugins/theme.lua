@@ -3,7 +3,7 @@ return {
     'cocopon/iceberg.vim',
     config = function()
       vim.cmd.colorscheme "iceberg"
-      vim.cmd[[
+      vim.cmd [[
         " 検索の色調整
         "au MyAutoCmd ColorScheme * hi Search term=reverse ctermfg=253 ctermbg=66 guifg=#FFFFFF guibg=#455354
         "au MyAutoCmd ColorScheme * hi TabLineSel term=reverse ctermfg=255 ctermbg=33 guifg=#FFFFFF guibg=#333333

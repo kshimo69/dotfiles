@@ -77,9 +77,9 @@ return {
     })
 
     vim.cmd [[
-    highlight LspReferenceText  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=orange
-    highlight LspReferenceRead  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=orange
-    highlight LspReferenceWrite cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=orange
+    highlight LspReferenceText  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=lightyellow
+    highlight LspReferenceRead  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=lightyellow
+    highlight LspReferenceWrite cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=grey guibg=lightyellow
     augroup lsp_document_highlight
       autocmd!
       autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
