@@ -37,6 +37,7 @@
 	# git show HASH:path/to/file
 	unstage = reset HEAD
     pick = cherry-pick -x
+    parent = !git show-branch --sha1-name | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | grep '+' | head -1 | awk -F'[]~^[]' '{print $2}'
 [diff]
 	algorithm = histogram
 [pager]
