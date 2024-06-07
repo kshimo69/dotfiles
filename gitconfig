@@ -20,6 +20,7 @@
 	d = diff
 	dc = diff --cached
 	fo = fetch origin
+	fp = fetch origin --prune
 	po = pull origin
 	pu = push -u origin HEAD
 	pr = pull --rebase
