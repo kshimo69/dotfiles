@@ -72,6 +72,6 @@ return {
         }
       }
     }
-    vim.keymap.set("n", "<leader>ll", ":<C-u>Jaq<CR>", { silent = true })
+    vim.keymap.set("n", "<leader>r", ":<C-u>Jaq<CR>", { silent = true })
   end
 }
