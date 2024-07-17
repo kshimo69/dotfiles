@@ -26,6 +26,8 @@
 	pr = pull --rebase
 	ro = rebase origin
 	g = log --pretty=format:'%C(bold blue)%h%C(reset) %ad %s %C(bold black)[%an]%C(reset)%C(bold yellow)%d%C(reset)' --graph
+	ll = log --graph --decorate --oneline
+	lf = log --follow
 	newly = log HEAD@{1}..HEAD --reverse
 	info = remote show origin
 	delete-merged-branches = !git branch --merged | grep -v \\* | grep -v \\+ | xargs -I % git branch -d %
@@ -42,6 +44,7 @@
 	rebase-from-branch = !"git rebase -i $(git merge-base ${1:-master} HEAD)"
 [diff]
 	algorithm = histogram
+	renames = true
 [pager]
 	log = diff-highlight | less
 	show = diff-highlight | less
