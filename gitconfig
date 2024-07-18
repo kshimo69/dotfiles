@@ -19,6 +19,7 @@
 	s = status -s
 	d = diff
 	dc = diff --cached
+	f = fetch origin --prune
 	fo = fetch origin
 	fp = fetch origin --prune
 	po = pull origin
