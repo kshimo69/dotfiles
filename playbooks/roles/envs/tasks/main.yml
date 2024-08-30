@@ -4,6 +4,15 @@
     path: ~/.config
     state: directory
 
+- name: Install asdf {{ asdf_version }}
+  args:
+    # guard for only once.
+    creates: ~/.asdf
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: ~/.asdf
+    version: {{ asdf_version | quote }}
+
 - name: Install anyenv
   git:
     repo: https://github.com/anyenv/anyenv

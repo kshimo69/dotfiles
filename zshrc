@@ -238,7 +238,18 @@ zle -N peco-select-gitadd
 bindkey "^g^a" peco-select-gitadd
 
 # anyenv
-[ -f $HOME/.anyenv/bin/anyenv ] && eval "$(anyenv init - zsh)"
+function enable-anyenv() {
+    [ -f $HOME/.anyenv/bin/anyenv ] && eval "$(anyenv init - zsh)"
+}
+
+# asdf
+if [ -d ~/.asdf ]; then
+    . "$HOME/.asdf/asdf.sh"
+    # append completions to fpath
+    fpath=(${ASDF_DIR}/completions $fpath)
+    # initialise completions with ZSH's compinit
+    autoload -Uz compinit && compinit
+fi
 
 # direnv
 if which direnv >/dev/null 2>&1
