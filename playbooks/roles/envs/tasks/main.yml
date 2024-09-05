@@ -202,3 +202,4 @@
     - { s: spaceship.zsh, d: .spaceship.zsh }
     - { s: bin, d: bin }
     - { s: vsnip, d: .vsnip }
+    - { s: asdfrc, d: .asdfrc }
