@@ -52,6 +52,9 @@ fi
 export PYTHONSTARTUP=$HOME/.pythonrc.py
 export PIP_RESPECT_VIRTUALENV=true
 
+# asdf golang
+export ASDF_GOLANG_MOD_VERSION_ENABLED=false
+
 # itermplot
 #export MPLBACKEND="module://itermplot"
 
