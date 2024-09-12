@@ -31,18 +31,6 @@ export GOPATH=$HOME/work
 PATH=$PATH:$GOPATH/bin
 export GO111MODULE=auto
 
-# http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
-# git clone https://github.com/riywo/anyenv ~/.anyenv
-if [ -d $HOME/.anyenv/bin ]
-then
-    PATH=$HOME/.anyenv/bin:$PATH
-    # for tmux
-    for D in `ls $HOME/.anyenv/envs`
-    do
-        PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
-    done
-fi
-
 if [ -f $HOME/jack_knives/.nexenv.zsh ]
 then
     source $HOME/jack_knives/.nexenv.zsh

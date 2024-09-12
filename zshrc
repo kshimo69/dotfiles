@@ -242,7 +242,18 @@ bindkey "^g^a" peco-select-gitadd
 
 # anyenv
 function enable-anyenv() {
-    [ -f $HOME/.anyenv/bin/anyenv ] && eval "$(anyenv init - zsh)"
+    if [ -d $HOME/.anyenv/bin ]
+    then
+        [ -f $HOME/.anyenv/bin/anyenv ] || return
+        eval "$($HOME/.anyenv/bin/anyenv init - zsh)"
+        # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
+        PATH=$HOME/.anyenv/bin:$PATH
+        # for tmux
+        for D in `ls $HOME/.anyenv/envs`
+        do
+            PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
+        done
+    fi
 }
 
 # asdf
