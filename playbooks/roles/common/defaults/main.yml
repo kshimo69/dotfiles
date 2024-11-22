@@ -46,6 +46,7 @@ homebrew_packages:
   - { name: expect }
   - { name: yq }
   - { name: autossh }
+  - { name: starship }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11

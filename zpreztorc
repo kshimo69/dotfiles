@@ -34,12 +34,12 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
-  'contrib-prompt' \
-  'prompt' \
   'git' \
   'python' \
   'syntax-highlighting' \
   'autosuggestions'
+  # 'contrib-prompt' \
+  # 'prompt' \
 
 #
 # Autosuggestions

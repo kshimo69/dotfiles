@@ -366,4 +366,10 @@ function kx() {
 # The next line enables shell command completion for gcloud.
 [ -f $HOME/.google-cloud-sdk/completion.zsh.inc ] && source $HOME/.google-cloud-sdk/completion.zsh.inc
 
+# starship
+if which starship >/dev/null 2>&1
+then
+    eval "$(starship init zsh)"
+fi
+
 true
