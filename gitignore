@@ -13,7 +13,6 @@ GPATH
 GRTAGS
 GTAGS
 .snippets/private
-.envrc
 *.code-workspace
 .direnv
 mytools
