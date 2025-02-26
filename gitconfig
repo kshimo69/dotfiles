@@ -6,6 +6,7 @@
 	symlinks = true
 	preloadindex = true
 	fscache = true
+	untrackedcache = true
 [color]
 	ui = auto
 [log]
