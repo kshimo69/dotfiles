@@ -305,7 +305,7 @@ function fd() {
     dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | f +m) && cd "$dir"
 }
 
-function gh() {
+function githistory() {
     local h
     h=$(git log --pretty=oneline $* | f +m | awk '{print $1}')
     if zle; then
@@ -316,8 +316,8 @@ function gh() {
         print -z -f '%s' "$h"
     fi
 }
-zle -N gh
-bindkey '^g^h' gh
+zle -N githistory
+bindkey '^g^h' githistory
 
 function gb() {
     local branch
