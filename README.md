@@ -30,6 +30,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 
 ```bash
 $ brew install ansible
+$ sudo launchctl limit maxfiles unlimited
 ```
 
 ### RHEL
