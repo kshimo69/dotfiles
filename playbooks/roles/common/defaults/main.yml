@@ -4,6 +4,7 @@ homebrew_taps:
   - { tap: homebrew/cask-fonts }
   - { tap: sanemat/font }
   - { tap: ynqa/tap }
+  - { tap: caskroom/versions }
 
 homebrew_cask_packages:
   - { name: google-japanese-ime }
@@ -33,6 +34,7 @@ homebrew_packages:
   - { name: curl }
   - { name: tmux }
   - { name: docker-completion }
+  - { name: docker-compose-completion }
   - { name: libffi }
   - { name: libxml2 }
   - { name: libxmlsec1 }
@@ -49,6 +51,8 @@ homebrew_packages:
   - { name: starship }
   - { name: ynqa/tap/jnv }
   - { name: graphviz }
+  - { name: gnu-getopt }
+  - { name: gnu-sed }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11
