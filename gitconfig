@@ -54,6 +54,7 @@
 	branch = false
 [http]
 	sslVerify = false
+	postBuffer = 524288000
 [interactive]
 	diffFilter = diff-highlight
 [credential]
