@@ -51,63 +51,63 @@
   failed_when: anyenv_update_result.rc not in [0, 1]
   changed_when: anyenv_update_result.rc != 0
 
-- name: Install pyenv
-  args:
-    # guard for only once.
-    creates: ~/.anyenv/envs/pyenv
-  shell: bash -lc 'anyenv install pyenv'
-
-- name: Install pyenv-virtualenv
-  git:
-    repo: https://github.com/yyuu/pyenv-virtualenv.git
-    dest: ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
-
-- name: Install pyenv-which-ext
-  git:
-    repo: https://github.com/pyenv/pyenv-which-ext.git
-    dest: ~/.anyenv/envs/pyenv/plugins/pyenv-which-ext.git
-
-- name: Install python {{ python_version }}
-  args:
-    # guard for only once.
-    creates: ~/.anyenv/envs/pyenv/versions/{{ python_version }}
-  shell: |
-    bash -lc "pyenv install {{ python_version | quote }}"
-
-- name: Check already install neovim
-  shell: bash -lc "pyenv versions | grep -q neovim"
-  register: neovim_installed
-  failed_when: neovim_installed.rc not in [0, 1]
-  changed_when: neovim_installed.rc != 0
-
-- name: Check neovim version
-  shell: bash -lc "pyenv versions | grep -q {{ python_version | quote }}/envs/neovim"
-  register: neovim_version
-  failed_when: neovim_version.rc not in [0, 1]
-  changed_when: neovim_version.rc != 0
-
-- name: Uninstall old neovim
-  when: neovim_installed.changed == False and neovim_version.changed == True
-  shell: bash -lc "pyenv uninstall -f neovim"
-
-- name: Create python virtualenv for neovim
-  args:
-    # guard for only once.
-    creates: ~/.anyenv/envs/pyenv/versions/neovim
-  shell: bash -lc "pyenv virtualenv {{ python_version | quote }} neovim"
-
-- name: Install neovim
-  changed_when: '"Requirement already up-to-date: neovim" not in neovim_install_result.stdout'
-  register: neovim_install_result
-  shell: bash -lc 'pyenv activate neovim; pip install -U neovim'
-
-- name: Install pip packages
-  pip:
-    executable: ~/.anyenv/envs/pyenv/versions/{{ python_version | quote }}/bin/pip
-    name: "{{ item.name }}"
-    state: latest
-  with_items:
-    - "{{ pip_packages }}"
+# - name: Install pyenv
+#   args:
+#     # guard for only once.
+#     creates: ~/.anyenv/envs/pyenv
+#   shell: bash -lc 'anyenv install pyenv'
+#
+# - name: Install pyenv-virtualenv
+#   git:
+#     repo: https://github.com/yyuu/pyenv-virtualenv.git
+#     dest: ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
+#
+# - name: Install pyenv-which-ext
+#   git:
+#     repo: https://github.com/pyenv/pyenv-which-ext.git
+#     dest: ~/.anyenv/envs/pyenv/plugins/pyenv-which-ext.git
+#
+# - name: Install python {{ python_version }}
+#   args:
+#     # guard for only once.
+#     creates: ~/.anyenv/envs/pyenv/versions/{{ python_version }}
+#   shell: |
+#     bash -lc "pyenv install {{ python_version | quote }}"
+#
+# - name: Check already install neovim
+#   shell: bash -lc "pyenv versions | grep -q neovim"
+#   register: neovim_installed
+#   failed_when: neovim_installed.rc not in [0, 1]
+#   changed_when: neovim_installed.rc != 0
+#
+# - name: Check neovim version
+#   shell: bash -lc "pyenv versions | grep -q {{ python_version | quote }}/envs/neovim"
+#   register: neovim_version
+#   failed_when: neovim_version.rc not in [0, 1]
+#   changed_when: neovim_version.rc != 0
+#
+# - name: Uninstall old neovim
+#   when: neovim_installed.changed == False and neovim_version.changed == True
+#   shell: bash -lc "pyenv uninstall -f neovim"
+#
+# - name: Create python virtualenv for neovim
+#   args:
+#     # guard for only once.
+#     creates: ~/.anyenv/envs/pyenv/versions/neovim
+#   shell: bash -lc "pyenv virtualenv {{ python_version | quote }} neovim"
+#
+# - name: Install neovim
+#   changed_when: '"Requirement already up-to-date: neovim" not in neovim_install_result.stdout'
+#   register: neovim_install_result
+#   shell: bash -lc 'pyenv activate neovim; pip install -U neovim'
+#
+# - name: Install pip packages
+#   pip:
+#     executable: ~/.anyenv/envs/pyenv/versions/{{ python_version | quote }}/bin/pip
+#     name: "{{ item.name }}"
+#     state: latest
+#   with_items:
+#     - "{{ pip_packages }}"
 
 - name: Install goenv
   args:
@@ -128,14 +128,14 @@
     path: ~/.cache
     state: directory
 
-- name: Install dein
-  args:
-    # guard for only once.
-    creates: ~/.cache/dein/repos/github.com/Shougo/dein.vim
-  shell: |
-    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/install.sh
-    sh /tmp/install.sh ~/.cache/dein
-    rm -f /tmp/install.sh
+# - name: Install dein
+#   args:
+#     # guard for only once.
+#     creates: ~/.cache/dein/repos/github.com/Shougo/dein.vim
+#   shell: |
+#     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/install.sh
+#     sh /tmp/install.sh ~/.cache/dein
+#     rm -f /tmp/install.sh
 
 - name: Install Prezto
   git:
@@ -165,11 +165,11 @@
     state: directory
     recurse: yes
 
-- name: Create .emacs.d directory
-  file:
-    path: ~/.emacs.d/var/backup
-    state: directory
-    recurse: yes
+# - name: Create .emacs.d directory
+#   file:
+#     path: ~/.emacs.d/var/backup
+#     state: directory
+#     recurse: yes
 
 - name: Lynk config files
   file:
@@ -184,14 +184,14 @@
     - { s: config/alacritty, d: .config/alacritty }
     - { s: config/starship.toml, d: .config/starship.toml }
     - { s: direnvrc, d: .direnvrc }
-    - { s: emacs.d/init.el, d: .emacs.d/init.el }
-    - { s: emacs.d/custom.el, d: .emacs.d/custom.el }
-    - { s: flake8rc, d: .flake8rc }
+    # - { s: emacs.d/init.el, d: .emacs.d/init.el }
+    # - { s: emacs.d/custom.el, d: .emacs.d/custom.el }
+    # - { s: flake8rc, d: .flake8rc }
     - { s: gitconfig, d: .gitconfig }
     - { s: gitignore, d: .gitignore }
     - { s: globalrc, d: .globalrc }
     - { s: ideavimrc, d: .ideavimrc }
-    - { s: pythonrc.py, d: .pythonrc.py }
+    # - { s: pythonrc.py, d: .pythonrc.py }
     - { s: snippets, d: .snippets }
     - { s: tmux.conf, d: .tmux.conf }
     - { s: zlogin, d: .zlogin }

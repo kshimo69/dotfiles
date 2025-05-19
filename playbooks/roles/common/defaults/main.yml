@@ -3,6 +3,7 @@ homebrew_taps:
   - { tap: homebrew/cask }
   - { tap: homebrew/cask-fonts }
   - { tap: sanemat/font }
+  - { tap: ynqa/tap }
 
 homebrew_cask_packages:
   - { name: google-japanese-ime }
@@ -35,7 +36,6 @@ homebrew_packages:
   - { name: libffi }
   - { name: libxml2 }
   - { name: libxmlsec1 }
-  - { name: sqlite }
   - { name: xz }
   - { name: zlib }
   - { name: gettext }
@@ -47,6 +47,8 @@ homebrew_packages:
   - { name: yq }
   - { name: autossh }
   - { name: starship }
+  - { name: ynqa/tap/jnv }
+  - { name: graphviz }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11

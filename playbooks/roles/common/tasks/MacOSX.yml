@@ -55,35 +55,35 @@
   changed_when: brew_cleanup_result.rc != 0
 
 # iterm2
-- name: Copy iterm2 background image
-  copy:
-    src: iterm2_back.png
-    dest: "{{ ansible_user_dir }}/Pictures/iterm2_back.png"
+# - name: Copy iterm2 background image
+#   copy:
+#     src: iterm2_back.png
+#     dest: "{{ ansible_user_dir }}/Pictures/iterm2_back.png"
+#
+# - name: Convert iterm2 config
+#   template:
+#     src: com.googlecode.iterm2.plist.xml
+#     dest: /tmp/com.googlecode.iterm2.plist.xml
+#
+# - name: Restore iterm2 config
+#   shell: |
+#     cp "{{ ansible_user_dir }}/Library/Preferences/com.googlecode.iterm2.plist" /tmp/com.googlecode.iterm2.plist
+#     plutil -convert binary1 -o "{{ ansible_user_dir }}/Library/Preferences/com.googlecode.iterm2.plist" /tmp/com.googlecode.iterm2.plist.xml
+#     diff -q /tmp/com.googlecode.iterm2.plist "{{ ansible_user_dir }}/Library/Preferences/com.googlecode.iterm2.plist"
+#   register: restore_iterm2_config_result
+#   failed_when: restore_iterm2_config_result.rc not in [0, 1, 2]
+#   changed_when: restore_iterm2_config_result.rc != 0
 
-- name: Convert iterm2 config
-  template:
-    src: com.googlecode.iterm2.plist.xml
-    dest: /tmp/com.googlecode.iterm2.plist.xml
-
-- name: Restore iterm2 config
-  shell: |
-    cp "{{ ansible_user_dir }}/Library/Preferences/com.googlecode.iterm2.plist" /tmp/com.googlecode.iterm2.plist
-    plutil -convert binary1 -o "{{ ansible_user_dir }}/Library/Preferences/com.googlecode.iterm2.plist" /tmp/com.googlecode.iterm2.plist.xml
-    diff -q /tmp/com.googlecode.iterm2.plist "{{ ansible_user_dir }}/Library/Preferences/com.googlecode.iterm2.plist"
-  register: restore_iterm2_config_result
-  failed_when: restore_iterm2_config_result.rc not in [0, 1, 2]
-  changed_when: restore_iterm2_config_result.rc != 0
-
-- name: Setup OS X defaults
-  osx_defaults:
-    domain: "{{ item.domain }}"
-    key: "{{ item.key }}"
-    type: "{{ item.type }}"
-    value: "{{ item.value }}"
-    state: present
-  notify: "{{ item.notify | default(omit) }}"
-  with_items:
-    - "{{ osx_defaults }}"
+# - name: Setup OS X defaults
+#   osx_defaults:
+#     domain: "{{ item.domain }}"
+#     key: "{{ item.key }}"
+#     type: "{{ item.type }}"
+#     value: "{{ item.value }}"
+#     state: present
+#   notify: "{{ item.notify | default(omit) }}"
+#   with_items:
+#     - "{{ osx_defaults }}"
 
 - name: Delete ApplePressAndHoldEnabled for vscode
   osx_defaults:
