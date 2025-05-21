@@ -15,6 +15,8 @@ homebrew_cask_packages:
   - { name: alacritty }
   - { name: font-hackgen }
   - { name: font-hackgen-nerd }
+  - { name: openlens }
+  - { name: obsidian }
 
 homebrew_packages:
   - { name: readline }
