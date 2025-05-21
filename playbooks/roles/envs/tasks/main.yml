@@ -179,7 +179,7 @@
   with_items:
     - { s: ctags, d: .ctags }
     - { s: config/htop, d: .config/htop }
-    - { s: config/karabiner, d: .config/karabiner }
+    # - { s: config/karabiner, d: .config/karabiner }
     - { s: config/nvim, d: .config/nvim }
     - { s: config/alacritty, d: .config/alacritty }
     - { s: config/starship.toml, d: .config/starship.toml }
