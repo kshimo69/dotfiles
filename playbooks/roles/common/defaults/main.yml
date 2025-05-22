@@ -2,7 +2,7 @@
 homebrew_taps:
   - { tap: sanemat/font }
   - { tap: ynqa/tap }
-  - { tap: caskroom/versions }
+  - { tap: homebrew/cask-versions }
 
 homebrew_cask_packages:
   - { name: google-japanese-ime }
