@@ -32,7 +32,6 @@ homebrew_packages:
   - { name: curl }
   - { name: tmux }
   - { name: docker-completion }
-  - { name: docker-compose-completion }
   - { name: libffi }
   - { name: libxml2 }
   - { name: libxmlsec1 }
