@@ -11,7 +11,7 @@
   git:
     repo: https://github.com/asdf-vm/asdf.git
     dest: ~/.asdf
-    version: {{ asdf_version | quote }}
+    version: "{{ asdf_version | quote }}"
 
 - name: Install anyenv
   git:
