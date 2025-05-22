@@ -1,7 +1,5 @@
 ---
 homebrew_taps:
-  - { tap: homebrew/cask }
-  - { tap: homebrew/cask-fonts }
   - { tap: sanemat/font }
   - { tap: ynqa/tap }
   - { tap: caskroom/versions }
