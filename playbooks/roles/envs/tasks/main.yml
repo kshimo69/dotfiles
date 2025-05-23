@@ -4,11 +4,14 @@
     path: ~/.config
     state: directory
 
-- name: Install asdf {{ asdf_version }}
-  git:
-    repo: https://github.com/asdf-vm/asdf.git
-    dest: ~/.asdf
-    version: "{{ asdf_version | quote }}"
+- name: Create .asdf
+  args:
+    # guard for only once.
+    creates: ~/.asdf
+  shell: mkdir -p ~/.asdf/shims
+
+- name: Setup asdf completions
+  shell: mkdir -p ~/.asdf/completions && asdf completion zsh > ~/.asdf/completions/_asdf
 
 - name: Install anyenv
   git:
