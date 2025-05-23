@@ -51,6 +51,7 @@ homebrew_packages:
   - { name: gnu-getopt }
   - { name: gnu-sed }
   - { name: gh }
+  - { name: asdf }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11
