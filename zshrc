@@ -279,7 +279,10 @@ export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_OPTS='--preview "$HOMEBREW_PREFIX/bin/bat --color=always --style=header,grid --line-range :100 {}"'
 #alias f="fzf-tmux -d $FZF_DEFAULT_OPTS"
 alias f="fzf -d $FZF_DEFAULT_OPTS"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if which fzf >/dev/null 2>&1
+then
+	source <(fzf --zsh)
+fi
 
 function ga() {
     local selected
