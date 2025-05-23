@@ -5,9 +5,6 @@
     state: directory
 
 - name: Install asdf {{ asdf_version }}
-  args:
-    # guard for only once.
-    creates: ~/.asdf
   git:
     repo: https://github.com/asdf-vm/asdf.git
     dest: ~/.asdf
