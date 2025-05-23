@@ -119,13 +119,14 @@ history = 10000
 multiplier = 3
 
 [selection]
-save_to_clipboard = false
+save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
 [window]
 decorations = "full"
 dynamic_padding = false
 opacity = 0.9
+blur = ture
 option_as_alt = "OnlyLeft"
 startup_mode = "Windowed"
 
