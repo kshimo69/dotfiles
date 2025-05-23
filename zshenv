@@ -36,10 +36,7 @@ then
     source $HOME/jack_knives/.nexenv.zsh
 fi
 
-if which brew >/dev/null 2>&1
-then
-    eval $(brew shellenv)
-fi
+test -d /opt/homebrew && eval $(/opt/homebrew/bin/brew shellenv)
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 export PATH
