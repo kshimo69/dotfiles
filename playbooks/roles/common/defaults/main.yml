@@ -13,6 +13,7 @@ homebrew_cask_packages:
   - { name: font-hackgen }
   - { name: font-hackgen-nerd }
   - { name: obsidian }
+  - { name: devtoys }
 
 homebrew_packages:
   - { name: readline }
