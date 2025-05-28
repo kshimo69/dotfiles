@@ -204,3 +204,4 @@
     - { s: bin, d: bin }
     - { s: vsnip, d: .vsnip }
     - { s: asdfrc, d: .asdfrc }
+    - { s: tool-versions, d: .tool-versions }
