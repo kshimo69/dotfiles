@@ -1,3 +1,4 @@
 {
-	"window.title": "⚙︎ ${activeEditorLong}${separator}${rootName}"
+	"window.title": "⚙︎ ${activeEditorLong}${separator}${rootName}",
+	"svn.ignoreMissingSvnWarning": true
 }
