@@ -42,7 +42,7 @@ shape = "Block"
 
 [font]
 builtin_box_drawing = true
-size = 14.0
+size = 16.0
 
 [font.bold]
 family = "HackGen Console NF"
@@ -125,7 +125,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 [window]
 decorations = "full"
 dynamic_padding = false
-opacity = 0.9
+opacity = 0.8
 blur = true
 option_as_alt = "OnlyLeft"
 startup_mode = "Windowed"
