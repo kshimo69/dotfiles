@@ -360,6 +360,11 @@ function kx() {
     fi
 }
 
+if which asdf >/dev/null 2>&1
+then
+    export PATH="$(asdf where gcloud)/bin:$PATH"
+fi
+
 # spaceship
 #[ -f $HOME/.spaceship.zsh ] && source $HOME/.spaceship.zsh
 
