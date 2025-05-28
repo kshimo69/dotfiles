@@ -6,10 +6,12 @@ return {
     -- Automatically install LSPs to stdpath for neovim
     {
       'williamboman/mason.nvim',
+      version = "^1.0.0",
       config = true,
     },
     {
       'williamboman/mason-lspconfig.nvim',
+      version = "^1.0.0",
       config = function()
         local mason_lspconfig = require("mason-lspconfig")
         mason_lspconfig.setup({
