@@ -52,7 +52,7 @@ vim.o.timeoutlen = 500
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
-vim.o.t_vb = ''
+-- vim.o.t_vb = ''
 vim.o.vb = true
 
 -- 長いテキストの折り返し
@@ -67,7 +67,7 @@ vim.o.showcmd = true
 -- コマンドライン補完
 vim.o.wildmenu = true
 -- TABで補完
-vim.o.wildchar = '<tab>'
+vim.o.wildchar = vim.fn.char2nr('	')
 vim.o.wildmode = 'longest:full,full'
 -- コマンドヒストリー1000件
 vim.o.history = 1000
@@ -85,9 +85,9 @@ vim.o.expandtab = true
 vim.o.smarttab = true
 
 -- SwapファイルとBackupファイルを無効化する
-vim.o.nowritebackup = true
-vim.o.nobackup = true
-vim.o.noswapfile = true
+vim.o.writebackup = false
+vim.o.backup = false
+vim.o.swapfile = false
 
 -- 文字列置換をインタラクティブに表示する
 vim.o.inccommand = 'split'
@@ -163,7 +163,7 @@ vim.opt.diffopt:append({ 'filler,vertical' })
 vim.o.listchars = 'eol:$,tab:>-,trail:_'
 
 -- 日本語入力をリセットする
-vim.cmd[[
+vim.cmd [[
 au MyAutoCmd BufNewFile,BufRead * set iminsert=0
 ]]
 
@@ -178,7 +178,7 @@ vim.o.cursorline = true
 --au MyAutoCmd WinLeave * set nocursorline
 --au MyAutoCmd WinLeave * set nocursorcolumn
 --au MyAutoCmd WinEnter,BufRead * set cursorline
-vim.cmd[[
+vim.cmd [[
 hi CursorLine gui=underline term=underline cterm=underline
 hi Visual term=reverse cterm=reverse
 ]]
@@ -187,18 +187,18 @@ hi Visual term=reverse cterm=reverse
 
 -- syntax highlightが重い時があるので調整
 vim.o.synmaxcol = 300
-vim.cmd[[
+vim.cmd [[
 au MyAutoCmd BufRead *.log setl syntax=off
 ]]
 
 -- gitのコミットメッセージを書く時はspell check on
-vim.cmd[[
+vim.cmd [[
 au MyAutoCmd FileType gitcommit setlocal spell
 au MyAutoCmd FileType gitcommit setlocal textwidth=0
 ]]
 
 -- Remember cursor potition
-vim.cmd[[
+vim.cmd [[
 au MyAutoCmd BufReadPost *
 \ if line("'\"") > 0 && line ("'\"") <= line("$") |
 \     exe "normal! g'\"" |
@@ -227,25 +227,25 @@ vim.api.nvim_create_autocmd({ 'QuickfixCmdPost' }, {
 vim.o.autowrite = true
 
 -- QuickFixおよびHelpでは q でバッファを閉じる
-vim.cmd[[
+vim.cmd [[
 au MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 ]]
 
 -- p でpreview
-vim.cmd[[
+vim.cmd [[
 au MyAutoCmd FileType qf nnoremap <buffer> p <CR>zz<C-w>p
 au MyAutoCmd FileType qf nmap <silent> <buffer> j <Down>
 au MyAutoCmd FileType qf nmap <silent> <buffer> k <Up>
 ]]
 
 -- QuickFixのウインドウだけになったら閉じる
-vim.cmd[[
+vim.cmd [[
 au MyAutoCmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 ]]
 
 -- 個別のタブの表示設定をします
 -- http://doruby.kbmj.com/aisi/20091218/Vim__
-vim.cmd[[
+vim.cmd [[
 function! GuiTabLabel()
   " タブで表示する文字列の初期化をします
   let l:label = ''
@@ -276,9 +276,9 @@ endfunction
 
 -- guitablabel に上の関数を設定します
 -- その表示の前に %N というところでタブ番号を表示させています
-vim.cmd[[
-set guitablabel=%N:\ %{GuiTabLabel()}
-]]
+-- vim.cmd [[
+-- set guitablabel=%N:\ %{GuiTabLabel()}
+-- ]]
 
 -- AllMaps
 -- http://vim-users.jp/2011/02/hack203/
@@ -288,7 +288,7 @@ set guitablabel=%N:\ %{GuiTabLabel()}
 -- :AllMaps <buffer>
 -- どのスクリプトで定義されたかの情報も含め表示
 -- :verbose AllMaps <buffer>
-vim.cmd[[
+vim.cmd [[
 command!
 \   -nargs=* -complete=mapping
 \   AllMaps
@@ -296,7 +296,7 @@ command!
 ]]
 
 -- タグファイルはカレントディレクトリから上向きに検索
-vim.cmd[[
+vim.cmd [[
 set tags=./tags;
 ]]
 
@@ -305,10 +305,11 @@ function ChangeCurrentDir()
   vim.cmd('lcd %:p:h')
   vim.cmd('pwd')
 end
+
 vim.api.nvim_set_keymap('n', '<Space>cd', ':lua ChangeCurrentDir()<CR>', { noremap = true, silent = true })
 
 -- 編集前のファイルとのdiff
-vim.cmd[[
+vim.cmd [[
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
     \ | wincmd p | diffthis
@@ -316,7 +317,7 @@ endif
 ]]
 
 -- tagbarの色調整
-vim.cmd[[
+vim.cmd [[
 hi TagbarSignature ctermfg=Yellow
 ]]
 
@@ -336,6 +337,7 @@ function AutoMarkrement()
   vim.cmd('normal! m' .. vim.g.markrement_char[vim.b.markrement_pos])
   print('marked ' .. vim.g.markrement_char[vim.b.markrement_pos])
 end
+
 vim.api.nvim_set_keymap('n', 'm', ':lua AutoMarkrement()<CR>', { noremap = true, silent = true })
 
 -- [[ Highlight on yank ]]
