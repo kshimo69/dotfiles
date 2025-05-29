@@ -125,7 +125,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 [window]
 decorations = "full"
 dynamic_padding = false
-opacity = 0.8
+opacity = 0.6
 blur = true
 option_as_alt = "OnlyLeft"
 startup_mode = "Windowed"
