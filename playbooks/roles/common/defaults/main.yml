@@ -51,8 +51,10 @@ homebrew_packages:
   - { name: graphviz }
   - { name: gnu-getopt }
   - { name: gnu-sed }
+  - { name: gawk }
   - { name: gh }
   - { name: asdf }
+  - { name: coreutils }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11

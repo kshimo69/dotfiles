@@ -97,6 +97,7 @@ if [ "`uname`" = "Darwin" ]; then
     alias VIM='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/bin/mvim'
     alias ctags='`brew --prefix`/bin/ctags'
     alias goland='open /Applications/GoLand.app'
+    alias sed='gsed'
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
     alias gvim='d:/vim/gvim.exe'
 elif uname -a | grep -q microsoft; then
