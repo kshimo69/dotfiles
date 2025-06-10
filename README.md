@@ -92,6 +92,7 @@ $ ansible-playbook --force-handlers ./playbooks/local.yml --tags "common"
 - set default shell
 
 ```bash
+`which zsh` | sudo tee -a /etc/shells
 chsh -s `which zsh`
 ```
 
