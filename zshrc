@@ -257,14 +257,19 @@ function enable-anyenv() {
     fi
 }
 
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
+
 # asdf
 if [ -d ~/.asdf ]; then
     export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
     # append completions to fpath
     fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-    # initialise completions with ZSH's compinit
-    autoload -Uz compinit && compinit
 fi
+
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
 
 # direnv
 if which direnv >/dev/null 2>&1

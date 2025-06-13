@@ -26,6 +26,7 @@ homebrew_packages:
   - { name: git }
   - { name: git-lfs }
   - { name: zsh }
+  - { name: zsh-completions }
   - { name: ripgrep }
   - { name: global }
   - { name: jq }
