@@ -57,6 +57,7 @@ homebrew_packages:
   - { name: gh }
   - { name: asdf }
   - { name: coreutils }
+  - { name: oath-toolkit }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11
