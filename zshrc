@@ -53,7 +53,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 export PIP_RESPECT_VIRTUALENV=true
 
 # asdf golang
-export ASDF_GOLANG_MOD_VERSION_ENABLED=false
+# export ASDF_GOLANG_MOD_VERSION_ENABLED=false
 
 # itermplot
 #export MPLBACKEND="module://itermplot"
@@ -262,11 +262,22 @@ if type brew &>/dev/null; then
 fi
 
 # asdf
-if [ -d ~/.asdf ]; then
-    export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-    # append completions to fpath
-    fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+#if [ -d ~/.asdf ]; then
+#    export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+#    # append completions to fpath
+#    fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+#fi
+
+# mise
+if which mise >/dev/null 2>&1
+then
+    eval "$(mise activate zsh)"
+    if [ -d ~/.mise/completions ]; then
+        # append completions to fpath
+        fpath=(${HOME}/.mise/completions $fpath)
+    fi
 fi
+
 
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
@@ -366,10 +377,10 @@ function kx() {
     fi
 }
 
-if which asdf >/dev/null 2>&1
-then
-    export PATH="$(asdf where gcloud)/bin:$PATH"
-fi
+#if which asdf >/dev/null 2>&1
+#then
+#    export PATH="$(asdf where gcloud)/bin:$PATH"
+#fi
 
 # spaceship
 #[ -f $HOME/.spaceship.zsh ] && source $HOME/.spaceship.zsh

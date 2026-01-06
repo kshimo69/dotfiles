@@ -1,0 +1,11 @@
+[tools]
+go = '1.25.0'
+nodejs = '23.7.0'
+gh = '2.83.2'
+python = '3.12.0'
+gcloud = '550.0.0'
+awscli = '2.27.49'
+sops = '3.11.0'
+aws-vault = '7.2.0'
+terraform = '1.13.4'
+terragrunt = '0.83.0'

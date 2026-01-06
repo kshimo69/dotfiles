@@ -13,6 +13,15 @@
 - name: Setup asdf completions
   shell: mkdir -p ~/.asdf/completions && asdf completion zsh > ~/.asdf/completions/_asdf
 
+- name: Create mise completions dir
+  args:
+    # guard for only once.
+    creates: ~/.mise
+  shell: mkdir -p ~/.mise/completions
+
+- name: Setup mise completions
+  shell: mise completion zsh > ~/.mise/completions/_mise
+
 - name: Install anyenv
   git:
     repo: https://github.com/anyenv/anyenv
@@ -121,4 +130,5 @@
     - { s: bin, d: bin }
     - { s: vsnip, d: .vsnip }
     - { s: asdfrc, d: .asdfrc }
+    - { s: config/mise.toml, d: .config/mise.toml }
     - { s: tool-versions, d: .tool-versions }
