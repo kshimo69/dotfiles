@@ -130,5 +130,5 @@
     - { s: bin, d: bin }
     - { s: vsnip, d: .vsnip }
     - { s: asdfrc, d: .asdfrc }
-    - { s: config/mise.toml, d: .config/mise.toml }
+    - { s: config/mise.toml, d: .config/mise/config.toml }
     - { s: tool-versions, d: .tool-versions }
