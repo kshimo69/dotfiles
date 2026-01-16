@@ -7,10 +7,10 @@ __metaclass__ = type
 from ansible import constants as C
 from ansible.module_utils.common.text.converters import to_text
 from ansible.playbook.task_include import TaskInclude
-from ansible.plugins.callback import CallbackModule_base
+from ansible.plugins.callback import CallbackBase
 
 
-class CallbackModule(CallbackModule_base):
+class CallbackModule(CallbackBase):
     CALLBACK_VERSION = 2.0
     CALLBACK_TYPE = 'stdout'
     CALLBACK_NAME = 'custom_stdout'
