@@ -5,9 +5,9 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 from ansible import constants as C
-from ansible.module_utils._text import to_text
+from ansible.module_utils.common.text.converters import to_text
 from ansible.playbook.task_include import TaskInclude
-from ansible.plugins.callback.unixy import CallbackModule as CallbackModule_base
+from ansible.plugins.callback import CallbackModule_base
 
 
 class CallbackModule(CallbackModule_base):
