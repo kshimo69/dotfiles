@@ -1,12 +1,13 @@
 ---
   - name: Include tasks
-    include_tasks: '{{ include_yml }}'
-    loop_control:
-      loop_var: include_yml
-    with_first_found:
-      - files:
-        - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml'
-        - '{{ ansible_distribution }}.yml'
-        - '{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml'
-        - '{{ ansible_os_family }}.yml'
-        skip: true
+    vars:
+      _first_found_params:
+        files:
+          - "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+          - "{{ ansible_facts['distribution'] }}.yml"
+          - "{{ ansible_facts['os_family'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+          - "{{ ansible_facts['os_family'] }}.yml"
+        paths:
+          - "{{ role_path }}/tasks"
+        skip: false
+    include_tasks: "{{ lookup('first_found', _first_found_params) }}"
