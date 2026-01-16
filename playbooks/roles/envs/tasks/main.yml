@@ -22,6 +22,12 @@
 - name: Setup mise completions
   shell: mise completion zsh > ~/.mise/completions/_mise
 
+- name: Create mise config dir
+  args:
+    # guard for only once.
+    creates: ~/.config/mise
+  shell: mkdir -p ~/.config/mise
+
 - name: Install anyenv
   git:
     repo: https://github.com/anyenv/anyenv
