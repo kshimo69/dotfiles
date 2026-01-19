@@ -59,6 +59,7 @@ homebrew_packages:
   - { name: coreutils }
   - { name: oath-toolkit }
   - { name: mise }
+  - { name: eza }
 
 osx_defaults:
   - domain: org.macosforge.xquartz.X11

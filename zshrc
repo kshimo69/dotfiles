@@ -68,7 +68,7 @@ export PIP_RESPECT_VIRTUALENV=true
 # docker
 COMPOSE_DOCKER_CLI_BUILD=1
 
-alias ls='ls --color=auto'
+alias ls='eza --icons --git'
 alias vi='nvim'
 alias vim='nvim'
 alias VIM='gvim'
