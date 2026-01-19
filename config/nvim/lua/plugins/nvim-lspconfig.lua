@@ -20,9 +20,11 @@ return {
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
         mason_lspconfig.setup_handlers({ function(server_name)
-          require('lspconfig')[server_name].setup {
+          local config = {
             capabilities = capabilities,
           }
+          vim.lsp.config[server_name] = config
+          vim.lsp.enable(server_name)
         end,
         })
       end,
@@ -36,8 +38,10 @@ return {
           require('lsp-format').on_attach(client)
           -- ... custom code ...
         end
-        require('lspconfig').gopls.setup { on_attach = on_attach }
-        require('lspconfig').lua_ls.setup { on_attach = on_attach }
+        vim.lsp.config.gopls = { on_attach = on_attach }
+        vim.lsp.enable('gopls')
+        vim.lsp.config.lua_ls = { on_attach = on_attach }
+        vim.lsp.enable('lua_ls')
       end
     },
 
