@@ -1,5 +1,5 @@
 [tools]
-aws-vault = "7.2.0"
+aws-vault = "latest"
 awscli = "2.27.49"
 gcloud = "latest"
 gh = "latest"
