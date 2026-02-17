@@ -105,6 +105,12 @@
     state: directory
     recurse: yes
 
+- name: Create .copilot directory
+  file:
+    path: ~/.copilot
+    state: directory
+    recurse: yes
+
 - name: Lynk config files
   file:
     src: ~/.dotfiles/{{ item.s }}
@@ -138,3 +144,4 @@
     - { s: asdfrc, d: .asdfrc }
     - { s: config/mise.toml, d: .config/mise/config.toml }
     - { s: tool-versions, d: .tool-versions }
+    - { s: skills, d: .copilot/skills }
