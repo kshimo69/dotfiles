@@ -6,27 +6,36 @@ return {
     -- Automatically install LSPs to stdpath for neovim
     {
       'williamboman/mason.nvim',
-      version = "^1.0.0",
       config = true,
     },
     {
       'williamboman/mason-lspconfig.nvim',
-      version = "^1.0.0",
       config = function()
-        local mason_lspconfig = require("mason-lspconfig")
-        mason_lspconfig.setup({
-          ensure_installed = { "lua_ls" },
+        -- v2: ensure_installed だけ指定すれば OK(自動で有効化されます)
+        require('mason-lspconfig').setup({
+          ensure_installed = { 'lua_ls', 'gopls' },
+          -- 必要なら自動有効化を切る:
+          -- automatic_enable = false,
         })
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-        mason_lspconfig.setup_handlers({ function(server_name)
-          local config = {
-            capabilities = capabilities,
-          }
-          vim.lsp.config[server_name] = config
-          vim.lsp.enable(server_name)
-        end,
+        -- nvim-cmp の capabilities を全 LSP に適用
+        vim.lsp.config('*', {
+          capabilities = require('cmp_nvim_lsp').default_capabilities(),
         })
+        -- 個別設定: Lua
+        vim.lsp.config('lua_ls', {
+          settings = {
+            Lua = {
+              diagnostic = { globals = { 'vim' } },
+            },
+          },
+        })
+        -- 個別設定: Go
+        vim.lsp.config('gopls', {
+          -- ここに gopls の設定があれば追加
+        })
+
+        -- もし automatic_enable = false にした場合は手動で有効化
+        -- vim.lsp.enable({ 'lua_ls', 'gopls' })
       end,
     },
     {
@@ -38,10 +47,10 @@ return {
           require('lsp-format').on_attach(client)
           -- ... custom code ...
         end
-        vim.lsp.config.gopls = { on_attach = on_attach }
-        vim.lsp.enable('gopls')
-        vim.lsp.config.lua_ls = { on_attach = on_attach }
-        vim.lsp.enable('lua_ls')
+        -- 新 API で on_attach を紐付け
+        vim.lsp.config('*', {
+          on_attach = on_attach,
+        })
       end
     },
 
