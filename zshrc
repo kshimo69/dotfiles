@@ -37,6 +37,7 @@ export LESSCHARSET="utf-8"
 export EDITOR="nvim"
 export SVN_EDITOR="nvim"
 export GIT_EDITOR="nvim"
+export GIT_LFS_SKIP_SMUDGE=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 if which fzf >/dev/null 2>&1
 then
