@@ -38,6 +38,7 @@ fi
 
 test -d /opt/homebrew && eval $(/opt/homebrew/bin/brew shellenv)
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+PATH=${HOMEBREW_PREFIX}/opt/git/share/git-core/contrib/diff-highlight:$PATH
 
 export PATH
 #export MANPATH=$(brew --prefix)/share/man:$HOME/local/share/man:/opt/local/man:$MANPATH
