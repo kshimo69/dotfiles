@@ -31,9 +31,6 @@ export GOPATH=$HOME/work
 PATH=$PATH:$GOPATH/bin
 export GO111MODULE=auto
 
-# copilot
-export COPILOT_AUTO_UPDATE=false
-
 if [ -f $HOME/jack_knives/.nexenv.zsh ]
 then
     source $HOME/jack_knives/.nexenv.zsh
