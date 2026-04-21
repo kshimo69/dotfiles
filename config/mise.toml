@@ -1,3 +1,7 @@
+[settings]
+install_before = "7d"
+pin = true
+
 [tools]
 aws-vault = "latest"
 awscli = "2.27.49"
