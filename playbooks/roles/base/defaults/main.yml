@@ -43,3 +43,4 @@ build_libs:
   - { name: liblzma-dev }
   - { name: libedit-dev }
   - { name: python3-openssl }
+  - { name: wslu }
