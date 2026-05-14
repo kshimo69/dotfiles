@@ -280,6 +280,15 @@ then
 fi
 
 
+ZCOMPDUMP=${ZDOTDIR:-$HOME}/.zcompdump
+# 壊れてたり書けなければ削除
+if [[ -f ${ZCOMPDUMP}.zwc && ! -w ${ZCOMPDUMP}.zwc ]]; then
+  rm -f ${ZCOMPDUMP}.zwc
+fi
+# 読み込めなかったら削除
+# if ! zcompile -t ${ZCOMPDUMP}.zwc &>/dev/null; then
+#   rm -f ${ZCOMPDUMP}.zwc
+# fi
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
