@@ -74,7 +74,6 @@ alias vim='nvim'
 alias VIM='gvim'
 alias em='TERM=xterm-256color emacs -nw'
 alias g='git'
-alias k='kubectl'
 alias d='docker'
 alias t='go test ./... -count=1'
 alias tv='go test ./... -test.v -count=1'
@@ -279,7 +278,6 @@ then
     fi
 fi
 
-
 ZCOMPDUMP=${ZDOTDIR:-$HOME}/.zcompdump
 # 壊れてたり書けなければ削除
 if [[ -f ${ZCOMPDUMP}.zwc && ! -w ${ZCOMPDUMP}.zwc ]]; then
@@ -291,6 +289,14 @@ fi
 # fi
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
+# kubectl
+if which kubectl >/dev/null 2>&1
+then
+    source <(kubectl completion zsh)
+fi
+alias k='kubectl'
+compdef k=kubectl
 
 # direnv
 if which direnv >/dev/null 2>&1
