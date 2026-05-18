@@ -283,12 +283,17 @@ ZCOMPDUMP=${ZDOTDIR:-$HOME}/.zcompdump
 if [[ -f ${ZCOMPDUMP}.zwc && ! -w ${ZCOMPDUMP}.zwc ]]; then
   rm -f ${ZCOMPDUMP}.zwc
 fi
+autoload -Uz compinit
+compinit
 # 読み込めなかったら削除
 # if ! zcompile -t ${ZCOMPDUMP}.zwc &>/dev/null; then
 #   rm -f ${ZCOMPDUMP}.zwc
 # fi
 # initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
+if [[ ${zcompdump} -nt ${ZCOMPDUMP}.zwc ]]; then
+  zcompile ${ZCOMPDUMP}
+fi
+
 
 # kubectl
 if which kubectl >/dev/null 2>&1
