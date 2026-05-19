@@ -282,6 +282,8 @@ ZCOMPDUMP=${ZDOTDIR:-$HOME}/.zcompdump
 # 壊れてたり書けなければ削除
 if [[ -f ${ZCOMPDUMP}.zwc && ! -w ${ZCOMPDUMP}.zwc ]]; then
   rm -f ${ZCOMPDUMP}.zwc
+  zcompile ${ZCOMPDUMP}
+  chmod 644 ${ZCOMPDUMP}.zwc
 fi
 autoload -Uz compinit
 compinit
