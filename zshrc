@@ -294,6 +294,7 @@ compinit
 # initialise completions with ZSH's compinit
 if [[ ${zcompdump} -nt ${ZCOMPDUMP}.zwc ]]; then
   zcompile ${ZCOMPDUMP}
+  chmod 644 ${ZCOMPDUMP}.zwc
 fi
 
 
