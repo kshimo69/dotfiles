@@ -81,7 +81,6 @@ alias py='python'
 alias r='rails'
 alias pu='pushd'
 alias po='popd'
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
 alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
 alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
 alias grep='grep --color=auto'
@@ -97,12 +96,24 @@ if [ "`uname`" = "Darwin" ]; then
     alias ctags='`brew --prefix`/bin/ctags'
     alias goland='open /Applications/GoLand.app'
     alias sed='gsed'
+    alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
     alias gvim='d:/vim/gvim.exe'
 elif uname -a | grep -q microsoft; then
     export BROWSER=wslview
     alias open='/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe /c start'
     alias code="'/mnt/c/Users/${USER}/AppData/Local/Programs/Microsoft VS Code/bin/code'"
+    chrome() {
+    local args=()
+    for arg in "$@"; do
+        if [[ "$arg" == /* ]]; then
+        args+=("$(wslpath -w "$arg")")
+        else
+        args+=("$arg")
+        fi
+    done
+    "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" "${args[@]}"
+    }
 fi
 if [ "${TERM}" = "eterm-color" ]; then
     alias ls='ls -F'
