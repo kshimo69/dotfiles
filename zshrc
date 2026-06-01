@@ -426,4 +426,45 @@ then
     eval "$(starship init zsh)"
 fi
 
+# windowsに通知する
+# 通知を受けとった時の動作
+#cat << 'EOF' > /mnt/c/Users/N3022/wsl-tmux-handler.ps1
+#param([string]$uri)
+#if ($uri -match 'wsl-tmux://([^/]+)/([^/]+)/([^/]+)') {
+#    $session = $Matches[1]
+#    $window  = $Matches[2]
+#    $pane    = $Matches[3]
+#    Start-Process -FilePath "wsl.exe" `
+#        -ArgumentList "bash -c `"tmux select-window -t ${session}:${window} ; tmux select-pane -t .${pane}`"" `
+#        -WindowStyle Hidden -Wait
+#    $wt = Get-Process -Name WindowsTerminal -ErrorAction SilentlyContinue | Select-Object -First 1
+#    if ($wt) {
+#        (New-Object -ComObject wscript.shell).AppActivate($wt.Id)
+#    }
+#}
+#EOF
+# レジストリにカスタムURLプロトコルを登録
+#pwsh.exe -Command "
+#    \$reg = 'HKCU:\SOFTWARE\Classes\wsl-tmux'
+#    New-Item -Path \$reg -Force | Out-Null
+#    Set-ItemProperty -Path \$reg -Name '(Default)' -Value 'WSL tmux Focus'
+#    New-ItemProperty -Path \$reg -Name 'URL Protocol' -Value '' -Force | Out-Null
+#    New-Item -Path \"\$reg\shell\open\command\" -Force | Out-Null
+#    Set-ItemProperty -Path \"\$reg\shell\open\command\" -Name '(Default)' -Value 'pwsh.exe -NonInteractive -WindowStyle Hidden -File C:\Users\N3022\wsl-tmux-handler.ps1 \"%1\"'
+#"
+# 通知スクリプト
+notify-done() {
+    local title="${1:-完了}"
+    local body="${2:-処理が完了しました}"
+    local session=$(tmux display-message -p '#{session_name}')
+    local window=$(tmux display-message -p '#{window_index}')
+    local pane=$(tmux display-message -p '#{pane_index}')
+    local uri="wsl-tmux://${session}/${window}/${pane}"
+
+    pwsh.exe -NonInteractive -Command "
+        \$btn = New-BTButton -Content 'ペインを開く' -Arguments '${uri}'
+        New-BurntToastNotification -Text '${title}', '${body}' -Button \$btn
+    "
+}
+
 true
