@@ -457,9 +457,9 @@ fi
 notify-done() {
     local title="${1:-完了}"
     local body="${2:-処理が完了しました}"
-    local session=$(tmux display-message -p '#{session_name}')
-    local window=$(tmux display-message -p '#{window_index}')
-    local pane=$(tmux display-message -p '#{pane_index}')
+    local session=$(tmux display-message -t $TMUX_PANE -p '#{session_name}')
+    local window=$(tmux display-message -t $TMUX_PANE -p '#{window_index}')
+    local pane=$(tmux display-message -t $TMUX_PANE -p '#{pane_index}')
     local uri="wsl-tmux://${session}/${window}/${pane}"
 
     pwsh.exe -NonInteractive -Command "
