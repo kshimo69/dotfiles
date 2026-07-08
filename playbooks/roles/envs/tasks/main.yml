@@ -105,6 +105,11 @@
     state: directory
     recurse: yes
 
+- name: Create herdr config directory
+  file:
+    path: ~/.config/herdr
+    state: directory
+
 - name: Lynk config files
   file:
     src: ~/.dotfiles/{{ item.s }}
@@ -137,3 +142,4 @@
     - { s: vsnip, d: .vsnip }
     - { s: asdfrc, d: .asdfrc }
     - { s: config/mise.toml, d: .config/mise/config.toml }
+    - { s: config/herdr.toml, d: .config/herdr/config.toml }

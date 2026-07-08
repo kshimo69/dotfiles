@@ -1,0 +1,23 @@
+onboarding = false
+
+# herdr --default-config
+[keys]
+prefix = "ctrl+t"
+settings = "prefix+,"
+split_horizontal = "prefix+s"
+navigate_workspace_up = ["up", "ctrl+k"]
+navigate_workspace_down = ["down", "ctrl+j"]
+
+# Custom commands use the same binding syntax.
+# type = "shell" runs detached in the background.
+# type = "pane" opens a temporary pane and closes it when the command exits.
+# [[keys.command]]
+# key = "prefix+alt+g"
+# type = "pane"
+# command = "lazygit"
+
+[ui.toast]
+# delivery = "herdr"
+# delivery = "terminal"
+delivery = "system"
+delay_seconds = 1
