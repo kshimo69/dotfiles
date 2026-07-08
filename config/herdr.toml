@@ -4,7 +4,7 @@ onboarding = false
 [keys]
 prefix = "ctrl+t"
 settings = "prefix+,"
-split_horizontal = "prefix+s"
+split_horizontal = ["prefix+minus", "prefix+s"]
 navigate_workspace_up = ["up", "ctrl+k"]
 navigate_workspace_down = ["down", "ctrl+j"]
 
