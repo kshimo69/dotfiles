@@ -83,8 +83,6 @@ alias r='rails'
 alias h='herdr'
 alias pu='pushd'
 alias po='popd'
-alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
-alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
 alias grep='grep --color=auto'
 alias fgrep='find . -type f -print0 | xargs -0 grep'
 alias ngrep='grep --color=never'
@@ -99,6 +97,8 @@ if [ "`uname`" = "Darwin" ]; then
     alias goland='open /Applications/GoLand.app'
     alias sed='gsed'
     alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=\"$HOME/.cbata\""
+    alias 32bitboot='sudo systemsetup -setkernelbootarchitecture i386'
+    alias 64bitboot='sudo systemsetup -setkernelbootarchitecture x86_64'
 elif [ "`uname`"  = "CYGWIN_NT-6.1-WOW64" ]; then
     alias gvim='d:/vim/gvim.exe'
 elif uname -a | grep -q microsoft; then
