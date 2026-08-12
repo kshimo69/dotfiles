@@ -17,7 +17,7 @@ navigate_workspace_down = ["down", "ctrl+j"]
 # command = "lazygit"
 
 [ui.toast]
-# delivery = "herdr"
+delivery = "herdr"
 # delivery = "terminal"
-delivery = "system"
+# delivery = "system"
 delay_seconds = 1
