@@ -1,6 +1,9 @@
 onboarding = false
 
 # herdr --default-config
+[terminal]
+new_cwd = "home"
+
 [keys]
 prefix = "ctrl+t"
 settings = "prefix+,"
@@ -15,6 +18,9 @@ navigate_workspace_down = ["down", "ctrl+j"]
 # key = "prefix+alt+g"
 # type = "pane"
 # command = "lazygit"
+
+[ui]
+host_cursor = "native"
 
 [ui.toast]
 delivery = "herdr"
