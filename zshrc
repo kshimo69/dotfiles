@@ -148,7 +148,7 @@ copy-prev-cmd-to-clipboard () {
 }
 zle -N copy-prev-cmd-to-clipboard
 bindkey '^x^p' copy-prev-cmd-to-clipboard
-alias -g C="|$COPY"
+alias -g C="$COPY"
 
 setopt NO_beep
 HISTFILE=~/.zsh-history
