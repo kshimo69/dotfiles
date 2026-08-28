@@ -347,14 +347,17 @@ function ga() {
     fi
 }
 
-function ghq-fzf() {
-    repo=`ghq list | f --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*"`
-    [[ ! -z ${repo} ]] && builtin cd $(ghq root)/${repo}
-    __call_precmds
+function ghq-fzf-insert-path() {
+    local repo
+    repo=$(ghq list | fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
+    if [[ -n "$repo" ]]; then
+        local path="$(ghq root)/$repo"
+        LBUFFER+="${(q)path}"
+    fi
     zle reset-prompt
 }
-zle -N ghq-fzf
-bindkey "^]" ghq-fzf
+zle -N ghq-fzf-insert-path
+bindkey "^]" ghq-fzf-insert-path
 
 function fd() {
     local dir
