@@ -23,7 +23,10 @@ navigate_workspace_down = ["down", "ctrl+j"]
 host_cursor = "native"
 
 [ui.toast]
-delivery = "herdr"
+# /mnt/c/Users/N3022/AppData/Roaming/herdr/config.toml
+# windowsから herdr --remote wsl-ubuntu で WSL2 の Ubuntu に接続する
+# Ubuntu 上も windows 上も両方通知先が system になっている必要がある
+# delivery = "herdr"
 # delivery = "terminal"
-# delivery = "system"
+delivery = "system"
 delay_seconds = 1
