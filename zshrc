@@ -332,7 +332,13 @@ export FZF_DEFAULT_OPTS='--reverse --border --ansi --select-1 --multi --extended
 export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_OPTS='--preview "$HOMEBREW_PREFIX/bin/bat --color=always --style=header,grid --line-range :100 {}"'
 #alias f="fzf-tmux -d $FZF_DEFAULT_OPTS"
-alias f="fzf -d $FZF_DEFAULT_OPTS"
+# alias f="fzf -d $FZF_DEFAULT_OPTS"
+unalias f 2>/dev/null
+function f() {
+    local selected
+    selected=$(cat | fzf -d $FZF_DEFAULT_OPTS) || return
+    print -z "$selected"
+}
 if which fzf >/dev/null 2>&1
 then
 	source <(fzf --zsh)
@@ -340,7 +346,7 @@ fi
 
 function ga() {
     local selected
-    selected=$(unbuffer git status -s | f -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk -F ' ' '{print $NF}')
+    selected=$(unbuffer git status -s | fzf -d $FZF_DEFAULT_OPTS -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk -F ' ' '{print $NF}')
     if [[ -n "$selected" ]]; then
         git add $(echo "$selected" | tr '\n' ' ')
         echo git add $(echo "$selected" | tr '\n' ' ')
@@ -362,12 +368,12 @@ bindkey "^]" ghq-fzf-insert-path
 function fd() {
     local dir
     #dir=$(find ${1:-.} -type d 2> /dev/null | f +m) && cd "$dir"
-    dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | f +m) && cd "$dir"
+    dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf -d $FZF_DEFAULT_OPTS +m) && cd "$dir"
 }
 
 function githistory() {
     local h
-    h=$(git log --pretty=oneline $* | f +m | awk '{print $1}')
+    h=$(git log --pretty=oneline $* | fzf -d $FZF_DEFAULT_OPTS +m | awk '{print $1}')
     if zle; then
         LBUFFER+="$h"
         CURSOR=$#LBUFFER
@@ -381,7 +387,7 @@ bindkey '^g^h' githistory
 
 function gb() {
     local branch
-    branch=$(git --no-pager branch -vv | f +m | sed "s/\* *//" | awk '{print $1}' | sed "s/.* //")
+    branch=$(git --no-pager branch -vv | fzf -d $FZF_DEFAULT_OPTS +m | sed "s/\* *//" | awk '{print $1}' | sed "s/.* //")
     if zle; then
         LBUFFER+="$branch"
         CURSOR=$#LBUFFER
@@ -395,7 +401,7 @@ bindkey '^g^b' gb
 
 function gba() {
     local branch
-    branch=$(git --no-pager branch --all -vv | f +m | sed "s/\* *//" | awk '{print $1}' | sed "s/.* //")
+    branch=$(git --no-pager branch --all -vv | fzf -d $FZF_DEFAULT_OPTS +m | sed "s/\* *//" | awk '{print $1}' | sed "s/.* //")
     if zle; then
         LBUFFER+="$branch"
         CURSOR=$#LBUFFER
@@ -407,7 +413,7 @@ function gba() {
 
 function kx() {
     local context
-    context=$(kubectl config get-contexts | f +m | sed "s/\* *//" | awk '{print $1}' | sed "s/.* //")
+    context=$(kubectl config get-contexts | fzf -d $FZF_DEFAULT_OPTS +m | sed "s/\* *//" | awk '{print $1}' | sed "s/.* //")
     if zle; then
         LBUFFER+="kubectl config use-context $context"
         CURSOR=$#LBUFFER
